@@ -1,0 +1,9 @@
+node_modules
+.idea
+.DS_Store
+.eslintcache
+
+// env
+.env.local
+.env.development
+.env.production
