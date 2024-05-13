@@ -1,3 +1,1 @@
-import UI from './ui'
-
-export { UI }
+export { default as UI } from './ui'

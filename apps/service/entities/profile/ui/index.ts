@@ -1,13 +1,5 @@
-import PreferTagItem from './PreferTagItem'
-import PreferTagList from './PreferTagList'
-import ProfileImage from './ProfileImage'
-import ProfileBackground from './ProfileBackground'
-import UserInfo from './UserInfo'
-
-export {
-  PreferTagItem,
-  PreferTagList,
-  ProfileImage,
-  ProfileBackground,
-  UserInfo,
-}
+export { default as PreferTagItem } from './PreferTagItem'
+export { default as PreferTagList } from './PreferTagList'
+export { default as ProfileImage } from './ProfileImage'
+export { default as ProfileBackground } from './ProfileBackground'
+export { default as UserInfo } from './UserInfo'
