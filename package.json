@@ -15,8 +15,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "lint": "eslint .",
+    "build": "pnpm -r build",
+    "dev:service": "pnpm -F @attraction/service dev",
+    "build:icons": "pnpm -F @attraction/icons build"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +29,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
     "@typescript-eslint/parser": "^7.8.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",

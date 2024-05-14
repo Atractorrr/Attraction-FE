@@ -1,0 +1,25 @@
+{
+  "name": "@attraction/icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgr:emoji && pnpm svgr:outline && pnpm generate",
+    "generate": "./remove.bash && ts-node ./scripts/generateExports.ts",
+    "svgo:emoji": "npx svgo -f ./src/emoji/svg --config=svgo.emoji.mjs",
+    "svgo:outline": "npx svgo -f ./src/outline/svg --config=svgo.outline.mjs",
+    "svgr:emoji": "npx @svgr/cli --ignore-existing --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/emoji/react src/emoji/svg",
+    "svgr:outline": "npx @svgr/cli --ignore-existing --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/outline/react src/outline/svg"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "svgo": "^3.3.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
