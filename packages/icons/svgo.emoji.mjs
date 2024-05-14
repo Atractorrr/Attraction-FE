@@ -5,12 +5,6 @@ export default {
     'sortAttrs',
     'cleanupListOfValues',
     {
-      name: 'removeAttrs',
-      params: {
-        attrs: ['fill'],
-      },
-    },
-    {
       name: 'addAttributesToSVGElement',
       params: {
         attributes: [

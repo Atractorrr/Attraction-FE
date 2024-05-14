@@ -15,8 +15,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "dev:service": "pnpm -F @attraction/service dev"
+    "lint-staged": "lint-staged",
+    "lint": "eslint .",
+    "build": "pnpm -r build",
+    "dev:service": "pnpm -F @attraction/service dev",
+    "build:icons": "pnpm -F @attraction/icons build"
   },
   "keywords": [],
   "author": "",
