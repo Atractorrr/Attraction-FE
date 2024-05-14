@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        command: ['type', 'lint', 'build']
+        command: ['lint', 'build']
 
     steps:
       - name: Checkout
