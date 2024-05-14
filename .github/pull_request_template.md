@@ -7,8 +7,9 @@
 - [ ] Build related changes
 - [ ] CI related changes
 - [ ] Documentation content changes
-- [ ] angular.io application / infrastructure changes
 - [ ] Other... Please describe:
+
+<br/>
 
 ## 📑 Related JIRA Epic(Issue)
 
