@@ -1,5 +1,5 @@
 import { HttpHandler, HttpResponse } from 'msw'
-import { error, get, getParams } from '..'
+import { error, get, getParams } from '../tools'
 import { articles } from '@/__mocks__/data'
 
 const defaultPagination = {
