@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import '@/public/fonts/fonts.css'
 import initMSW from '@/__mocks__'
 
 if (process.env.NODE_ENV !== 'production') {
