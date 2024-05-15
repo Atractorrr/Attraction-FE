@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
+  presets: [require('@attraction/config/attraction-preset')],
+  darkMode: 'selector',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {},
