@@ -1,2 +1,2 @@
-export * as Profile from './profile'
+export * from './profile'
 export * from './news-card'

@@ -7,9 +7,9 @@ type Props = {}
 export default function Page({}: Props) {
   return (
     <div className="bg-[#F4F6F8] px-40 py-10">
-      <Features.Profile.UI />
+      <Features.Profiles />
       <div className="mt-8 flex w-full gap-6">
-        <Widgets.UserRecord.UI />
+        <Widgets.UserRecord />
       </div>
 
       <div className="mt-6 flex gap-6">

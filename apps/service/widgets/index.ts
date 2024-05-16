@@ -1,1 +1,1 @@
-export * as UserRecord from './user-record'
+export * from './user-record'

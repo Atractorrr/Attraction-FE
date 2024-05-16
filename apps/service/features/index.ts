@@ -1,5 +1,5 @@
-export * as Profile from './profile'
-export * as Calender from './calendar'
-export * as Graph from './graph'
+export * from './profile'
+export * from './calendar'
+export * from './graph'
 export * from './recent-newsletter'
 export * from './subscribe-list'

@@ -4,22 +4,22 @@ import { Button } from '@attraction/design-system'
 
 type Props = {}
 
-export default function UI({}: Props) {
+export default function Profiles({}: Props) {
   return (
     <div className="flex w-full flex-col rounded-lg bg-white">
-      <Entities.Profile.UI.ProfileBackground imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
+      <Entities.Profile.ProfileBackground imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
       <div className="flex size-full pl-14">
-        <Entities.Profile.UI.ProfileImage imaSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
+        <Entities.Profile.ProfileImage imaSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
         <div className="w-full p-5 pl-4">
-          <Entities.Profile.UI.UserInfo
+          <Entities.Profile.UserInfo
             userName="woogie0303"
             userEmail="rkdehddnr15123@gmail.com"
           />
           <div className="flex justify-between">
-            <Entities.Profile.UI.PreferTagList
+            <Entities.Profile.PreferTagList
               categories={['연애', '결혼', '경제']}
               renderItem={(category) => (
-                <Entities.Profile.UI.PreferTagItem
+                <Entities.Profile.PreferTagItem
                   key={category}
                   category={category}
                 />

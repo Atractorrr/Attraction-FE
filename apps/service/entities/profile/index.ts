@@ -1,1 +1,1 @@
-export * as UI from './ui'
+export * as Profile from './ui'

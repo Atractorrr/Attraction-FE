@@ -1,1 +1,1 @@
-export { default as UI } from './ui'
+export { default as Graph } from './ui'

@@ -5,8 +5,8 @@ type Props = {}
 export default function UserRecord({}: Props) {
   return (
     <>
-      <Features.Calender.UI />
-      <Features.Graph.UI />
+      <Features.Calendar />
+      <Features.Graph />
     </>
   )
 }
