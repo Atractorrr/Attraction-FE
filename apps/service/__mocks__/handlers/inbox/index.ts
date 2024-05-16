@@ -36,6 +36,7 @@ const inboxHandlers: HttpHandler[] = [
     const size = Number(searchParams.get('size') ?? 12)
     const sort = searchParams.get('sort') ?? 'asc'
     const query = searchParams.get('q')
+    const categories = searchParams.get('category')?.split(',') ?? []
     const isInvalidRequest = [memberId, page, size].some(isNaN)
 
     if (isInvalidRequest) {
@@ -46,10 +47,16 @@ const inboxHandlers: HttpHandler[] = [
     const searchedArticles = !!query
       ? sortedArticles.filter((article) => article.title.includes(query))
       : sortedArticles
-    const resultOfArticles = Array.from(
-      { length: size },
-      (_, i) => searchedArticles[i],
-    ).filter((e) => !!e)
+    const filteredArticles =
+      categories.length > 0
+        ? searchedArticles.filter((article) =>
+            categories.some((category) => category === article.category),
+          )
+        : searchedArticles
+    const resultOfArticles =
+      searchedArticles.length > size
+        ? filteredArticles.filter((_, i) => i < size)
+        : filteredArticles
 
     const data: { articles: Article[] } & DefaultPagination = Object.assign(
       defaultPagination,
@@ -63,6 +70,19 @@ const inboxHandlers: HttpHandler[] = [
     )
 
     return HttpResponse.json(data)
+  }),
+  get('/v1/member/:memberId/categories', ({ params }) => {
+    const memberId = Number(params.memberId)
+
+    if (isNaN(memberId)) {
+      return error('잘못된 요청입니다', 400)
+    }
+
+    return HttpResponse.json({
+      categories: articles
+        .map((article) => article.category)
+        .filter((_, i) => i < 6),
+    })
   }),
   get('/v1/articles/:articleId', ({ params }) => {
     const articleId = Number(params.articleId)
