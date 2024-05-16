@@ -13,7 +13,7 @@ export default function RecentNewsletter({}: Props) {
         <p className="text-lg font-bold">최근 읽은 아티클</p>
         <p className="text-sm font-medium text-[#6F7A86]">보관함 바로가기</p>
       </div>
-      <div className="flex gap-2 overflow-x-scroll">
+      <div className="flex gap-4 overflow-x-scroll">
         {hi.map(() => (
           <Entities.NewsCard>
             <Entities.NewsCard.Thumbnail
