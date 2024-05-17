@@ -11,7 +11,7 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 
 export default function Calendar({}: Props) {
   return (
-    <div className="w-2/3 rounded-lg bg-white p-5">
+    <div className="w-full rounded-lg bg-white p-5 md:w-2/3">
       <ActivityCalendarNoSSR
         data={[
           { date: '2024-01-01', level: 4, count: 10 },

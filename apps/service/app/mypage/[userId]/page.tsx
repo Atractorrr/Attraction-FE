@@ -1,18 +1,12 @@
-import React from 'react'
 import * as Features from '@/features'
 import * as Widgets from '@/widgets'
 
-type Props = {}
-
-export default function Page({}: Props) {
+export default async function Page() {
   return (
-    <div className="bg-[#F4F6F8] px-40 py-10">
+    <div className="bg-[#F4F6F8] p-0 md:px-32 md:py-8 lg:px-40 lg:py-10">
       <Features.Profiles />
-      <div className="mt-8 flex w-full gap-6">
-        <Widgets.UserRecord />
-      </div>
-
-      <div className="mt-6 flex gap-6">
+      <Widgets.UserRecord />
+      <div className="mt-6 flex flex-col gap-6 md:flex-row">
         <Features.RecentNewsletter />
         <Features.SubscribeList />
       </div>

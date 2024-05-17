@@ -7,9 +7,9 @@ const hi = Array.from({ length: 7 })
 
 export default function SubscribeList({}: Props) {
   return (
-    <div className="min-h-full flex-1 rounded-2xl bg-white p-5">
+    <div className="min-h-full shrink-0 grow rounded-2xl bg-white p-5">
       <p className="mb-4 text-lg font-bold">구독 리스트</p>
-      <ul className="h-0 min-h-[85%] overflow-y-auto">
+      <ul className="h-60 min-h-[85%] overflow-y-auto md:h-0">
         {hi.map((_, i) => (
           <li className="p-4" key={i}>
             <Shared.ContentContainer>

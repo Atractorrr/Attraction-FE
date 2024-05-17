@@ -18,7 +18,7 @@ export default function CardThumbnail({ imgSrc, alt }: Props) {
         alt={alt}
       />
       <div className="absolute bottom-0 h-1 w-full bg-[#DDE0E3] after:block after:h-1.5 after:w-1/2 after:bg-[#507FB6] after:content-['']"></div>
-      <div className="absolute bottom-2 right-2 w-fit self-end rounded-md bg-black/60 p-1 text-[12px] font-medium text-white">
+      <div className="absolute bottom-2 right-2 hidden w-fit self-end rounded-md bg-black/60 p-1 text-[12px] font-medium text-white md:block">
         약 10분
       </div>
     </div>

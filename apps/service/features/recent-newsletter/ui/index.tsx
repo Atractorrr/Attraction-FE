@@ -25,14 +25,16 @@ export default function RecentNewsletter({}: Props) {
                 alt="뉴스카드 썸네일"
               />
               <Entities.NewsCard.Content>
-                <Entities.NewsCard.Profile
-                  width="w-8"
-                  height="h-8"
-                  rounded="rounded-full"
-                  imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
-                  alt="뉴스카드 프로필"
-                />
-                <div className="pr-6">
+                <div className="hidden md:block">
+                  <Entities.NewsCard.Profile
+                    width="w-8"
+                    height="h-8"
+                    rounded="rounded-full"
+                    imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+                    alt="뉴스카드 프로필"
+                  />
+                </div>
+                <div className="p-0 md:pr-6">
                   <Entities.NewsCard.Title
                     type="main"
                     content="💓요즘 주말 트렌드 싹 정리해봄 .zip"
