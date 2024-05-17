@@ -1,7 +1,5 @@
-import type { MemberId } from './member-id'
-
 export type UserArticlesOption = {
-  memberId: MemberId
+  memberId: string | number
   page?: number
   size?: number
   sort?: string

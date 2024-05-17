@@ -1,14 +1,14 @@
 import type { Article } from '../types'
 
-type GetArticleParams = { articleId: string | number }
-
-type GetArticleResponse = { article: Article }
-
-export default async function getArticle({ articleId }: GetArticleParams) {
+export default async function getArticle({
+  articleId,
+}: {
+  articleId: string | number
+}) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_FE_URL}/articles/${articleId}`,
   )
-  const data: GetArticleResponse = await res.json()
+  const data: { article: Article } = await res.json()
 
   return data
 }

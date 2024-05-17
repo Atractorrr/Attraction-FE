@@ -4,7 +4,7 @@ import { getUserArticles } from '../api'
 import articleQueryKeys from './article-query-keys'
 
 export default function useInfiniteUserArticlesQuery(
-  option: UserArticlesOption,
+  option: Omit<UserArticlesOption, 'page'>,
 ) {
   return useInfiniteQuery({
     queryKey: articleQueryKeys.userArticles(option),
