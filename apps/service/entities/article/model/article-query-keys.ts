@@ -2,6 +2,10 @@ import { UserArticlesOption } from '../types'
 
 const articleQueryKeys = {
   all: ['article'] as const,
+  article: (params: { articleId: string | number }) => [
+    ...articleQueryKeys.all,
+    params,
+  ],
   userArticles: ({
     memberId,
     category,
@@ -12,6 +16,10 @@ const articleQueryKeys = {
     memberId,
     category,
     options,
+  ],
+  userCategories: (params: { memberId: string | number }) => [
+    ...articleQueryKeys.all,
+    params,
   ],
 }
 

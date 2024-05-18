@@ -1,7 +1,4 @@
-import type { Article, UserArticlesOption } from '../types'
-import * as Shared from '@/shared'
-
-type GetUserArticlesResponse = { articles: Article[] } & Shared.Types.Pagination
+import type { UserArticlesResponse, UserArticlesOption } from '../types'
 
 export default async function getUserArticles({
   memberId,
@@ -10,15 +7,16 @@ export default async function getUserArticles({
   const path = `${process.env.NEXT_PUBLIC_FE_URL}/api/v1/member/${memberId}/articles`
   const searchParams = {
     ...params,
+    page: params.page ?? 0,
     category: params.category?.join(','),
   }
   const searchParamsToString = Object.entries(searchParams)
     .map((entry) => (entry[1] !== undefined ? entry.join('=') : undefined))
-    .filter((e) => !!e)
+    .filter((param) => !!param)
     .join('&')
 
   const res = await fetch(`${path}?${searchParamsToString}`)
-  const data: GetUserArticlesResponse = await res.json()
+  const data: UserArticlesResponse = await res.json()
 
   return data
 }

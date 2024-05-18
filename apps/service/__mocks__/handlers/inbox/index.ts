@@ -24,8 +24,10 @@ type DefaultPagination = typeof defaultPagination
 type Article = (typeof articles)[number]
 
 const sorted: { [key: string]: (a: Article, b: Article) => number } = {
-  desc: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  asc: (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  desc: (a, b) =>
+    new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
+  asc: (a, b) =>
+    new Date(b.receivedAt).getTime() - new Date(a.receivedAt).getTime(),
 }
 
 const inboxHandlers: HttpHandler[] = [

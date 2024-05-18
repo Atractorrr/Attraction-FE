@@ -1,6 +1,10 @@
-export type { Article } from './article'
-export type { UserArticlesOption } from './user-article-option'
 export type {
-  NewsletterCategories,
-  ValueOfNewsletterCategories,
+  Article,
+  UserArticlesResponse,
+  UserArticlesOption,
+} from './article'
+export type {
+  NewsletterCategory,
+  ValueOfNewsletterCategory,
 } from './newsletter-category'
+export type { ViewType } from './view-type'
