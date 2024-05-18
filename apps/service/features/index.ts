@@ -1,1 +1,1 @@
-export * as Inbox from './inbox'
+export * as FilterArticle from './filter-article'
