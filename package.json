@@ -18,7 +18,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "lint": "eslint .",
+    "lint": "pnpm -r run lint",
     "build": "pnpm -F @attraction/icons build",
     "dev:service": "pnpm -F @attraction/service dev",
     "build:icons": "pnpm -F @attraction/icons build"
