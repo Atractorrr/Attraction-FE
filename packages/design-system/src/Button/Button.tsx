@@ -1,12 +1,10 @@
-import React from 'react'
-import { ButtonHTMLAttributes } from 'react'
-import { forwardRef } from 'react'
+import React, { ButtonHTMLAttributes, forwardRef } from 'react'
 
 const Button = forwardRef<
   HTMLButtonElement,
   ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, ...rest }, ref) => (
-  <button ref={ref} {...rest}>
+  <button type="button" ref={ref} {...rest}>
     {children}
   </button>
 ))
