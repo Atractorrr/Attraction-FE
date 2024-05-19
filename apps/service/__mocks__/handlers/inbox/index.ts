@@ -45,7 +45,7 @@ const inboxHandlers: HttpHandler[] = [
       return error('잘못된 요청입니다', 400)
     }
 
-    const sortedArticles = [...articles].sort(sorted[sort])
+    const sortedArticles = [...articles].sort(sorted[sort] ?? sorted.asc)
     const searchedArticles = !!query
       ? sortedArticles.filter((article) => article.title.includes(query))
       : sortedArticles

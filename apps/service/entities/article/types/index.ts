@@ -6,5 +6,5 @@ export type {
 export type {
   NewsletterCategory,
   ValueOfNewsletterCategory,
-} from './newsletter-category'
+} from './newsletter'
 export type { ViewType } from './view-type'

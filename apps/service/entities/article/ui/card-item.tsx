@@ -27,10 +27,10 @@ export default function CardItem({
           alt={`아티클 썸네일 이미지: ${data.title}`}
         />
         {data.readPercentage > 0 && (
-          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-700">
+          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
             <span
               className={
-                'absolute inset-x-0 h-1 bg-green-400 dark:bg-green-600 ' +
+                'absolute inset-x-0 h-1 bg-green-400 dark:bg-green-500 ' +
                 Shared.Constants.W_PERCENT[data.readPercentage]
               }></span>
           </span>
@@ -59,7 +59,7 @@ export default function CardItem({
           <Link
             href={`/inbox/${data.id}`}
             title={`아티클 보기: ${data.title}`}
-            className="mb-1 block break-keep font-medium text-gray-700 hover:text-blue-500 hover:underline dark:text-gray-50">
+            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-500 hover:underline dark:text-gray-50">
             {data.title}
           </Link>
           <span className="block break-keep text-sm text-gray-500 dark:text-gray-400">

@@ -1,5 +1,5 @@
 import type { Newsletter } from './newsletter'
-import type { NewsletterCategory } from './newsletter-category'
+import type { NewsletterCategory } from './newsletter'
 import * as Shared from '@/shared'
 
 export interface Article {
