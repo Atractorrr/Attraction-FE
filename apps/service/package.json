@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@attraction/config": "workspace:^",
+    "eslint-config-next": "^14.2.3",
     "msw": "^2.3.0",
     "postcss": "^8"
   }

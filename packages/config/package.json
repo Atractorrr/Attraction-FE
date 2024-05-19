@@ -3,7 +3,5 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "scripts": {
-    "lint": "eslint ."
-  }
+  "scripts": {}
 }
