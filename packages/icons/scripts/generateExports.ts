@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable no-console */
+
 const fs = require('fs')
 const path = require('path')
 
@@ -34,7 +37,6 @@ directories.forEach(({ dir, subDir }) => {
         console.error('Error writing to file', err)
         return
       }
-
       console.log(`Exports generated successfully for ${dir}.`)
     })
   })
