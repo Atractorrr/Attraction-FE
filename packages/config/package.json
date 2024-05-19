@@ -2,5 +2,8 @@
   "name": "@attraction/config",
   "version": "1.0.0",
   "description": "",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "lint": "eslint ."
+  }
 }
