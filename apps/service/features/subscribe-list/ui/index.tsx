@@ -1,26 +1,27 @@
 import React from 'react'
 import * as Shared from '@/shared'
+import { SubscribeItemType } from '../model/types'
 
-type Props = {}
+type Props = {
+  subscribeList: SubscribeItemType[]
+}
 
-const hi = Array.from({ length: 7 })
-
-export default function SubscribeList({}: Props) {
+export default function SubscribeList({ subscribeList }: Props) {
   return (
     <div className="min-h-full shrink-0 grow rounded-2xl bg-white p-5">
       <p className="mb-4 text-lg font-bold">구독 리스트</p>
       <ul className="h-60 min-h-[85%] overflow-y-auto md:h-0">
-        {hi.map((_, i) => (
-          <li className="p-4" key={i}>
+        {subscribeList.map((item) => (
+          <li className="p-4" key={item.id}>
             <Shared.ContentContainer>
               <Shared.ImageBox
                 width="w-8"
                 height="h-8"
-                imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+                imgSrc={item.thumbnailUrl}
                 alt="뉴스 프로필"
                 rounded="rounded-full"
               />
-              <Shared.ContentTitle type="main" content="뉴닉" />
+              <Shared.ContentTitle type="main" content={item.title} />
             </Shared.ContentContainer>
           </li>
         ))}

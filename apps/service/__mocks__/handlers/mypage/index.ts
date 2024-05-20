@@ -71,7 +71,7 @@ const mypageHandlers: HttpHandler[] = [
           },
           info: {
             title: '💓요즘 주말 트렌드 한번 보자 .zip',
-            name: '네이트',
+            name: '뉴닉',
             date: '2023-03-03',
             readingTime: 8,
             readingPercentage: 40,
@@ -96,11 +96,26 @@ const mypageHandlers: HttpHandler[] = [
   }),
   get('/v1/member/:memberId/subscribe-list', () => {
     return HttpResponse.json({
-      calendarRecord: [
+      subscribeList: [
+        {
+          id: 1,
+          thumbnailUrl: imgUrl,
+          title: '네이버',
+        },
+        {
+          id: 2,
+          thumbnailUrl: imgUrl,
+          title: '뉴닉',
+        },
+        {
+          id: 3,
+          thumbnailUrl: imgUrl,
+          title: '네이트',
+        },
         {
           id: 4,
           thumbnailUrl: imgUrl,
-          title: '뉴닉',
+          title: '구글',
         },
         {
           id: 5,
