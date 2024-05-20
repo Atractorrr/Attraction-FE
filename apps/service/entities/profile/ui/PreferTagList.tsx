@@ -7,7 +7,7 @@ type Props<T> = {
 
 export default function PreferTagList<T>({ categories, renderItem }: Props<T>) {
   return (
-    <ul className="flex gap-2">
+    <ul className="flex flex-wrap gap-2">
       {categories.map((category) => renderItem(category))}
     </ul>
   )

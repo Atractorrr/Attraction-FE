@@ -28,15 +28,13 @@ export default function RecentNewsletter({ recentNewLetterList }: Props) {
                 alt="뉴스카드 썸네일"
               />
               <Entities.NewsCard.Content>
-                <div className="hidden md:block">
-                  <Entities.NewsCard.Profile
-                    width="w-8"
-                    height="h-8"
-                    rounded="rounded-full"
-                    imgSrc={newsItem.image.profile}
-                    alt="뉴스카드 프로필"
-                  />
-                </div>
+                <Entities.NewsCard.Profile
+                  width="w-8"
+                  height="h-8"
+                  rounded="rounded-full"
+                  imgSrc={newsItem.image.profile}
+                  alt="뉴스카드 프로필"
+                />
                 <div className="p-0 md:pr-6">
                   <Entities.NewsCard.Title
                     type="main"
