@@ -12,7 +12,7 @@ const mainHandlers: HttpHandler[] = [
     return HttpResponse.json(res)
   }),
   get('/v1/newsletters/recommend', ({ request }) => {
-    const priorityCategory = ['IT', '디자인']
+    const priorityCategory = ['IT/테크', '디자인']
     const url = new URL(request.url)
     const size = Number(url.searchParams.get('size' ?? 10))
     const category = url.searchParams.get('category')
