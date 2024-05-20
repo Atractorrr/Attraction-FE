@@ -5,6 +5,7 @@ const fetchUserRecord = async (
 ): Promise<CalendarElementType[]> => {
   const data = await fetch(
     `${process.env.API_URL}/api/v1/member/${userId}/calendar`,
+    { cache: 'no-store' },
   ).then((res) => res.json())
 
   const { calendarData } = data

@@ -8,16 +8,14 @@ export const calculateLevel = (
     if (el.count >= maxLevel) {
       const elementWithLevel = {
         ...el,
-        count: Number(el.count),
-        level: Number(maxLevel),
+        level: maxLevel,
       }
 
       return elementWithLevel
     }
     const elementWithLevel = {
       ...el,
-      count: Number(el.count),
-      level: Number(el.count),
+      level: el.count,
     }
 
     return elementWithLevel
