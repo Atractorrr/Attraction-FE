@@ -1,25 +1,30 @@
+'use client'
+
 import React from 'react'
-import * as Entities from '@/entities'
 import { Button } from '@attraction/design-system'
+import * as Entities from '@/entities'
+import { UserProfileType } from '../model/types'
 
-type Props = {}
+type Props = {
+  userProfile: UserProfileType
+}
 
-export default function Profiles({}: Props) {
+export default function Profiles({ userProfile }: Props) {
   return (
     <div className="relative flex w-full flex-col rounded-lg bg-white">
-      <Entities.Profile.ProfileBackground imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
+      <Entities.Profile.ProfileBackground imgSrc={userProfile.backgroundImg} />
       <div className="flex size-full flex-col pl-5 md:flex-row md:pl-14">
         <div className="size-20 md:size-auto">
-          <Entities.Profile.ProfileImage imaSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" />
+          <Entities.Profile.ProfileImage imaSrc={userProfile.profileImg} />
         </div>
         <div className="w-full p-5">
           <Entities.Profile.UserInfo
-            userName="woogie0303"
-            userEmail="rkdehddnr15123@gmail.com"
+            userName={userProfile.name}
+            userEmail={userProfile.email}
           />
           <div className="flex flex-col justify-between gap-4 lg:flex-row">
             <Entities.Profile.PreferTagList
-              categories={['연애', '결혼', '경제']}
+              categories={userProfile.categories}
               renderItem={(category) => (
                 <Entities.Profile.PreferTagItem
                   key={category}
