@@ -2,24 +2,27 @@
 
 import dynamic from 'next/dynamic'
 import React from 'react'
+import { calendarTheme, labels } from '../libs/constant'
+import { CalendarElementType } from '../model/types'
 
-type Props = {}
+type Props = {
+  calendarData: (CalendarElementType & { level: number })[]
+}
 
 const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
   ssr: false,
 })
 
-export default function Calendar({}: Props) {
+export default function Calendar({ calendarData }: Props) {
   return (
     <div className="w-full rounded-lg bg-white p-5 md:w-2/3">
       <ActivityCalendarNoSSR
-        data={[
-          { date: '2024-01-01', level: 4, count: 10 },
-          { date: '2024-12-30', level: 4, count: 10 },
-        ]}
+        data={calendarData}
+        labels={labels}
         blockSize={10}
-        showWeekdayLabels={true}
+        showWeekdayLabels
         hideMonthLabels={false}
+        theme={calendarTheme}
       />
     </div>
   )

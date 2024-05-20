@@ -1,0 +1,1 @@
+export { fetchUserRecord } from './fetchUserRecord'

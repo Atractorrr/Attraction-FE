@@ -3,14 +3,15 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
-    'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   rules: {
     'import/extensions': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
+    'tailwindcss/no-custom-classname': 'off',
     'no-console': 'error',
     'import/prefer-default-export': [
       'off',

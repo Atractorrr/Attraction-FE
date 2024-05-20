@@ -11,7 +11,7 @@ export default async function Page({ params }: Props) {
   return (
     <div className="bg-[#F4F6F8] p-0 md:px-32 md:py-8 lg:px-40 lg:py-10">
       <Features.Profiles userProfile={userProfile} />
-      <Widgets.UserRecord />
+      <Widgets.UserRecord userId={params.userId} />
       <div className="mt-6 flex flex-col gap-6 md:flex-row">
         <Features.RecentNewsletter />
         <Features.SubscribeList />
