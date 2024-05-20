@@ -6,11 +6,19 @@ export const calculateLevel = (
 ) => {
   const calendarData = calendarElements.map((el) => {
     if (el.count >= maxLevel) {
-      const elementWithLevel = { ...el, level: maxLevel }
+      const elementWithLevel = {
+        ...el,
+        count: Number(el.count),
+        level: Number(maxLevel),
+      }
 
       return elementWithLevel
     }
-    const elementWithLevel = { ...el, level: el.count }
+    const elementWithLevel = {
+      ...el,
+      count: Number(el.count),
+      level: Number(el.count),
+    }
 
     return elementWithLevel
   })

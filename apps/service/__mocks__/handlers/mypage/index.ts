@@ -73,12 +73,12 @@ const mypageHandlers: HttpHandler[] = [
       calendarData: [
         {
           date: '2024-01-02',
-          count: '10',
+          count: 10,
         },
-        { date: '2024-01-03', count: '1' },
-        { date: '2024-03-03', count: '2' },
-        { date: '2024-04-03', count: '3' },
-        { date: '2024-05-03', count: '2' },
+        { date: '2024-01-03', count: 1 },
+        { date: '2024-03-03', count: 2 },
+        { date: '2024-04-03', count: 3 },
+        { date: '2024-05-03', count: 2 },
       ],
     })
   }),
