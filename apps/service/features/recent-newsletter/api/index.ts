@@ -1,0 +1,1 @@
+export { fetchNewsletterList } from './fetchNewsletterList'

@@ -1,10 +1,11 @@
 import * as Entities from '@/entities'
+import { RecentNewsletterType } from '../models/types'
 
-type Props = {}
+type Props = {
+  recentNewLetterList: RecentNewsletterType[]
+}
 
-const hi = Array.from({ length: 7 })
-
-export default function RecentNewsletter({}: Props) {
+export default function RecentNewsletter({ recentNewLetterList }: Props) {
   return (
     <div className="h-fit min-w-0 basis-3/4 space-y-5 rounded-2xl bg-white py-5">
       <div className="flex items-center justify-between px-5">
@@ -18,10 +19,12 @@ export default function RecentNewsletter({}: Props) {
       after:top-0
       after:z-30 after:h-full after:w-5 after:bg-gradient-to-l after:from-white after:content-['']">
         <div className=" flex gap-4 overflow-x-scroll px-5">
-          {hi.map((_, i) => (
-            <Entities.NewsCard key={i}>
+          {recentNewLetterList.map((newsItem) => (
+            <Entities.NewsCard key={newsItem.id}>
               <Entities.NewsCard.Thumbnail
-                imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+                imgSrc={newsItem.image.thumbnail}
+                readingPercentage={newsItem.info.readingPercentage}
+                readingTime={newsItem.info.readingTime}
                 alt="뉴스카드 썸네일"
               />
               <Entities.NewsCard.Content>
@@ -30,16 +33,19 @@ export default function RecentNewsletter({}: Props) {
                     width="w-8"
                     height="h-8"
                     rounded="rounded-full"
-                    imgSrc="https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
+                    imgSrc={newsItem.image.profile}
                     alt="뉴스카드 프로필"
                   />
                 </div>
                 <div className="p-0 md:pr-6">
                   <Entities.NewsCard.Title
                     type="main"
-                    content="💓요즘 주말 트렌드 싹 정리해봄 .zip"
+                    content={newsItem.info.title}
                   />
-                  <Entities.NewsCard.Title type="sub" content="뉴닉 · 1일 전" />
+                  <Entities.NewsCard.Title
+                    type="sub"
+                    content={`${newsItem.info.name} · 1일 전`}
+                  />
                 </div>
               </Entities.NewsCard.Content>
             </Entities.NewsCard>

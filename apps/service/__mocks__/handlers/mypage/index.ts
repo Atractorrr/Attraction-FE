@@ -32,21 +32,63 @@ const mypageHandlers: HttpHandler[] = [
             name: '뉴닉',
             date: '2023-03-03',
             readingTime: 8,
-            readPercentage: 30,
+            readingPercentage: 80,
           },
         },
         {
-          id: 1,
+          id: 2,
           image: {
             thumbnail: imgUrl,
             profile: imgUrl,
           },
           info: {
             title: '💓요즘 주말 트렌드 싹 정리해봄 .zip',
-            name: '뉴닉',
+            name: '다음',
+            date: '2023-03-03',
+            readingTime: 4,
+            readingPercentage: 20,
+          },
+        },
+        {
+          id: 3,
+          image: {
+            thumbnail: imgUrl,
+            profile: imgUrl,
+          },
+          info: {
+            title: '💓요즘 주말 트렌드 싹 정리해봄 .zip',
+            name: '네이버',
+            date: '2023-03-03',
+            readingTime: 10,
+            readingPercentage: 10,
+          },
+        },
+        {
+          id: 4,
+          image: {
+            thumbnail: imgUrl,
+            profile: imgUrl,
+          },
+          info: {
+            title: '💓요즘 주말 트렌드 한번 보자 .zip',
+            name: '네이트',
             date: '2023-03-03',
             readingTime: 8,
-            readPercentage: 30,
+            readingPercentage: 40,
+          },
+        },
+        {
+          id: 5,
+          image: {
+            thumbnail: imgUrl,
+            profile: imgUrl,
+          },
+          info: {
+            title: '💓요즘 주말 트렌드 싹 정리 이리와바 .zip',
+            name: '뉴닉',
+            date: '2023-03-03',
+            readingTime: 1,
+            readingPercentage: 30,
           },
         },
       ],
@@ -61,7 +103,7 @@ const mypageHandlers: HttpHandler[] = [
           title: '뉴닉',
         },
         {
-          id: 4,
+          id: 5,
           thumbnailUrl: imgUrl,
           title: '뉴닉',
         },
