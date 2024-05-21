@@ -3,7 +3,7 @@
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
 import * as Entities from '@/entities'
-import { UserProfileType } from '../model/types'
+import { UserProfileType } from '@/entities'
 import { useImgUpload } from '../libs/hooks/useImgUpload'
 
 type Props = {

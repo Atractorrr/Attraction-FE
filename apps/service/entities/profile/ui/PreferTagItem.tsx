@@ -1,26 +1,17 @@
 import React from 'react'
+import { getCategorySVG } from '../libs/utils/getCategorySVG'
+import { CategoriesKeyType } from '../model'
 
 type Props = {
-  category: string
+  category: CategoriesKeyType
 }
 
 export default function PreferTagItem({ category }: Props) {
+  // TODO: 나머지 카테고리 아이콘 정하기
+  const CategorySvg = getCategorySVG(category)
   return (
     <div className="flex items-center gap-2 rounded-[1.25rem] bg-[#EEF1F3] px-3 py-1.5 text-sm">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="size-[1em] text-[1em]">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-        />
-      </svg>
-
+      {CategorySvg && <CategorySvg className="size-5" />}
       <span>{category}</span>
     </div>
   )
