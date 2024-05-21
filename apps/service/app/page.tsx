@@ -1,7 +1,7 @@
-import MainAds from '@/widgets/mainAds/ui'
-import RecentArticles from '@/widgets/recentArticles/ui'
-import TrendNewsletters from '@/widgets/trendNewsletters/ui'
-import UserRank from '@/widgets/userRank/ui'
+import { MainAds } from '@/widgets/mainAds'
+import { RecentArticles } from '@/widgets/recentArticles'
+import { TrendNewsletters } from '@/widgets/trendNewsletters'
+import { UserRank } from '@/widgets/userRank'
 
 export default function Home() {
   return (

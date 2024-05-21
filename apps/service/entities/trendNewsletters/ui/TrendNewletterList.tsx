@@ -1,4 +1,4 @@
-import { TrendNewsletterResponse } from '@/widgets/trendNewsletters'
+import { TrendNewsletterResponse } from '@/widgets/trendNewsletters/model'
 import TrendNewsletterItem from './TrendNewsletterItem'
 
 interface TrendNewletterListProps {
@@ -11,8 +11,7 @@ export default function TrendNewsletterList({
   return (
     <section className="grid gap-4 xl:grid-cols-2">
       {content.newsletters.map((newsletter) => (
-        // eslint-disable-next-line react/jsx-key
-        <TrendNewsletterItem newsletter={newsletter} />
+        <TrendNewsletterItem key={newsletter.id} newsletter={newsletter} />
       ))}
     </section>
   )

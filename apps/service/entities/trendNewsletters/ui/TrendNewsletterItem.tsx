@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { TrendNewsletter } from '@/widgets/trendNewsletters'
+import Link from 'next/link'
+import { TrendNewsletter } from '@/widgets/trendNewsletters/model'
 
 interface TrendNewsletterItemProps {
   newsletter: TrendNewsletter
@@ -10,8 +11,7 @@ export default function TrendNewsletterItem({
   newsletter,
 }: TrendNewsletterItemProps) {
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a>
+    <Link href="/">
       <article className="flex gap-x-4">
         <Image
           src={newsletter.newsletterThumbnailUrl}
@@ -25,6 +25,6 @@ export default function TrendNewsletterItem({
           <p className="font-thin text-gray-500">{newsletter.description}</p>
         </div>
       </article>
-    </a>
+    </Link>
   )
 }

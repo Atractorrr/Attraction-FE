@@ -1,6 +1,5 @@
-import { NewsletterCategory } from '@/constants/category'
-// eslint-disable-next-line import/no-cycle
-import { TrendNewsletterResponse } from '..'
+import { NewsletterCategory } from '@/features/newsletterCategories/model'
+import { TrendNewsletterResponse } from '../model'
 
 export default async function fetchNewsletters(
   category: NewsletterCategory = 'RECOMMEND',

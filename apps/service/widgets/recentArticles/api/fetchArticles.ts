@@ -1,4 +1,4 @@
-import { RecentArticleReponse } from '../model'
+import { RecentArticleReponse } from '@/entities/recentArticles'
 
 export async function fetchArticles(
   size: number = 5,

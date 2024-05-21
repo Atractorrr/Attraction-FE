@@ -1,8 +1,9 @@
-import { RecentArticle } from '@/widgets/recentArticles/model'
 import Image from 'next/image'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
+import Link from 'next/link'
+import { RecentArticle } from '../model'
 
 // TODO: Util 함수로 분리
 dayjs.extend(relativeTime)
@@ -11,7 +12,7 @@ dayjs.locale('ko')
 // TODO: 다른 페이지 적용 완료되면 Link 적용할 것
 export default function Article({ ...props }: RecentArticle) {
   return (
-    <a className="grid max-w-[280px] justify-items-start gap-y-4">
+    <Link href="/" className="grid max-w-[280px] justify-items-start gap-y-4">
       <div className="relative h-40 w-full overflow-hidden rounded-xl">
         <Image
           className="size-full object-cover"
@@ -27,7 +28,8 @@ export default function Article({ ...props }: RecentArticle) {
           {/* // TODO: cva 적용하여 리팩토링 */}
           <div
             className="h-full bg-blue-400"
-            style={{ width: `${props.readPercentage}%` }}></div>
+            style={{ width: `${props.readPercentage}%` }}
+          />
         </div>
       </div>
       <div className="flex gap-x-2">
@@ -50,6 +52,6 @@ export default function Article({ ...props }: RecentArticle) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }

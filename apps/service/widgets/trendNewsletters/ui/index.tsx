@@ -2,28 +2,24 @@
 
 import { GraphOutline } from '@attraction/icons'
 import { useEffect, useState } from 'react'
-import NewsletterCategories from '@/features/newsletterCategories/ui'
-import Background from '@/shared/background/ui'
-import Title from '@/shared/title/ui'
-// eslint-disable-next-line import/no-cycle
-import fetchNewsletters from '../api/fetchNewsletters'
-import TrendNewsletterList from '@/entities/trendNewsletters/ui/TrendNewletterList'
+import { fetchNewsletters } from '../api'
+import { TrendNewsletterResponse } from '../model'
+import { NEWSLETTER_CATEGORY, NEWSLETTER_CATEGORY_KEYS } from '@/constants'
+import { Background, Title } from '@/shared'
 import {
-  NEWSLETTER_CATEGORY,
-  NEWSLETTER_CATEGORY_KEYS,
+  NewsletterCategories,
   NewsletterCategory,
   NewsletterCategoryName,
-} from '@/constants/category'
-import { TrendNewsletterResponse } from '..'
+} from '@/features/newsletterCategories'
+import { TrendNewsletterList } from '@/entities/trendNewsletters'
 
 export default function TrendNewsletters() {
   const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
   const [newsletters, setNewsletters] = useState<TrendNewsletterResponse>()
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const handleCategoryChange = (category: NewsletterCategoryName) => {
+  const handleCategoryChange = (categoryName: NewsletterCategoryName) => {
     const categoryKey = NEWSLETTER_CATEGORY_KEYS.find(
-      (key: NewsletterCategory) => NEWSLETTER_CATEGORY[key] === category,
+      (key: NewsletterCategory) => NEWSLETTER_CATEGORY[key] === categoryName,
     )
 
     if (categoryKey) {
