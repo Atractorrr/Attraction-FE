@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import CardThumbnail from './CardThumbnail'
-import * as Shared from '@/shared'
+import { ContentContainer, ContentTitle, ImageBox } from '@/shared/ui'
 
 type Props = {
   children: ReactNode
@@ -11,9 +11,9 @@ function CardMain({ children }: Props) {
 }
 const NewsCard = Object.assign(CardMain, {
   Thumbnail: CardThumbnail,
-  Content: Shared.ContentContainer,
-  Title: Shared.ContentTitle,
-  Profile: Shared.ImageBox,
+  Content: ContentContainer,
+  Title: ContentTitle,
+  Profile: ImageBox,
 })
 
 export default NewsCard

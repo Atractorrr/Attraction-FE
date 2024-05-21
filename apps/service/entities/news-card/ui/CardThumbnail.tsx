@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Shared from '@/shared'
+import { ImageBox } from '@/shared/ui'
 
 type Props = {
   imgSrc: string
@@ -18,7 +18,7 @@ export default function CardThumbnail({
 
   return (
     <div className="relative justify-end overflow-hidden rounded-lg">
-      <Shared.ImageBox
+      <ImageBox
         width="w-[20rem]"
         height="h-[10rem]"
         rounded="rounded-lg"

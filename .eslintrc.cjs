@@ -11,7 +11,6 @@ module.exports = {
     'import/extensions': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
-    'tailwindcss/no-custom-classname': 'off',
     'no-console': 'error',
     'import/prefer-default-export': [
       'off',

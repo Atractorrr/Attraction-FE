@@ -1,5 +1,5 @@
 import React from 'react'
-import { TitleType } from '../model/types/title'
+import { TitleType } from '../model'
 
 export default function ContentTitle({ type, content }: TitleType) {
   return (

@@ -2,15 +2,21 @@
 
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
-import * as Entities from '@/entities'
-import { UserProfileType } from '@/entities'
+import {
+  ProfileBackground,
+  ProfileImage,
+  UserInfo,
+  PreferTagList,
+  PreferTagItem,
+  UserProfileType,
+} from '@/entities'
 import { useImgUpload } from '../libs/hooks/useImgUpload'
 
 type Props = {
   userProfile: UserProfileType
 }
 
-export default function Profiles({ userProfile }: Props) {
+export default function ProfileContainer({ userProfile }: Props) {
   // TODO: 프로필도 지우기, 비디오기능 안받기 (백엔드랑 api맞출때 같이 하기)
   const {
     fileInputRef: profileInputRef,
@@ -24,9 +30,9 @@ export default function Profiles({ userProfile }: Props) {
   } = useImgUpload()
 
   return (
-    <div className="relative flex w-full flex-col rounded-b-2xl border border-gray-100 bg-white md:rounded-2xl">
+    <section className="relative flex w-full flex-col rounded-b-2xl border border-gray-100 bg-white md:rounded-2xl">
       <div className="group relative px-5 pt-5">
-        <Entities.Profile.ProfileBackground
+        <ProfileBackground
           imgSrc={backgroundImgSrc || userProfile.backgroundImg}
         />
         <input
@@ -48,9 +54,7 @@ export default function Profiles({ userProfile }: Props) {
       <div className="flex size-full flex-col pl-5 md:flex-row md:pl-14">
         <div className="relative size-20 md:size-auto">
           <div className="group relative size-40 shrink-0 -translate-y-1/2 rounded-full bg-white p-2">
-            <Entities.Profile.ProfileImage
-              imaSrc={profileImgSrc || userProfile.profileImg}
-            />
+            <ProfileImage imaSrc={profileImgSrc || userProfile.profileImg} />
             <Button
               type="button"
               className="invisible absolute bottom-3 right-0 h-fit -translate-y-2 rounded-xl bg-slate-100 p-1 shadow-2xl transition-all group-hover:visible  group-hover:translate-y-0"
@@ -68,18 +72,12 @@ export default function Profiles({ userProfile }: Props) {
           />
         </div>
         <div className="w-full p-5">
-          <Entities.Profile.UserInfo
-            userName={userProfile.name}
-            userEmail={userProfile.email}
-          />
+          <UserInfo userName={userProfile.name} userEmail={userProfile.email} />
           <div className="flex flex-col justify-between gap-4 lg:flex-row">
-            <Entities.Profile.PreferTagList
+            <PreferTagList
               categories={userProfile.categories}
               renderItem={(category) => (
-                <Entities.Profile.PreferTagItem
-                  key={category}
-                  category={category}
-                />
+                <PreferTagItem key={category} category={category} />
               )}
             />
             {/* TODO: 피드백 받은 후 h-fit, self-center 넣기 */}
@@ -94,6 +92,6 @@ export default function Profiles({ userProfile }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

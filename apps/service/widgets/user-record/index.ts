@@ -1,1 +1,1 @@
-export { default as UserRecord } from './ui'
+export * from './ui'
