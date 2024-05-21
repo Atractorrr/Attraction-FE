@@ -1,24 +1,11 @@
+import { ToolEmoji } from '@attraction/icons'
 import React from 'react'
 
-type Props = {}
-
-export default function Graph({}: Props) {
+export default function Graph() {
   return (
-    <div className="flex w-full flex-col items-center justify-center rounded-lg bg-white">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="size-16 text-[1em]">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-        />
-      </svg>
-      <div>아직 준비중이에요 기다려주세요</div>
+    <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4">
+      <ToolEmoji className="size-16" />
+      <div className="mt-5 font-semibold">아직 준비중이에요 기다려주세요</div>
     </div>
   )
 }

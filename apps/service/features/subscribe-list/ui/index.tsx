@@ -8,7 +8,7 @@ type Props = {
 
 export default function SubscribeList({ subscribeList }: Props) {
   return (
-    <div className="min-h-full shrink-0 grow rounded-2xl bg-white p-5">
+    <div className="min-h-full shrink-0 grow rounded-2xl border border-gray-100 bg-white p-5">
       <p className="mb-4 text-lg font-bold">구독 리스트</p>
       <ul className="h-60 min-h-[85%] overflow-y-auto md:h-0">
         {subscribeList.map((item) => (

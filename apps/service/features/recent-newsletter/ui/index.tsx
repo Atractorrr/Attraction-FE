@@ -7,10 +7,10 @@ type Props = {
 
 export default function RecentNewsletter({ recentNewLetterList }: Props) {
   return (
-    <div className="h-fit min-w-0 basis-3/4 space-y-5 rounded-2xl bg-white py-5">
+    <div className="h-fit min-w-0 basis-3/4 space-y-5 rounded-2xl border border-gray-100 bg-white py-5">
       <div className="flex items-center justify-between px-5">
         <p className="text-lg font-bold">최근 읽은 아티클</p>
-        <p className="text-sm font-medium text-[#6F7A86]">보관함 바로가기</p>
+        <p className="text-sm font-medium text-gray-500">보관함 바로가기</p>
       </div>
       <div
         className="relative bg-white before:absolute before:left-0 before:z-30 before:h-full before:w-5 before:bg-gradient-to-r

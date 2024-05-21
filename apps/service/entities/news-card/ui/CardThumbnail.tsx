@@ -26,7 +26,7 @@ export default function CardThumbnail({
         alt={alt}
       />
       <div
-        className={`absolute bottom-0 h-1 w-full bg-[#DDE0E3] after:block after:h-1.5 ${readingPercentage}  after:bg-[#507FB6] after:content-['']`}
+        className={`absolute bottom-0 h-1 w-full bg-gray-100 after:block after:h-1.5 ${readingPercentage}  after:bg-[#507FB6] after:content-['']`}
       />
       <div className="absolute bottom-2 right-2 w-fit self-end rounded-md bg-black/60 p-1 text-[12px] font-medium text-white ">
         약 {readingTime}분

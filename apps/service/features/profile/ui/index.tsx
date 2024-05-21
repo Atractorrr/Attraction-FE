@@ -24,7 +24,7 @@ export default function Profiles({ userProfile }: Props) {
   } = useImgUpload()
 
   return (
-    <div className="relative flex w-full flex-col rounded-lg bg-white">
+    <div className="relative flex w-full flex-col rounded-b-2xl border border-gray-100 bg-white md:rounded-2xl">
       <div className="group relative px-5 pt-5">
         <Entities.Profile.ProfileBackground
           imgSrc={backgroundImgSrc || userProfile.backgroundImg}
@@ -83,10 +83,10 @@ export default function Profiles({ userProfile }: Props) {
               )}
             />
             <div className="flex gap-2">
-              <Button className="w-full rounded-lg bg-[#F4F6F8] px-3 py-1.5 lg:w-fit">
+              <Button className="w-full rounded-lg bg-gray-50 px-3 py-1.5 lg:w-fit">
                 개인설정
               </Button>
-              <Button className="w-full rounded-lg bg-[#41474E] px-3 py-1.5 text-white lg:w-fit">
+              <Button className="w-full rounded-lg bg-gray-700 px-3 py-1.5 text-white lg:w-fit">
                 프로필 공유
               </Button>
             </div>
