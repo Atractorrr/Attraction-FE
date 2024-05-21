@@ -9,7 +9,14 @@
 }
 
 .embla__viewport {
-  overflow: hidden;
+  overflow-x: auto; /* 스크롤 기능 유지 */
+  overflow-y: hidden; /* 세로 스크롤 숨기기 */
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+.embla__viewport::-webkit-scrollbar {
+  display: none; /* 웹킷 브라우저에서 스크롤바 숨기기 */
 }
 
 .embla__container {
@@ -20,7 +27,7 @@
 }
 
 .embla__slide {
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   min-width: 0;
   max-width: fit-content;
   padding-left: var(--slide-spacing);
