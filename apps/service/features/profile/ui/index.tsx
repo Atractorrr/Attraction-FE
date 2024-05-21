@@ -82,7 +82,8 @@ export default function Profiles({ userProfile }: Props) {
                 />
               )}
             />
-            <div className="flex gap-2">
+            {/* TODO: 피드백 받은 후 h-fit, self-center 넣기 */}
+            <div className="flex shrink-0 gap-2 ">
               <Button className="w-full rounded-lg bg-gray-50 px-3 py-1.5 lg:w-fit">
                 개인설정
               </Button>
