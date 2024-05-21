@@ -8,7 +8,7 @@ interface UserProfileType {
   profileImg: string
   backgroundImg: string
   email: string
-  categories: CategoriesKeyType[]
+  interest: CategoriesKeyType[]
 }
 
 export type { UserProfileType, CategoriesKeyType }

@@ -75,7 +75,7 @@ export default function ProfileContainer({ userProfile }: Props) {
           <UserInfo userName={userProfile.name} userEmail={userProfile.email} />
           <div className="flex flex-col justify-between gap-4 lg:flex-row">
             <PreferTagList
-              categories={userProfile.categories}
+              categories={userProfile.interest}
               renderItem={(category) => (
                 <PreferTagItem key={category} category={category} />
               )}
