@@ -14,7 +14,8 @@
     "next": "14.2.3",
     "react": "^18",
     "react-activity-calendar": "^2.2.8",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-tooltip": "^5.26.4"
   },
   "devDependencies": {
     "@attraction/config": "workspace:^",
