@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import articleQueryKeys from './article-query-keys'
+
 import { getUserCategories } from '../api'
+import articleQueryKeys from './article-query-keys'
 
 export default function useUserCategoriesQuery(params: {
   userId: string | number

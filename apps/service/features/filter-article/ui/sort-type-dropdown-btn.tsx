@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
-import * as Entities from '@/entities'
-import * as Shared from '@/shared'
 
-type SortType = Entities.Article.Types.SortType
+import { SortType } from '@/entities'
+import { useClickedOutsideOfElement } from '@/shared'
+
 type SortTypeDropdownProps = {
   sortType: SortType
   setSortType: (type: SortType) => void
@@ -39,8 +39,7 @@ export default function SortTypeDropdownBtn({
 }: SortTypeDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked =
-    Shared.Lib.Hooks.useClickedOutsideOfElement(dropdownBtnAreaRef)
+  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
   const setSortTypeAndMenu = useCallback(
     (type: SortType) => {
       setSortType(type)

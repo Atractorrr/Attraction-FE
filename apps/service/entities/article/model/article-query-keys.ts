@@ -1,4 +1,4 @@
-import { UserArticlesOption } from '../types'
+import { UserArticlesOption } from './types'
 
 const articleQueryKeys = {
   all: ['article'] as const,

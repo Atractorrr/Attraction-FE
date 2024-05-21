@@ -1,10 +1,11 @@
 import { HttpHandler, HttpResponse } from 'msw'
 import { error, get, getParams } from '../tools'
 import { articles } from '@/__mocks__/data'
-import * as Entities from '@/entities'
-import * as Shared from '@/shared'
 
-const defaultPagination: Shared.Types.Pagination = {
+import { Article, SortType, UserArticlesResponse } from '@/entities'
+import { Pagination } from '@/shared'
+
+const defaultPagination: Pagination = {
   size: 0, // 읽어온 데이터 갯수
   number: 0, // size 기준 현재 페이지 (0부터 시작)
   sort: { empty: true, sorted: true, unsorted: true },
@@ -21,9 +22,6 @@ const defaultPagination: Shared.Types.Pagination = {
   last: true, // 마지막 페이지
   empty: true,
 }
-
-type Article = Entities.Article.Types.Article
-type SortType = Entities.Article.Types.SortType
 
 const sorted: Record<SortType, (a: Article, b: Article) => number> = {
   desc: (a, b) =>
@@ -71,16 +69,13 @@ const inboxHandlers: HttpHandler[] = [
         ? filteredArticles.filter((_, i) => i < size)
         : filteredArticles
 
-    const data: Entities.Article.Types.UserArticlesResponse = Object.assign(
-      defaultPagination,
-      {
-        data: { content: resultOfArticles },
-        size: resultOfArticles.length,
-        number: page,
-        first: page === 0,
-        last: page >= 2 || resultOfArticles.length < size,
-      },
-    )
+    const data: UserArticlesResponse = Object.assign(defaultPagination, {
+      data: { content: resultOfArticles },
+      size: resultOfArticles.length,
+      number: page,
+      first: page === 0,
+      last: page >= 2 || resultOfArticles.length < size,
+    })
 
     return HttpResponse.json(data)
   }),

@@ -1,5 +1,5 @@
 import { DEFAULT_LIST_SIZE } from '../constants'
-import type { UserArticlesResponse, UserArticlesOption } from '../types'
+import { UserArticlesResponse, UserArticlesOption } from '../model/types'
 
 export default async function getUserArticles({
   userId,

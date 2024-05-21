@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 
-import type { Article, ViewType } from '../types'
+import { Article, ViewType } from '../model/types'
 import CardItem from './card-item'
 
 export default function ArticleList({

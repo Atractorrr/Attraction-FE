@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
-import * as Entities from '@/entities'
-import * as Shared from '@/shared'
 
-type NewsletterCategory = Entities.Article.Types.NewsletterCategory
+import {
+  NewsletterCategory,
+  NEWSLETTER_CATEGORY,
+  useUserCategoriesQuery,
+} from '@/entities'
+import { useClickedOutsideOfElement } from '@/shared'
+
 type CategoryDropdownProps = {
   userId: string | number
   selectedCategories: NewsletterCategory[]
@@ -13,18 +17,15 @@ type CategoryDropdownProps = {
   resetCategory: () => void
 }
 
-const { NEWSLETTER_CATEGORY } = Entities.Article.Constants
-
 function CategoryDropdown({
   userId,
   selectedCategories,
   setCategory,
   resetCategory,
 }: CategoryDropdownProps) {
-  const { data, isLoading, isError } =
-    Entities.Article.Model.useUserCategoriesQuery({
-      userId,
-    })
+  const { data, isLoading, isError } = useUserCategoriesQuery({
+    userId,
+  })
 
   if (isLoading) {
     return (
@@ -215,8 +216,7 @@ export default function CategoryDropdownBtn({
 }: CategoryDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked =
-    Shared.Lib.Hooks.useClickedOutsideOfElement(dropdownBtnAreaRef)
+  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
 
   useEffect(() => {
     if (isOutOfClicked) setMenuOpen(false)

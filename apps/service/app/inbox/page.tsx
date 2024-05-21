@@ -1,8 +1,15 @@
 'use client'
 
-import * as Features from '@/features'
-import * as Entities from '@/entities'
-import * as Shared from '@/shared'
+import {
+  useArticleFilter,
+  CategoryDropdownBtn,
+  HideReadedToggleBtn,
+  SearchBar,
+  SortTypeDropdownBtn,
+  ViewTypeTabMenu,
+} from '@/features'
+import { useInfiniteUserArticlesQuery, ArticleList } from '@/entities'
+import { useInfiniteScroll, LoadingSpinner } from '@/shared'
 
 export default function InboxPage() {
   const {
@@ -17,16 +24,16 @@ export default function InboxPage() {
     setSortType,
     searchValue,
     setSearchValue,
-  } = Features.FilterArticle.Model.useArticleFilter()
+  } = useArticleFilter()
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    Entities.Article.Model.useInfiniteUserArticlesQuery({
+    useInfiniteUserArticlesQuery({
       userId: 12, // TODO: Protected Route 적용 (userId)
       sort: currentSortType,
       category: selectedCategory,
       isRead: isHideReadedArticles || undefined,
       q: searchValue || undefined,
     })
-  const scrollRef = Shared.Lib.Hooks.useInfiniteScroll(() => {
+  const scrollRef = useInfiniteScroll(() => {
     if (hasNextPage) fetchNextPage()
   })
 
@@ -35,32 +42,29 @@ export default function InboxPage() {
       <div>
         <div className="mb-6 flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between md:gap-5">
           <div className="flex gap-2">
-            <Features.FilterArticle.UI.CategoryDropdownBtn
+            <CategoryDropdownBtn
               userId={12}
               selectedCategories={selectedCategory}
               setCategory={setCategory}
               resetCategory={resetCategory}
             />
-            <Features.FilterArticle.UI.SortTypeDropdownBtn
+            <SortTypeDropdownBtn
               sortType={currentSortType}
               setSortType={setSortType}
             />
-            <Features.FilterArticle.UI.HideReadedToggleBtn
+            <HideReadedToggleBtn
               isRead={isHideReadedArticles}
               toggleHideFn={toggleHideReadedArticles}
             />
           </div>
-          <Features.FilterArticle.UI.SearchBar setValue={setSearchValue} />
+          <SearchBar setValue={setSearchValue} />
         </div>
-        <Features.FilterArticle.UI.ViewTypeTabMenu
-          type={viewType}
-          setType={setViewType}
-        />
+        <ViewTypeTabMenu type={viewType} setType={setViewType} />
       </div>
       <div>
-        {isLoading && <Shared.UI.LoadingSpinner />}
+        {isLoading && <LoadingSpinner />}
         {data && (
-          <Entities.Article.UI.ArticleList
+          <ArticleList
             data={data.pages}
             type={viewType}
             isArticleView={false}
@@ -69,7 +73,7 @@ export default function InboxPage() {
         <div ref={scrollRef} className="min-h-2 w-full">
           {isFetchingNextPage && (
             <div className="mt-8">
-              <Shared.UI.LoadingSpinner />
+              <LoadingSpinner />
             </div>
           )}
         </div>

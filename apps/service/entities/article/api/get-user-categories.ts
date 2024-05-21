@@ -1,4 +1,4 @@
-import type { NewsletterCategory } from '../types'
+import { NewsletterCategory } from '../model/types'
 
 export default async function getUserCategories({
   userId,

@@ -1,9 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Input, Button } from '@attraction/design-system'
 import { MagnifyingGlassOutline } from '@attraction/icons'
-import { useEffect, useState } from 'react'
-import * as Shared from '@/shared'
+
+import { useDebounce } from '@/shared'
 
 type SearchBarProps = {
   setValue: (value: string) => void
@@ -11,7 +12,7 @@ type SearchBarProps = {
 
 export default function SearchBar({ setValue }: SearchBarProps) {
   const [searchValue, setSearchValue] = useState('')
-  const debouncedValue = Shared.Lib.Hooks.useDebounce(searchValue, 500)
+  const debouncedValue = useDebounce(searchValue, 500)
 
   useEffect(() => setValue(debouncedValue), [debouncedValue, setValue])
 

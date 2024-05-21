@@ -1,4 +1,4 @@
-import { NEWSLETTER_CATEGORY, UPLOAD_DAYS } from '../constants'
+import { NEWSLETTER_CATEGORY, UPLOAD_DAYS } from '../../constants'
 
 export type UploadDays = keyof typeof UPLOAD_DAYS
 

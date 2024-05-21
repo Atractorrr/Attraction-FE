@@ -1,9 +1,9 @@
-import * as Entities from '@/entities'
+import { Article } from '@/entities'
 
 const getThumbnailUrl = (keyword: string) =>
   `https://source.unsplash.com/random/1280x720/?${keyword}`
 
-export const articles: Entities.Article.Types.Article[] = [
+export const articles: Article[] = [
   {
     id: 1,
     thumbnailUrl: getThumbnailUrl('newsletter'),

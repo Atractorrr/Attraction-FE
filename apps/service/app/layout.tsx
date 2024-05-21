@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+
 import '@/public/fonts/fonts.css'
 import './globals.css'
+
 import initMSW from '@/__mocks__'
-import * as Shared from '@/shared'
+import { QueryProvider } from '@/shared'
 
 if (process.env.NODE_ENV !== 'production') {
   initMSW()
@@ -21,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100">
-        <Shared.Lib.Utils.ReactQuery.QueryProvider>
-          {children}
-        </Shared.Lib.Utils.ReactQuery.QueryProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   )

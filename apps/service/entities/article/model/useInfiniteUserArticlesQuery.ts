@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import type { Article, UserArticlesOption } from '../types'
+
 import { getUserArticles } from '../api'
+import { Article, UserArticlesOption } from './types'
 import articleQueryKeys from './article-query-keys'
 
 export default function useInfiniteUserArticlesQuery(

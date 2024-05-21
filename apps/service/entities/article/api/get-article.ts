@@ -1,4 +1,4 @@
-import type { Article } from '../types'
+import { Article } from '../model/types'
 
 export default async function getArticle({
   articleId,

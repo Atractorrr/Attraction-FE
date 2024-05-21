@@ -2,9 +2,9 @@
 
 import React from 'react'
 import { Button } from '@attraction/design-system'
-import * as Entities from '@/entities'
 
-type ViewType = Entities.Article.Types.ViewType
+import { ViewType } from '@/entities'
+
 type ViewTypeTabMenuProps = {
   type: ViewType
   setType: (type: ViewType) => void

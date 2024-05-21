@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Article, ViewType } from '../types'
-import * as Shared from '@/shared'
+
+import { Article, ViewType } from '../model/types'
+import { W_PERCENT } from '@/shared'
 
 export default function CardItem({
   data,
@@ -33,7 +34,7 @@ export default function CardItem({
           <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
             <span
               className={`absolute inset-x-0 h-1 bg-green-400 dark:bg-green-500 ${
-                Shared.Constants.W_PERCENT[data.readPercentage]
+                W_PERCENT[data.readPercentage]
               }`}
             />
           </span>

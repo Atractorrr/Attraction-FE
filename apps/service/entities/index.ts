@@ -1,1 +1,1 @@
-export * as Article from './article'
+export * from './article'

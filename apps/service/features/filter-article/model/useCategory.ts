@@ -1,9 +1,8 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import * as Entities from '@/entities'
 
-type NewsletterCategory = Entities.Article.Types.NewsletterCategory
+import { NewsletterCategory } from '@/entities'
 
 export default function useCategory() {
   const [selectedCategory, setSelectedCategory] = useState<

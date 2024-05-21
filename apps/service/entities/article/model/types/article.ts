@@ -1,6 +1,7 @@
-import type { Newsletter, NewsletterCategory } from './newsletter'
-import type { SortType } from './sort-type'
-import * as Shared from '@/shared'
+import { Newsletter, NewsletterCategory } from './newsletter'
+import { SortType } from './sort-type'
+
+import { Pagination } from '@/shared'
 
 export interface Article {
   id: number
@@ -16,7 +17,7 @@ export interface Article {
 
 export type UserArticlesResponse = {
   data: { content: Article[] }
-} & Shared.Types.Pagination
+} & Pagination
 
 export type UserArticlesOption = {
   userId: string | number

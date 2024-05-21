@@ -1,2 +1,2 @@
-export * as Hooks from './hooks'
-export * as Utils from './utils'
+export * from './hooks'
+export * from './utils'

@@ -1,1 +1,1 @@
-export * as FilterArticle from './filter-article'
+export * from './filter-article'

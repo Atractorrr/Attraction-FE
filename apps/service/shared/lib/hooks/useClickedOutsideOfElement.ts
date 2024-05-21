@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type RefObject } from 'react'
+import { useEffect, useState, RefObject } from 'react'
 
 export default function useClickedOutsideOfElement(
   element: RefObject<HTMLElement | null>,
