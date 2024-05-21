@@ -1,3 +1,8 @@
+import {
+  NewsletterCategory,
+  NewsletterCategoryName,
+} from '@/features/newsletterCategories/model'
+
 export const NEWSLETTER_CATEGORY = {
   RECOMMEND: '추천',
   TREND_LIFE: '트렌드/라이프',
@@ -13,11 +18,6 @@ export const NEWSLETTER_CATEGORY = {
   LIVING_INTERIOR: '리빙/인테리어',
   HEALTH_MEDICINE: '건강/의학',
 } as const
-
-export type NewsletterCategory = keyof typeof NEWSLETTER_CATEGORY
-
-export type NewsletterCategoryName =
-  (typeof NEWSLETTER_CATEGORY)[keyof typeof NEWSLETTER_CATEGORY]
 
 export const NEWSLETTER_CATEGORY_KEYS: NewsletterCategory[] = Object.keys(
   NEWSLETTER_CATEGORY,

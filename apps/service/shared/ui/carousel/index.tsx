@@ -6,21 +6,19 @@ import useEmblaCarousel from 'embla-carousel-react'
 import './embla.css'
 import { ChevronLeftOutline, ChevronRightOutline } from '@attraction/icons'
 
-interface CarouselProps<T> {
-  slides: T[]
-  slideRenderer: (slide: T) => ReactNode
+interface CarouselProps {
+  slides: ReactNode[]
   options?: EmblaOptionsType
   showBlur?: 'both' | 'left' | 'right' | 'none'
   showButton?: 'both' | 'left' | 'right' | 'none'
 }
 
-export default function EmblaCarousel<T>({
+export default function EmblaCarousel({
   slides,
-  slideRenderer,
   options,
   showBlur = 'none',
   showButton = 'none',
-}: CarouselProps<T>) {
+}: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   const scrollPrev = useCallback(() => {
@@ -35,43 +33,38 @@ export default function EmblaCarousel<T>({
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((value, idx) => (
+          {slides.map((slide: ReactNode, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
             <div key={idx} className="embla__slide">
-              {slideRenderer(value)}
+              {slide}
             </div>
           ))}
         </div>
       </div>
       {showBlur === 'both' || showBlur === 'left' ? (
         <div className="embla__blur__left" />
-      ) : (
-        <></>
-      )}
+      ) : null}
       {showBlur === 'both' || showBlur === 'right' ? (
         <div className="embla__blur__right" />
-      ) : (
-        <></>
-      )}
+      ) : null}
       {showButton === 'both' || showButton === 'left' ? (
         <button
+          aria-label="Previous"
           className="embla__left__button"
           type="button"
           onClick={scrollPrev}>
           <ChevronLeftOutline className="size-6" />
         </button>
-      ) : (
-        <></>
-      )}
+      ) : null}
       {showButton === 'both' || showButton === 'right' ? (
         <button
+          aria-label="Next"
           className="embla__right__button"
           type="button"
           onClick={scrollNext}>
           <ChevronRightOutline className="size-6" />
         </button>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </section>
   )
 }

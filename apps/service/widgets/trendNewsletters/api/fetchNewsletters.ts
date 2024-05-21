@@ -1,5 +1,5 @@
-import { NewsletterCategory } from '@/constants/category'
-import { TrendNewsletterResponse } from '..'
+import { NewsletterCategory } from '@/features/newsletterCategories/model'
+import { TrendNewsletterResponse } from '../model'
 
 export default async function fetchNewsletters(
   category: NewsletterCategory = 'RECOMMEND',

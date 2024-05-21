@@ -1,4 +1,4 @@
-import { NewsletterCategoryName } from '@/constants/category'
+import { NewsletterCategoryName } from '@/features/newsletterCategories/model/types'
 
 export interface TrendNewsletter {
   id: number

@@ -1,1 +1,1 @@
-export * from './ui'
+export { default as Articles } from './ui'

@@ -1,3 +1,1 @@
-export * from './background'
-export * from './carousel'
-export * from './title'
+export * from './ui'

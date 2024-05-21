@@ -1,8 +1,8 @@
-import { fetchArticles } from '@/widgets/recentArticles/api'
-import Articles from '@/features/recentArticles/ui/Articles'
-import Title from '@/shared/title/ui'
-import Background from '@/shared/background/ui'
 import { ClockOutline } from '@attraction/icons'
+import Link from 'next/link'
+import { Background, Title } from '@/shared'
+import { fetchArticles } from '../api'
+import { Articles } from '@/features/recentArticles'
 
 // TODO: 다른 페이지 적용 완료되면 Link 적용할 것
 export default async function RecentArticles() {
@@ -16,7 +16,9 @@ export default async function RecentArticles() {
             icon={<ClockOutline className="size-5" />}
             text="최근 받은 아티클"
           />
-          <a className="text-sm text-gray-400">보관함 바로가기</a>
+          <Link href="/" className="text-sm text-gray-400">
+            보관함 바로가기
+          </Link>
         </div>
         <Articles mainArticles={mainArticles} />
       </div>

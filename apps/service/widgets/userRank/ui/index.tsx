@@ -1,7 +1,7 @@
-import Background from '@/shared/background/ui'
-import Title from '@/shared/title/ui'
 import { TrophyOutline } from '@attraction/icons'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Background, Title } from '@/shared'
 
 export default function UserRank() {
   return (
@@ -9,7 +9,9 @@ export default function UserRank() {
       <div className="grid w-full items-start gap-y-4">
         <div className="flex justify-between">
           <Title icon={<TrophyOutline className="size-5" />} text="유저 랭킹" />
-          <a className="text-sm text-gray-400">더보기</a>
+          <Link href="/" className="text-sm text-gray-400">
+            더보기
+          </Link>
         </div>
         <div className="grid justify-items-center gap-y-4 p-5">
           <Image
