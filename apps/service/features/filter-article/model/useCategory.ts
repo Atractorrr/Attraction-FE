@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 
-import { NewsletterCategory } from '@/entities'
+import { NewsletterCategory } from '@/entities/article'
 
 export default function useCategory() {
   const [selectedCategory, setSelectedCategory] = useState<

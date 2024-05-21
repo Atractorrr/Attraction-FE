@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 
-import { SortType } from '@/entities'
+import { SortType } from '@/entities/article'
 
 export default function useSortType() {
   const [currentSortType, setSort] = useState<SortType>('asc')

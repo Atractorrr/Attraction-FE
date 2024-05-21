@@ -7,8 +7,8 @@ import {
   SearchBar,
   SortTypeDropdownBtn,
   ViewTypeTabMenu,
-} from '@/features'
-import { useInfiniteUserArticlesQuery, ArticleList } from '@/entities'
+} from '@/features/filter-article'
+import { useInfiniteUserArticlesQuery, ArticleList } from '@/entities/article'
 import { useInfiniteScroll, LoadingSpinner } from '@/shared'
 
 export default function InboxPage() {

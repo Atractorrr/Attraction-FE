@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button } from '@attraction/design-system'
 
-import { ViewType } from '@/entities'
+import { ViewType } from '@/entities/article'
 
 type ViewTypeTabMenuProps = {
   type: ViewType

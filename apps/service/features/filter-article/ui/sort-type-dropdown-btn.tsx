@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
 
-import { SortType } from '@/entities'
+import { SortType } from '@/entities/article'
 import { useClickedOutsideOfElement } from '@/shared'
 
 type SortTypeDropdownProps = {

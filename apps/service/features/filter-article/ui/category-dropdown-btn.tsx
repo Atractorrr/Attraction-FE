@@ -7,7 +7,7 @@ import {
   NewsletterCategory,
   NEWSLETTER_CATEGORY,
   useUserCategoriesQuery,
-} from '@/entities'
+} from '@/entities/article'
 import { useClickedOutsideOfElement } from '@/shared'
 
 type CategoryDropdownProps = {

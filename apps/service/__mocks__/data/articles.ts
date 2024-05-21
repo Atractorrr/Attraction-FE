@@ -1,4 +1,4 @@
-import { Article } from '@/entities'
+import { Article } from '@/entities/article'
 
 const getThumbnailUrl = (keyword: string) =>
   `https://source.unsplash.com/random/1280x720/?${keyword}`

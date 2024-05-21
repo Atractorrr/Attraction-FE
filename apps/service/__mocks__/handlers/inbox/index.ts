@@ -2,7 +2,7 @@ import { HttpHandler, HttpResponse } from 'msw'
 import { error, get, getParams } from '../tools'
 import { articles } from '@/__mocks__/data'
 
-import { Article, SortType, UserArticlesResponse } from '@/entities'
+import { Article, SortType, UserArticlesResponse } from '@/entities/article'
 import { Pagination } from '@/shared'
 
 const defaultPagination: Pagination = {
