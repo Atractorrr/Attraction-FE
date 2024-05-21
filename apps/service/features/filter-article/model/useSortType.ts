@@ -1,11 +1,13 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import type { Sort } from '../types'
+import * as Entities from '@/entities'
 
-export default function useSort() {
-  const [currentSortType, setSort] = useState<Sort>('asc')
-  const setSortType = useCallback((type: Sort) => setSort(type), [])
+type SortType = Entities.Article.Types.SortType
+
+export default function useSortType() {
+  const [currentSortType, setSort] = useState<SortType>('asc')
+  const setSortType = useCallback((type: SortType) => setSort(type), [])
 
   return { currentSortType, setSortType }
 }

@@ -3,19 +3,21 @@
 import { useCallback, useState } from 'react'
 import * as Entities from '@/entities'
 
-type Categories = Entities.Article.Types.NewsletterCategory
+type NewsletterCategory = Entities.Article.Types.NewsletterCategory
 
 export default function useCategory() {
-  const [selectedCategory, setSelectedCategory] = useState<Categories[]>([])
-  const setCategory = useCallback((category: Categories) => {
+  const [selectedCategory, setSelectedCategory] = useState<
+    NewsletterCategory[]
+  >([])
+  const setCategory = useCallback((category: NewsletterCategory) => {
     setSelectedCategory((prev) => {
-      const isAlready = prev.some((categories) => categories === category)
-      if (isAlready) {
+      if (prev.some((categories) => categories === category)) {
         return prev.filter((categories) => categories !== category)
       }
       return [...prev, category]
     })
   }, [])
+  const resetCategory = useCallback(() => setSelectedCategory([]), [])
 
-  return { selectedCategory, setCategory }
+  return { selectedCategory, setCategory, resetCategory }
 }
