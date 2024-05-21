@@ -10,11 +10,12 @@ export default function useInfiniteUserArticlesQuery(
     queryKey: articleQueryKeys.userArticles(option),
     queryFn: ({ pageParam }) => getUserArticles({ ...option, page: pageParam }),
     initialPageParam: 0,
-    select({ pages }) {
+    select({ pages, pageParams }) {
       return {
-        pages: pages.reduce((flatArticles: Article[], { articles }) => {
-          return flatArticles.concat(articles)
+        pages: pages.reduce((flatArticles: Article[], { data }) => {
+          return flatArticles.concat(data.content)
         }, []),
+        pageParams,
       }
     },
     getNextPageParam: (lastPage) =>

@@ -8,3 +8,4 @@ export type {
   ValueOfNewsletterCategory,
 } from './newsletter'
 export type { ViewType } from './view-type'
+export type { SortType } from './sort-type'

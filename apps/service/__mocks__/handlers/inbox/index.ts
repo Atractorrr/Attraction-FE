@@ -1,8 +1,10 @@
 import { HttpHandler, HttpResponse } from 'msw'
 import { error, get, getParams } from '../tools'
 import { articles } from '@/__mocks__/data'
+import * as Entities from '@/entities'
+import * as Shared from '@/shared'
 
-const defaultPagination = {
+const defaultPagination: Shared.Types.Pagination = {
   size: 0, // 읽어온 데이터 갯수
   number: 0, // size 기준 현재 페이지 (0부터 시작)
   sort: { empty: true, sorted: true, unsorted: true },
@@ -20,10 +22,10 @@ const defaultPagination = {
   empty: true,
 }
 
-type DefaultPagination = typeof defaultPagination
-type Article = (typeof articles)[number]
+type Article = Entities.Article.Types.Article
+type SortType = Entities.Article.Types.SortType
 
-const sorted: { [key: string]: (a: Article, b: Article) => number } = {
+const sorted: Record<SortType, (a: Article, b: Article) => number> = {
   desc: (a, b) =>
     new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
   asc: (a, b) =>
@@ -31,24 +33,33 @@ const sorted: { [key: string]: (a: Article, b: Article) => number } = {
 }
 
 const inboxHandlers: HttpHandler[] = [
-  get('/v1/member/:memberId/articles', ({ request, params }) => {
-    const memberId = Number(params.memberId)
+  get('/v1/user/:userId/articles', ({ request, params }) => {
+    const userId = Number(params.userId)
     const searchParams = getParams(request.url)
     const page = Number(searchParams.get('page') ?? 0)
-    const size = Number(searchParams.get('size') ?? 12)
+    const size = Number(searchParams.get('size') ?? 20)
     const sort = searchParams.get('sort') ?? 'asc'
+    const isRead = searchParams.get('isRead') === 'true'
     const query = searchParams.get('q')
     const categories = searchParams.get('category')?.split(',') ?? []
-    const isInvalidRequest = [memberId, page, size].some(isNaN)
+    const isInvalidRequest = [userId, page, size].some(Number.isNaN)
 
     if (isInvalidRequest) {
       return error('잘못된 요청입니다', 400)
     }
 
-    const sortedArticles = [...articles].sort(sorted[sort] ?? sorted.asc)
-    const searchedArticles = !!query
-      ? sortedArticles.filter((article) => article.title.includes(query))
+    const sortedArticles =
+      page > 0
+        ? articles
+            .map((article, i) => ({ ...article, id: page * size + i + 1 }))
+            .sort(sorted[sort as SortType] ?? sorted.asc)
+        : [...articles].sort(sorted[sort as SortType] ?? sorted.asc)
+    const readedArticles = isRead
+      ? sortedArticles.filter((article) => article.readPercentage === 0)
       : sortedArticles
+    const searchedArticles = query
+      ? readedArticles.filter((article) => article.title.includes(query))
+      : readedArticles
     const filteredArticles =
       categories.length > 0
         ? searchedArticles.filter((article) =>
@@ -60,10 +71,10 @@ const inboxHandlers: HttpHandler[] = [
         ? filteredArticles.filter((_, i) => i < size)
         : filteredArticles
 
-    const data: { articles: Article[] } & DefaultPagination = Object.assign(
+    const data: Entities.Article.Types.UserArticlesResponse = Object.assign(
       defaultPagination,
       {
-        articles: resultOfArticles,
+        data: { content: resultOfArticles },
         size: resultOfArticles.length,
         number: page,
         first: page === 0,
@@ -73,31 +84,24 @@ const inboxHandlers: HttpHandler[] = [
 
     return HttpResponse.json(data)
   }),
-  get('/v1/member/:memberId/categories', ({ params }) => {
-    const memberId = Number(params.memberId)
+  get('/v1/user/:userId/categories', ({ params }) => {
+    const userId = Number(params.userId)
 
-    if (isNaN(memberId)) {
+    if (Number.isNaN(userId)) {
       return error('잘못된 요청입니다', 400)
     }
 
     return HttpResponse.json({
       categories: articles
         .map((article) => article.category)
-        .filter((_, i) => i < 6),
-    })
-  }),
-  get('/v1/articles/:articleId', ({ params }) => {
-    const articleId = Number(params.articleId)
-
-    if (isNaN(articleId)) {
-      return error('잘못된 요청입니다', 400)
-    }
-    if (articleId > articles.length) {
-      return error('요청하신 아티클을 찾을 수 없습니다', 404)
-    }
-
-    return HttpResponse.json({
-      article: articles.find((article) => article.id === articleId),
+        .filter((_, i) => i < 6)
+        .reduce(
+          (categories: string[], currentCategory) =>
+            categories.some((category) => category === currentCategory)
+              ? categories
+              : [...categories, currentCategory],
+          [],
+        ),
     })
   }),
 ]

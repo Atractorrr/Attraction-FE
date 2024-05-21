@@ -1,12 +1,12 @@
-import { NewsletterCategory } from '../types'
+import type { NewsletterCategory } from '../types'
 
 export default async function getUserCategories({
-  memberId,
+  userId,
 }: {
-  memberId: string | number
+  userId: string | number
 }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_FE_URL}/api/v1/member/${memberId}/categories`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/categories`,
   )
   const data: { categories: NewsletterCategory[] } = await res.json()
 

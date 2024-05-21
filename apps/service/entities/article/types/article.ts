@@ -1,5 +1,5 @@
-import type { Newsletter } from './newsletter'
-import type { NewsletterCategory } from './newsletter'
+import type { Newsletter, NewsletterCategory } from './newsletter'
+import type { SortType } from './sort-type'
 import * as Shared from '@/shared'
 
 export interface Article {
@@ -15,14 +15,15 @@ export interface Article {
 }
 
 export type UserArticlesResponse = {
-  articles: Article[]
+  data: { content: Article[] }
 } & Shared.Types.Pagination
 
 export type UserArticlesOption = {
-  memberId: string | number
+  userId: string | number
   page?: number
   size?: number
-  sort?: string
-  category?: string[]
+  sort?: SortType
+  isRead?: boolean
+  category?: NewsletterCategory[]
   q?: string
 }

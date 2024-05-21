@@ -7,17 +7,17 @@ const articleQueryKeys = {
     params,
   ],
   userArticles: ({
-    memberId,
+    userId,
     category,
     page,
     ...options
   }: UserArticlesOption) => [
     ...articleQueryKeys.all,
-    memberId,
+    userId,
     category,
     options,
   ],
-  userCategories: (params: { memberId: string | number }) => [
+  userCategories: (params: { userId: string | number }) => [
     ...articleQueryKeys.all,
     params,
   ],

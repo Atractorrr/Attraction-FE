@@ -4,11 +4,9 @@ import inboxHandlers from './inbox'
 import mainHandlers from './main'
 import mypageHandlers from './mypage'
 
-let counter = 0
-
 const handlers: HttpHandler[] = [
   get('/test', () => {
-    return HttpResponse.json({ message: `success (${++counter})` })
+    return HttpResponse.json({ message: `success)` })
   }),
   ...inboxHandlers,
   ...mainHandlers,

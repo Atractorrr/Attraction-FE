@@ -3,7 +3,7 @@ import articleQueryKeys from './article-query-keys'
 import { getUserCategories } from '../api'
 
 export default function useUserCategoriesQuery(params: {
-  memberId: string | number
+  userId: string | number
 }) {
   return useQuery({
     queryKey: articleQueryKeys.userCategories(params),

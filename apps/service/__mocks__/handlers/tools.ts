@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
+
 import { type HttpResponseResolver, HttpResponse, http, delay } from 'msw'
 
-const delayMS = 1200
+const delayMS = 600
 const baseURL = `${process.env.API_URL}/api`
 
 export const get = (path: string, resolver: HttpResponseResolver) =>

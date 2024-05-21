@@ -1,9 +1,11 @@
+/* eslint-disable react/require-default-props */
+
 import type { Article, ViewType } from '../types'
 import CardItem from './card-item'
 
 export default function ArticleList({
   data,
-  type,
+  type = 'gallery',
   isArticleView,
 }: {
   data: Article[]
@@ -12,14 +14,12 @@ export default function ArticleList({
 }) {
   return (
     <ul
-      className={
-        'grid gap-x-4 gap-y-6 ' +
-        (isArticleView
-          ? ''
-          : type === 'list'
-            ? 'md:grid-cols-2'
-            : 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4')
-      }>
+      className={`grid gap-x-4 gap-y-6 ${
+        !isArticleView &&
+        (type === 'list'
+          ? 'md:grid-cols-2'
+          : 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4')
+      }`}>
       {data.map((article) => (
         <li key={article.id}>
           <CardItem data={article} type={type} />
