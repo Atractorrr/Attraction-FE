@@ -2,15 +2,16 @@
 
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
+
+import { useImgUpload } from '../libs/hooks/useImgUpload'
 import {
+  PreferTagItem,
+  PreferTagList,
   ProfileBackground,
   ProfileImage,
   UserInfo,
-  PreferTagList,
-  PreferTagItem,
   UserProfileType,
-} from '@/entities'
-import { useImgUpload } from '../libs/hooks/useImgUpload'
+} from '@/entities/profile'
 
 type Props = {
   userProfile: UserProfileType

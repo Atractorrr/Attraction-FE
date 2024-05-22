@@ -1,6 +1,6 @@
 import { ClockOutline } from '@attraction/icons'
 import Link from 'next/link'
-import { Background, Title } from '@/shared'
+import { Background, Title } from '@/shared/ui'
 import { fetchArticles } from '../api'
 import { Articles } from '@/features/recentArticles'
 

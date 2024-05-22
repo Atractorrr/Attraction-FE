@@ -1,4 +1,4 @@
-import { UserProfileType } from '@/entities'
+import { UserProfileType } from '@/entities/profile'
 
 export const fetchUserProfile = async (
   userId: string,

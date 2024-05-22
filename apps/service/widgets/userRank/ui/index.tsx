@@ -1,7 +1,7 @@
 import { TrophyOutline } from '@attraction/icons'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Background, Title } from '@/shared'
+import { Background, Title } from '@/shared/ui'
 
 export default function UserRank() {
   return (

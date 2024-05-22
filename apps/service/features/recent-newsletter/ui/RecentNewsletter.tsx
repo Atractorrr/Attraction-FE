@@ -1,4 +1,4 @@
-import { NewsCard } from '@/entities'
+import { NewsCard } from '@/entities/news-card'
 import { RecentNewsletterType } from '../models/types'
 
 type Props = {

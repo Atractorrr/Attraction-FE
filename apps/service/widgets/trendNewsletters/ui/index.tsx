@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { fetchNewsletters } from '../api'
 import { TrendNewsletterResponse } from '../model'
 import { NEWSLETTER_CATEGORY, NEWSLETTER_CATEGORY_KEYS } from '@/constants'
-import { Background, Title } from '@/shared'
+import { Background, Title } from '@/shared/ui'
 import {
   NewsletterCategories,
   NewsletterCategory,
