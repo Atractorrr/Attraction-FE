@@ -1,5 +1,5 @@
 import { HttpHandler, HttpResponse } from 'msw'
-import { get, getParams } from '../tools'
+import { get } from '../tools'
 import { recentArticles, trendNewsLetters } from '@/__mocks__/data'
 
 const mainHandlers: HttpHandler[] = [
@@ -23,7 +23,7 @@ const mainHandlers: HttpHandler[] = [
         isUser: true,
         newsletters: category
           ? trendNewsLetters[category].slice(0, size)
-          : trendNewsLetters['RECOMMEND'].slice(0, size),
+          : trendNewsLetters.RECOMMEND.slice(0, size),
       },
     }
 

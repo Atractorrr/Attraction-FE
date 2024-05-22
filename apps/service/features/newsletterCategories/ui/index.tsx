@@ -7,7 +7,7 @@ import {
   NEWSLETTER_CATEGORY_LIST,
 } from '@/constants/category'
 import { NewsletterCategory, NewsletterCategoryName } from '../model/types'
-import { Carousel } from '@/shared'
+import { Carousel } from '@/shared/ui'
 
 interface NewsletterCategoriesProps {
   currentCategory: NewsletterCategory

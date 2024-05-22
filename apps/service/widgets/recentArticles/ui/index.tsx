@@ -1,8 +1,8 @@
 import { ClockOutline } from '@attraction/icons'
 import Link from 'next/link'
-import { Background, Title } from '@/shared'
 import { fetchArticles } from '../api'
 import { Articles } from '@/features/recentArticles'
+import { Background, Title } from '@/shared/ui'
 
 // TODO: 다른 페이지 적용 완료되면 Link 적용할 것
 export default async function RecentArticles() {
