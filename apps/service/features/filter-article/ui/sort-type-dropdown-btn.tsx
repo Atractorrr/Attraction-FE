@@ -5,7 +5,7 @@ import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
 
 import { SortType } from '@/entities/article'
-import { useClickedOutsideOfElement } from '@/shared'
+import { useClickedOutsideOfElement } from '@/shared/lib'
 
 export type SortTypeDropdownProps = {
   sortType: SortType

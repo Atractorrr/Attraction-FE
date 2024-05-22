@@ -10,7 +10,8 @@ import {
   FilterDropdownBtn,
 } from '@/features/filter-article'
 import { useInfiniteUserArticlesQuery, ArticleList } from '@/entities/article'
-import { useInfiniteScroll, LoadingSpinner } from '@/shared'
+import { useInfiniteScroll } from '@/shared/lib'
+import { LoadingSpinner } from '@/shared/ui'
 
 export default function Inbox({ userId }: { userId: string | number }) {
   const {

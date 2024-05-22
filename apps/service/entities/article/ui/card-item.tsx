@@ -1,10 +1,8 @@
-/* eslint-disable react/require-default-props */
-
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { Article, ViewType } from '../model/types'
-import { W_PERCENT } from '@/shared'
+import { W_PERCENT } from '@/shared/constants'
 
 export default function CardItem({
   data,
@@ -67,7 +65,9 @@ export default function CardItem({
             className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-500 hover:underline dark:text-gray-50">
             {data.title}
           </Link>
-          <span className="block break-keep text-sm text-gray-500 dark:text-gray-400">
+          <span
+            // TODO: dayjs 적용
+            className="block break-keep text-sm text-gray-500 dark:text-gray-400">
             {data.newsletter.name} &middot; {data.receivedAt}
           </span>
         </p>

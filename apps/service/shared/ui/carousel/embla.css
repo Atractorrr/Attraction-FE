@@ -1,0 +1,74 @@
+.embla {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  position: relative;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 70%;
+}
+
+.embla__viewport {
+  overflow-x: auto; /* 스크롤 기능 유지 */
+  overflow-y: hidden; /* 세로 스크롤 숨기기 */
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+.embla__viewport::-webkit-scrollbar {
+  display: none; /* 웹킷 브라우저에서 스크롤바 숨기기 */
+}
+
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: fit-content;
+  padding-left: var(--slide-spacing);
+}
+
+.embla__left__button {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background: linear-gradient(to left, transparent 0%, #fff 50%);
+  left: 0;
+}
+
+.embla__right__button {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background: linear-gradient(to right, transparent 0%, #fff 50%);
+  right: 0;
+}
+
+.embla__blur__left {
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  height: 100%;
+  width: 30px;
+  background: linear-gradient(to left, transparent 0%, #fff 100%);
+}
+
+.embla__blur__right {
+  position: absolute;
+  z-index: 50;
+  right: 0;
+  height: 100%;
+  width: 30px;
+  background: linear-gradient(to right, transparent 0%, #fff 100%);
+}

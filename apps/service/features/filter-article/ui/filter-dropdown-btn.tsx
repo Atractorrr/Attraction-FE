@@ -6,7 +6,7 @@ import {
   CategoryDropdownProps,
 } from './category-dropdown-btn'
 import { SortTypeDropdownProps, btns } from './sort-type-dropdown-btn'
-import { useClickedOutsideOfElement } from '@/shared'
+import { useClickedOutsideOfElement } from '@/shared/lib'
 
 type FilterDropdownProps = CategoryDropdownProps & SortTypeDropdownProps
 

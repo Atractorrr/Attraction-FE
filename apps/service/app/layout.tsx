@@ -4,7 +4,7 @@ import '@/public/fonts/fonts.css'
 import './globals.css'
 
 import initMSW from '@/__mocks__'
-import { QueryProvider } from '@/shared'
+import { QueryProvider } from '@/shared/lib'
 
 if (process.env.NODE_ENV !== 'production') {
   initMSW()

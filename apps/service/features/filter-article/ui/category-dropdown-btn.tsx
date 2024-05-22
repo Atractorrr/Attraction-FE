@@ -8,7 +8,7 @@ import {
   NEWSLETTER_CATEGORY,
   useUserCategoriesQuery,
 } from '@/entities/article'
-import { useClickedOutsideOfElement } from '@/shared'
+import { useClickedOutsideOfElement } from '@/shared/lib'
 
 export type CategoryDropdownProps = {
   userId: string | number

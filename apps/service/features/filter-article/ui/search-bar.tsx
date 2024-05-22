@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Input, Button } from '@attraction/design-system'
 import { MagnifyingGlassOutline } from '@attraction/icons'
 
-import { useDebounce } from '@/shared'
+import { useDebounce } from '@/shared/lib'
 
 type SearchBarProps = {
   setValue: (value: string) => void

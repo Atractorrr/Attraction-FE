@@ -8,8 +8,8 @@ const handlers: HttpHandler[] = [
   get('/test', () => {
     return HttpResponse.json({ message: `success)` })
   }),
-  ...inboxHandlers,
   ...mainHandlers,
+  ...inboxHandlers,
   ...mypageHandlers,
 ]
 

@@ -3,8 +3,8 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
-    'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   rules: {

@@ -1,17 +1,17 @@
-/* eslint-disable react/require-default-props */
-
 import { Article, ViewType } from '../model/types'
 import CardItem from './card-item'
+
+type ArticleListProps = {
+  data: Article[]
+  type?: ViewType
+  isArticleView: boolean
+}
 
 export default function ArticleList({
   data,
   type = 'gallery',
   isArticleView,
-}: {
-  data: Article[]
-  type?: ViewType
-  isArticleView: boolean
-}) {
+}: ArticleListProps) {
   return (
     <ul
       className={`grid gap-x-4 gap-y-6 ${
