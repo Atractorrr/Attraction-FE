@@ -7,12 +7,12 @@ import { ChevronDownOutline } from '@attraction/icons'
 import { SortType } from '@/entities/article'
 import { useClickedOutsideOfElement } from '@/shared'
 
-type SortTypeDropdownProps = {
+export type SortTypeDropdownProps = {
   sortType: SortType
   setSortType: (type: SortType) => void
 }
 
-const btns: Array<[SortType, string]> = [
+export const btns: Array<[SortType, string]> = [
   ['asc', '최신순'],
   ['desc', '오래된순'],
 ]
@@ -24,7 +24,7 @@ function SortTypeDropdown({ sortType, setSortType }: SortTypeDropdownProps) {
         <li key={type}>
           <Button
             className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg py-2 pl-3 pr-4 hover:bg-gray-50 dark:hover:bg-gray-700"
-            onClick={() => setSortType(type as SortType)}>
+            onClick={() => setSortType(type)}>
             {label} {sortType === type && '(선택됨)'}
           </Button>
         </li>

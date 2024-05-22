@@ -10,14 +10,14 @@ import {
 } from '@/entities/article'
 import { useClickedOutsideOfElement } from '@/shared'
 
-type CategoryDropdownProps = {
+export type CategoryDropdownProps = {
   userId: string | number
   selectedCategories: NewsletterCategory[]
   setCategory: (category: NewsletterCategory) => void
   resetCategory: () => void
 }
 
-function CategoryDropdown({
+export function CategoryDropdown({
   userId,
   selectedCategories,
   setCategory,
@@ -27,10 +27,10 @@ function CategoryDropdown({
     userId,
   })
 
-  if (isLoading) {
-    return (
-      <div className="absolute -left-2 z-10 mt-2 max-w-96 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
-        <p className="px-28 py-4 text-2xl text-gray-500">
+  return (
+    <>
+      {isLoading && (
+        <p className="flex w-full items-center justify-center p-8 text-2xl text-gray-500">
           <svg
             // TODO: Icon 패키지 or 공용 컴포넌트 사용 (스피너)
             xmlns="http://www.w3.org/2000/svg"
@@ -122,13 +122,9 @@ function CategoryDropdown({
             </rect>
           </svg>
         </p>
-      </div>
-    )
-  }
-  return (
-    <div className="absolute -left-2 z-10 mt-2 w-96 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
-      {isError ? (
-        <p className="flex items-center justify-start gap-1 text-lg text-red-400">
+      )}
+      {isError && (
+        <p className="flex items-center justify-center gap-1 py-2 text-lg text-red-400 sm:justify-start">
           <svg
             // TODO: Icon 패키지 사용 (경고 아이콘)
             xmlns="http://www.w3.org/2000/svg"
@@ -148,63 +144,56 @@ function CategoryDropdown({
           </svg>
           <span className="text-base">카테고리를 불러오지 못했어요</span>
         </p>
-      ) : (
-        <>
-          <ul className="flex flex-wrap gap-2">
-            {data?.categories.map((category) => (
-              <li key={category}>
-                <Button
-                  className={`rounded-3xl px-4 py-2 ${
-                    selectedCategories.some(
-                      (categories) => categories === category,
-                    )
-                      ? 'bg-gray-700 text-gray-50 dark:bg-gray-100 dark:text-gray-700'
-                      : 'bg-gray-50 dark:bg-gray-700'
-                  }`}
-                  onClick={() => setCategory(category)}>
-                  {NEWSLETTER_CATEGORY[category]}
-                </Button>
-              </li>
-            ))}
-            {Object.values(selectedCategories).some((e) => e) && (
-              <li>
-                <Button
-                  className="flex items-center justify-center gap-2 rounded-3xl bg-blue-50 px-4 py-2 text-xl text-blue-400 dark:bg-blue-700 dark:text-blue-300"
-                  onClick={resetCategory}>
-                  <svg
-                    // TODO: Icon 패키지 사용 (초기화 아이콘)
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      d="M18.364 3.058a.75.75 0 0 1 .75.75V8.05a.75.75 0 0 1-.75.75h-4.243a.75.75 0 0 1 0-1.5h2.36a7.251 7.251 0 1 0 2.523 3.822a.75.75 0 1 1 1.45-.387a8.75 8.75 0 1 1-2.84-4.447v-2.48a.75.75 0 0 1 .75-.75"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className=" whitespace-nowrap pr-1 text-base">
-                    초기화
-                  </span>
-                </Button>
-              </li>
-            )}
-          </ul>
-          {/* 
-          // TODO: submit 버튼 회의 후 적용
-          <div className="mt-4 flex gap-2">
-            <Button className="w-1/3 rounded bg-gray-50 px-3 py-2 text-center dark:bg-gray-700">
-              취소
-            </Button>
-            <Button className="w-2/3 rounded bg-gray-700 px-3 py-2 text-center text-white dark:bg-gray-100">
-              적용
-            </Button>
-          </div> 
-          */}
-        </>
       )}
-    </div>
+      <ul className="flex flex-wrap gap-2">
+        {data?.categories.map((category) => (
+          <li key={category}>
+            <Button
+              className={`whitespace-nowrap rounded-3xl px-4 py-2 ${
+                selectedCategories.some((categories) => categories === category)
+                  ? 'bg-gray-700 text-gray-50 dark:bg-gray-100 dark:text-gray-700'
+                  : 'bg-gray-50 dark:bg-gray-700'
+              }`}
+              onClick={() => setCategory(category)}>
+              {NEWSLETTER_CATEGORY[category]}
+            </Button>
+          </li>
+        ))}
+        {Object.values(selectedCategories).some((e) => e) && (
+          <li>
+            <Button
+              className="flex items-center justify-center gap-2 rounded-3xl bg-blue-50 px-4 py-2 text-xl text-blue-400 dark:bg-blue-700 dark:text-blue-300"
+              onClick={resetCategory}>
+              <svg
+                // TODO: Icon 패키지 사용 (초기화 아이콘)
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M18.364 3.058a.75.75 0 0 1 .75.75V8.05a.75.75 0 0 1-.75.75h-4.243a.75.75 0 0 1 0-1.5h2.36a7.251 7.251 0 1 0 2.523 3.822a.75.75 0 1 1 1.45-.387a8.75 8.75 0 1 1-2.84-4.447v-2.48a.75.75 0 0 1 .75-.75"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="whitespace-nowrap pr-1 text-base">초기화</span>
+            </Button>
+          </li>
+        )}
+      </ul>
+      {/* 
+        // TODO: submit 버튼 회의 후 적용
+        <div className="mt-4 flex gap-2">
+          <Button className="w-1/3 rounded bg-gray-50 px-3 py-2 text-center dark:bg-gray-700">
+            취소
+          </Button>
+          <Button className="w-2/3 rounded bg-gray-700 px-3 py-2 text-center text-white dark:bg-gray-100">
+            적용
+          </Button>
+        </div> 
+      */}
+    </>
   )
 }
 
@@ -255,12 +244,14 @@ export default function CategoryDropdownBtn({
         </span>
       </Button>
       {isMenuOpen && (
-        <CategoryDropdown
-          userId={userId}
-          selectedCategories={selectedCategories}
-          setCategory={setCategory}
-          resetCategory={resetCategory}
-        />
+        <div className="absolute -left-2 z-10 mt-2 w-96 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+          <CategoryDropdown
+            userId={userId}
+            selectedCategories={selectedCategories}
+            setCategory={setCategory}
+            resetCategory={resetCategory}
+          />
+        </div>
       )}
     </div>
   )
