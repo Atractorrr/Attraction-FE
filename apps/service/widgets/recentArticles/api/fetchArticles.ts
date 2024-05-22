@@ -1,8 +1,8 @@
-import { RecentArticleReponse } from '@/entities/recentArticles'
+import { RecentArticleResponse } from '@/entities/recentArticleItem'
 
 export async function fetchArticles(
   size: number = 5,
-): Promise<RecentArticleReponse> {
+): Promise<RecentArticleResponse> {
   const apiURL = new URL(`${process.env.API_URL}/api/v1/articles/recent`)
   apiURL.searchParams.set('size', size.toString())
 

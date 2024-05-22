@@ -9,6 +9,6 @@ export interface RecentArticle {
   readPercentage: number
 }
 
-export interface RecentArticleReponse {
+export interface RecentArticleResponse {
   mainArticles: RecentArticle[]
 }

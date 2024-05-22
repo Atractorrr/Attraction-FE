@@ -10,7 +10,7 @@ dayjs.extend(relativeTime)
 dayjs.locale('ko')
 
 // TODO: 다른 페이지 적용 완료되면 Link 적용할 것
-export default function Article({ ...props }: RecentArticle) {
+export default function RecentArticleItem({ ...props }: RecentArticle) {
   return (
     <Link href="/" className="grid max-w-[280px] justify-items-start gap-y-4">
       <div className="relative h-40 w-full overflow-hidden rounded-xl">

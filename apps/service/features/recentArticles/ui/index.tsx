@@ -1,16 +1,19 @@
 'use client'
 
 import { EmblaOptionsType } from 'embla-carousel'
-import { RecentArticles, RecentArticleReponse } from '@/entities/recentArticles'
 import { Carousel } from '@/shared/ui'
+import {
+  RecentArticleItem,
+  RecentArticleResponse,
+} from '@/entities/recentArticleItem'
 
 const carouselOptions: EmblaOptionsType = {
   dragFree: true,
 }
 
-export default function Articles({ mainArticles }: RecentArticleReponse) {
+export default function Articles({ mainArticles }: RecentArticleResponse) {
   const articleList = mainArticles.map((articleProps) => (
-    <RecentArticles key={articleProps.id} {...articleProps} />
+    <RecentArticleItem key={articleProps.id} {...articleProps} />
   ))
 
   return (
