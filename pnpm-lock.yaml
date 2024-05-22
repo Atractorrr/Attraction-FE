@@ -76,6 +76,15 @@ importers:
       '@attraction/icons':
         specifier: workspace:^
         version: link:../../packages/icons
+      embla-carousel:
+        specifier: ^8.0.4
+        version: 8.0.4
+      embla-carousel-react:
+        specifier: ^8.0.4
+        version: 8.0.4(react@18.3.1)
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
       next:
         specifier: 14.2.3
         version: 14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1653,44 +1662,6 @@ packages:
         integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==,
       }
     engines: { node: '>=12' }
-
-  data-view-buffer@1.0.1:
-    resolution:
-      {
-        integrity: sha512-0lht7OugA5x3iJLOWFhWK/5ehONdprk0ISXqVFn/NFrDu+cuc8iADFrGQz5BnRK7LLU3JmkbXSxaqX+/mXYtUA==,
-      }
-    engines: { node: '>= 0.4' }
-
-  data-view-byte-length@1.0.1:
-    resolution:
-      {
-        integrity: sha512-4J7wRJD3ABAzr8wP+OcIcqq2dlUKp4DVflx++hs5h5ZKydWMI6/D/fAot+yh6g2tHh8fLFTvNOaVN357NvSrOQ==,
-      }
-    engines: { node: '>= 0.4' }
-
-  data-view-byte-offset@1.0.0:
-    resolution:
-      {
-        integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==,
-      }
-    engines: { node: '>= 0.4' }
-
-  date-fns@3.6.0:
-    resolution:
-      {
-        integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==,
-      }
-
-  debug@3.2.7:
-    resolution:
-      {
-        integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==,
-      }
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@4.3.4:
     resolution:
@@ -5480,6 +5451,8 @@ snapshots:
   damerau-levenshtein@1.0.8: {}
 
   dargs@8.1.0: {}
+
+  dayjs@1.11.11: {}
 
   data-view-buffer@1.0.1:
     dependencies:
