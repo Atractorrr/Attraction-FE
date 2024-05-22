@@ -11,17 +11,27 @@
   "dependencies": {
     "@attraction/design-system": "workspace:^",
     "@attraction/icons": "workspace:^",
+    "dayjs": "^1.11.11",
+    "embla-carousel": "^8.0.4",
+    "embla-carousel-react": "^8.0.4",
+    "moment": "^2.30.1",
+    "@tanstack/react-query": "^5.36.2",
+    "@tanstack/react-query-devtools": "^5.36.2",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-activity-calendar": "^2.2.8",
+    "react-dom": "^18",
+    "react-tooltip": "^5.26.4"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@attraction/config": "workspace:^",
+    "eslint-config-next": "^14.2.3",
     "msw": "^2.3.0",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "postcss": "^8"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

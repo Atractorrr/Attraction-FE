@@ -1,5 +1,21 @@
 module.exports = {
   root: true,
-  extends: ['plugin:tailwindcss/recommended'],
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'plugin:tailwindcss/recommended',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
+  rules: {
+    'import/extensions': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'no-console': 'error',
+    'import/prefer-default-export': [
+      'off',
+      { target: 'any' }, // default is "single"
+    ],
+  },
+  ignorePatterns: ['.eslintrc.cjs'],
 }
