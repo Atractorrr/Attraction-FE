@@ -3,7 +3,7 @@ import { error, get, getParams } from '../tools'
 import { articles } from '@/__mocks__/data'
 
 import { Article, SortType, UserArticlesResponse } from '@/entities/article'
-import { Pagination } from '@/shared'
+import { Pagination } from '@/shared/types'
 
 const defaultPagination: Pagination = {
   size: 0, // 읽어온 데이터 갯수

@@ -1,7 +1,7 @@
 import { Newsletter, NewsletterCategory } from './newsletter'
 import { SortType } from './sort-type'
 
-import { Pagination } from '@/shared'
+import { Pagination } from '@/shared/types'
 
 export interface Article {
   id: number
