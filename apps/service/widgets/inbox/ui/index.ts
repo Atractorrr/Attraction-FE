@@ -1,1 +1,1 @@
-export { default as Inbox } from './inbox'
+export { default as UserInbox } from './UserInbox'

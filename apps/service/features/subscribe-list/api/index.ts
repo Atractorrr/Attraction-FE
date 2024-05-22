@@ -1,1 +1,1 @@
-export { fetchSubscribeList } from './fetchSubscribeList'
+export { default as fetchSubscribeList } from './fetchSubscribeList'

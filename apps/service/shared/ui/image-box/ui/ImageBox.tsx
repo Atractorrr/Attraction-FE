@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-type Props = {
+interface ImageBoxProps {
   imgSrc: string
   alt: string
   rounded: string
@@ -14,7 +14,7 @@ export default function ImageBox({
   rounded,
   width,
   height,
-}: Props) {
+}: ImageBoxProps) {
   return (
     <div
       className={`relative ${height} ${width} ${rounded} shrink-0 overflow-hidden `}>

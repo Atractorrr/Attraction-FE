@@ -1,21 +1,21 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import React from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
-import React from 'react'
-import { calendarTheme, labels } from '../libs/constant'
-import { CalendarElementType } from '../model'
+import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
+import { CalendarElement } from '../model'
 
-type Props = {
-  calendarData: (CalendarElementType & { level: number })[]
+interface CalendarProps {
+  calendarData: (CalendarElement & { level: number })[]
 }
 
 const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
   ssr: false,
 })
 
-export default function Calendar({ calendarData }: Props) {
+export default function Calendar({ calendarData }: CalendarProps) {
   return (
     <section className="w-full rounded-2xl border border-gray-100 bg-white p-5 md:w-2/3">
       <ActivityCalendarNoSSR
@@ -25,11 +25,11 @@ export default function Calendar({ calendarData }: Props) {
           ...calendarData,
           { date: '2024-12-31', count: 2, level: 4 },
         ]}
-        labels={labels}
+        labels={CALENDAR_LABELS}
         blockSize={10}
         showWeekdayLabels
         hideMonthLabels={false}
-        theme={calendarTheme}
+        theme={CALENDAR_THEME}
         renderBlock={(block, activity) => {
           const message = activity.count
             ? `${activity.date}에 ${activity.count}개의 상식을 쌓았어요 🎉`

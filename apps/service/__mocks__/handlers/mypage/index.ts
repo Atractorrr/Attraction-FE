@@ -13,7 +13,12 @@ const mypageHandlers: HttpHandler[] = [
         profileImg: imgUrl,
         backgroundImg: imgUrl,
         email: 'news.Ic@asdf.io',
-        interest: ['IT/테크', '비즈/재테크', '디자인', '트렌드/라이프'],
+        interest: [
+          'IT_TECH',
+          'BUSINESS_FINANCIAL_TECHNOLOGY',
+          'DESIGN',
+          'TREND_LIFE',
+        ],
       },
     })
   }),

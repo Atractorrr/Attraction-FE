@@ -1,5 +1,5 @@
-import { Inbox } from '@/widgets/inbox'
+import { UserInbox } from '@/widgets/inbox'
 
 export default function InboxPage() {
-  return <Inbox userId={12} /> // TODO: Protected Route 적용 (userId)
+  return <UserInbox userId={12} /> // TODO: Protected Route 적용 (userId)
 }

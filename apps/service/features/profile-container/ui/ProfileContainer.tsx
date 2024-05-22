@@ -2,9 +2,9 @@
 
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
-import { useImgUpload } from '../libs/hooks/useImgUpload'
+import { useImgUpload } from '../lib'
 import {
-  UserProfileType,
+  UserProfile,
   ProfileBackground,
   ProfileImage,
   UserInfo,
@@ -12,11 +12,13 @@ import {
   PreferTagItem,
 } from '@/entities/profile'
 
-type Props = {
-  userProfile: UserProfileType
+interface ProfileContainerProps {
+  userProfile: UserProfile
 }
 
-export default function ProfileContainer({ userProfile }: Props) {
+export default function ProfileContainer({
+  userProfile,
+}: ProfileContainerProps) {
   // TODO: 프로필도 지우기, 비디오기능 안받기 (백엔드랑 api맞출때 같이 하기)
   const {
     fileInputRef: profileInputRef,
@@ -80,7 +82,7 @@ export default function ProfileContainer({ userProfile }: Props) {
                 <PreferTagItem key={category} category={category} />
               )}
             />
-            {/* TODO: 피드백 받은 후 h-fit, self-center 넣기 */}
+            {/* // TODO: 피드백 받은 후 h-fit, self-center 넣기 */}
             <div className="flex w-full shrink-0 gap-2 md:self-end lg:w-auto">
               <Button className="w-full rounded-lg bg-gray-50 px-3 py-1.5 lg:w-fit">
                 개인설정

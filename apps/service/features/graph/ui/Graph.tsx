@@ -1,5 +1,5 @@
-import { ToolEmoji } from '@attraction/icons'
 import React from 'react'
+import { ToolEmoji } from '@attraction/icons'
 
 export default function Graph() {
   return (

@@ -1,12 +1,12 @@
 import React from 'react'
+import { SubscribeItem } from '../model'
 import { ContentContainer, ContentTitle, ImageBox } from '@/shared/ui'
-import { SubscribeItemType } from '../model/types'
 
-type Props = {
-  subscribeList: SubscribeItemType[]
+interface SubscribeListProps {
+  subscribeList: SubscribeItem[]
 }
 
-export default function SubscribeList({ subscribeList }: Props) {
+export default function SubscribeList({ subscribeList }: SubscribeListProps) {
   return (
     <section className="min-h-full shrink-0 grow rounded-2xl border border-gray-100 bg-white p-5">
       <p className="mb-4 text-lg font-bold">구독 리스트</p>

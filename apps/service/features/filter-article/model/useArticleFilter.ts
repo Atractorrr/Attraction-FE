@@ -1,7 +1,7 @@
 'use client'
 
 import useCategory from './useCategory'
-import useHideReadedArticles from './useHideReadedArticles'
+import useHideReadArticles from './useHideReadArticles'
 import useSearchValue from './useSearchValue'
 import useSortType from './useSortType'
 import useViewType from './useViewType'
@@ -9,8 +9,7 @@ import useViewType from './useViewType'
 export default function useArticleFilter() {
   const { selectedCategory, setCategory, resetCategory } = useCategory()
   const { currentSortType, setSortType } = useSortType()
-  const { isHideReadedArticles, toggleHideReadedArticles } =
-    useHideReadedArticles()
+  const { isHideReadArticles, toggleHideReadArticles } = useHideReadArticles()
   const { viewType, setViewType } = useViewType()
   const { searchValue, setSearchValue } = useSearchValue()
 
@@ -20,8 +19,8 @@ export default function useArticleFilter() {
     resetCategory,
     currentSortType,
     setSortType,
-    isHideReadedArticles,
-    toggleHideReadedArticles,
+    isHideReadArticles,
+    toggleHideReadArticles,
     viewType,
     setViewType,
     searchValue,

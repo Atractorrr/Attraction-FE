@@ -1,1 +1,1 @@
-export { default as RecentNewsletter } from './RecentNewsletter'
+export { default as RecentNewsletterContainer } from './RecentNewsletterContainer'

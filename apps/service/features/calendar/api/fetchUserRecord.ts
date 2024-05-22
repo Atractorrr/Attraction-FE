@@ -1,10 +1,8 @@
-import { CalendarElementType } from '../model/types'
+import { CalendarElement } from '../model'
 
-const fetchUserRecord = async (
-  userId: string,
-): Promise<CalendarElementType[]> => {
+const fetchUserRecord = async (userId: string): Promise<CalendarElement[]> => {
   const data = await fetch(
-    `${process.env.API_URL}/api/v1/member/${userId}/calendar`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/member/${userId}/calendar`,
     { cache: 'no-store' },
   ).then((res) => res.json())
 
@@ -12,4 +10,4 @@ const fetchUserRecord = async (
 
   return calendarData
 }
-export { fetchUserRecord }
+export default fetchUserRecord

@@ -1,8 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-
 import { getUserArticles } from '../api'
-import { Article, UserArticlesOption } from './types'
-import articleQueryKeys from './article-query-keys'
+import { Article, UserArticlesOption } from './type'
+import articleQueryKeys from './articleQueryKeys'
 
 export default function useInfiniteUserArticlesQuery(
   option: Omit<UserArticlesOption, 'page'>,

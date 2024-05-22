@@ -1,3 +1,3 @@
 export * from './ui'
 export * from './api'
-export * from './libs'
+export * from './lib'

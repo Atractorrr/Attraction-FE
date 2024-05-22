@@ -1,10 +1,8 @@
-import { SubscribeItemType } from '../model/types'
+import { SubscribeItem } from '../model'
 
-export const fetchSubscribeList = async (
-  userId: string,
-): Promise<SubscribeItemType[]> => {
+const fetchSubscribeList = async (userId: string): Promise<SubscribeItem[]> => {
   const data = await fetch(
-    `${process.env.API_URL}/api/v1/member/${userId}/subscribe-list`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/member/${userId}/subscribe-list`,
     { cache: 'no-store' },
   ).then((res) => res.json())
 
@@ -12,3 +10,5 @@ export const fetchSubscribeList = async (
 
   return subscribeList
 }
+
+export default fetchSubscribeList

@@ -1,11 +1,11 @@
 import React from 'react'
 
-type Props = {
+interface UserInfoProps {
   userName: string
   userEmail: string
 }
 
-export default function UserInfo({ userName, userEmail }: Props) {
+export default function UserInfo({ userName, userEmail }: UserInfoProps) {
   return (
     <div className="mb-6 space-y-2">
       <p className="text-2xl font-bold">{userName}</p>

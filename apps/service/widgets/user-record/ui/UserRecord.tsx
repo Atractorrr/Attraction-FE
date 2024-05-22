@@ -1,11 +1,11 @@
 import { Calendar, fetchUserRecord, calculateLevel } from '@/features/calendar'
 import { Graph } from '@/features/graph'
 
-type Props = {
+interface UserRecordProps {
   userId: string
 }
 
-export default async function UserRecord({ userId }: Props) {
+export default async function UserRecord({ userId }: UserRecordProps) {
   const calendarData = await fetchUserRecord(userId)
   const calendarDataWithLevel = calculateLevel(calendarData)
 

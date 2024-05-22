@@ -1,1 +1,1 @@
-export { fetchUserRecord } from './fetchUserRecord'
+export { default as fetchUserRecord } from './fetchUserRecord'

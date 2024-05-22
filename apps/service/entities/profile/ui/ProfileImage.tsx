@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 
-type Props = {
+interface ProfileImageProps {
   imaSrc: string
 }
 
-export default function ProfileImage({ imaSrc }: Props) {
+export default function ProfileImage({ imaSrc }: ProfileImageProps) {
   return (
     <div className="relative size-full">
       <Image

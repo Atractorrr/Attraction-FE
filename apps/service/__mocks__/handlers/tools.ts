@@ -3,7 +3,7 @@
 import { HttpResponseResolver, HttpResponse, http, delay } from 'msw'
 
 const delayMS = 600
-const baseURL = `${process.env.API_URL}/api`
+const baseURL = `${process.env.MOCK_URL}/api`
 
 export const get = (path: string, resolver: HttpResponseResolver) =>
   http.get(baseURL + path, async (info) => {

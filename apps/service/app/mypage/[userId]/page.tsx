@@ -1,19 +1,19 @@
+import { UserRecord } from '@/widgets/user-record'
 import { SubscribeList, fetchSubscribeList } from '@/features/subscribe-list'
 import {
   ProfileContainer,
   fetchUserProfile,
 } from '@/features/profile-container'
-import { UserRecord } from '@/widgets/user-record'
 import {
-  RecentNewsletter,
+  RecentNewsletterContainer,
   fetchNewsletterList,
 } from '@/features/recent-newsletter'
 
-type Props = {
+interface MyPageProps {
   params: { userId: string }
 }
 
-export default async function Page({ params }: Props) {
+export default async function MyPage({ params }: MyPageProps) {
   // TODO: 사이즈 커질때 배치 신경
   const userProfile = await fetchUserProfile(params.userId)
   const recentNewLetterList = await fetchNewsletterList(params.userId)
@@ -24,7 +24,7 @@ export default async function Page({ params }: Props) {
       <ProfileContainer userProfile={userProfile} />
       <UserRecord userId={params.userId} />
       <div className="mt-6 flex flex-col gap-6 md:flex-row">
-        <RecentNewsletter recentNewLetterList={recentNewLetterList} />
+        <RecentNewsletterContainer recentNewLetterList={recentNewLetterList} />
         <SubscribeList subscribeList={subscribeList} />
       </div>
     </div>

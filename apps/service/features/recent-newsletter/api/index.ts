@@ -1,1 +1,1 @@
-export { fetchNewsletterList } from './fetchNewsletterList'
+export { default as fetchNewsletterList } from './fetchNewsletterList'
