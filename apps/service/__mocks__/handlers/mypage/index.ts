@@ -105,15 +105,10 @@ const mypageHandlers: HttpHandler[] = [
         {
           id: 2,
           thumbnailUrl: imgUrl,
-          title: '뉴닉',
+          title: '구글',
         },
         {
           id: 3,
-          thumbnailUrl: imgUrl,
-          title: '네이트',
-        },
-        {
-          id: 4,
           thumbnailUrl: imgUrl,
           title: '구글',
         },
