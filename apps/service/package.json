@@ -13,6 +13,7 @@
     "@attraction/icons": "workspace:^",
     "next": "14.2.3",
     "react": "^18",
+    "react-activity-calendar": "^2.2.8",
     "react-dom": "^18"
   },
   "devDependencies": {
