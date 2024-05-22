@@ -15,6 +15,8 @@
     "embla-carousel": "^8.0.4",
     "embla-carousel-react": "^8.0.4",
     "moment": "^2.30.1",
+    "@tanstack/react-query": "^5.36.2",
+    "@tanstack/react-query-devtools": "^5.36.2",
     "next": "14.2.3",
     "react": "^18",
     "react-activity-calendar": "^2.2.8",

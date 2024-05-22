@@ -6,7 +6,7 @@ import mypageHandlers from './mypage'
 
 const handlers: HttpHandler[] = [
   get('/test', () => {
-    return HttpResponse.json({ message: 'success!!!' })
+    return HttpResponse.json({ message: `success)` })
   }),
   ...mainHandlers,
   ...inboxHandlers,

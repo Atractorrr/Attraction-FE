@@ -1,0 +1,3 @@
+const DEFAULT_LIST_SIZE = 20
+
+export default DEFAULT_LIST_SIZE
