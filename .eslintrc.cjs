@@ -17,5 +17,12 @@ module.exports = {
       { target: 'any' }, // default is "single"
     ],
   },
-  ignorePatterns: ['.eslintrc.cjs'],
+  ignorePatterns: [
+    '**/node_modules/*',
+    '**/dist/*',
+    '**/build/*',
+    '**/*.cjs',
+    '**/*.mjs',
+    '**/*.js',
+  ],
 }

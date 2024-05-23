@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from 'react'
 import { GraphOutline } from '@attraction/icons'
-import { fetchNewsletters } from '../api'
 import {
   TrendNewsletterResponse,
   TrendNewsletterList,
 } from '@/entities/trend-newsletters'
 import { NewsletterCategories } from '@/features/newsletter-categories'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Background, LoadingSpinner, Title } from '@/shared/ui'
+import { Background, Title } from '@/shared/ui'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
+import { fetchNewsletters } from '../api'
 
 export default function TrendNewsletters() {
   const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
@@ -51,11 +51,7 @@ export default function TrendNewsletters() {
             />
             <TrendNewsletterList content={newsletters.content} />
           </div>
-        ) : (
-          <div className="py-12">
-            <LoadingSpinner />
-          </div>
-        )}
+        ) : null}
       </div>
     </Background>
   )

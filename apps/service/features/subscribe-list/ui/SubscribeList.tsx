@@ -1,6 +1,6 @@
 import React from 'react'
-import { SubscribeItem } from '../model'
 import { ContentContainer, ContentTitle, ImageBox } from '@/shared/ui'
+import { SubscribeItem } from '../model'
 
 interface SubscribeListProps {
   subscribeList: SubscribeItem[]

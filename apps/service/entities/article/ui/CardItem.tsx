@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { Article, ViewType } from '../model'
 import { WIDTH_PERCENT } from '@/shared/constant'
+import { Article, ViewType } from '../model'
 
 interface CardItemProps {
   data: Article

@@ -22,7 +22,7 @@ export default function SearchBar({ setValue }: SearchBarProps) {
         <MagnifyingGlassOutline />
       </span>
       <Input
-        className="xs:text-base xs:px-10 xs:h-10 block h-9 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white md:w-72 dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
+        className="xs:h-10 xs:px-10 xs:text-base block h-9 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white md:w-72 dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
         placeholder="검색어를 입력해 주세요"
         type="search"
         autoComplete="off"
@@ -32,7 +32,7 @@ export default function SearchBar({ setValue }: SearchBarProps) {
       {searchValue && (
         <Button
           title="지우기"
-          className="xs:size-10 absolute inset-y-0 right-0 my-auto inline-flex size-8 items-center justify-center p-1 text-xl text-gray-500 dark:text-gray-400"
+          className="xs:size-10 absolute inset-y-0 right-0 my-auto inline-flex size-8 items-center justify-center p-1 text-xl text-gray-500  dark:text-gray-400"
           onClick={() => {
             setSearchValue('')
             setValue('')

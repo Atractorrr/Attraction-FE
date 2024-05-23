@@ -2,7 +2,6 @@
 
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
-import { useImgUpload } from '../lib'
 import {
   UserProfile,
   ProfileBackground,
@@ -11,6 +10,7 @@ import {
   PreferTagList,
   PreferTagItem,
 } from '@/entities/profile'
+import { useImgUpload } from '../lib'
 
 interface ProfileContainerProps {
   userProfile: UserProfile
