@@ -19,6 +19,7 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "lint": "pnpm -r run lint",
+    "type": "pnpm -r run type",
     "build": "pnpm -F @attraction/icons build",
     "dev:service": "pnpm -F @attraction/service dev",
     "build:icons": "pnpm -F @attraction/icons build"
