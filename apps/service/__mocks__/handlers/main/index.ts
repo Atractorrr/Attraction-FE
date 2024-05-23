@@ -1,6 +1,6 @@
 import { HttpHandler, HttpResponse } from 'msw'
-import { get } from '../tools'
 import { recentArticles, trendNewsLetters } from '@/__mocks__/data'
+import { get } from '../tools'
 
 const mainHandlers: HttpHandler[] = [
   get('/v1/articles/recent', ({ request }) => {

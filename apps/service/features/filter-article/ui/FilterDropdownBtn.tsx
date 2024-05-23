@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
 
+import { useClickedOutsideOfElement } from '@/shared/lib'
 import { CategoryDropdown, CategoryDropdownProps } from './CategoryDropdownBtn'
 import { SortTypeDropdownProps, btns } from './SortTypeDropdownBtn'
-import { useClickedOutsideOfElement } from '@/shared/lib'
 
 type FilterDropdownProps = CategoryDropdownProps & SortTypeDropdownProps
 

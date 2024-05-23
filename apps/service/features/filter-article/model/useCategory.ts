@@ -1,8 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-
-import { NewsletterCategory } from '@/entities/article'
+import { NewsletterCategory } from '@/shared/type'
 
 export default function useCategory() {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -18,5 +17,5 @@ export default function useCategory() {
   }, [])
   const resetCategory = useCallback(() => setSelectedCategory([]), [])
 
-  return { selectedCategory, setCategory, resetCategory }
+  return { selectedCategory, setCategory, resetCategory } as const
 }

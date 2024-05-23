@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import CardThumbnail from './CardThumbnail'
 import { ContentContainer, ContentTitle, ImageBox } from '@/shared/ui'
+import CardThumbnail from './CardThumbnail'
 
 interface CardMainProps {
   children: ReactNode

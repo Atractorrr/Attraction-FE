@@ -1,7 +1,7 @@
 import React from 'react'
-import { getCategorySVG } from '../lib'
 import { NewsletterCategory } from '@/shared/type'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import { getCategorySVG } from '../lib'
 
 interface PreferTagItemProps {
   category: NewsletterCategory
