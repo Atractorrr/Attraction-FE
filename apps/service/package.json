@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir . --fix"
+    "type": "tsc --noEmit --diagnostics",
+    "type:watch": "tsc --noEmit --incremental --watch",
+    "lint:fix": "next lint --dir . --fix",
+    "lint": "next lint --dir ."
   },
   "dependencies": {
     "@attraction/design-system": "workspace:^",
