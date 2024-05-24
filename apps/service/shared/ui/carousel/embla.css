@@ -9,6 +9,11 @@
 
 .embla__viewport {
   position: relative;
+  overflow: hidden;
+}
+
+.embla__viewport_ {
+  overflow: hidden;
   overflow-x: auto; /* 스크롤 기능 유지 */
   overflow-y: hidden; /* 세로 스크롤 숨기기 */
   -ms-overflow-style: none; /* 인터넷 익스플로러 */
