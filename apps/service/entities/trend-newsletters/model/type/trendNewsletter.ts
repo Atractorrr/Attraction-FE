@@ -1,4 +1,4 @@
-import { NewsletterCategoryName } from '@/shared/type'
+import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 
 export interface TrendNewsletter {
   id: number
@@ -8,7 +8,7 @@ export interface TrendNewsletter {
 }
 
 export interface TrendNewsletterResponse {
-  priorityCategory: NewsletterCategoryName[]
+  priorityCategory: NewsletterCategory[]
   content: {
     category: NewsletterCategoryName
     isUser: boolean
