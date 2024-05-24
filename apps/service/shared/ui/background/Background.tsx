@@ -6,7 +6,7 @@ interface BackgroundProps {
 
 export default function Background({ children }: BackgroundProps) {
   return (
-    <section className="grid w-full justify-items-center border-gray-100 bg-white p-5 md:rounded-2xl md:border">
+    <section className="grid h-fit w-full justify-items-center border-gray-100 bg-white p-5 md:rounded-2xl md:border">
       {children}
     </section>
   )
