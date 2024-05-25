@@ -1,6 +1,6 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { fetchArticles } from '../api'
 import type { RecentArticleResponse } from '@/entities/recent-article-item'
+import { fetchArticles } from '../api'
 
 export default function useRecentArticles(
   size: number = 5,

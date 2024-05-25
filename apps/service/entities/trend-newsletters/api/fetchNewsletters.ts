@@ -1,5 +1,5 @@
-import { TrendNewsletterResponse } from '@/entities/trend-newsletters'
-import { NewsletterCategory } from '@/shared/type'
+import type { TrendNewsletterResponse } from '@/entities/trend-newsletters'
+import type { NewsletterCategory } from '@/shared/type'
 
 export default async function fetchNewsletters(
   category: NewsletterCategory = 'RECOMMEND',
