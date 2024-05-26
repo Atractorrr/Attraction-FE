@@ -3,6 +3,7 @@ import { get } from './tools'
 import inboxHandlers from './inbox'
 import mainHandlers from './main'
 import mypageHandlers from './mypage'
+import signUpHandlers from './sign-up'
 
 const handlers: HttpHandler[] = [
   get('/test', () => {
@@ -11,6 +12,7 @@ const handlers: HttpHandler[] = [
   ...mainHandlers,
   ...inboxHandlers,
   ...mypageHandlers,
+  ...signUpHandlers,
 ]
 
 export default handlers
