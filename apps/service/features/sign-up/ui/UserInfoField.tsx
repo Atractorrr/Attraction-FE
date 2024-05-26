@@ -1,5 +1,4 @@
 import { useFormContext } from 'react-hook-form'
-import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { SignUpFormType } from '../model'
 import UserInfoExpirationDate from './UserInfoExpirationDate'
@@ -18,7 +17,6 @@ const postDuplicateName = async (nickName: string) => {
 }
 
 export default function UserInfoField() {
-  const [isChecked, setIsChecked] = useState(false)
   const { mutateAsync } = useMutation({
     mutationFn: postDuplicateName,
   })
@@ -26,20 +24,22 @@ export default function UserInfoField() {
     register,
     formState: { errors },
     getValues,
-    setError,
     clearErrors,
+    setValue,
+    watch,
   } = useFormContext<SignUpFormType>()
 
   const duplicateCheckHandler = async () => {
-    const data = await mutateAsync(getValues('nickName'))
+    await mutateAsync(getValues('nickName'))
+    // const data = await mutateAsync(getValues('nickName'))
 
-    if (data.message === '409 (MSW)') {
-      setError('nickName', { message: '중복된 이메일 입니다' })
-      setIsChecked(false)
-    } else {
-      setIsChecked(true)
-      clearErrors('nickName')
-    }
+    // if (data.message === '409 (MSW)') {
+    //   setError('nickName', { message: '중복된 이메일 입니다' })
+    //   setIsChecked(false)
+    // } else {
+    setValue('isNickNameChecked', true)
+    clearErrors('nickName')
+    // }
   }
 
   return (
@@ -49,17 +49,20 @@ export default function UserInfoField() {
       </legend>
       <label htmlFor="nickName" className="mb-6 block" aria-label="닉네임">
         <p className="mb-2 text-sm text-gray-700">닉네임</p>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 md:flex-row">
           <input
             id="nickName"
             className="grow rounded-lg border border-gray-100 p-2"
             placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
             {...register('nickName', {
               onChange: () => {
-                setIsChecked(false)
+                setValue('isNickNameChecked', false)
               },
               validate: () => {
-                return '중복 확인을 해주세요'
+                if (!watch('isNickNameChecked')) {
+                  return '중복 확인을 해주세요'
+                }
+                return true
               },
             })}
           />
@@ -73,7 +76,7 @@ export default function UserInfoField() {
         {errors.nickName?.message && (
           <p className="mt-2 text-red-500">{errors.nickName.message}</p>
         )}
-        {isChecked && (
+        {getValues('isNickNameChecked') && (
           <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>
         )}
       </label>
@@ -82,7 +85,7 @@ export default function UserInfoField() {
         <input
           id="birth"
           className="w-full grow rounded-lg border border-gray-100 p-2"
-          placeholder="생년월일을 입력해주세요 예) 20240503"
+          placeholder="예) 20240503"
           {...register('birthDate', {
             required: '생년월일을 입력해 주세요',
             pattern: {
