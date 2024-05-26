@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { FormProvider, useForm, useFormState } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import {
-  UserInfoField,
   SignUpFormType,
+  UserInfoField,
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
@@ -24,6 +24,7 @@ export default function SignUp() {
     defaultValues: {
       email: '',
       nickName: '',
+      isNickNameChecked: false,
       interest: [],
       birthDate: '',
       userExpiration: 6,
@@ -54,7 +55,7 @@ export default function SignUp() {
     if (activeBtn) {
       setCheckError(true)
     }
-  }, [activeBtn, errors])
+  }, [activeBtn])
 
   useEffect(() => {
     if (
@@ -71,7 +72,7 @@ export default function SignUp() {
   return (
     <FormProvider {...formMethod}>
       <form
-        className="max-w-[540px] rounded-3xl bg-white p-10"
+        className="max-w-[540px] rounded-3xl bg-white p-5 md:p-10"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex]}
         <Button

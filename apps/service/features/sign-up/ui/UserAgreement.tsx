@@ -10,6 +10,7 @@ export default function UserAgreement() {
     formState: { errors },
     clearErrors,
     setError,
+    watch,
   } = useFormContext<SignUpFormType>()
   const { fields } = useFieldArray({ control, name: 'policies' })
   const policesValue = useWatch({ control, name: 'policies' })
@@ -31,10 +32,6 @@ export default function UserAgreement() {
       setValue('selectPolicyAll', true)
       clearErrors('selectPolicyAll')
     }
-
-    if (policesValue.some((el) => !el.value)) {
-      setValue('selectPolicyAll', false)
-    }
   }, [clearErrors, policesValue, setError, setValue])
 
   return (
@@ -45,7 +42,7 @@ export default function UserAgreement() {
           type="checkbox"
           {...register('selectPolicyAll', {
             validate: () => {
-              if (policesValue.some((el) => !el.value)) {
+              if (!watch('selectPolicyAll')) {
                 return '필수 약관에 동의해주세요'
               }
               return true
@@ -56,14 +53,23 @@ export default function UserAgreement() {
       </div>
       {fields.map((item, i) => {
         return (
-          <div key={item.id} className="flex justify-between py-2">
+          <div key={item.id} className="flex justify-between gap-4 py-2">
             <p className="">
               (필수) 서비스 이용약관 동의{' '}
               <a href="/" className="text-sm">
                 전문보기
               </a>
             </p>
-            <input type="checkbox" {...register(`policies.${i}.value`)} />
+            <input
+              type="checkbox"
+              {...register(`policies.${i}.value`, {
+                onChange: (e: React.FormEvent<HTMLInputElement>) => {
+                  if (!e.currentTarget.checked) {
+                    setValue('selectPolicyAll', false)
+                  }
+                },
+              })}
+            />
           </div>
         )
       })}

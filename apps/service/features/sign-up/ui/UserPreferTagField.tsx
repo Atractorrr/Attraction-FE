@@ -103,7 +103,7 @@ export default function UserPreferTagField() {
         수정할 수 있어요
       </p>
       <div className="h-[30rem] overflow-y-auto">
-        <div className="grid grid-cols-2 content-center justify-center gap-5">
+        <div className="xs:grid xs:content-center xs:justify-center xs:grid-cols-2 flex flex-col gap-5">
           {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
             <UserPreferTag
               key={categoryKey}
