@@ -3,12 +3,12 @@
 import { EmblaOptionsType } from 'embla-carousel'
 import { Button } from '@attraction/design-system'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Carousel } from '@/shared/ui'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
+import { Carousel } from '@/shared/ui'
 
 interface NewsletterCategoriesProps {
   currentCategory: NewsletterCategory
-  priorityCategory: NewsletterCategoryName[]
+  priorityCategory: NewsletterCategory[]
   onClick: (category: NewsletterCategoryName) => void
 }
 
@@ -20,13 +20,15 @@ export default function NewsletterCategories({
   priorityCategory,
   onClick,
 }: NewsletterCategoriesProps) {
-  const sortedCategoryList = (priority: NewsletterCategoryName[]) => {
+  const sortedCategoryList = (priority: NewsletterCategory[]) => {
     const categorySet = new Set<NewsletterCategoryName>()
 
     categorySet.add(NEWSLETTER_CATEGORY.RECOMMEND)
-    priority.forEach((category) => categorySet.add(category))
+    priority.forEach((category) =>
+      categorySet.add(NEWSLETTER_CATEGORY[category]),
+    )
     Object.values(NEWSLETTER_CATEGORY).forEach((category) =>
-      categorySet.add(category as NewsletterCategoryName),
+      categorySet.add(category),
     )
 
     return Array.from(categorySet)
@@ -54,7 +56,8 @@ export default function NewsletterCategories({
       <Carousel
         options={option}
         slides={newsletterCategoryList}
-        showButton="right"
+        showButton
+        slideSpacing="0.5"
       />
     </section>
   )
