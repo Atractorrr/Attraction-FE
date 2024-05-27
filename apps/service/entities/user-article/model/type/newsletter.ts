@@ -8,5 +8,5 @@ export interface Newsletter {
   category: NewsletterCategory
   mainLink: string
   subscribeLink: string
-  thumbnail: string
+  thumbnailUrl: string
 }

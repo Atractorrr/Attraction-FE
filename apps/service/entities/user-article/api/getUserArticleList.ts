@@ -1,10 +1,10 @@
 import { DEFAULT_LIST_SIZE } from '../constant'
-import type { UserArticlesResponse, UserArticlesOption } from '../model'
+import type { UserArticlesResponse, UserArticleListOption } from '../model'
 
-export default async function getUserArticles({
+export default async function getUserArticleList({
   userId,
   ...params
-}: UserArticlesOption) {
+}: UserArticleListOption) {
   const path = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/articles`
   const searchParams = {
     ...params,

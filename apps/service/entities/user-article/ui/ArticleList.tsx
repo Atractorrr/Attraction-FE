@@ -4,7 +4,7 @@ import CardItem from './CardItem'
 interface ArticleListProps {
   data: Article[]
   type?: ViewType
-  isArticleView: boolean
+  isArticleView?: boolean
 }
 
 export default function ArticleList({

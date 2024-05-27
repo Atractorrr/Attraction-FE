@@ -1,8 +1,7 @@
 export default function LoadingSpinner() {
   return (
-    <div className="flex w-full items-center justify-center px-5 py-8 text-4xl text-gray-500">
+    <div className="flex w-full items-center justify-center px-5 py-8 text-4xl text-gray-400 dark:text-gray-500">
       <svg
-        // TODO: 공용 컴포넌트로 빼기
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
         height="1em"

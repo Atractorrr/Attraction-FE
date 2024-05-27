@@ -13,7 +13,7 @@ export default function CardItem({ data, type }: CardItemProps) {
   return (
     <div className={`${type === 'list' ? 'flex' : 'block'} h-auto w-full`}>
       <Link
-        href={`/inbox/${data.id}`}
+        href={`/inbox/article/${data.id}`}
         title={`아티클 보기: ${data.title}`}
         className={`group relative block overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 ${
           type === 'list'
@@ -30,7 +30,7 @@ export default function CardItem({ data, type }: CardItemProps) {
         {data.readPercentage > 0 && (
           <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
             <span
-              className={`absolute inset-x-0 h-1 bg-green-400 dark:bg-green-500 ${
+              className={`absolute inset-x-0 h-1 bg-blue-400 dark:bg-blue-300 ${
                 WIDTH_PERCENT[data.readPercentage]
               }`}
             />
@@ -42,14 +42,15 @@ export default function CardItem({ data, type }: CardItemProps) {
       </Link>
       <div className="flex items-start justify-start py-1">
         <Link
-          href={`/newsletters/${data.newsletter.id}`}
+          href={`/newsletter/${data.newsletter.id}`}
           title={`뉴스레터 상세 보기: ${data.newsletter.name}`}
           className={`${
             type === 'list' ? 'hidden' : 'block'
           } mr-2 block size-7 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`}>
           <Image
-            src={data.newsletter.thumbnail}
+            src={data.newsletter.thumbnailUrl}
             alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
+            className="size-full object-cover"
             width={300}
             height={300}
           />
@@ -59,9 +60,9 @@ export default function CardItem({ data, type }: CardItemProps) {
             type === 'list' ? 'w-full' : 'max-w-[calc(100%-2.25rem)] pr-1'
           }>
           <Link
-            href={`/inbox/${data.id}`}
+            href={`/inbox/article/${data.id}`}
             title={`아티클 보기: ${data.title}`}
-            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-500 hover:underline dark:text-gray-50">
+            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-400 dark:text-gray-50">
             {data.title}
           </Link>
           <span
