@@ -44,7 +44,7 @@ export default function UserInfoField() {
 
   return (
     <fieldset>
-      <legend className="mb-12 text-2xl font-bold">
+      <legend className="mb-12 break-keep text-2xl font-bold">
         서비스 이용에 있어 필수 정보를 입력해주세요
       </legend>
       <label htmlFor="nickName" className="mb-6 block" aria-label="닉네임">
@@ -69,7 +69,7 @@ export default function UserInfoField() {
           <button
             type="button"
             onClick={() => duplicateCheckHandler()}
-            className="rounded-lg bg-gray-700 p-3 text-sm text-gray-50">
+            className="rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
             중복확인
           </button>
         </div>

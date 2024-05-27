@@ -98,7 +98,7 @@ export default function UserPreferTagField() {
       <legend className="mb-4 text-2xl font-bold text-gray-700">
         마지막으로, 관심사를 선택해 주세요
       </legend>
-      <p className="mb-12 text-gray-500">
+      <p className="mb-12 break-keep text-gray-500">
         선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 관심사는 언제든지
         수정할 수 있어요
       </p>

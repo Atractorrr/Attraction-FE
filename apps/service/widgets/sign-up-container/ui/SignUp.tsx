@@ -72,7 +72,7 @@ export default function SignUp() {
   return (
     <FormProvider {...formMethod}>
       <form
-        className="max-w-[540px] rounded-3xl bg-white p-5 md:p-10"
+        className="max-w-[540px] rounded-3xl bg-white p-5 sm:p-10"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex]}
         <Button
