@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
+import { BackBtn } from '@/shared/ui'
 import { Article } from '../model'
 
 interface ArticleViewProps {
@@ -23,16 +24,23 @@ export default function ArticleView({ data }: ArticleViewProps) {
       }
     }
     iframe?.addEventListener('load', handleIframe)
+    window.addEventListener('resize', handleIframe)
     return () => {
       iframe?.removeEventListener('load', handleIframe)
+      window.removeEventListener('resize', handleIframe)
     }
   }, [])
 
   return (
     <div className="h-auto min-h-dvh w-full">
       <div className="mb-7">
-        <h3 className="mb-3 break-keep text-xl font-bold">{data.title}</h3>
-        <div className="flex items-center gap-3">
+        <div className="mb-5 block lg:hidden">
+          <BackBtn href="/inbox" />
+        </div>
+        <h3 className="mb-3 break-keep text-lg font-bold md:text-xl">
+          {data.title}
+        </h3>
+        <div className="flex flex-wrap items-center gap-3">
           <p className="flex items-center justify-center">
             <Link
               href={`/newsletter/${data.newsletter.id}`}
