@@ -1,25 +1,28 @@
 import { UserArticleParams, UserArticleListOption } from './type'
 
-const articleQueryKeys = {
-  all: ['article'] as const,
-  userArticle: (params: UserArticleParams) => [...articleQueryKeys.all, params],
+const userArticleQueryKeys = {
+  all: ['user-article'] as const,
+  userArticle: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    params,
+  ],
   userArticles: ({
     userId,
     category,
     page,
     ...options
   }: UserArticleListOption) => [
-    ...articleQueryKeys.all,
+    ...userArticleQueryKeys.all,
     'articles',
     userId,
     category,
     options,
   ],
   userCategories: (params: { userId: string | number }) => [
-    ...articleQueryKeys.all,
+    ...userArticleQueryKeys.all,
     'categories',
     params,
   ],
 }
 
-export default articleQueryKeys
+export default userArticleQueryKeys
