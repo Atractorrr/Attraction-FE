@@ -1,0 +1,3 @@
+const MAX_SCROLL_CRITERIA = 86
+
+export default MAX_SCROLL_CRITERIA

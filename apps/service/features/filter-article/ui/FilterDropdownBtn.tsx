@@ -16,7 +16,7 @@ function FilterDropdown({
   resetCategory,
 }: FilterDropdownProps) {
   return (
-    <ul className="absolute -left-2 z-10 mt-2 w-[86vw] rounded-lg border border-gray-200 bg-white px-3 py-4 sm:w-96 dark:border-gray-700 dark:bg-gray-800">
+    <ul className="absolute -left-2 z-20 mt-2 w-[86vw] rounded-lg border border-gray-100 bg-white px-3 py-4 sm:w-96 dark:border-gray-700 dark:bg-gray-800">
       <li>
         <h3 className="mb-2 whitespace-nowrap px-2 text-sm font-medium text-gray-500 dark:text-gray-400">
           카테고리

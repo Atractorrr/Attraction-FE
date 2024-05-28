@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
 
-import { SortType } from '@/entities/article'
+import { SortType } from '@/entities/user-article'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 
 export interface SortTypeDropdownProps {
@@ -19,7 +19,7 @@ export const btns: Array<[SortType, string]> = [
 
 function SortTypeDropdown({ sortType, setSortType }: SortTypeDropdownProps) {
   return (
-    <ul className="absolute -left-2 z-10 mt-2 min-w-40 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+    <ul className="absolute -left-2 z-20 mt-2 min-w-40 rounded-lg border border-gray-100 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
       {btns.map(([type, label]) => (
         <li key={type}>
           <Button
