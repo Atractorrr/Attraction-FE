@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-
-import { WIDTH_PERCENT } from '@/shared/constant'
 import { Article, ViewType } from '../model'
 
 interface CardItemProps {
@@ -30,9 +28,8 @@ export default function CardItem({ data, type }: CardItemProps) {
         {data.readPercentage > 0 && (
           <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
             <span
-              className={`absolute inset-x-0 h-1 bg-blue-400 dark:bg-blue-300 ${
-                WIDTH_PERCENT[data.readPercentage]
-              }`}
+              className="absolute inset-x-0 h-1 bg-blue-400 dark:bg-blue-300"
+              style={{ width: `${data.readPercentage}%` }}
             />
           </span>
         )}
