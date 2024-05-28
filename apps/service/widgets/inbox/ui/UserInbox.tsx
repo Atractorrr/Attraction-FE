@@ -57,7 +57,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     <section
       className={`border-gray-100 bg-white !pb-7 md:rounded-2xl md:border dark:border-gray-800 dark:bg-gray-800 ${
         isArticleView
-          ? 'max-h-fit transition-all lg:max-w-[342px]'
+          ? 'max-h-fit transition-all lg:sticky lg:top-28 lg:max-w-[342px]'
           : 'mx-auto my-6 max-w-7xl p-5 md:p-6'
       }`}>
       <div className={isArticleView ? 'px-5 pt-5' : undefined}>

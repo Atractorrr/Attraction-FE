@@ -15,7 +15,7 @@ export default function InboxLayout({
     <div
       className={
         isArticleView
-          ? 'mx-auto flex max-w-7xl items-start justify-center gap-6'
+          ? 'relative mx-auto flex max-w-7xl items-start justify-center gap-6'
           : undefined
       }>
       <UserInbox
