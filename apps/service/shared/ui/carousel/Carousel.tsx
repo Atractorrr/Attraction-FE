@@ -10,6 +10,7 @@ import EmblaButton from './EmblaButton'
 interface CarouselProps {
   slides: ReactNode[]
   options?: EmblaOptionsType
+  showBlur?: boolean
   showButton?: boolean
   slideSpacing?: string
 }
@@ -17,14 +18,17 @@ interface CarouselProps {
 export default function EmblaCarousel({
   slides,
   options,
+  showBlur = false,
   showButton = false,
   slideSpacing = '1.0',
 }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const [showLeftBlur, setShowLeftBlur] = useState(false)
-  const [showRightBlur, setShowRightBlur] = useState(!showButton)
+  const [showRightBlur, setShowRightBlur] = useState(showBlur && !showButton)
   const [showLeftButton, setShowLeftButton] = useState(false)
-  const [showRightButton, setShowRightButton] = useState(showButton)
+  const [showRightButton, setShowRightButton] = useState(
+    !showBlur && showButton,
+  )
 
   useEffect(() => {
     if (emblaApi) {
@@ -32,15 +36,15 @@ export default function EmblaCarousel({
         const canScrollPrev = emblaApi.canScrollPrev()
         const canScrollNext = emblaApi.canScrollNext()
 
-        setShowLeftBlur(canScrollPrev && !showButton)
-        setShowRightBlur(canScrollNext && !showButton)
+        setShowLeftBlur(canScrollPrev && showBlur && !showButton)
+        setShowRightBlur(canScrollNext && showBlur && !showButton)
         setShowLeftButton(canScrollPrev && showButton)
         setShowRightButton(canScrollNext && showButton)
       }
 
       emblaApi.on('select', updateUI)
     }
-  }, [emblaApi, showButton])
+  }, [emblaApi, showBlur, showButton])
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
