@@ -1,9 +1,13 @@
 import { HttpHandler, HttpResponse } from 'msw'
 import { articles } from '@/__mocks__/data'
 
-import { Article, SortType, UserArticlesResponse } from '@/entities/article'
+import {
+  Article,
+  SortType,
+  UserArticlesResponse,
+} from '@/entities/user-article'
 import { Pagination } from '@/shared/type'
-import { error, get, getParams } from '../tools'
+import { error, get, getParams, put } from '../tools'
 
 const defaultPagination: Pagination = {
   size: 0, // 읽어온 데이터 갯수
@@ -52,12 +56,12 @@ const inboxHandlers: HttpHandler[] = [
             .map((article, i) => ({ ...article, id: page * size + i + 1 }))
             .sort(sorted[sort as SortType] ?? sorted.asc)
         : [...articles].sort(sorted[sort as SortType] ?? sorted.asc)
-    const readedArticles = isRead
+    const readArticles = isRead
       ? sortedArticles.filter((article) => article.readPercentage === 0)
       : sortedArticles
     const searchedArticles = query
-      ? readedArticles.filter((article) => article.title.includes(query))
-      : readedArticles
+      ? readArticles.filter((article) => article.title.includes(query))
+      : readArticles
     const filteredArticles =
       categories.length > 0
         ? searchedArticles.filter((article) =>
@@ -98,6 +102,40 @@ const inboxHandlers: HttpHandler[] = [
           [],
         ),
     })
+  }),
+  get('/v1/user/:userId/article/:articleId', ({ params }) => {
+    const userId = Number(params.userId)
+    const articleId = Number(params.articleId)
+    const isInvalidRequest = [userId, articleId].some(Number.isNaN)
+
+    if (isInvalidRequest) {
+      return error('잘못된 요청입니다', 400)
+    }
+    if (articleId < 0 || articleId > articles.length) {
+      return error('요청하신 아티클을 찾을 수 없습니다', 404)
+    }
+    return HttpResponse.json({
+      data: articles.find((article) => article.id === articleId),
+    })
+  }),
+  put('/v1/user/:userId/article/:articleId', ({ request, params }) => {
+    const userId = Number(params.userId)
+    const articleId = Number(params.articleId)
+    const searchParams = getParams(request.url)
+    const percentage = Number(searchParams.get('percentage'))
+    const isInvalidRequest = [userId, articleId, percentage].some(Number.isNaN)
+
+    if (isInvalidRequest) {
+      return error('잘못된 요청입니다', 400)
+    }
+    if (articleId < 0 || articleId > articles.length) {
+      return error('요청하신 아티클을 찾을 수 없습니다', 404)
+    }
+    const targetArticle = articles.find((article) => article.id === articleId)
+    if (targetArticle) {
+      targetArticle.readPercentage = percentage
+    }
+    return HttpResponse.json({ status: 'OK', message: '성공 코드' })
   }),
 ]
 

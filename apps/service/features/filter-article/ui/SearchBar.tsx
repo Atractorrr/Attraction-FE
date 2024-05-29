@@ -17,12 +17,12 @@ export default function SearchBar({ setValue }: SearchBarProps) {
   useEffect(() => setValue(debouncedValue), [debouncedValue, setValue])
 
   return (
-    <div className="relative min-w-52">
+    <div className="xs:min-w-72 relative min-w-52">
       <span className="xs:size-10 xs:text-lg absolute inset-y-0 left-0 my-auto inline-flex size-8 items-center justify-center text-base text-gray-500 dark:text-gray-400">
         <MagnifyingGlassOutline />
       </span>
       <Input
-        className="xs:h-10 xs:px-10 xs:text-base block h-9 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white md:w-72 dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
+        className="xs:h-10 xs:px-10 xs:text-base block h-9 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
         placeholder="검색어를 입력해 주세요"
         type="search"
         autoComplete="off"
