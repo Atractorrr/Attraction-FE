@@ -4,7 +4,7 @@ import '@/public/fonts/fonts.css'
 import './globals.css'
 
 import initMSW from '@/__mocks__'
-import { QueryProvider } from '@/shared/lib'
+import Provider from './provider'
 
 if (process.env.NODE_ENV !== 'production') {
   initMSW()
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100">
-        <QueryProvider>{children}</QueryProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   )

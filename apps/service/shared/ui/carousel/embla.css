@@ -1,10 +1,11 @@
 .embla {
   width: 100%;
+  height: 100%;
   margin: auto;
   display: flex;
   --slide-height: 19rem;
   --slide-spacing: 1rem;
-  --slide-size: 70%;
+  --slide-size: 100%;
 }
 
 .embla__viewport {
@@ -12,19 +13,8 @@
   overflow: hidden;
 }
 
-.embla__viewport_ {
-  overflow: hidden;
-  overflow-x: auto; /* 스크롤 기능 유지 */
-  overflow-y: hidden; /* 세로 스크롤 숨기기 */
-  -ms-overflow-style: none; /* 인터넷 익스플로러 */
-  scrollbar-width: none; /* 파이어폭스 */
-}
-
-.embla__viewport::-webkit-scrollbar {
-  display: none; /* 웹킷 브라우저에서 스크롤바 숨기기 */
-}
-
 .embla__container {
+  height: 100%;
   backface-visibility: hidden;
   display: flex;
   touch-action: pan-y pinch-zoom;
@@ -35,6 +25,7 @@
   flex: 0 0 auto;
   min-width: 0;
   max-width: fit-content;
+  height: 100%;
   padding-left: var(--slide-spacing);
 }
 
