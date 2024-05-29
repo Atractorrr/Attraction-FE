@@ -101,7 +101,7 @@ export default function ProfileContainer({
           </div>
         </div>
       </div>
-      {modal && <UserSettingModal />}
+      {modal && <UserSettingModal setModal={setModal} />}
     </section>
   )
 }
