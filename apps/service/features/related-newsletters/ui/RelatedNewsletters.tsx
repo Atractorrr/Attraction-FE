@@ -15,7 +15,7 @@ export default function RelatedNewsletters({
 
   return (
     <Background>
-      <div className="flex w-full flex-col justify-start gap-y-5">
+      <div className="flex w-full flex-col justify-start gap-y-5 p-5">
         <Title text="연관 뉴스레터" />
         {isPending || !data ? (
           <LoadingSpinner />

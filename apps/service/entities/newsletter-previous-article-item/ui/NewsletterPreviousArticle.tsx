@@ -15,6 +15,9 @@ export default function NewsletterPreviousArticleItem({
           height={500}
           alt={props.title}
         />
+        <div className="absolute bottom-2 right-2 rounded-md bg-black/60 p-1 text-xs text-white">
+          {props.readingTime > 1 ? `약 ${props.readingTime}분` : `1분 미만`}
+        </div>
       </div>
       <div className="flex max-w-[890px] flex-col gap-y-3 overflow-hidden text-ellipsis">
         <p className="w-full truncate font-medium">{props.title}</p>

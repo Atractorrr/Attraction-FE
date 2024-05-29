@@ -23,7 +23,7 @@ export default function NewsletterProfile({
         {isPending || !data ? (
           <LoadingSpinner />
         ) : (
-          <div className="flex w-full flex-col gap-y-4 md:gap-y-2">
+          <div className="flex w-full flex-col gap-y-4 p-5 md:gap-y-2">
             <div className="flex gap-x-6">
               <Image
                 className="size-full h-[150px] max-w-[180px] rounded-md object-cover md:h-40"
@@ -57,7 +57,7 @@ export default function NewsletterProfile({
             <p className="text-gray-500 md:hidden dark:text-gray-400">
               {data.description}
             </p>
-            <Button className="h-[40px] w-full rounded-lg bg-gray-700 py-2 text-white md:max-w-[180px]">
+            <Button className="h-[40px] w-full rounded-lg bg-gray-700 py-2 text-white md:max-w-[180px] dark:bg-white dark:text-gray-700">
               구독하기
             </Button>
           </div>

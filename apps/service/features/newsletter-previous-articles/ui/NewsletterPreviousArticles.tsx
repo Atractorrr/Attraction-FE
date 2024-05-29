@@ -16,7 +16,7 @@ export default function NewsletterPreviousArticles({
 
   return (
     <Background>
-      <div className="grid w-full gap-y-5">
+      <div className="grid w-full gap-y-5 p-5">
         <Title icon={<ClockOutline className="size-6" />} text="지난 아티클" />
         {isPending || !data ? (
           <LoadingSpinner />

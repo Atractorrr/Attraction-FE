@@ -31,7 +31,7 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
 
   return (
     <Background>
-      <div className="grid w-full gap-y-4">
+      <div className="grid w-full gap-y-4 p-5">
         <div className="w-full">
           <Title
             icon={<GraphOutline className="size-5" />}

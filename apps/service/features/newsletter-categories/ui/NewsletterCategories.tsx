@@ -52,8 +52,8 @@ function NewsletterCategories({
       key={category}
       className={`rounded-lg px-4 py-2 text-sm transition-colors ${
         NEWSLETTER_CATEGORY[currentCategory] === category
-          ? 'bg-gray-700 text-white'
-          : 'bg-gray-50 hover:bg-gray-100'
+          ? 'bg-gray-700 text-white dark:bg-white dark:text-gray-700'
+          : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
       }`}
       onClick={() => onClick(category)}>
       {category}
