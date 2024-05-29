@@ -10,8 +10,8 @@
     "generate": "./remove.bash && ts-node ./scripts/generateExports.ts",
     "svgo:emoji": "npx svgo -f ./src/emoji/svg --config=svgo.emoji.mjs",
     "svgo:outline": "npx svgo -f ./src/outline/svg --config=svgo.outline.mjs",
-    "svgr:emoji": "npx @svgr/cli --ignore-existing --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/emoji/react src/emoji/svg",
-    "svgr:outline": "npx @svgr/cli --ignore-existing --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/outline/react src/outline/svg"
+    "svgr:emoji": "npx @svgr/cli --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/emoji/react src/emoji/svg",
+    "svgr:outline": "npx @svgr/cli --template ./svgr-template.js --no-prettier --icon --ext tsx --out-dir src/outline/react src/outline/svg"
   },
   "keywords": [],
   "author": "",
