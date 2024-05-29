@@ -38,7 +38,7 @@ export default function RecentArticlesContainer({
         </Background>
       ) : (
         <div
-          className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 rounded-xl border border-gray-100 p-10"
+          className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 border-gray-100 p-10 md:rounded-xl md:border"
           style={{
             backgroundImage: 'url(/images/introduce-background.jpg)',
           }}>
@@ -48,7 +48,7 @@ export default function RecentArticlesContainer({
           </div>
           <Link
             href="/sign-in"
-            className="flex w-fit items-center justify-between gap-x-4 rounded-xl bg-green-500 px-4 py-2 text-white">
+            className="flex w-fit items-center justify-between gap-x-4 rounded-lg bg-green-500 px-4 py-2 text-white">
             <p>로그인 하러갈래요!</p>
             <ChevronRightOutline className="size-5" />
           </Link>

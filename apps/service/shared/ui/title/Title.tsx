@@ -9,7 +9,7 @@ export default function Title({ icon, text }: TitleProps) {
   return (
     <section className="flex items-center gap-x-2">
       {icon}
-      <h2 className="text-lg font-bold">{text}</h2>
+      <h2 className="whitespace-nowrap text-lg font-bold">{text}</h2>
     </section>
   )
 }
