@@ -15,12 +15,14 @@ interface MyPageProps {
 
 export default async function MyPage({ params }: MyPageProps) {
   // TODO: 사이즈 커질때 배치 신경(max-width 설정)
-  const userProfile = await fetchUserProfile(params.userId)
-  const recentNewLetterList = await fetchNewsletterList(params.userId)
-  const subscribeList = await fetchSubscribeList(params.userId)
+  const [userProfile, recentNewLetterList, subscribeList] = await Promise.all([
+    fetchUserProfile(params.userId),
+    fetchNewsletterList(params.userId),
+    fetchSubscribeList(params.userId),
+  ])
 
   return (
-    <div className="min-h-screen bg-gray-50 p-0 md:px-32 md:py-8 lg:px-40 lg:py-10">
+    <div className="w-full">
       <ProfileContainer userProfile={userProfile} />
       <UserRecord userId={params.userId} />
       <div className="mt-6 flex flex-col gap-6 md:flex-row">
