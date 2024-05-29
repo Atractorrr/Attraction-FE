@@ -14,7 +14,7 @@ interface MyPageProps {
 }
 
 export default async function MyPage({ params }: MyPageProps) {
-  // TODO: 사이즈 커질때 배치 신경
+  // TODO: 사이즈 커질때 배치 신경(max-width 설정)
   const userProfile = await fetchUserProfile(params.userId)
   const recentNewLetterList = await fetchNewsletterList(params.userId)
   const subscribeList = await fetchSubscribeList(params.userId)

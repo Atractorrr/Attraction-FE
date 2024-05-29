@@ -15,16 +15,16 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
     <Link href="/" className="grid max-w-[280px] justify-items-start gap-y-4">
       <div className="relative h-40 w-full overflow-hidden rounded-xl">
         <Image
-          className="size-full object-cover"
+          className="size-full object-cover transition-all hover:scale-110"
           width={260}
           height={140}
           src={props.articleThumbnailUrl}
           alt={props.title}
         />
-        <div className="absolute bottom-3 right-2 rounded-md bg-black/60 px-1.5 py-1 text-white">
+        <div className="absolute bottom-2 right-2 rounded-md bg-black/60 p-1 text-xs text-white">
           {props.readingTime > 1 ? `약 ${props.readingTime}분` : `1분 미만`}
         </div>
-        <div className="absolute bottom-0 left-0 mt-4 h-1.5 w-full overflow-hidden bg-gray-100">
+        <div className="absolute bottom-0 left-0 mt-4 h-1 w-full overflow-hidden bg-gray-100">
           {/* // TODO: cva 적용하여 리팩토링 */}
           <div
             className="h-full bg-blue-400"

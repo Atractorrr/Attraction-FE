@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
-import { useUserCategoriesQuery } from '@/entities/article'
+import { useUserCategoriesQuery } from '@/entities/user-article'
 import { NewsletterCategory } from '@/shared/type'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
@@ -241,7 +241,7 @@ export default function CategoryDropdownBtn({
         </span>
       </Button>
       {isMenuOpen && (
-        <div className="absolute -left-2 z-10 mt-2 w-96 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+        <div className="absolute -left-2 z-20 mt-2 w-96 rounded-lg border border-gray-100 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
           <CategoryDropdown
             userId={userId}
             selectedCategories={selectedCategories}

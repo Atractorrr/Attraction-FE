@@ -637,6 +637,195 @@ const HobbyNewsletters = [
   },
 ]
 
+const CultureArtNewsletters = [
+  {
+    id: 1,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=51',
+    name: 'Artistic Endeavors',
+    description: 'Exploring the world of art and creativity.',
+  },
+  {
+    id: 2,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=52',
+    name: 'Culture Corner',
+    description: 'News and stories about diverse cultures.',
+  },
+  {
+    id: 3,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=53',
+    name: 'Historical Highlights',
+    description: 'Insights into historical events and figures.',
+  },
+  {
+    id: 4,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=54',
+    name: 'Museum Monthly',
+    description: 'Updates and news from museums worldwide.',
+  },
+  {
+    id: 5,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=55',
+    name: 'Literary Lenses',
+    description: 'Explorations in literature and writing.',
+  },
+  {
+    id: 6,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=56',
+    name: 'Art in Focus',
+    description: 'Deep dives into famous artworks and artists.',
+  },
+  {
+    id: 7,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=57',
+    name: 'Cultural Journeys',
+    description: 'Travel stories with a cultural twist.',
+  },
+  {
+    id: 8,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=58',
+    name: 'Theater Times',
+    description: 'News and reviews of theater performances.',
+  },
+  {
+    id: 9,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=59',
+    name: 'Music & Muse',
+    description: 'Exploring the intersection of music and art.',
+  },
+  {
+    id: 10,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=60',
+    name: 'Dance Diaries',
+    description: 'Updates and stories from the world of dance.',
+  },
+]
+
+const LivingInteriorNewsletters = [
+  {
+    id: 1,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=81',
+    name: 'Living Spaces',
+    description: 'Ideas and tips for living space decor.',
+  },
+  {
+    id: 2,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=82',
+    name: 'Interior Inspirations',
+    description: 'Inspirational ideas for home interiors.',
+  },
+  {
+    id: 3,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=83',
+    name: 'Modern Living',
+    description: 'Trends and tips for modern interior design.',
+  },
+  {
+    id: 4,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=84',
+    name: 'Vintage Vibes',
+    description: 'Incorporating vintage style in your home.',
+  },
+  {
+    id: 5,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=85',
+    name: 'Eco Living',
+    description: 'Sustainable and eco-friendly interior design.',
+  },
+  {
+    id: 6,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=86',
+    name: 'Cozy Corners',
+    description: 'Creating cozy and comfortable spaces.',
+  },
+  {
+    id: 7,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=87',
+    name: 'Minimalist Living',
+    description: 'Embracing minimalism in interior design.',
+  },
+  {
+    id: 8,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=88',
+    name: 'Color & Decor',
+    description: 'Using color effectively in home decor.',
+  },
+  {
+    id: 9,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=89',
+    name: 'Interior Innovations',
+    description: 'Innovative ideas for home interiors.',
+  },
+  {
+    id: 10,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=90',
+    name: 'Small Space Solutions',
+    description: 'Design tips for small living spaces.',
+  },
+]
+
+const HealthMedicineNewsletters = [
+  {
+    id: 1,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=101',
+    name: 'Health Matters',
+    description: 'News and tips for a healthy lifestyle.',
+  },
+  {
+    id: 2,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=102',
+    name: 'Medical Breakthroughs',
+    description: 'Latest advancements in medical science.',
+  },
+  {
+    id: 3,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=103',
+    name: 'Wellness Weekly',
+    description: 'Weekly updates on wellness and health.',
+  },
+  {
+    id: 4,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=104',
+    name: 'Nutrition News',
+    description: 'Insights and tips on nutrition and diet.',
+  },
+  {
+    id: 5,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=105',
+    name: 'Fitness & Health',
+    description: 'Exercise tips and health advice.',
+  },
+  {
+    id: 6,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=106',
+    name: 'Mental Health Monthly',
+    description: 'Focus on mental health and well-being.',
+  },
+  {
+    id: 7,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=107',
+    name: 'Pediatric Care',
+    description: 'Updates and advice on pediatric health.',
+  },
+  {
+    id: 8,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=108',
+    name: 'Senior Health',
+    description: 'Health tips and news for seniors.',
+  },
+  {
+    id: 9,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=109',
+    name: 'Alternative Medicine',
+    description: 'Exploring alternative medicine practices.',
+  },
+  {
+    id: 10,
+    newsletterThumbnailUrl: 'https://picsum.photos/200/300?random=110',
+    name: 'Public Health Update',
+    description: 'News and updates on public health issues.',
+  },
+]
+
 export const trendNewsLetters: TrendNewsLetters = {
   RECOMMEND: RecommendNewsletters,
   IT_TECH: ITNewsletters,
@@ -648,4 +837,7 @@ export const trendNewsLetters: TrendNewsLetters = {
   FOOD: FoodNewsletters,
   DESIGN: DesignNewsletters,
   HOBBY_SELF_DEVELOPMENT: HobbyNewsletters,
+  CULTURE_ART: CultureArtNewsletters,
+  LIVING_INTERIOR: LivingInteriorNewsletters,
+  HEALTH_MEDICINE: HealthMedicineNewsletters,
 }

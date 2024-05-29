@@ -8,4 +8,9 @@ module.exports = {
   rules: {
     'react/require-default-props': 'off',
   },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
 }

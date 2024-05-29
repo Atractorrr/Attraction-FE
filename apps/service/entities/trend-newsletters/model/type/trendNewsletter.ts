@@ -8,7 +8,6 @@ export interface TrendNewsletter {
 }
 
 export interface TrendNewsletterResponse {
-  priorityCategory: NewsletterCategoryName[]
   content: {
     category: NewsletterCategoryName
     isUser: boolean
