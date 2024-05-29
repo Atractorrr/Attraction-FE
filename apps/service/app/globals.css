@@ -15,9 +15,6 @@
   input::-webkit-search-results-decoration {
     display: none;
   }
-  input:focus {
-    outline: none;
-  }
   body.lock-scroll {
     @apply touch-none overflow-hidden;
   }

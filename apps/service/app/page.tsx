@@ -9,8 +9,8 @@ export default function Home() {
   const email = cookies().has('email') ? cookies().get('email')?.value : ''
 
   return (
-    <main className="flex flex-col items-center justify-center lg:p-6">
-      <section className="grid max-w-6xl gap-6 lg:grid-cols-3">
+    <main className="">
+      <section className="grid gap-6 lg:grid-cols-3">
         <div className="flex w-full flex-col gap-y-5 lg:col-span-2">
           <RecentArticlesContainer isLoggedIn={isLoggedIn} />
           <TrendNewsletters email={email} />

@@ -34,7 +34,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
   return (
     <div className="h-auto min-h-dvh w-full">
       <div className="mb-7">
-        <div className="mb-5 block lg:hidden">
+        <div className="mb-5 block xl:hidden">
           <BackBtn href="/inbox" />
         </div>
         <h3 className="mb-3 break-keep text-lg font-bold md:text-xl">

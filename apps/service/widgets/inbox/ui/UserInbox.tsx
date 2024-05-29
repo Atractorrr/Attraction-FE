@@ -55,12 +55,17 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
 
   return (
     <section
-      className={`border-gray-100 bg-white !pb-7 md:rounded-2xl md:border dark:border-gray-800 dark:bg-gray-800 ${
+      className={`relative border-gray-100 bg-white !pb-7 md:rounded-2xl md:border dark:border-gray-800 dark:bg-gray-800 ${
         isArticleView
-          ? 'hidden max-h-fit transition-all lg:sticky lg:top-28 lg:block lg:max-w-[342px]'
-          : 'mx-auto my-6 max-w-7xl p-5 md:p-6'
+          ? 'hidden max-h-fit transition-all xl:sticky xl:top-28 xl:block xl:max-w-[342px]'
+          : 'md:p-6'
       }`}>
-      <div className={isArticleView ? 'px-5 pt-5' : undefined}>
+      <div
+        className={
+          isArticleView
+            ? 'px-5 pt-5'
+            : 'sticky top-0 z-30 bg-white px-5 pt-6 md:static md:p-0 dark:bg-gray-800'
+        }>
         {isArticleView && (
           <div className="mb-5">
             <BackBtn href="/inbox" />
@@ -73,7 +78,8 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
               : 'md:flex-row md:items-center md:justify-between md:gap-5'
           }`}>
           <div className="flex gap-2">
-            <div className={`flex gap-2 sm:hidden ${isArticleView && '!flex'}`}>
+            <div
+              className={`flex gap-2 sm:hidden md:flex lg:hidden ${isArticleView && '!flex'}`}>
               <FilterDropdownBtn
                 userId={userId}
                 selectedCategories={selectedCategory}
@@ -84,7 +90,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
               />
             </div>
             <div
-              className={`hidden gap-2 sm:flex ${isArticleView && '!hidden'}`}>
+              className={`hidden gap-2 sm:flex md:hidden lg:flex ${isArticleView && '!hidden'}`}>
               <CategoryDropdownBtn
                 userId={userId}
                 selectedCategories={selectedCategory}
@@ -113,7 +119,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
         className={
           isArticleView
             ? 'relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent'
-            : 'mt-6'
+            : 'p-5 md:mt-6 md:p-0'
         }>
         <div
           className={
