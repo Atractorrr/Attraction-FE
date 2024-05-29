@@ -1,10 +1,10 @@
 'use client'
 
-import { useClickedOutsideOfElement } from '@/shared/lib'
-import { Button } from '@attraction/design-system'
-import { MemberOutline } from '@attraction/icons'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { Button } from '@attraction/design-system'
+import { MemberOutline } from '@attraction/icons'
+import { useClickedOutsideOfElement } from '@/shared/lib'
 
 interface AuthButtonProps {
   isLogin: boolean
@@ -39,9 +39,9 @@ export default function AuthButton({ isLogin }: AuthButtonProps) {
   ) : (
     <Link
       href="/sign-in"
-      className="flex h-12 w-28 items-center justify-center gap-x-1 rounded-lg border border-gray-100 bg-white px-4 py-3 text-blue-400 dark:border-gray-800 dark:bg-gray-700">
+      className="flex h-12 w-auto items-center justify-center gap-2 rounded-lg border border-gray-100 bg-white px-4 py-3 text-blue-400 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-800 dark:text-blue-300 dark:hover:border-gray-700 dark:hover:bg-gray-700">
       <MemberOutline className="size-6" />
-      <p className="text-lg">로그인</p>
+      <span className="pr-1 text-lg">로그인</span>
     </Link>
   )
 }

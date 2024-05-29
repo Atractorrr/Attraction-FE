@@ -57,7 +57,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     <section
       className={`relative ${
         isArticleView
-          ? 'hidden max-h-fit transition-all xl:sticky xl:top-28 xl:block xl:max-w-[342px]'
+          ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:max-w-[342px]'
           : undefined
       }`}>
       <Background>
@@ -121,7 +121,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
             className={
               isArticleView
                 ? 'relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent dark:before:from-gray-800 dark:after:from-gray-800'
-                : 'px-5 pb-8 md:mt-6'
+                : 'mt-6 px-5 pb-8'
             }>
             <div
               className={

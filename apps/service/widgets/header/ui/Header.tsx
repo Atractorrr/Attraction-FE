@@ -1,5 +1,7 @@
 'use client'
 
+import { ThemeDropdownBtn } from '@/features/set-theme/ui'
+import { AuthButton } from '@/features/sign-in'
 import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
 
 const getTitle = (pathname: string) => {
@@ -21,13 +23,17 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-white pb-6 pt-20 md:mb-6 md:bg-transparent md:py-0 dark:bg-gray-800 md:dark:bg-transparent ${
+      className={`bg-white pb-6 pt-12 md:mb-6 md:bg-transparent md:py-0 dark:bg-gray-900 md:dark:bg-transparent ${
         segments.some((s) => s === 'article') ? 'hidden md:block' : ''
       }`}>
-      <div className="flex items-center justify-between gap-5 px-6 md:px-2">
+      <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
         <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
           {getTitle(pathname)}
         </h3>
+        <div className="flex items-center justify-end gap-2">
+          <ThemeDropdownBtn />
+          <AuthButton isLogin={false} />
+        </div>
       </div>
     </header>
   )
