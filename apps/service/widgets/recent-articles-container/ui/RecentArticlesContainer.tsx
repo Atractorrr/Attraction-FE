@@ -28,7 +28,7 @@ export default function RecentArticlesContainer({
               />
               <Link
                 href="/inbox"
-                className="text-sm text-gray-400 transition-colors hover:text-blue-400">
+                className="text-sm text-gray-400 transition-colors  dark:hover:text-blue-300">
                 보관함 바로가기
               </Link>
             </div>

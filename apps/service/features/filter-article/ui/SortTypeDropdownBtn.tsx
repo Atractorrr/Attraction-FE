@@ -23,7 +23,7 @@ function SortTypeDropdown({ sortType, setSortType }: SortTypeDropdownProps) {
       {btns.map(([type, label]) => (
         <li key={type}>
           <Button
-            className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg py-2 pl-3 pr-4 hover:bg-gray-50 dark:hover:bg-gray-700"
+            className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg py-2 pl-3 pr-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
             onClick={() => setSortType(type)}>
             {label} {sortType === type && '(선택됨)'}
           </Button>
@@ -55,7 +55,7 @@ export default function SortTypeDropdownBtn({
   return (
     <div ref={dropdownBtnAreaRef} className="relative">
       <Button
-        className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 dark:bg-gray-700"
+        className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
         onClick={() => setMenuOpen((prev) => !prev)}>
         <span className="whitespace-nowrap">
           {sortType === 'desc' ? '오래된순' : '최신순'}

@@ -15,7 +15,7 @@ export default function RecentNewsletterContainer({
         <p className="text-lg font-bold">최근 읽은 아티클</p>
         <Link
           href="/inbox"
-          className="text-sm font-medium text-gray-500 hover:text-blue-400">
+          className="text-sm font-medium text-gray-500 hover:text-blue-400 dark:hover:text-blue-300">
           보관함 바로가기
         </Link>
       </div>

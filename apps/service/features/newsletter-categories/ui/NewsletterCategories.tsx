@@ -1,13 +1,13 @@
 'use client'
 
+import { memo, useEffect, useState } from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
 import { Button } from '@attraction/design-system'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 import { Carousel } from '@/shared/ui'
-import { memo, useEffect, useState } from 'react'
 import { fetchPreferCategories } from '../api'
-import getSortedCategories from '../lib/util/getSortedCategories'
+import { getSortedCategories } from '../lib'
 import { PreferCateroriesResponse } from '../model'
 
 interface NewsletterCategoriesProps {

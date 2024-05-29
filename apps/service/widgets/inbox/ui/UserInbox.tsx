@@ -57,7 +57,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     <section
       className={`relative ${
         isArticleView
-          ? 'hidden max-h-fit transition-all xl:sticky xl:top-28 xl:block xl:max-w-[342px]'
+          ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:max-w-[342px]'
           : undefined
       }`}>
       <Background>
@@ -116,67 +116,69 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
             isArticleView={isArticleView}
           />
         </div>
-        <div
-          className={
-            isArticleView
-              ? 'relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent dark:before:from-gray-800 dark:after:from-gray-800'
-              : 'px-5 pb-8 md:mt-6'
-          }>
+        <div className={isArticleView ? 'pb-5' : undefined}>
           <div
             className={
               isArticleView
-                ? 'h-[54vh] min-h-80 overflow-y-auto px-5 py-6'
-                : undefined
+                ? 'relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent dark:before:from-gray-800 dark:after:from-gray-800'
+                : 'mt-6 px-5 pb-8'
             }>
-            {isLoading && (
-              <div className="flex min-h-full items-center justify-center py-10">
-                <LoadingSpinner />
-              </div>
-            )}
-            {data && (
-              <ArticleList
-                data={data.pages}
-                type={viewType}
-                isArticleView={isArticleView}
-              />
-            )}
-            {data && data.pages.length === 0 && (
-              <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
-                {searchValue ? (
-                  <GuideTxt
-                    title="검색 결과가 없어요"
-                    sub="입력하신 키워드가 정확한지 확인부탁드려요"
-                  />
-                ) : (
-                  <GuideTxt
-                    title="보관함이 비었어요"
-                    sub="뉴스레터를 구독해보세요"
-                    // TODO: 아래에 탐색 페이지 링크 추가
-                  />
-                )}
-              </div>
-            )}
-            {isError && (
-              <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
-                <GuideTxt
-                  title="아티클을 가져오는데 실패했어요"
-                  sub="새로고침 후 다시 시도 부탁드려요"
+            <div
+              className={
+                isArticleView
+                  ? 'h-[54vh] min-h-80 overflow-y-auto px-5 py-6'
+                  : undefined
+              }>
+              {isLoading && (
+                <div className="flex min-h-full items-center justify-center py-10">
+                  <LoadingSpinner />
+                </div>
+              )}
+              {data && (
+                <ArticleList
+                  data={data.pages}
+                  type={viewType}
+                  isArticleView={isArticleView}
                 />
-              </div>
-            )}
-            {hasNextPage && (
-              <div
-                ref={(node) => {
-                  scrollRef.current = node
-                }}
-                className="h-1 w-full"
-              />
-            )}
-            {isFetchingNextPage && (
-              <div className="mt-8">
-                <LoadingSpinner />
-              </div>
-            )}
+              )}
+              {data && data.pages.length === 0 && (
+                <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
+                  {searchValue ? (
+                    <GuideTxt
+                      title="검색 결과가 없어요"
+                      sub="입력하신 키워드가 정확한지 확인부탁드려요"
+                    />
+                  ) : (
+                    <GuideTxt
+                      title="보관함이 비었어요"
+                      sub="뉴스레터를 구독해보세요"
+                      // TODO: 아래에 탐색 페이지 링크 추가
+                    />
+                  )}
+                </div>
+              )}
+              {isError && (
+                <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
+                  <GuideTxt
+                    title="아티클을 가져오는데 실패했어요"
+                    sub="새로고침 후 다시 시도 부탁드려요"
+                  />
+                </div>
+              )}
+              {hasNextPage && (
+                <div
+                  ref={(node) => {
+                    scrollRef.current = node
+                  }}
+                  className="h-1 w-full"
+                />
+              )}
+              {isFetchingNextPage && (
+                <div className="mt-8">
+                  <LoadingSpinner />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </Background>

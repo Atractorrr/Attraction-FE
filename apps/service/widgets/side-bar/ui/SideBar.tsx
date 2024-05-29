@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useClickedOutsideOfElement } from '@/shared/lib'
 import Footer from './Footer'
 import MainLogo from './MainLogo'
 import Menu from './Menu'
@@ -9,6 +10,14 @@ import DoubleArrowRight from './DoubleArrowRight'
 
 export default function SideBar() {
   const [isOpen, setOpen] = useState(false)
+  const sideBarAreaRef = useRef<HTMLDivElement | null>(null)
+  const isOutOfClicked = useClickedOutsideOfElement(sideBarAreaRef)
+
+  useEffect(() => {
+    if (isOutOfClicked) {
+      setOpen(false)
+    }
+  }, [isOutOfClicked])
 
   useEffect(() => {
     if (isOpen) {
@@ -24,10 +33,10 @@ export default function SideBar() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [setOpen])
+  }, [])
 
   return (
-    <div className="md:ml-20 2xl:ml-72">
+    <div ref={sideBarAreaRef} className="md:ml-20 2xl:ml-72">
       <div
         className={`fixed inset-y-0 left-0 z-40 ${
           isOpen ? 'inline-block' : 'hidden'
@@ -57,7 +66,7 @@ export default function SideBar() {
           onClick={() => setOpen(false)}
         />
       )}
-      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto border bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:bg-gray-800">
+      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto border-t bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 hidden items-center justify-center md:flex">
           <button
             type="button"

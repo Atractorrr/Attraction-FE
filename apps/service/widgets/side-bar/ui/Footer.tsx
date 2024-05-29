@@ -6,7 +6,10 @@ export default function Footer() {
     <footer className="w-full break-keep text-center text-sm text-gray-500 dark:text-gray-400">
       <ul className="mb-2 flex items-center justify-center">
         <li>
-          <Link href="/" className="hover:text-blue-400" title="이용약관 보기">
+          <Link
+            href="/"
+            className="hover:text-blue-400 dark:hover:text-blue-300"
+            title="이용약관 보기">
             이용약관
           </Link>
         </li>
@@ -14,7 +17,7 @@ export default function Footer() {
         <li>
           <Link
             href="/"
-            className="hover:text-blue-400"
+            className="hover:text-blue-400 dark:hover:text-blue-300"
             title="개인정보처리방침 보기">
             개인정보처리방침
           </Link>

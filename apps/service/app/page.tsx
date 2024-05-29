@@ -11,11 +11,11 @@ export default function Home() {
   return (
     <main>
       <section className="grid gap-6 lg:grid-cols-3">
-        <div className="flex w-full flex-col gap-y-5 lg:col-span-2">
+        <div className="flex w-full flex-col gap-y-6 lg:col-span-2">
           <RecentArticlesContainer isLoggedIn={isLoggedIn} />
           <TrendNewsletters email={email} />
         </div>
-        <div className="flex w-full flex-col justify-items-center gap-y-5">
+        <div className="flex w-full flex-col justify-items-center gap-y-6">
           <UserRank />
           <MainAds />
         </div>

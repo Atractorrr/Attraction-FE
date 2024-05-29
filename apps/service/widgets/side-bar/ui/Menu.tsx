@@ -15,12 +15,10 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
   return (
     <nav className="w-full">
       <ul
-        className={
-          isMiniSize
-            ? 'flex w-full items-stretch justify-center gap-2 md:flex-col md:justify-start'
-            : ''
-        }>
-        {SIDE_MENU.map(({ name, href, segment, icon: Icon }) => (
+        className={`flex w-full items-stretch justify-center md:flex-col md:justify-start ${
+          isMiniSize ? 'gap-2' : 'gap-1'
+        }`}>
+        {SIDE_MENU.map(({ name, shortName, href, segment, icon: Icon }) => (
           <li
             key={href}
             className={isMiniSize ? 'h-auto w-full grow md:grow-0' : ''}>
@@ -28,7 +26,7 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
               href={href}
               className={`flex size-full rounded-lg md:h-auto ${
                 isMiniSize
-                  ? 'flex-col items-center justify-start gap-2 px-2 pb-3 pt-4 md:justify-center'
+                  ? 'flex-col items-center justify-start gap-2 px-2 pb-2 pt-3 md:justify-center md:pb-3 md:pt-4'
                   : 'gap-3 p-3'
               } text-xl transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
                 pathname === href || segments.some((s) => s === segment)
@@ -40,10 +38,11 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
               <span
                 className={
                   isMiniSize
-                    ? 'break-keep text-center text-xs'
+                    ? 'flex grow items-center justify-center break-keep text-center text-xs md:block md:grow-0'
                     : 'whitespace-nowrap text-sm'
                 }>
-                {name}
+                <span className="hidden sm:block">{name}</span>
+                <span className="block sm:hidden">{shortName}</span>
               </span>
             </Link>
           </li>
