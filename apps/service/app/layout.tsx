@@ -56,7 +56,7 @@ export default function RootLayout({
         <script src="/script/theme.js" />
         <Provider>
           <SideBar />
-          <div className="grow pb-40 md:px-5 md:pt-10 lg:px-10 lg:pb-20">
+          <div className="grow pb-40 md:px-10 md:pt-10 lg:pb-20">
             <div className="mx-auto w-full max-w-7xl">
               <Header />
               {children}
