@@ -17,7 +17,6 @@ module.exports = {
       'off',
       { target: 'any' }, // default is "single"
     ],
-    'import/no-unresolved': 'off',
   },
   ignorePatterns: [
     '**/node_modules/*',
