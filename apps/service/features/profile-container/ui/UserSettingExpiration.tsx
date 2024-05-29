@@ -1,24 +1,23 @@
-import { useFormContext } from 'react-hook-form'
 import { USER_INFO_EXPIRATION, UserSettingList } from '@/entities/user-setting'
-import { SignUpFormType } from '../model'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
+import { SettingForm } from '../model'
 
-export default function UserInfoExpirationDate() {
-  const { setValue, watch } = useFormContext<SignUpFormType>()
+export default function UserSettingExpiration() {
+  const { setValue, watch } = useFormContext<SettingForm>()
   const setExpirationFormValue = (keyItem: string) => {
     setValue('userExpiration', Number(keyItem))
   }
   const watchUserExpiration = watch('userExpiration').toString()
 
   return (
-    <label
-      htmlFor="expirationDate"
-      aria-label="개인정보 수집 유효기간"
-      className="mb-5 block">
-      <p className="mb-2 text-sm text-gray-700">개인정보 수집 유효기간</p>
+    <fieldset>
+      <legend className="mb-4 text-sm font-medium text-gray-700">
+        개인정보 유효기간
+      </legend>
       <UserSettingList
         listData={USER_INFO_EXPIRATION}
         wrap={false}
-        initialItem="6"
         btnClickHandler={setExpirationFormValue}
       />
       {USER_INFO_EXPIRATION.get(watchUserExpiration) !== '평생' ? (
@@ -29,6 +28,6 @@ export default function UserInfoExpirationDate() {
       ) : (
         ''
       )}
-    </label>
+    </fieldset>
   )
 }

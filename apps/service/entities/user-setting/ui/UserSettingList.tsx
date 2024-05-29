@@ -20,7 +20,7 @@ export default function UserSettingList({
 
   return (
     <div
-      className={`${wrap ? 'mb-60 flex flex-wrap gap-4 *:rounded-full' : 'mb-2 grid grid-cols-2 gap-2 *:w-full *:rounded-lg md:flex'}`}>
+      className={`${wrap ? 'flex flex-wrap gap-4 *:rounded-full' : 'mb-2 grid grid-cols-2 gap-2 *:w-full *:rounded-lg md:flex'}`}>
       {listDataKeys.map((listDataKey) => {
         return (
           <Button
