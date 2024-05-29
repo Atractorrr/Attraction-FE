@@ -59,7 +59,7 @@ export default function CardItem({ data, type }: CardItemProps) {
           <Link
             href={`/inbox/article/${data.id}`}
             title={`아티클 보기: ${data.title}`}
-            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-400 dark:text-gray-50">
+            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-400 dark:text-gray-50 dark:hover:text-blue-300">
             {data.title}
           </Link>
           <span

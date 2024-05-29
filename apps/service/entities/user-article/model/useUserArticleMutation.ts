@@ -14,7 +14,9 @@ export default function useUserArticleMutation({
     mutationFn: (percentage: number) =>
       putUserArticle({ userId, articleId, percentage }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userArticleQueryKeys.all })
+      queryClient.invalidateQueries({
+        queryKey: userArticleQueryKeys.allUserArticles({ userId }),
+      })
     },
   })
 }

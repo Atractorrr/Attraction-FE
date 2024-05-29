@@ -6,13 +6,18 @@ const userArticleQueryKeys = {
     ...userArticleQueryKeys.all,
     params,
   ],
+  allUserArticles: ({ userId }: Pick<UserArticleListOption, 'userId'>) => [
+    ...userArticleQueryKeys.all,
+    'list',
+    { userId },
+  ],
   userArticles: ({
     userId,
     category,
     page,
     ...options
   }: UserArticleListOption) => [
-    ...userArticleQueryKeys.all,
+    ...userArticleQueryKeys.allUserArticles({ userId }),
     'articles',
     userId,
     category,
