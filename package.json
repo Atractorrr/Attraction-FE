@@ -6,18 +6,11 @@
     "apps/*",
     "packages/*"
   ],
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix --cache"
-    ],
-    "**/*": "prettier --write --ignore-unknown"
-  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "lint-staged": "lint-staged",
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
     "build": "pnpm -F @attraction/icons build",

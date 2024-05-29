@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint-staged": "lint-staged"
   },
   "keywords": [],
   "author": "",

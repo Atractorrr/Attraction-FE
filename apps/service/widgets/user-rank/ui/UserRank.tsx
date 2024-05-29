@@ -27,8 +27,10 @@ export default function UserRank() {
               />
             </div>
             <div className="grid gap-y-2 text-center">
-              <p className="text-lg font-bold">랭킹 시스템을 준비하고 있어요</p>
-              <p className="text-sm font-thin text-gray-400">
+              <p className="whitespace-nowrap text-lg font-bold">
+                랭킹 시스템을 준비하고 있어요
+              </p>
+              <p className="break-keep text-sm font-thin text-gray-400">
                 조금만 기다려주시면 좋은 서비스로 돌아올게요
               </p>
             </div>

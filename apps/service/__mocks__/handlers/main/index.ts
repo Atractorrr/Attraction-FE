@@ -12,12 +12,10 @@ const mainHandlers: HttpHandler[] = [
     return HttpResponse.json(res)
   }),
   get('/v1/newsletters/recommend', ({ request }) => {
-    const priorityCategory = ['IT_TECH', 'DESIGN']
     const url = new URL(request.url)
     const size = Number(url.searchParams.get('size' ?? 10))
     const category = url.searchParams.get('category')
     const res = {
-      priorityCategory,
       content: {
         category,
         isUser: true,
@@ -28,6 +26,11 @@ const mainHandlers: HttpHandler[] = [
     }
 
     return HttpResponse.json(res)
+  }),
+  get('/v1/newsletters/categories', () => {
+    const categories = ['IT_TECH', 'DESIGN']
+
+    return HttpResponse.json({ categories })
   }),
 ]
 

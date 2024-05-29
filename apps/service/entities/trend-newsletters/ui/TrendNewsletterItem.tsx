@@ -18,11 +18,15 @@ export default function TrendNewsletterItem({
           alt={newsletter.name}
           width={300}
           height={300}
-          className="size-20 shrink-0 rounded-xl object-cover"
+          className="size-16 shrink-0 rounded-xl object-cover"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-xl font-semibold">{newsletter.name}</p>
-          <p className="font-thin text-gray-500">{newsletter.description}</p>
+          <p className="whitespace-nowrap text-base font-semibold">
+            {newsletter.name}
+          </p>
+          <p className="break-keep text-sm font-normal text-gray-500">
+            {newsletter.description}
+          </p>
         </div>
       </article>
     </Link>

@@ -5,43 +5,52 @@ import { Button } from '@attraction/design-system'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 import { Carousel } from '@/shared/ui'
+import { memo, useEffect, useState } from 'react'
+import { fetchPreferCategories } from '../api'
+import getSortedCategories from '../lib/util/getSortedCategories'
+import { PreferCateroriesResponse } from '../model'
 
 interface NewsletterCategoriesProps {
   currentCategory: NewsletterCategory
-  priorityCategory: NewsletterCategory[]
+  email: string | undefined
   onClick: (category: NewsletterCategoryName) => void
 }
 
-// priority category를 받아서 해당 부분을 앞에 띄운다.
-// 나머지 카테고리를 뒤에 띄운다.
-
-export default function NewsletterCategories({
+function NewsletterCategories({
   currentCategory,
-  priorityCategory,
+  email,
   onClick,
 }: NewsletterCategoriesProps) {
-  const sortedCategoryList = (priority: NewsletterCategory[]) => {
-    const categorySet = new Set<NewsletterCategoryName>()
+  const [preferCategories, setPreferCategories] = useState<
+    NewsletterCategory[]
+  >([])
+  const [sortedCategories, setSortedCategories] = useState<
+    NewsletterCategoryName[]
+  >([])
 
-    categorySet.add(NEWSLETTER_CATEGORY.RECOMMEND)
-    priority.forEach((category) =>
-      categorySet.add(NEWSLETTER_CATEGORY[category]),
-    )
-    Object.values(NEWSLETTER_CATEGORY).forEach((category) =>
-      categorySet.add(category),
-    )
+  useEffect(() => {
+    const fetchPrefer = async () => {
+      if (email) {
+        const res: PreferCateroriesResponse = await fetchPreferCategories(email)
 
-    return Array.from(categorySet)
-  }
+        setPreferCategories(res.categories)
+      }
+    }
 
-  const priorityCategoryList = sortedCategoryList(priorityCategory)
+    fetchPrefer()
+  }, [email])
+
+  useEffect(() => {
+    setSortedCategories(getSortedCategories(preferCategories))
+  }, [preferCategories])
+
   const option: EmblaOptionsType = {
     dragFree: true,
   }
-  const newsletterCategoryList = priorityCategoryList.map((category) => (
+  const newsletterCategoryList = sortedCategories.map((category) => (
     <Button
       key={category}
-      className={`rounded-xl px-5 py-2 transition-colors ${
+      className={`rounded-lg px-4 py-2 text-sm transition-colors ${
         NEWSLETTER_CATEGORY[currentCategory] === category
           ? 'bg-gray-700 text-white'
           : 'bg-gray-50 hover:bg-gray-100'
@@ -62,3 +71,5 @@ export default function NewsletterCategories({
     </section>
   )
 }
+
+export default memo(NewsletterCategories)
