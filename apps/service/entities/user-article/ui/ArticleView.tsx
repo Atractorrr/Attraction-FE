@@ -32,7 +32,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
   }, [])
 
   return (
-    <div className="h-auto min-h-dvh w-full p-5 pb-12">
+    <div className="h-auto min-h-dvh w-full p-5 pb-20 pt-12 md:pb-12 md:pt-5">
       <div className="mb-7">
         <div className="mb-5 block xl:hidden">
           <BackBtn href="/inbox" />
