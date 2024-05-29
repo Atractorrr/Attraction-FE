@@ -6,7 +6,7 @@ import { Background, Title } from '@/shared/ui'
 export default function UserRank() {
   return (
     <Background>
-      <div className="flex min-h-[540px] w-full flex-col items-center gap-y-4">
+      <div className="flex min-h-[540px] w-full flex-col items-center gap-y-4 p-5">
         <div className="flex w-full items-center justify-between">
           <Title icon={<TrophyOutline className="size-5" />} text="유저 랭킹" />
           <Link

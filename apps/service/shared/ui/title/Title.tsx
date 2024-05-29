@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 interface TitleProps {
-  icon: ReactNode
+  icon?: ReactNode
   text: string
 }
 

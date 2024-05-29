@@ -9,7 +9,7 @@ export default function Home() {
   const email = cookies().has('email') ? cookies().get('email')?.value : ''
 
   return (
-    <main className="">
+    <main>
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="flex w-full flex-col gap-y-5 lg:col-span-2">
           <RecentArticlesContainer isLoggedIn={isLoggedIn} />
