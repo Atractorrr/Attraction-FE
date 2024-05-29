@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { SignUpFormType } from '../model'
-
-const JOB = ['교직', '전문직', '관리직', '사무직', '자영업', '판매직', '무직']
+import { USER_INFO_OCCUPATION, UserSettingList } from '@/entities/user-setting'
 
 export default function UserJobField() {
   // TODO: 오류 나중에 한번에 잡기
-  const [isActiveIndex, setIsActiveIndex] = useState<number>()
-
   const {
     setValue,
     formState: { errors },
     clearErrors,
   } = useFormContext<SignUpFormType>()
+
+  const setOccupationFormValue = (keyItem: string) => {
+    setValue('occupation', keyItem)
+    if (Object.keys(errors).length) {
+      clearErrors('occupation')
+    }
+  }
 
   return (
     <fieldset className="">
@@ -23,24 +26,11 @@ export default function UserJobField() {
         현재 몸담고 계시는 산업 분야를 알려주세요
       </p>
       <p className="mb-5 text-sm text-gray-700">산업분야</p>
-      <div className="mb-60 flex flex-wrap gap-2">
-        {JOB.map((item, index) => (
-          // TODO: CheckBox랑 엮어보기
-          <button
-            type="button"
-            className={`rounded-full px-7 py-4 ${isActiveIndex === index ? 'bg-gray-700 text-white' : 'bg-gray-50 text-black'}`}
-            key={item}
-            onClick={() => {
-              setIsActiveIndex(index)
-              setValue('occupation', item)
-              if (Object.keys(errors).length) {
-                clearErrors('occupation')
-              }
-            }}>
-            {item}
-          </button>
-        ))}
-      </div>
+      <UserSettingList
+        listData={USER_INFO_OCCUPATION}
+        wrap
+        btnClickHandler={setOccupationFormValue}
+      />
       {errors.occupation?.message && (
         <p className="mt-2 text-red-500">{errors.occupation.message}</p>
       )}

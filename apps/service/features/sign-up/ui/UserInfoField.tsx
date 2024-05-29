@@ -69,7 +69,7 @@ export default function UserInfoField() {
           <button
             type="button"
             onClick={() => duplicateCheckHandler()}
-            className="rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+            className="rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
             중복확인
           </button>
         </div>
