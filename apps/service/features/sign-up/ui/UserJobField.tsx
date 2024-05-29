@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form'
 import { useEffect } from 'react'
-import { SignUpFormType } from '../model'
 import { USER_INFO_OCCUPATION, UserSettingList } from '@/entities/user-setting'
+import { SignUpFormType } from '../model'
 
 export default function UserJobField() {
   // TODO: 오류 나중에 한번에 잡기
