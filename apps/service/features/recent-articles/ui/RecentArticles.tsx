@@ -22,7 +22,7 @@ export default function RecentArticles({ mainArticles }: RecentArticlesProps) {
 
   return (
     <section className="overflow-x-auto">
-      <Carousel options={carouselOptions} slides={articleList} />
+      <Carousel options={carouselOptions} slides={articleList} showBlur />
     </section>
   )
 }
