@@ -27,7 +27,7 @@ export default function UserJobField() {
   }, [getValues, isSubmitting, setError])
 
   return (
-    <fieldset className="">
+    <fieldset className="mb-40">
       <legend className="mb-4 text-2xl font-bold text-gray-700">
         어떤일을 하시나요
       </legend>

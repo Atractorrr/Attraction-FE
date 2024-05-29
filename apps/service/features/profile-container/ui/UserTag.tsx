@@ -7,7 +7,7 @@ import {
   useFieldArray,
   useFormContext,
 } from 'react-hook-form'
-import type { SettingForm } from './UserSettingModal'
+import { SettingForm } from '../model'
 
 const NEWSLETTER_CATEGORY = Object.freeze({
   RECOMMEND: '추천', // TODO: 추후 논의 (백엔드에 없는 enum)
@@ -84,6 +84,7 @@ function UserPreferTag({
 
 export default function UserPreferTagField() {
   const { control } = useFormContext<SettingForm>()
+  const [alertActive, setAlertActive] = useState(false)
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'preferTag',
@@ -93,14 +94,21 @@ export default function UserPreferTagField() {
   useEffect(() => {
     if (fields.length >= 4) {
       setDisabledTag(true)
+      setAlertActive(false)
     } else {
+      setAlertActive(true)
       setDisabledTag(false)
     }
-  }, [fields])
+  }, [fields, setAlertActive])
 
   return (
     <fieldset>
-      <legend className="mb-4 text-sm font-bold text-gray-700">관심사</legend>
+      <div className="flex gap-1">
+        <legend className="mb-4 inline text-sm font-medium text-gray-700">
+          관심사
+        </legend>
+        <span className="text-sm text-gray-500">{fields.length}/4</span>
+      </div>
       <div className=" flex flex-wrap gap-4">
         {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
           <UserPreferTag
@@ -113,6 +121,11 @@ export default function UserPreferTagField() {
           />
         ))}
       </div>
+      {alertActive && (
+        <p className="mt-2 text-sm text-red-500">
+          관심사는 최대 4개까지 선택할 수 있어요
+        </p>
+      )}
     </fieldset>
   )
 }
