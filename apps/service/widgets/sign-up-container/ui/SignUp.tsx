@@ -46,9 +46,9 @@ export default function SignUp() {
   const { errors } = useFormState({ control: formMethod.control })
 
   const onSubmit = () => {
-    if (activeIndex === 1 && formMethod.getValues('occupation') === '') {
-      formMethod.setError('occupation', { message: '직업을 선택해주세요' })
-    }
+    // TODO: 백엔드랑 맞추기
+    // if (activeIndex === signUpFieldArr.length - 1) {
+    // }
   }
 
   useEffect(() => {

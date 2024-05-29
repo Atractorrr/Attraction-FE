@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form'
+import { useEffect } from 'react'
 import { SignUpFormType } from '../model'
 import { USER_INFO_OCCUPATION, UserSettingList } from '@/entities/user-setting'
 
@@ -6,8 +7,10 @@ export default function UserJobField() {
   // TODO: 오류 나중에 한번에 잡기
   const {
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     clearErrors,
+    getValues,
+    setError,
   } = useFormContext<SignUpFormType>()
 
   const setOccupationFormValue = (keyItem: string) => {
@@ -16,6 +19,12 @@ export default function UserJobField() {
       clearErrors('occupation')
     }
   }
+
+  useEffect(() => {
+    if (isSubmitting && getValues('occupation') === '') {
+      setError('occupation', { message: '직업을 선택 해주세요' })
+    }
+  }, [getValues, isSubmitting, setError])
 
   return (
     <fieldset className="">
