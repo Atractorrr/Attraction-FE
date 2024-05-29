@@ -26,9 +26,9 @@ export default function CardItem({ data, type }: CardItemProps) {
           height={720}
         />
         {data.readPercentage > 0 && (
-          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
+          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
             <span
-              className="absolute inset-x-0 h-1 bg-blue-400 dark:bg-blue-300"
+              className="absolute inset-x-0 h-1 bg-blue-400"
               style={{ width: `${data.readPercentage}%` }}
             />
           </span>

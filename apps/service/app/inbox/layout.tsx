@@ -1,7 +1,9 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { createElement } from 'react'
 import { UserInbox } from '@/widgets/inbox'
+import { Background } from '@/shared/ui'
 
 export default function InboxLayout({
   children,
@@ -23,14 +25,7 @@ export default function InboxLayout({
         userId={12}
         isArticleView={isArticleView}
       />
-      <div
-        className={
-          isArticleView
-            ? 'min-h-dvh grow rounded-2xl border border-gray-100 bg-white p-6 dark:border-gray-700 dark:bg-gray-800'
-            : undefined
-        }>
-        {children}
-      </div>
+      {createElement(isArticleView ? Background : 'div', undefined, children)}
     </div>
   )
 }

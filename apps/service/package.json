@@ -25,6 +25,7 @@
     "react": "^18",
     "react-activity-calendar": "^2.2.8",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.5",
     "react-tooltip": "^5.26.4"
   },
   "devDependencies": {

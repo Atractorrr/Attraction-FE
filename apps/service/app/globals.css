@@ -3,14 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    min-height: 100vh;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
   input::-ms-clear,
   input::-ms-reveal {
     display: none;
@@ -22,5 +14,15 @@
   input::-webkit-search-results-button,
   input::-webkit-search-results-decoration {
     display: none;
+  }
+  body.lock-scroll {
+    @apply touch-none overflow-hidden;
+  }
+}
+
+@layer components {
+  .blind {
+    @apply absolute size-px overflow-hidden;
+    clip: rect(1px, 1px, 1px, 1px);
   }
 }
