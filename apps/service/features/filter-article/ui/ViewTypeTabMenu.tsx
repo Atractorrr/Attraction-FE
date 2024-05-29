@@ -3,11 +3,12 @@
 import React from 'react'
 import { Button } from '@attraction/design-system'
 
-import { ViewType } from '@/entities/article'
+import { ViewType } from '@/entities/user-article'
 
 interface ViewTypeTabMenuProps {
   type: ViewType
   setType: (type: ViewType) => void
+  isArticleView?: boolean
 }
 
 function IconGallery() {
@@ -52,15 +53,18 @@ const btns: Array<[ViewType, string, React.FC]> = [
 export default function ViewTypeTabMenu({
   type,
   setType,
+  isArticleView,
 }: ViewTypeTabMenuProps) {
   return (
-    <div className="mb-6 flex border-b border-gray-100 pb-2 dark:border-gray-700">
+    <div className="relative flex border-b border-gray-100 pb-2 dark:border-gray-700">
       {btns.map(([viewType, label, Icon]) => (
         <Button
           key={viewType}
           type="button"
           title={`${label} 보기`}
-          className={`xs:text-xl flex grow items-center justify-center gap-2 rounded-lg px-3 py-2 text-lg transition-colors hover:bg-gray-50 md:grow-0 dark:hover:bg-gray-700 ${
+          className={`xs:text-xl relative flex grow items-center justify-center gap-2 rounded-lg px-3 py-2 text-lg transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
+            isArticleView ? '' : 'md:grow-0'
+          } ${
             type === viewType
               ? 'text-gray-700 dark:text-gray-50'
               : 'text-gray-500 dark:text-gray-400'
@@ -73,6 +77,9 @@ export default function ViewTypeTabMenu({
           <span className="xs:hidden block whitespace-nowrap text-sm">
             {label}
           </span>
+          {type === viewType && (
+            <span className="absolute inset-x-0 -bottom-2 h-px bg-gray-700 dark:bg-gray-50" />
+          )}
         </Button>
       ))}
     </div>
