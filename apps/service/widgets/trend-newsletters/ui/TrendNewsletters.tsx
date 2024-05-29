@@ -11,7 +11,11 @@ import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Background, LoadingSpinner, Title } from '@/shared/ui'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 
-export default function TrendNewsletters() {
+interface TrendNewslettersProps {
+  email: string | undefined
+}
+
+export default function TrendNewsletters({ email }: TrendNewslettersProps) {
   const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
   const { data, isPending } = useTrendNewsletters(category)
 
@@ -34,16 +38,15 @@ export default function TrendNewsletters() {
             text="트렌디한 뉴스레터"
           />
         </div>
-        {data ? (
-          <div className="grid gap-y-8">
-            <NewsletterCategories
-              currentCategory={category}
-              priorityCategory={data.priorityCategory}
-              onClick={handleCategoryChange}
-            />
-            <TrendNewsletterList content={data.content} />
-          </div>
-        ) : null}
+
+        <div className="grid gap-y-8">
+          <NewsletterCategories
+            currentCategory={category}
+            email={email}
+            onClick={handleCategoryChange}
+          />
+          {data ? <TrendNewsletterList content={data.content} /> : null}
+        </div>
         {isPending ? <LoadingSpinner /> : null}
       </div>
     </Background>
