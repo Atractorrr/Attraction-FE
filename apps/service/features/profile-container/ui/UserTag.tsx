@@ -71,7 +71,7 @@ function UserPreferTag({
       />
       <button
         type="button"
-        className={`rounded-2xl px-4 py-2 ${isActive ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700'} `}
+        className={`rounded-full ${isActive ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700' : 'bg-gray-50 dark:bg-gray-700'} px-6 py-2 `}
         disabled={disabledTag && !isActive}
         onClick={() => {
           checkboxRef.current?.click()
@@ -104,9 +104,7 @@ export default function UserPreferTagField() {
   return (
     <fieldset>
       <div className="flex gap-1">
-        <legend className="mb-4 inline text-sm font-medium text-gray-700">
-          관심사
-        </legend>
+        <legend className="mb-4 inline text-sm font-medium">관심사</legend>
         <span className="text-sm text-gray-500">{fields.length}/4</span>
       </div>
       <div className=" flex flex-wrap gap-4">

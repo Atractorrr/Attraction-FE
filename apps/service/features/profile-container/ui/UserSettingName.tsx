@@ -52,11 +52,11 @@ export default function UserSettingName() {
   }
   return (
     <fieldset>
-      <legend className="mb-2 text-sm font-medium text-gray-700">닉네임</legend>
+      <legend className="mb-2 text-sm font-medium">닉네임</legend>
       <div className="flex flex-col gap-2 md:flex-row">
         <input
           id="nickName"
-          className="grow rounded-lg border border-gray-100 p-2"
+          className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
           {...register('nickName', {
             onChange: () => {
@@ -73,7 +73,7 @@ export default function UserSettingName() {
         <button
           type="button"
           onClick={() => duplicateCheckHandler()}
-          className="rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
+          className="rounded-lg bg-gray-50 p-3 text-sm dark:bg-gray-700">
           중복확인
         </button>
       </div>

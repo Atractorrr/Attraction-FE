@@ -10,9 +10,7 @@ export default function UserSettingJob() {
 
   return (
     <fieldset>
-      <legend className="mb-4 text-sm font-medium text-gray-700">
-        직업분야
-      </legend>
+      <legend className="mb-4 text-sm font-medium">직업분야</legend>
       <UserSettingList
         listData={USER_INFO_OCCUPATION}
         wrap

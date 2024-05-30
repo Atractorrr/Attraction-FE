@@ -12,9 +12,7 @@ export default function UserSettingExpiration() {
 
   return (
     <fieldset>
-      <legend className="mb-4 text-sm font-medium text-gray-700">
-        개인정보 유효기간
-      </legend>
+      <legend className="mb-4 text-sm font-medium">개인정보 유효기간</legend>
       <UserSettingList
         listData={USER_INFO_EXPIRATION}
         wrap={false}
