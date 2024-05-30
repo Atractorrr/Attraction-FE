@@ -3,7 +3,7 @@ import { LogoSVG } from '@/public/svgs/svg'
 import { GoogleOAuthButton } from '@/shared/ui/oauth-button'
 import { INTRODUCE_MESSAGE } from '../constant'
 
-export default function Signin() {
+export default function SignIn() {
   return (
     <section className="flex size-full max-h-[760px] max-w-7xl flex-col bg-white md:flex-row md:rounded-2xl md:shadow-lg">
       <section className="h-[480px] w-full max-w-[900px] p-4 md:col-span-2 md:h-full">
