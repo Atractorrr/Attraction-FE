@@ -27,14 +27,12 @@ export default function UserJobField() {
   }, [getValues, isSubmitting, setError])
 
   return (
-    <fieldset className="">
-      <legend className="mb-4 text-2xl font-bold text-gray-700">
-        어떤일을 하시나요
-      </legend>
+    <fieldset className="h-fit">
+      <legend className="mb-4 text-2xl font-bold">어떤일을 하시나요</legend>
       <p className="mb-12 break-keep text-gray-500">
         현재 몸담고 계시는 산업 분야를 알려주세요
       </p>
-      <p className="mb-5 text-sm text-gray-700">산업분야</p>
+      <p className="mb-5 text-sm">산업분야</p>
       <UserSettingList
         listData={USER_INFO_OCCUPATION}
         wrap
