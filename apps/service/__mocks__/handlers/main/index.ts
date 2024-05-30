@@ -3,7 +3,7 @@ import { recentArticles, trendNewsLetters } from '@/__mocks__/data'
 import { get } from '../tools'
 
 const mainHandlers: HttpHandler[] = [
-  get('/v1/user/articles/received', ({ request }) => {
+  get('/v1/user/:email/articles/received', ({ request }) => {
     const url = new URL(request.url)
     const size = Number(url.searchParams.get('size') ?? 5)
     const res = {
