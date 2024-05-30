@@ -2,7 +2,7 @@ import { SignIn } from '@/widgets/sign-in'
 
 export default function SignInPage() {
   return (
-    <div className="flex size-full h-screen items-center justify-center">
+    <div className="size-full">
       <SignIn />
     </div>
   )

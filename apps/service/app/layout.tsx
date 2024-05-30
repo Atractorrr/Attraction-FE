@@ -4,11 +4,9 @@ import '@/public/fonts/fonts.css'
 import './globals.css'
 
 import initMSW from '@/__mocks__'
-import { Footer, SideBar } from '@/widgets/side-bar'
-import { Header } from '@/widgets/header'
-import { headers } from 'next/headers'
-import { PUBLIC_PATH } from '@/entities/auth'
+import { cookies } from 'next/headers'
 import Provider from './provider'
+import Widget from './widget'
 
 if (process.env.NODE_ENV !== 'production') {
   initMSW()
@@ -49,11 +47,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const headersList = headers()
-  const headerPathname = headersList.get('x-pathname') || ''
-  const isPublicPath = PUBLIC_PATH.some((path) =>
-    headerPathname.startsWith(path),
-  )
+  const isLogin = cookies().has('accessToken')
 
   return (
     <html lang="ko">
@@ -63,18 +57,7 @@ export default function RootLayout({
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
         <Provider>
-          {isPublicPath ? null : <SideBar />}
-          <div className="pb-40 md:ml-20 md:px-10 md:pt-10 lg:pb-20 2xl:ml-72">
-            <div className="mx-auto w-full max-w-7xl">
-              {isPublicPath ? null : <Header />}
-              {children}
-              {isPublicPath ? null : (
-                <div className="mt-16 md:mt-0 md:hidden">
-                  <Footer />
-                </div>
-              )}
-            </div>
-          </div>
+          <Widget isLogin={isLogin}>{children}</Widget>
         </Provider>
       </body>
     </html>
