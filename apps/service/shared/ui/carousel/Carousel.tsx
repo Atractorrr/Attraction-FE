@@ -59,7 +59,7 @@ export default function EmblaCarousel({
   }, [emblaApi])
 
   return (
-    <section
+    <div
       className="embla"
       style={
         { '--slide-spacing': `${slideSpacing}rem` } as React.CSSProperties
@@ -86,6 +86,6 @@ export default function EmblaCarousel({
           onClick={scrollNext}
         />
       </div>
-    </section>
+    </div>
   )
 }

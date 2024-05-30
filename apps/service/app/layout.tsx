@@ -6,6 +6,8 @@ import './globals.css'
 import initMSW from '@/__mocks__'
 import { Footer, SideBar } from '@/widgets/side-bar'
 import { Header } from '@/widgets/header'
+import { headers } from 'next/headers'
+import { PUBLIC_PATH } from '@/entities/auth'
 import Provider from './provider'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -47,6 +49,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const headersList = headers()
+  const headerPathname = headersList.get('x-pathname') || ''
+  const isPublicPath = PUBLIC_PATH.some((path) =>
+    headerPathname.startsWith(path),
+  )
+
   return (
     <html lang="ko">
       <body
@@ -55,14 +63,16 @@ export default function RootLayout({
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
         <Provider>
-          <SideBar />
+          {isPublicPath ? null : <SideBar />}
           <div className="pb-40 md:ml-20 md:px-10 md:pt-10 lg:pb-20 2xl:ml-72">
             <div className="mx-auto w-full max-w-7xl">
-              <Header />
+              {isPublicPath ? null : <Header />}
               {children}
-              <div className="mt-16 md:mt-0 md:hidden">
-                <Footer />
-              </div>
+              {isPublicPath ? null : (
+                <div className="mt-16 md:mt-0 md:hidden">
+                  <Footer />
+                </div>
+              )}
             </div>
           </div>
         </Provider>
