@@ -11,7 +11,7 @@ export default async function UserRecord({ userId }: UserRecordProps) {
 
   return (
     <div className="mt-6 flex w-full flex-col items-stretch justify-start gap-6 lg:flex-row lg:justify-between">
-      <div className="h-auto w-full lg:w-1/2">
+      <div className="h-auto w-full lg:w-2/3">
         <Calendar calendarData={calendarDataWithLevel} />
       </div>
       <div className="h-auto w-full lg:w-1/2">

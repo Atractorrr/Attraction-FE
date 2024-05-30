@@ -20,7 +20,7 @@ export default function CardThumbnail({
     <div className="relative justify-end overflow-hidden rounded-lg">
       <ImageBox
         width="w-full"
-        height="h-[12vw] min-h-40 max-h-60"
+        height="h-[12rem] min-h-40 max-h-60"
         rounded="rounded-lg"
         imgSrc={imgSrc}
         alt={alt}
