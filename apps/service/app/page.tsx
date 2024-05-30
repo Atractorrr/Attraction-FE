@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main>
-      <section className="grid gap-6 lg:grid-cols-3">
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="flex w-full flex-col gap-y-6 lg:col-span-2">
           <RecentArticlesContainer isLoggedIn={isLoggedIn} />
           <TrendNewsletters email={email} />

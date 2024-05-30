@@ -73,20 +73,18 @@
   bottom: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .embla__left__button {
-    background: linear-gradient(to left, transparent 0%, #202427 50%);
-  }
+.dark .embla__left__button {
+  background: linear-gradient(to left, transparent 0%, #202427 50%);
+}
 
-  .embla__right__button {
-    background: linear-gradient(to right, transparent 0%, #202427 50%);
-  }
+.dark .embla__right__button {
+  background: linear-gradient(to right, transparent 0%, #202427 50%);
+}
 
-  .embla__blur__left {
-    background: linear-gradient(to left, transparent 0%, #202427 100%);
-  }
+.dark .embla__blur__left {
+  background: linear-gradient(to left, transparent 0%, #202427 100%);
+}
 
-  .embla__blur__right {
-    background: linear-gradient(to right, transparent 0%, #202427 100%);
-  }
+.dark .embla__blur__right {
+  background: linear-gradient(to right, transparent 0%, #202427 100%);
 }
