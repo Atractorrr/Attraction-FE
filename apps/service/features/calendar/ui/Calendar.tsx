@@ -18,7 +18,7 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 
 export default function Calendar({ calendarData }: CalendarProps) {
   return (
-    <Background className="h-full">
+    <Background className="flex h-full justify-center p-6">
       <ActivityCalendarNoSSR
         // TODO: 처음부터 끝까지 보여줄 로직 구상하기
         data={[
