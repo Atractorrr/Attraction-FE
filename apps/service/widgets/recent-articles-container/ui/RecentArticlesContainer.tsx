@@ -8,17 +8,17 @@ import { Background, LoadingSpinner, Title } from '@/shared/ui'
 import { useRecentArticles } from '@/features/recent-articles/model'
 
 interface RecentArticlesContainerProps {
-  isLoggedIn: boolean
+  email: string | undefined
 }
 
 export default function RecentArticlesContainer({
-  isLoggedIn,
+  email,
 }: RecentArticlesContainerProps) {
-  const { data, isPending } = useRecentArticles(isLoggedIn)
+  const { data, isPending } = useRecentArticles(email)
 
   return (
     <div>
-      {isLoggedIn ? (
+      {email ? (
         <Background>
           <div className="flex w-full flex-col gap-y-4 p-5">
             <div className="flex h-fit w-full items-center justify-between">
