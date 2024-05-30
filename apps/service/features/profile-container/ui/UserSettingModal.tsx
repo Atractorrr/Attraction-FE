@@ -69,12 +69,20 @@ export default function UserSettingModal({ setModal }: UserSettingProps) {
               <UserPreferTagField />
               <UserSettingJob />
             </div>
-            <Button
-              type="submit"
-              disabled={!!Object.keys(formMethod.formState.errors).length}
-              className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
-              변경사항 저장하기
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                type="submit"
+                disabled={!!Object.keys(formMethod.formState.errors).length}
+                className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
+                변경사항 저장하기
+              </Button>
+              <Button
+                type="button"
+                className="mt-14 w-full rounded-xl bg-red-400 py-5 font-medium text-white dark:bg-red-300"
+                onClick={() => setModal(false)}>
+                취소하기
+              </Button>
+            </div>
           </form>
         </div>
       </div>
