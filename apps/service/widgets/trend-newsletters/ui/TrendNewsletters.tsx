@@ -45,7 +45,11 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
             email={email}
             onClick={handleCategoryChange}
           />
-          {data ? <TrendNewsletterList content={data.content} /> : null}
+          {data ? (
+            <TrendNewsletterList
+              mainPageNewsletters={data.mainPageNewsletters}
+            />
+          ) : null}
         </div>
         {isPending ? <LoadingSpinner /> : null}
       </div>

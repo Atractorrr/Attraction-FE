@@ -16,13 +16,9 @@ const mainHandlers: HttpHandler[] = [
     const size = Number(url.searchParams.get('size' ?? 10))
     const category = url.searchParams.get('category')
     const res = {
-      content: {
-        category,
-        isUser: true,
-        newsletters: category
-          ? trendNewsLetters[category].slice(0, size)
-          : trendNewsLetters.RECOMMEND.slice(0, size),
-      },
+      mainPageNewsletters: category
+        ? trendNewsLetters[category].slice(0, size)
+        : trendNewsLetters.RECOMMEND.slice(0, size),
     }
 
     return HttpResponse.json(res)
