@@ -1,9 +1,9 @@
-import { Signin } from '@/widgets/sign-in'
+import { SignIn } from '@/widgets/sign-in'
 
-export default function SigninPage() {
+export default function SignInPage() {
   return (
-    <div className="grid size-full h-screen items-center justify-items-center">
-      <Signin />
+    <div className="size-full">
+      <SignIn />
     </div>
   )
 }

@@ -17,10 +17,10 @@ export default function ScrollTracker({
   articleId,
   initProgress,
 }: ScrollTrackerProps) {
+  const { mutate } = useUserArticleMutation({ userId, articleId })
   const { scrollProgress } = useScrollProgress()
   const debouncedScroll = useDebounce(scrollProgress, 800)
   const progressRef = useRef(initProgress)
-  const { mutate } = useUserArticleMutation({ userId, articleId })
 
   useEffect(() => {
     if (debouncedScroll > progressRef.current) {
@@ -29,7 +29,7 @@ export default function ScrollTracker({
       progressRef.current = percentage
       mutate(percentage)
     }
-  }, [articleId, debouncedScroll, mutate, userId])
+  }, [debouncedScroll, mutate])
 
   return <ScrollProgressBar progress={scrollProgress} />
 }

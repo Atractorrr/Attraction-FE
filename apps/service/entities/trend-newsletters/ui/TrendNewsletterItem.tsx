@@ -11,7 +11,7 @@ export default function TrendNewsletterItem({
   newsletter,
 }: TrendNewsletterItemProps) {
   return (
-    <Link href={`/inbox/article/${newsletter.id}`}>
+    <Link href={`/newsletter/${newsletter.id}`}>
       <article className="flex gap-x-4">
         <Image
           src={newsletter.newsletterThumbnailUrl}

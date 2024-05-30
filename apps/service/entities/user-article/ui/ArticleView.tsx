@@ -32,9 +32,9 @@ export default function ArticleView({ data }: ArticleViewProps) {
   }, [])
 
   return (
-    <div className="h-auto min-h-dvh w-full">
+    <div className="h-auto min-h-dvh w-full p-5 pb-20 pt-12 md:pb-12 md:pt-5">
       <div className="mb-7">
-        <div className="mb-5 block lg:hidden">
+        <div className="mb-5 block xl:hidden">
           <BackBtn href="/inbox" />
         </div>
         <h3 className="mb-3 break-keep text-lg font-bold md:text-xl">
@@ -60,7 +60,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
           </p>
           <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
             <span>{data.receivedAt}</span>
-            <span className="inline-block whitespace-nowrap rounded-full bg-blue-50 px-2 py-1 text-sm text-blue-400 dark:bg-blue-700">
+            <span className="inline-block whitespace-nowrap rounded-full bg-blue-50 px-2 py-1 text-sm text-blue-400 dark:bg-blue-800 dark:text-blue-300">
               {data.readingTime ? `약 ${data.readingTime}분` : '1분 미만'}
             </span>
           </p>

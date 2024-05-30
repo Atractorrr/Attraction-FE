@@ -26,9 +26,9 @@ export default function CardItem({ data, type }: CardItemProps) {
           height={720}
         />
         {data.readPercentage > 0 && (
-          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 dark:bg-gray-300">
+          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
             <span
-              className="absolute inset-x-0 h-1 bg-blue-400 dark:bg-blue-300"
+              className="absolute inset-x-0 h-1 bg-blue-400"
               style={{ width: `${data.readPercentage}%` }}
             />
           </span>
@@ -59,7 +59,7 @@ export default function CardItem({ data, type }: CardItemProps) {
           <Link
             href={`/inbox/article/${data.id}`}
             title={`아티클 보기: ${data.title}`}
-            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-400 dark:text-gray-50">
+            className="mb-1 !line-clamp-2 block max-h-12 break-keep font-medium text-gray-700 hover:text-blue-400 dark:text-gray-50 dark:hover:text-blue-300">
             {data.title}
           </Link>
           <span

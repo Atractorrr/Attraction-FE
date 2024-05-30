@@ -20,7 +20,7 @@ export default function RecentArticlesContainer({
     <div>
       {isLoggedIn ? (
         <Background>
-          <div className="flex w-full flex-col gap-y-4">
+          <div className="flex w-full flex-col gap-y-4 p-5">
             <div className="flex h-fit w-full items-center justify-between">
               <Title
                 icon={<ClockOutline className="size-5" />}
@@ -28,7 +28,7 @@ export default function RecentArticlesContainer({
               />
               <Link
                 href="/inbox"
-                className="text-sm text-gray-400 transition-colors hover:text-blue-400">
+                className="text-sm text-gray-400 transition-colors  dark:hover:text-blue-300">
                 보관함 바로가기
               </Link>
             </div>
@@ -42,7 +42,7 @@ export default function RecentArticlesContainer({
           style={{
             backgroundImage: 'url(/images/introduce-background.jpg)',
           }}>
-          <div className="flex flex-col text-center text-[28px] font-bold">
+          <div className="flex flex-col text-center text-[28px] font-bold dark:text-black">
             <p>뉴스레터의 모든 것</p>
             <p>어트렉션에서 쉽고 간편하게</p>
           </div>

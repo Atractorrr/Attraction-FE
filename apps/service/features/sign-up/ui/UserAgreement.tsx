@@ -35,9 +35,9 @@ export default function UserAgreement() {
   }, [clearErrors, policesValue, setError, setValue])
 
   return (
-    <div className="rounded-lg border border-gray-100 p-5">
-      <div className="mb-2 flex justify-between border-b border-b-gray-100 pb-4">
-        <p className="">모두 동의</p>
+    <div className="rounded-lg border border-gray-100 p-5 dark:border-gray-700">
+      <div className="mb-2 flex justify-between border-b border-b-gray-100 pb-4 dark:border-gray-700">
+        <p>모두 동의</p>
         <input
           type="checkbox"
           {...register('selectPolicyAll', {

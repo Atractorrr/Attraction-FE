@@ -5,5 +5,5 @@ interface CardContentProps {
 }
 
 export default function CardContent({ children }: CardContentProps) {
-  return <div className="flex gap-2">{children}</div>
+  return <div className="mt-3 flex gap-2">{children}</div>
 }

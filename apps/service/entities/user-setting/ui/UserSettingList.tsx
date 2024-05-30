@@ -26,7 +26,7 @@ export default function UserSettingList({
           <Button
             type="button"
             key={listDataKey}
-            className={`rounded-lg ${activeKey === listDataKey ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-700'} px-6 py-2`}
+            className={`rounded-lg ${activeKey === listDataKey ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700' : 'bg-gray-50 dark:bg-gray-700'} px-6 py-2 `}
             onClick={() => {
               btnClickHandler.call(null, listDataKey)
               setActiveKey(listDataKey)

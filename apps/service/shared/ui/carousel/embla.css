@@ -55,7 +55,7 @@
 
 .embla__blur__left {
   position: absolute;
-  z-index: 50;
+  z-index: 20;
   height: 100%;
   width: 30px;
   background: linear-gradient(to left, transparent 0%, #fff 100%);
@@ -65,10 +65,26 @@
 
 .embla__blur__right {
   position: absolute;
-  z-index: 50;
+  z-index: 20;
   height: 100%;
   width: 30px;
   background: linear-gradient(to right, transparent 0%, #fff 100%);
   right: 0;
   bottom: 0;
+}
+
+.dark .embla__left__button {
+  background: linear-gradient(to left, transparent 0%, #202427 50%);
+}
+
+.dark .embla__right__button {
+  background: linear-gradient(to right, transparent 0%, #202427 50%);
+}
+
+.dark .embla__blur__left {
+  background: linear-gradient(to left, transparent 0%, #202427 100%);
+}
+
+.dark .embla__blur__right {
+  background: linear-gradient(to right, transparent 0%, #202427 100%);
 }

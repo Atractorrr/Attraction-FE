@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@attraction/design-system'
 
 import { useClickedOutsideOfElement } from '@/shared/lib'
+import { AdjustmentHorizontalOutline } from '@attraction/icons'
 import { CategoryDropdown, CategoryDropdownProps } from './CategoryDropdownBtn'
 import { SortTypeDropdownProps, btns } from './SortTypeDropdownBtn'
 
@@ -36,10 +37,10 @@ function FilterDropdown({
           {btns.map(([type, label]) => (
             <Button
               key={type}
-              className={`whitespace-nowrap rounded-3xl px-4 py-2 ${
+              className={`whitespace-nowrap rounded-3xl px-4 py-2 transition-colors ${
                 sortType === type
                   ? 'bg-gray-700 text-gray-50 dark:bg-gray-100 dark:text-gray-700'
-                  : 'bg-gray-50 dark:bg-gray-700'
+                  : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
               }`}
               onClick={() => setSortType(type)}>
               {label}
@@ -70,26 +71,14 @@ export default function FilterDropdownBtn({
   return (
     <div ref={dropdownBtnAreaRef} className="relative">
       <Button
-        className={`xs:text-xl flex items-center justify-center gap-2 rounded-lg  px-3 py-2 text-lg  ${
+        className={`xs:text-xl flex items-center justify-center gap-2 rounded-lg px-3  py-2 text-lg transition-colors ${
           selectedCategories.length > 0
-            ? 'bg-blue-50 text-blue-400 dark:bg-blue-700'
-            : 'bg-gray-50 dark:bg-gray-700'
+            ? 'bg-blue-50 text-blue-400 dark:bg-blue-800 dark:text-blue-300'
+            : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
         }`}
+        title="필터 설정"
         onClick={() => setMenuOpen((prev) => !prev)}>
-        <svg
-          // TODO: Icon 패키지 사용 (필터 아이콘)
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24">
-          <g fill="none" stroke="currentColor" strokeWidth={1.5}>
-            <path d="M9.5 14a3 3 0 1 1 0 6a3 3 0 0 1 0-6Zm5-10a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z" />
-            <path
-              strokeLinecap="round"
-              d="M11 7H6M3 7H2m11 10h5m3 0h1M2 17h4M22 7h-4"
-            />
-          </g>
-        </svg>
+        <AdjustmentHorizontalOutline />
         <span className="xs:text-base whitespace-nowrap pr-1 text-sm">
           필터
         </span>

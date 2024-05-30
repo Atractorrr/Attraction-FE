@@ -1,5 +1,3 @@
-import { NewsletterCategoryName } from '@/shared/type'
-
 export interface TrendNewsletter {
   id: number
   newsletterThumbnailUrl: string
@@ -8,9 +6,5 @@ export interface TrendNewsletter {
 }
 
 export interface TrendNewsletterResponse {
-  content: {
-    category: NewsletterCategoryName
-    isUser: boolean
-    newsletters: TrendNewsletter[]
-  }
+  mainPageNewsletters: TrendNewsletter[]
 }
