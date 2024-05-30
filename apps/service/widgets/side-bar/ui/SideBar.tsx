@@ -36,7 +36,7 @@ export default function SideBar() {
   }, [])
 
   return (
-    <div ref={sideBarAreaRef} className="md:ml-20 2xl:ml-72">
+    <div ref={sideBarAreaRef}>
       <div
         className={`fixed inset-y-0 left-0 z-40 ${
           isOpen ? 'inline-block' : 'hidden'

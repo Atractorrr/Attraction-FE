@@ -7,7 +7,7 @@ interface CardMainProps {
 }
 
 function CardMain({ children }: CardMainProps) {
-  return <div className="size-full space-y-2">{children}</div>
+  return <div className="w-80">{children}</div>
 }
 const NewsCard = Object.assign(CardMain, {
   Thumbnail: CardThumbnail,

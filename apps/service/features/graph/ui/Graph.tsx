@@ -1,11 +1,12 @@
 import React from 'react'
 import { ToolEmoji } from '@attraction/icons'
+import { Background } from '@/shared/ui'
 
 export default function Graph() {
   return (
-    <section className="flex w-full flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4">
+    <Background className="h-full">
       <ToolEmoji className="size-16" />
       <div className="mt-5 font-semibold">아직 준비중이에요 기다려주세요</div>
-    </section>
+    </Background>
   )
 }

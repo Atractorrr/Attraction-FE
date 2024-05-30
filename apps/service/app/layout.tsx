@@ -50,13 +50,13 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className="relative flex min-h-dvh min-w-[280px] bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100"
+        className="relative min-h-dvh min-w-[280px] bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100"
         suppressHydrationWarning>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
         <Provider>
           <SideBar />
-          <div className="grow pb-40 md:px-10 md:pt-10 lg:pb-20">
+          <div className="pb-40 md:ml-20 md:px-10 md:pt-10 lg:pb-20 2xl:ml-72">
             <div className="mx-auto w-full max-w-7xl">
               <Header />
               {children}

@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import React from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
+import { Background } from '@/shared/ui'
 import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
 import { CalendarElement } from '../model'
 
@@ -17,7 +18,7 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 
 export default function Calendar({ calendarData }: CalendarProps) {
   return (
-    <section className="w-full rounded-2xl border border-gray-100 bg-white p-5 md:w-2/3">
+    <Background className="h-full">
       <ActivityCalendarNoSSR
         // TODO: 처음부터 끝까지 보여줄 로직 구상하기
         data={[
@@ -42,6 +43,6 @@ export default function Calendar({ calendarData }: CalendarProps) {
         }}
       />
       <ReactTooltip id="react-tooltip" />
-    </section>
+    </Background>
   )
 }

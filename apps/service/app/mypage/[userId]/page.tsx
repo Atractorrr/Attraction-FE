@@ -25,9 +25,15 @@ export default async function MyPage({ params }: MyPageProps) {
     <div className="w-full">
       <ProfileContainer userProfile={userProfile} />
       <UserRecord userId={params.userId} />
-      <div className="mt-6 flex flex-col gap-6 md:flex-row">
-        <RecentNewsletterContainer recentNewLetterList={recentNewLetterList} />
-        <SubscribeList subscribeList={subscribeList} />
+      <div className="mt-6 flex flex-col items-stretch justify-start gap-6 lg:flex-row lg:justify-between">
+        <div className="h-auto w-full lg:w-2/3">
+          <RecentNewsletterContainer
+            recentNewLetterList={recentNewLetterList}
+          />
+        </div>
+        <div className="h-auto w-full lg:w-1/3">
+          <SubscribeList subscribeList={subscribeList} />
+        </div>
       </div>
     </div>
   )

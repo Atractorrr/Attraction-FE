@@ -10,9 +10,13 @@ export default async function UserRecord({ userId }: UserRecordProps) {
   const calendarDataWithLevel = calculateLevel(calendarData)
 
   return (
-    <div className="mt-8 flex w-full flex-col gap-6 md:flex-row">
-      <Calendar calendarData={calendarDataWithLevel} />
-      <Graph />
+    <div className="mt-6 flex w-full flex-col items-stretch justify-start gap-6 lg:flex-row lg:justify-between">
+      <div className="h-auto w-full lg:w-1/2">
+        <Calendar calendarData={calendarDataWithLevel} />
+      </div>
+      <div className="h-auto w-full lg:w-1/2">
+        <Graph />
+      </div>
     </div>
   )
 }
