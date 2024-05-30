@@ -14,11 +14,11 @@ interface SubscribeListProps {
 export default function SubscribeList({ subscribeList }: SubscribeListProps) {
   return (
     <Background className="h-full">
-      <div className="p-5">
+      <div className="px-4 py-5">
         <p className="mb-4 text-lg font-bold">구독 리스트</p>
         <ul className="h-60 overflow-y-auto">
           {subscribeList.map((item) => (
-            <li className="p-4" key={item.id}>
+            <li className="p-2" key={item.id}>
               <ContentContainer>
                 <ImageBox
                   width="w-8"
