@@ -9,17 +9,15 @@ export default function Home() {
   const email = cookies().has('email') ? cookies().get('email')?.value : ''
 
   return (
-    <main>
-      <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="flex w-full flex-col gap-y-6 lg:col-span-2">
-          <RecentArticlesContainer isLoggedIn={isLoggedIn} />
-          <TrendNewsletters email={email} />
-        </div>
-        <div className="flex w-full flex-col justify-items-center gap-y-6">
-          <UserRank />
-          <MainAds />
-        </div>
-      </section>
+    <main className="flex flex-col gap-6 lg:flex-row">
+      <div className="flex w-full flex-col gap-y-6 lg:w-[calc(100%-366px)]">
+        <RecentArticlesContainer isLoggedIn={isLoggedIn} />
+        <TrendNewsletters email={email} />
+      </div>
+      <div className="flex w-full flex-col gap-y-6 lg:w-[366px]">
+        <UserRank />
+        <MainAds />
+      </div>
     </main>
   )
 }
