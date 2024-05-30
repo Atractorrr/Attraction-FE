@@ -14,7 +14,7 @@ export default function UserInfoExpirationDate() {
       htmlFor="expirationDate"
       aria-label="개인정보 수집 유효기간"
       className="mb-5 block">
-      <p className="mb-2 text-sm text-gray-700">개인정보 수집 유효기간</p>
+      <p className="mb-2 text-sm">개인정보 수집 유효기간</p>
       <UserSettingList
         listData={USER_INFO_EXPIRATION}
         wrap={false}

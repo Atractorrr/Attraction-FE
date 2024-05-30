@@ -61,7 +61,7 @@ function UserPreferTag({
       <button
         type="button"
         className={`flex w-full flex-col items-center self-center justify-self-center
-        rounded-lg border py-8 ${isActive ? 'border-gray-700' : 'border-gray-100'} `}
+        rounded-lg border-2 py-8 dark:bg-gray-700 ${isActive ? 'border-gray-700 dark:border-gray-100' : 'border-gray-100 dark:border-gray-700'}`}
         disabled={disabledTag && !isActive}
         onClick={() => {
           checkboxRef.current?.click()
@@ -94,16 +94,18 @@ export default function UserPreferTagField() {
   }, [fields])
 
   return (
-    <fieldset>
-      <legend className="mb-4 text-2xl font-bold text-gray-700">
-        마지막으로, 관심사를 선택해 주세요
-      </legend>
-      <p className="mb-12 break-keep text-gray-500">
-        선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 관심사는 언제든지
-        수정할 수 있어요
-      </p>
-      <div className="h-[30rem] overflow-y-auto">
-        <div className="xs:grid xs:content-center xs:justify-center xs:grid-cols-2 flex flex-col gap-5">
+    <fieldset className="h-[calc(100%-120px)] overflow-hidden">
+      <div className="">
+        <legend className="mb-4 text-2xl font-bold ">
+          마지막으로, 관심사를 선택해 주세요
+        </legend>
+        <p className="mb-12 break-keep text-sm text-gray-500">
+          선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 관심사는 언제든지
+          수정할 수 있어요
+        </p>
+      </div>
+      <div className="-z-10 h-full overflow-y-auto">
+        <div className="xs:grid xs:grid-cols-2 xs:content-center xs:justify-center flex flex-col gap-5">
           {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
             <UserPreferTag
               key={categoryKey}

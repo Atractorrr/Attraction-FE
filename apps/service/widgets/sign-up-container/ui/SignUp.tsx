@@ -72,7 +72,7 @@ export default function SignUp() {
   return (
     <FormProvider {...formMethod}>
       <form
-        className="max-w-[540px] rounded-3xl bg-white p-5 sm:p-10"
+        className="flex size-full max-w-[540px] flex-col justify-between bg-white p-5 sm:rounded-3xl sm:p-10 dark:bg-gray-800"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex]}
         <Button
@@ -81,7 +81,7 @@ export default function SignUp() {
           onClick={() => {
             setActiveBtn(true)
           }}
-          className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
+          className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
           {activeIndex === signUpFieldArr.length - 1
             ? '가입 할래요!'
             : '다음으로'}
