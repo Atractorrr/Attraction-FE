@@ -9,7 +9,33 @@ import {
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
+import { useMutation } from '@tanstack/react-query'
 import { checkSignUpFormErr } from '../lib'
+
+const postSignUpForm = async (
+  signUpFormData: Omit<
+    SignUpFormType,
+    'isNickNameChecked' | 'selectPolicyAll' | 'policies'
+  >,
+) => {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/join`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(signUpFormData),
+    },
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error('중복확인을 해주세요')
+    }
+    return res.json()
+  })
+
+  return data
+}
 
 export default function SignUp() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -31,6 +57,7 @@ export default function SignUp() {
       interest: [],
       birthDate: '',
       userExpiration: 6,
+      adPolices: false,
       occupation: '',
       selectPolicyAll: false,
       policies: [
@@ -47,12 +74,19 @@ export default function SignUp() {
   })
 
   const { errors } = useFormState({ control: formMethod.control })
-
-  const onSubmit = () => {
-    // // TODO: 백엔드랑 맞추기
-    // if (activeIndex === signUpFieldArr.length - 1) {
-    //   console.log(data)
-    // }
+  const { mutate } = useMutation({ mutationFn: postSignUpForm })
+  const onSubmit = (data: SignUpFormType) => {
+    if (activeIndex === signUpFieldArr.length - 1) {
+      mutate({
+        email: 'swarvy0000@gmail.com',
+        nickname: data.nickname,
+        interest: data.interest,
+        birthDate: data.birthDate,
+        adPolices: data.adPolices,
+        occupation: data.occupation,
+        userExpiration: data.userExpiration,
+      })
+    }
   }
 
   useEffect(() => {
