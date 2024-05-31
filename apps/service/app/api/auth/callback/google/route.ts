@@ -9,11 +9,15 @@ interface GoogleOAuthResponse {
 }
 
 export async function GET(request: Request) {
-  const requestHeaders = headers()
+  const requestHeaders = new Headers(headers())
+  requestHeaders.set('Content-Type', 'application/json')
+  requestHeaders.set('Accept', '*/*')
+
   const cookieStore = cookies()
   const { url } = request
   const queryParams = new URL(url).searchParams
   const code = queryParams.get('code')
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
     {
@@ -25,6 +29,9 @@ export async function GET(request: Request) {
       }),
     },
   )
+
+  // console.log(JSON.stringify(response))
+
   const data: GoogleOAuthResponse = await response.json()
 
   cookieStore.set('accessToken', data.accessToken, {
@@ -36,9 +43,11 @@ export async function GET(request: Request) {
     maxAge: 60 * 60,
   })
 
+
+
   return data.hasExtraDetails
     ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
     : NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-in`,
+        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-up`,
       )
 }

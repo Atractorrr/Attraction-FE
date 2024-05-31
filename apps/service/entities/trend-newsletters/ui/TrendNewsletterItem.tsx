@@ -13,18 +13,23 @@ export default function TrendNewsletterItem({
   return (
     <Link href={`/newsletter/${newsletter.id}`}>
       <article className="flex gap-x-4">
-        <Image
-          src={newsletter.newsletterThumbnailUrl}
-          alt={newsletter.name}
-          width={300}
-          height={300}
-          className="size-16 shrink-0 rounded-xl object-cover"
-        />
+        {newsletter.newsletterThumbnailUrl ? (
+          <Image
+            src={newsletter.newsletterThumbnailUrl}
+            alt={newsletter.name}
+            width={300}
+            height={300}
+            className="size-16 shrink-0 rounded-xl object-cover"
+          />
+        ) : (
+          <div className="size-16 shrink-0 rounded-xl border-gray-100 bg-gray-50 dark:border-gray-600 dark:bg-gray-700" />
+        )}
+
         <div className="flex flex-col gap-y-1">
           <p className="whitespace-nowrap text-base font-semibold">
             {newsletter.name}
           </p>
-          <p className="break-keep text-sm font-normal text-gray-500">
+          <p className="line-clamp-2 text-sm font-normal text-gray-500">
             {newsletter.description}
           </p>
         </div>

@@ -5,11 +5,9 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import { RecentArticle } from '../model'
 
-// TODO: Util 함수로 분리
 dayjs.extend(relativeTime)
 dayjs.locale('ko')
 
-// TODO: 다른 페이지 적용 완료되면 Link 적용할 것
 export default function RecentArticleItem({ ...props }: RecentArticle) {
   return (
     <Link href="/" className="grid max-w-[280px] justify-items-start gap-y-4">
