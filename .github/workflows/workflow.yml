@@ -33,3 +33,5 @@ jobs:
 
       - name: Run commands
         run: pnpm ${{ matrix.command }}
+        env:
+          MOCK_URL: ${{ secrets.MOCK_URL }}
