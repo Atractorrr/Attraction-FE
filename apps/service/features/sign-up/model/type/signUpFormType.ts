@@ -1,8 +1,10 @@
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+
 export interface SignUpFormType {
   email: string
-  nickName: string
+  nickname: string
   isNickNameChecked: boolean
-  interest: { value: string }[]
+  interest: (keyof typeof NEWSLETTER_CATEGORY)[]
   birthDate: string
   userExpiration: number
   occupation: string
