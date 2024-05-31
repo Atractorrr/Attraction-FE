@@ -94,7 +94,7 @@ export default function UserPreferTagField() {
   }, [fields])
 
   return (
-    <fieldset className="h-[calc(100%-120px)] overflow-hidden">
+    <fieldset className="h-[calc(100%-240px)]">
       <div className="">
         <legend className="mb-4 text-2xl font-bold ">
           마지막으로, 관심사를 선택해 주세요
@@ -104,7 +104,7 @@ export default function UserPreferTagField() {
           수정할 수 있어요
         </p>
       </div>
-      <div className="-z-10 h-full overflow-y-auto">
+      <div className="h-full overflow-y-auto">
         <div className="xs:grid xs:grid-cols-2 xs:content-center xs:justify-center flex flex-col gap-5">
           {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
             <UserPreferTag

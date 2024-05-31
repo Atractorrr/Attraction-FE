@@ -2,6 +2,7 @@
 
 import { Button } from '@attraction/design-system'
 import { FloppyDiskEmoji } from '@attraction/icons'
+import { useState } from 'react'
 import {
   UserProfile,
   ProfileBackground,
@@ -12,6 +13,7 @@ import {
 } from '@/entities/profile'
 import { Background } from '@/shared/ui'
 import { useImgUpload } from '../lib'
+import UserSettingModal from './UserSettingModal'
 
 interface ProfileContainerProps {
   userProfile: UserProfile
@@ -21,6 +23,7 @@ export default function ProfileContainer({
   userProfile,
 }: ProfileContainerProps) {
   // TODO: 프로필도 지우기, 비디오기능 안받기 (백엔드랑 api맞출때 같이 하기)
+  const [modal, setModal] = useState(false)
   const {
     fileInputRef: profileInputRef,
     imgSrc: profileImgSrc,
@@ -89,7 +92,11 @@ export default function ProfileContainer({
               />
               {/* // TODO: 피드백 받은 후 h-fit, self-center 넣기 */}
               <div className="flex w-full shrink-0 gap-2 md:self-end lg:w-auto">
-                <Button className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-1.5 hover:bg-gray-100 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600 ">
+                <Button
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-1.5 hover:bg-gray-100 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600"
+                  onClick={() => {
+                    setModal(true)
+                  }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -131,6 +138,7 @@ export default function ProfileContainer({
           </div>
         </div>
       </div>
+      {modal && <UserSettingModal setModal={setModal} />}
     </Background>
   )
 }

@@ -43,11 +43,11 @@ export default function UserInfoField() {
   }
 
   return (
-    <fieldset className="size-full overflow-y-scroll">
+    <fieldset className="grow overflow-y-auto">
       <legend className="mb-12 break-keep text-2xl font-bold">
         서비스 이용에 있어 필수 정보를 입력해주세요
       </legend>
-      <div className=" flex-col">
+      <div className="flex h-full flex-col ">
         <label htmlFor="nickName" className="mb-6 block" aria-label="닉네임">
           <p className="mb-2 text-sm">닉네임</p>
           <div className="flex flex-col gap-2 md:flex-row">

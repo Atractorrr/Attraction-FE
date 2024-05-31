@@ -13,10 +13,10 @@ interface SubscribeListProps {
 
 export default function SubscribeList({ subscribeList }: SubscribeListProps) {
   return (
-    <Background className="h-full">
-      <div className="px-4 py-5">
+    <Background className="h-full lg:h-0 lg:min-h-full">
+      <div className="h-full px-4 py-5">
         <p className="mb-4 text-lg font-bold">구독 리스트</p>
-        <ul className="h-60 overflow-y-auto">
+        <ul className="h-60 overflow-y-auto lg:h-[calc(100%-64px)]">
           {subscribeList.map((item) => (
             <li className="p-2" key={item.id}>
               <ContentContainer>

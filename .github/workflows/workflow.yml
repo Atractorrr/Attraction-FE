@@ -33,3 +33,10 @@ jobs:
 
       - name: Run commands
         run: pnpm ${{ matrix.command }}
+        env:
+          MOCK_URL: ${{ secrets.MOCK_URL }}
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+          NEXT_PUBLIC_GOOGLE_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET }}
+          NEXT_PUBLIC_FE_URL: ${{ secrets.NEXT_PUBLIC_FE_URL }}
+          NEXT_PUBLIC_OAUTH_URL: ${{ secrets.NEXT_PUBLIC_OAUTH_URL }}
