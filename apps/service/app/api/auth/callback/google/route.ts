@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server'
 
 interface GoogleOAuthResponse {
   email: string
-  hasExtraDetails: boolean
+  hasExtraDetails?: boolean
+  shouldReissueToken?: boolean
   accessToken: string
 }
 
@@ -35,5 +36,9 @@ export async function GET(request: Request) {
     maxAge: 60 * 60,
   })
 
-  return NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
+  return data.hasExtraDetails
+    ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
+    : NextResponse.redirect(
+        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-in`,
+      )
 }
