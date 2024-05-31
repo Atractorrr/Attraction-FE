@@ -38,7 +38,7 @@ export default function UserSettingName() {
   })
 
   const duplicateCheckHandler = async () => {
-    await mutateAsync(getValues('nickName'))
+    await mutateAsync(getValues('nickname'))
     // const data = await mutateAsync(getValues('nickName'))
 
     // if (data.message === '409 (MSW)') {
@@ -47,7 +47,7 @@ export default function UserSettingName() {
     // } else {
 
     setValue('isNickNameChecked', true)
-    clearErrors('nickName')
+    clearErrors('nickname')
     // }
   }
   return (
@@ -58,7 +58,7 @@ export default function UserSettingName() {
           id="nickName"
           className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
-          {...register('nickName', {
+          {...register('nickname', {
             onChange: () => {
               setValue('isNickNameChecked', false)
             },
@@ -77,8 +77,8 @@ export default function UserSettingName() {
           중복확인
         </button>
       </div>
-      {errors.nickName?.message && (
-        <p className="mt-2 text-red-500">{errors.nickName.message}</p>
+      {errors.nickname?.message && (
+        <p className="mt-2 text-red-500">{errors.nickname.message}</p>
       )}
       {getValues('isNickNameChecked') && (
         <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>

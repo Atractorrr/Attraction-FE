@@ -1,32 +1,35 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import { useEffect } from 'react'
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import UserPreferTagField from './UserTag'
 import UserSettingJob from './UserSettingJob'
 import UserSettingExpiration from './UserSettingExpiration'
 import { SettingForm } from '../model'
 import UserSettingName from './UserSettingName'
 
-const User = {
-  nickName: 'Lee',
-  interest: ['IT_TECH', 'CURRENT_AFFAIRS_SOCIETY'],
-  birthDate: '20200202',
-  userExpiration: 6,
-  occupation: '관리직',
-}
-
 interface UserSettingProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>
+  nickname: string
+  occupation: string
+  interest: (keyof typeof NEWSLETTER_CATEGORY)[]
+  userExpiration: number
 }
 
-export default function UserSettingModal({ setModal }: UserSettingProps) {
+export default function UserSettingModal({
+  setModal,
+  nickname,
+  occupation,
+  interest,
+  userExpiration,
+}: UserSettingProps) {
   const formMethod = useForm<SettingForm>({
     defaultValues: {
-      nickName: User.nickName,
-      preferTag: [],
+      nickname,
+      interest,
       isNickNameChecked: false,
-      userExpiration: User.userExpiration,
-      occupation: User.occupation,
+      userExpiration,
+      occupation,
     },
   })
 
@@ -78,6 +81,13 @@ export default function UserSettingModal({ setModal }: UserSettingProps) {
               </Button>
               <Button
                 type="submit"
+                onClick={() => {
+                  if (formMethod.getValues('interest').length === 0) {
+                    formMethod.setError('interest', {
+                      message: '최소 1개 이상 카테고리를 선택해야 합니다.',
+                    })
+                  }
+                }}
                 disabled={!!Object.keys(formMethod.formState.errors).length}
                 className={`mt-14 w-full rounded-lg bg-gray-700 py-3 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
                 변경사항 저장하기
