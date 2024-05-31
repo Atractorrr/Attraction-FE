@@ -1,12 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { useEffect, useMemo, useRef, useState } from 'react'
-import {
-  FieldArrayWithId,
-  UseFieldArrayAppend,
-  UseFieldArrayRemove,
-  useFieldArray,
-  useFormContext,
-} from 'react-hook-form'
+import { useEffect, useRef, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { SettingForm } from '../model'
 
 const NEWSLETTER_CATEGORY = Object.freeze({
@@ -27,35 +21,39 @@ const NEWSLETTER_CATEGORY = Object.freeze({
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
-  append: UseFieldArrayAppend<SettingForm, 'preferTag'>
-  fields: FieldArrayWithId<SettingForm, 'preferTag', 'id'>[]
-  remove: UseFieldArrayRemove
+  setPreferTagList: React.Dispatch<
+    React.SetStateAction<(keyof typeof NEWSLETTER_CATEGORY)[]>
+  >
   disabledTag: boolean
+  preferTagList: (keyof typeof NEWSLETTER_CATEGORY)[]
 }
 
 function UserPreferTag({
   categoryKey,
-  append,
-  fields,
-  remove,
+  setPreferTagList,
+  preferTagList,
   disabledTag,
 }: UserPreferTagType) {
   const checkboxRef = useRef<HTMLInputElement>(null)
-  const [isActive, setIsActive] = useState(false)
-
-  const categoryIndex = useMemo(
-    () => fields.findIndex((el) => el.value === categoryKey),
-    [categoryKey, fields],
-  )
-
+  const [isActive, setIsActive] = useState(preferTagList.includes(categoryKey))
+  const {
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<SettingForm>()
   const checkboxChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
-      setIsActive((pre) => !pre)
-      append({ value: categoryKey })
+      setPreferTagList((pre) => [...pre, categoryKey])
     } else {
-      remove(categoryIndex)
-      setIsActive((pre) => !pre)
+      setPreferTagList((pre) =>
+        pre.filter((category) => category !== categoryKey),
+      )
     }
+
+    if (errors.interest?.message) {
+      clearErrors('interest')
+    }
+
+    setIsActive((pre) => !pre)
   }
 
   return (
@@ -83,45 +81,59 @@ function UserPreferTag({
 }
 
 export default function UserPreferTagField() {
-  const { control } = useFormContext<SettingForm>()
+  const {
+    setValue,
+    formState: { errors },
+    getValues,
+  } = useFormContext<SettingForm>()
+  const [preferTagList, setPreferTagList] = useState<
+    (keyof typeof NEWSLETTER_CATEGORY)[]
+  >(getValues('interest') ?? [])
+
   const [alertActive, setAlertActive] = useState(false)
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'preferTag',
-  })
   const [disabledTag, setDisabledTag] = useState(false)
 
   useEffect(() => {
-    if (fields.length >= 4) {
+    if (preferTagList.length >= 4) {
       setDisabledTag(true)
       setAlertActive(false)
     } else {
-      setAlertActive(true)
       setDisabledTag(false)
+      setAlertActive(true)
     }
-  }, [fields, setAlertActive])
+  }, [preferTagList])
+
+  useEffect(() => {
+    if (preferTagList.length > 0) {
+      setValue('interest', [...preferTagList])
+    }
+  }, [preferTagList, setValue])
 
   return (
     <fieldset>
       <div className="flex gap-1">
         <legend className="mb-4 inline text-sm font-medium">관심사</legend>
-        <span className="text-sm text-gray-500">{fields.length}/4</span>
+        <span className="text-sm text-gray-500">{preferTagList.length}/4</span>
       </div>
       <div className=" flex flex-wrap gap-4">
         {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
           <UserPreferTag
             key={categoryKey}
+            preferTagList={preferTagList}
             disabledTag={disabledTag}
             categoryKey={categoryKey as keyof typeof NEWSLETTER_CATEGORY}
-            append={append}
-            fields={fields}
-            remove={remove}
+            setPreferTagList={setPreferTagList}
           />
         ))}
       </div>
       {alertActive && (
         <p className="mt-2 text-sm text-red-500">
           관심사는 최대 4개까지 선택할 수 있어요
+        </p>
+      )}
+      {errors.interest?.message && (
+        <p className="mt-2 text-sm text-red-500">
+          관심사는 최소 1개 이상은 선택하셔야 합니다
         </p>
       )}
     </fieldset>
