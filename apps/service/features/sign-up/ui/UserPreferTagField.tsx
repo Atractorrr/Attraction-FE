@@ -80,8 +80,7 @@ export default function UserPreferTagField() {
   >([])
   const {
     setValue,
-    formState: { isSubmitting, errors },
-    setError,
+    formState: { errors },
   } = useFormContext<SignUpFormType>()
   const [disabledTag, setDisabledTag] = useState(false)
 
@@ -91,17 +90,13 @@ export default function UserPreferTagField() {
     } else {
       setDisabledTag(false)
     }
-
-    setValue('interest', [...preferTagList])
-  }, [preferTagList, setValue])
+  }, [preferTagList])
 
   useEffect(() => {
-    if (isSubmitting && preferTagList.length === 0) {
-      setError('interest', {
-        message: '최소 1개 이상 카테고리를 선택해야 합니다.',
-      })
+    if (preferTagList.length) {
+      setValue('interest', [...preferTagList])
     }
-  }, [isSubmitting, preferTagList.length, setError])
+  }, [preferTagList, setValue])
 
   return (
     <fieldset className="h-[calc(100%-240px)]">

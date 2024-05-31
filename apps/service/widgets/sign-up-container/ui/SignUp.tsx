@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm, useFormState } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import {
@@ -9,21 +9,24 @@ import {
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
+import { checkSignUpFormErr } from '../lib'
 
 export default function SignUp() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [activeBtn, setActiveBtn] = useState(false)
   const [checkError, setCheckError] = useState(false)
-
-  const signUpFieldArr = [
-    <UserInfoField key={0} />,
-    <UserJobField key={1} />,
-    <UserPreferTagField key={2} />,
-  ]
+  const signUpFieldArr = useMemo(
+    () => [
+      { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
+      { activeComponent: <UserJobField key={1} />, type: 'occupation' },
+      { activeComponent: <UserPreferTagField key={2} />, type: 'interest' },
+    ],
+    [],
+  )
   const formMethod = useForm<SignUpFormType>({
     defaultValues: {
       email: '',
-      nickName: '',
+      nickname: '',
       isNickNameChecked: false,
       interest: [],
       birthDate: '',
@@ -46,8 +49,9 @@ export default function SignUp() {
   const { errors } = useFormState({ control: formMethod.control })
 
   const onSubmit = () => {
-    // TODO: 백엔드랑 맞추기
+    // // TODO: 백엔드랑 맞추기
     // if (activeIndex === signUpFieldArr.length - 1) {
+    //   console.log(data)
     // }
   }
 
@@ -74,11 +78,16 @@ export default function SignUp() {
       <form
         className="flex size-full max-w-[540px] flex-col justify-between bg-white p-5 sm:rounded-3xl sm:p-10 dark:bg-gray-800"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
-        {signUpFieldArr[activeIndex]}
+        {signUpFieldArr[activeIndex].activeComponent}
         <Button
           type="submit"
           disabled={!!Object.keys(formMethod.formState.errors).length}
           onClick={() => {
+            checkSignUpFormErr(
+              signUpFieldArr[activeIndex].type,
+              formMethod.getValues,
+              formMethod.setError,
+            )
             setActiveBtn(true)
           }}
           className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
