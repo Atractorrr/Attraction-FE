@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import { SettingForm } from '../model'
 
 export default function UserSettingExpiration() {
-  const { setValue, watch } = useFormContext<SettingForm>()
+  const { setValue, getValues, watch } = useFormContext<SettingForm>()
   const setExpirationFormValue = (keyItem: string) => {
     setValue('userExpiration', Number(keyItem))
   }
@@ -16,6 +16,7 @@ export default function UserSettingExpiration() {
       <UserSettingList
         listData={USER_INFO_EXPIRATION}
         wrap={false}
+        initialItem={getValues('userExpiration').toString()}
         btnClickHandler={setExpirationFormValue}
       />
       {USER_INFO_EXPIRATION.get(watchUserExpiration) !== '평생' ? (

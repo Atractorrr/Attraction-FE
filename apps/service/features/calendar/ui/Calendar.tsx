@@ -21,11 +21,7 @@ export default function Calendar({ calendarData }: CalendarProps) {
     <Background className="flex h-full justify-center p-6">
       <ActivityCalendarNoSSR
         // TODO: 처음부터 끝까지 보여줄 로직 구상하기
-        data={[
-          { date: '2024-01-01', count: 1, level: 3 },
-          ...calendarData,
-          { date: '2024-12-31', count: 2, level: 4 },
-        ]}
+        data={calendarData}
         labels={CALENDAR_LABELS}
         blockSize={10}
         showWeekdayLabels
