@@ -4,22 +4,27 @@ import { SignUpFormType } from '../model'
 import UserInfoExpirationDate from './UserInfoExpirationDate'
 import UserAgreement from './UserAgreement'
 
-const postDuplicateName = async (nickName: string) => {
+const postDuplicateName = async (nickname: { nickname: string }) => {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/join/username-duplicate`,
     {
       method: 'POST',
-      body: JSON.stringify(nickName),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(nickname),
     },
-  ).then((res) => res.json())
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error('중복확인을 해주세요')
+    }
+    return res.json()
+  })
 
   return data
 }
 
 export default function UserInfoField() {
-  const { mutateAsync } = useMutation({
-    mutationFn: postDuplicateName,
-  })
   const {
     register,
     formState: { errors },
@@ -27,19 +32,21 @@ export default function UserInfoField() {
     clearErrors,
     setValue,
     watch,
+    setError,
   } = useFormContext<SignUpFormType>()
+  const { mutate } = useMutation({
+    mutationFn: postDuplicateName,
+    onError: () => {
+      setError('nickname', { message: '중복된 이메일 입니다' })
+    },
+    onSuccess: () => {
+      setValue('isNickNameChecked', true)
+      clearErrors('nickname')
+    },
+  })
 
-  const duplicateCheckHandler = async () => {
-    await mutateAsync(getValues('nickName'))
-    // const data = await mutateAsync(getValues('nickName'))
-
-    // if (data.message === '409 (MSW)') {
-    //   setError('nickName', { message: '중복된 이메일 입니다' })
-    //   setIsChecked(false)
-    // } else {
-    setValue('isNickNameChecked', true)
-    clearErrors('nickName')
-    // }
+  const duplicateCheckHandler = () => {
+    mutate({ nickname: getValues('nickname') })
   }
 
   return (
@@ -56,7 +63,7 @@ export default function UserInfoField() {
               id="nickName"
               className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
               placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
-              {...register('nickName', {
+              {...register('nickname', {
                 onChange: () => {
                   setValue('isNickNameChecked', false)
                 },
@@ -75,8 +82,8 @@ export default function UserInfoField() {
               중복확인
             </button>
           </div>
-          {errors.nickName?.message && (
-            <p className="mt-2 text-red-500">{errors.nickName.message}</p>
+          {errors.nickname?.message && (
+            <p className="mt-2 text-red-500">{errors.nickname.message}</p>
           )}
           {getValues('isNickNameChecked') && (
             <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>

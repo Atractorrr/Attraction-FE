@@ -7,6 +7,7 @@ export interface SignUpFormType {
   interest: (keyof typeof NEWSLETTER_CATEGORY)[]
   birthDate: string
   userExpiration: number
+  adPolices: boolean
   occupation: string
   selectPolicyAll: boolean
   policies: {

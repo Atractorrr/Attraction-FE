@@ -11,6 +11,6 @@ export const USER_INFO_OCCUPATION = new Map([
   ['PRIMARY', '농/축광/수산업'],
   ['STUDENT', '학생'],
   ['UNEMPLOY', '무직'],
-  ['RETIREE', '무직자'],
+  ['RETIREE', '퇴직자'],
   ['ETC', '기타'],
 ])
