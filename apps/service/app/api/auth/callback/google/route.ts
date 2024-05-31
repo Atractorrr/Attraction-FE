@@ -48,6 +48,6 @@ export async function GET(request: Request) {
   return data.hasExtraDetails || response.status === 201
     ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
     : NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-in`,
+        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-up`,
       )
 }
