@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import { SettingForm } from '../model'
 
 export default function UserSettingJob() {
-  const { setValue } = useFormContext<SettingForm>()
+  const { setValue, getValues } = useFormContext<SettingForm>()
   const setUserSettingOccupation = (keyItem: string) => {
     setValue('occupation', keyItem)
   }
@@ -15,6 +15,7 @@ export default function UserSettingJob() {
         listData={USER_INFO_OCCUPATION}
         wrap
         btnClickHandler={setUserSettingOccupation}
+        initialItem={getValues('occupation')}
       />
     </fieldset>
   )
