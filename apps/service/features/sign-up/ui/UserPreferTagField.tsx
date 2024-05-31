@@ -1,11 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import {
-  FieldArrayWithId,
-  UseFieldArrayAppend,
-  UseFieldArrayRemove,
-  useFieldArray,
-  useFormContext,
-} from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { ComputerEmoji } from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
@@ -13,39 +7,42 @@ import { SignUpFormType } from '../model'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
-  append: UseFieldArrayAppend<SignUpFormType, 'interest'>
-  fields: FieldArrayWithId<SignUpFormType, 'interest', 'id'>[]
-  remove: UseFieldArrayRemove
   disabledTag: boolean
+  setPreferTagList: React.Dispatch<
+    React.SetStateAction<(keyof typeof NEWSLETTER_CATEGORY)[]>
+  >
 }
 
 function UserPreferTag({
   categoryKey,
-  append,
-  fields,
-  remove,
   disabledTag,
+  setPreferTagList,
 }: UserPreferTagType) {
   const checkboxRef = useRef<HTMLInputElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const {
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<SignUpFormType>()
   // TODO: 이모티콘 깜박임 문제 해결하기 (필수!!!)
   const CategoryEmoji = useMemo(
     () => getCategorySVG(NEWSLETTER_CATEGORY[categoryKey]),
     [categoryKey],
   )
-  const categoryIndex = useMemo(
-    () => fields.findIndex((el) => el.value === categoryKey),
-    [categoryKey, fields],
-  )
-
   const checkboxChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
-      setIsActive((pre) => !pre)
-      append({ value: categoryKey })
+      setPreferTagList((pre) => [...pre, categoryKey])
     } else {
-      remove(categoryIndex)
-      setIsActive((pre) => !pre)
+      setPreferTagList((pre) =>
+        pre.filter((category) => category !== categoryKey),
+      )
     }
+
+    if (errors.interest?.message) {
+      clearErrors('interest')
+    }
+
+    setIsActive((pre) => !pre)
   }
 
   return (
@@ -78,20 +75,33 @@ function UserPreferTag({
 }
 
 export default function UserPreferTagField() {
-  const { control } = useFormContext<SignUpFormType>()
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'interest',
-  })
+  const [preferTagList, setPreferTagList] = useState<
+    (keyof typeof NEWSLETTER_CATEGORY)[]
+  >([])
+  const {
+    setValue,
+    formState: { isSubmitting, errors },
+    setError,
+  } = useFormContext<SignUpFormType>()
   const [disabledTag, setDisabledTag] = useState(false)
 
   useEffect(() => {
-    if (fields.length >= 4) {
+    if (preferTagList.length >= 4) {
       setDisabledTag(true)
     } else {
       setDisabledTag(false)
     }
-  }, [fields])
+
+    setValue('interest', [...preferTagList])
+  }, [preferTagList, setValue])
+
+  useEffect(() => {
+    if (isSubmitting && preferTagList.length === 0) {
+      setError('interest', {
+        message: '최소 1개 이상 카테고리를 선택해야 합니다.',
+      })
+    }
+  }, [isSubmitting, preferTagList.length, setError])
 
   return (
     <fieldset className="h-[calc(100%-240px)]">
@@ -110,14 +120,15 @@ export default function UserPreferTagField() {
             <UserPreferTag
               key={categoryKey}
               disabledTag={disabledTag}
+              setPreferTagList={setPreferTagList}
               categoryKey={categoryKey as keyof typeof NEWSLETTER_CATEGORY}
-              append={append}
-              fields={fields}
-              remove={remove}
             />
           ))}
         </div>
       </div>
+      {errors.interest?.message && (
+        <p className="mt-2 text-red-500">{errors.interest.message}</p>
+      )}
     </fieldset>
   )
 }

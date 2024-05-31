@@ -15,7 +15,7 @@ export default function UserJobField() {
 
   const setOccupationFormValue = (keyItem: string) => {
     setValue('occupation', keyItem)
-    if (Object.keys(errors).length) {
+    if (errors.occupation?.message) {
       clearErrors('occupation')
     }
   }
