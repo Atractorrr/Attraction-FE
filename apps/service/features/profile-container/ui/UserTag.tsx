@@ -1,23 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { SettingForm } from '../model'
-
-const NEWSLETTER_CATEGORY = Object.freeze({
-  RECOMMEND: '추천', // TODO: 추후 논의 (백엔드에 없는 enum)
-  TREND_LIFE: '트렌드/라이프',
-  ENTERTAINMENT: '엔터테인먼트',
-  BUSINESS_FINANCIAL_TECHNOLOGY: '비즈/재테크',
-  LOCAL_TRAVEL: '지역/여행',
-  FOOD: '푸드',
-  IT_TECH: 'IT/테크',
-  DESIGN: '디자인',
-  CURRENT_AFFAIRS_SOCIETY: '시사/사회',
-  HOBBY_SELF_DEVELOPMENT: '취미/자기개발',
-  CULTURE_ART: '문화/예술',
-  LIVING_INTERIOR: '리빙/인테리어',
-  HEALTH_MEDICINE: '건강/의학',
-})
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -61,6 +46,7 @@ function UserPreferTag({
       className={`relative ${disabledTag && !isActive ? 'opacity-40' : 'opacity-100'}`}>
       <input
         type="checkbox"
+        checked={isActive}
         className="absolute right-3 top-3"
         ref={checkboxRef}
         hidden
@@ -85,6 +71,7 @@ export default function UserPreferTagField() {
     setValue,
     formState: { errors },
     getValues,
+    setError,
   } = useFormContext<SettingForm>()
   const [preferTagList, setPreferTagList] = useState<
     (keyof typeof NEWSLETTER_CATEGORY)[]
@@ -104,10 +91,14 @@ export default function UserPreferTagField() {
   }, [preferTagList])
 
   useEffect(() => {
-    if (preferTagList.length > 0) {
+    if (preferTagList.length !== 0) {
       setValue('interest', [...preferTagList])
+    } else {
+      setError('interest', {
+        message: '관심사는 최소 1개 이상은 선택하셔야 합니다',
+      })
     }
-  }, [preferTagList, setValue])
+  }, [preferTagList, setError, setValue])
 
   return (
     <fieldset>
@@ -126,7 +117,7 @@ export default function UserPreferTagField() {
           />
         ))}
       </div>
-      {alertActive && (
+      {alertActive && !errors.interest?.message && (
         <p className="mt-2 text-sm text-red-500">
           관심사는 최대 4개까지 선택할 수 있어요
         </p>

@@ -110,6 +110,7 @@ export default function ProfileContainer({
       </div>
       {modal && (
         <UserSettingModal
+          email={userProfile.email}
           setModal={setModal}
           nickname={userProfile.name}
           occupation={userProfile.occupation}
