@@ -26,9 +26,9 @@ function NewsletterPreviousArticlesContent({
   return (
     <div>
       {!data.data.length ? (
-        <div className="p-16">
+        <div className="pb-40 pt-32">
           <GuideTxt
-            title="지난 아티클이 없습니다"
+            title="지난 아티클이 없어요"
             sub="새로운 아티클을 기대해주세요!"
           />
         </div>

@@ -11,7 +11,7 @@ export default function RelatedNewsletterItem({ ...props }: RelatedNewsletter) {
           src={
             props.thumbnailUrl.length
               ? props.thumbnailUrl
-              : '/images/default-16x9.jpg'
+              : '/images/default-1x1.jpg'
           }
           width={500}
           height={500}
