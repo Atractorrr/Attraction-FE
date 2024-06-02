@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { GraphOutline } from '@attraction/icons'
 import {
   TrendNewsletterList,
@@ -8,16 +8,27 @@ import {
 } from '@/entities/trend-newsletters'
 import { NewsletterCategories } from '@/features/newsletter-categories'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Background, LoadingSpinner, Title } from '@/shared/ui'
+import { Background, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
+import { QueryErrorResetBoundary } from '@tanstack/react-query'
+import { ErrorBoundary } from 'react-error-boundary'
 
 interface TrendNewslettersProps {
   email: string | undefined
 }
 
+function TrendNewsletterContent({
+  category,
+}: {
+  category: NewsletterCategory
+}) {
+  const { data } = useTrendNewsletters(category)
+
+  return <TrendNewsletterList mainPageNewsletters={data.mainPageNewsletters} />
+}
+
 export default function TrendNewsletters({ email }: TrendNewslettersProps) {
   const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
-  const { data, isPending } = useTrendNewsletters(category)
 
   const handleCategoryChange = (categoryName: NewsletterCategoryName) => {
     const categoryKey = (
@@ -31,27 +42,29 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
 
   return (
     <Background>
-      <div className="grid w-full gap-y-4 p-5">
+      <div className="flex w-full flex-col gap-y-4 p-5">
         <div className="w-full">
           <Title
             icon={<GraphOutline className="size-5" />}
             text="트렌디한 뉴스레터"
           />
         </div>
-
-        <div className="grid gap-y-8">
+        <div className="flex flex-col gap-y-8">
           <NewsletterCategories
             currentCategory={category}
             email={email}
             onClick={handleCategoryChange}
           />
-          {data ? (
-            <TrendNewsletterList
-              mainPageNewsletters={data.mainPageNewsletters}
-            />
-          ) : null}
+          <QueryErrorResetBoundary>
+            {({ reset }) => (
+              <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <TrendNewsletterContent category={category} />
+                </Suspense>
+              </ErrorBoundary>
+            )}
+          </QueryErrorResetBoundary>
         </div>
-        {isPending ? <LoadingSpinner /> : null}
       </div>
     </Background>
   )
