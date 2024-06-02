@@ -10,5 +10,5 @@ export interface RecentArticle {
 }
 
 export interface RecentArticleResponse {
-  mainArticles: RecentArticle[]
+  mainPageArticles: RecentArticle[]
 }

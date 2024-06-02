@@ -1,11 +1,11 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query'
+import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query'
 import { fetchNewsletterProfile } from '../../api'
-import type { NewsletterProfileResponse } from '../../model'
+import { NewsletterProfileResponse } from '../../model'
 
 export default function useNewsletterProfile(
   newsletterId: string,
-): UseQueryResult<NewsletterProfileResponse, Error> {
-  return useQuery({
+): UseSuspenseQueryResult<NewsletterProfileResponse, Error> {
+  return useSuspenseQuery({
     queryKey: ['newsletterProfile', newsletterId],
     queryFn: () => fetchNewsletterProfile(newsletterId),
   })
