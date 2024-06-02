@@ -5,13 +5,17 @@ import { RelatedNewsletter } from '../model'
 export default function RelatedNewsletterItem({ ...props }: RelatedNewsletter) {
   return (
     <Link className="flex gap-x-4" href={`/newsletter/${props.id}`}>
-      <div className="size-16 shrink-0 overflow-hidden rounded-xl">
+      <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-100 dark:border-gray-700 dark:bg-gray-700">
         <Image
           className="size-full"
-          src={props.thumbnailUrl}
+          src={
+            props.thumbnailUrl.length
+              ? props.thumbnailUrl
+              : '/images/default-16x9.jpg'
+          }
           width={500}
           height={500}
-          alt={props.name}
+          alt={props.name ?? 'no thumbnail'}
         />
       </div>
       <div className="flex flex-col gap-y-1">
