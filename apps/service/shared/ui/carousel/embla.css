@@ -31,8 +31,8 @@
 
 .embla__left__button {
   position: absolute;
-  width: 60px;
-  height: 40px;
+  width: 72px;
+  height: 36px;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -43,8 +43,8 @@
 
 .embla__right__button {
   position: absolute;
-  width: 60px;
-  height: 40px;
+  width: 72px;
+  height: 36px;
   display: flex;
   justify-content: right;
   align-items: center;
