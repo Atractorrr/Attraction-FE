@@ -4,6 +4,7 @@ import { ComputerEmoji } from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
 import { SignUpFormType } from '../model'
+import { useDisabledBtn } from '../lib'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -82,15 +83,8 @@ export default function UserPreferTagField() {
     setValue,
     formState: { errors },
   } = useFormContext<SignUpFormType>()
-  const [disabledTag, setDisabledTag] = useState(false)
 
-  useEffect(() => {
-    if (preferTagList.length >= 4) {
-      setDisabledTag(true)
-    } else {
-      setDisabledTag(false)
-    }
-  }, [preferTagList])
+  const { disabledTag } = useDisabledBtn(preferTagList)
 
   useEffect(() => {
     if (preferTagList.length) {
