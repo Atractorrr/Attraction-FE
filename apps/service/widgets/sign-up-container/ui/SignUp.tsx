@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
-import { FormProvider, useForm, useFormState } from 'react-hook-form'
+import { useMemo } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import {
   SignUpFormType,
@@ -11,36 +11,10 @@ import {
 } from '@/features/sign-up'
 import { useMutation } from '@tanstack/react-query'
 import { checkSignUpFormErr } from '../lib'
-
-const postSignUpForm = async (
-  signUpFormData: Omit<
-    SignUpFormType,
-    'isNickNameChecked' | 'selectPolicyAll' | 'policies'
-  >,
-) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/join`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(signUpFormData),
-    },
-  ).then((res) => {
-    if (!res.ok) {
-      throw new Error('중복확인을 해주세요')
-    }
-    return res.json()
-  })
-
-  return data
-}
+import { postSignUpForm } from '../api'
+import { useSignUpFunnel } from '../lib/hook'
 
 export default function SignUp() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [activeBtn, setActiveBtn] = useState(false)
-  const [checkError, setCheckError] = useState(false)
   const signUpFieldArr = useMemo(
     () => [
       { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
@@ -73,7 +47,10 @@ export default function SignUp() {
     },
   })
 
-  const { errors } = useFormState({ control: formMethod.control })
+  const { activeIndex, setActiveBtn } = useSignUpFunnel({
+    errors: formMethod.formState.errors,
+    signUpFieldArr,
+  })
   const { mutate } = useMutation({ mutationFn: postSignUpForm })
   const onSubmit = (data: SignUpFormType) => {
     if (activeIndex === signUpFieldArr.length - 1) {
@@ -88,24 +65,6 @@ export default function SignUp() {
       })
     }
   }
-
-  useEffect(() => {
-    if (activeBtn) {
-      setCheckError(true)
-    }
-  }, [activeBtn])
-
-  useEffect(() => {
-    if (
-      checkError &&
-      !Object.keys(errors).length &&
-      activeIndex < signUpFieldArr.length - 1
-    ) {
-      setActiveIndex((pre) => pre + 1)
-      setActiveBtn(false)
-      setCheckError(false)
-    }
-  }, [activeIndex, checkError, errors, signUpFieldArr.length])
 
   return (
     <FormProvider {...formMethod}>
