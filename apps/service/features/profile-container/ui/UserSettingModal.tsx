@@ -1,96 +1,61 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import { useEffect } from 'react'
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { useMutation } from '@tanstack/react-query'
-import UserPreferTagField from './UserTag'
+import { UserProfile } from '@/entities/profile'
 import UserSettingJob from './UserSettingJob'
 import UserSettingExpiration from './UserSettingExpiration'
 import { SettingForm } from '../model'
 import UserSettingName from './UserSettingName'
-import { getChangeSettingFormProperty } from '../lib'
+import {
+  getChangeSettingFormProperty,
+  useOptimisticProfileUpdate,
+} from '../lib'
+import UserSettingInterest from './UserSettingInterest'
 
 interface UserSettingProps {
-  email: string
+  userId: string
   setModal: React.Dispatch<React.SetStateAction<boolean>>
-  nickname: string
-  occupation: string
-  interest: (keyof typeof NEWSLETTER_CATEGORY)[]
-  userExpiration: number
-}
-
-const postUserSettingForm = async ({
-  formData,
-  email,
-}: {
-  formData: unknown
-  email: string
-}) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${email}`,
-    {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'PATCH',
-      body: JSON.stringify(formData),
-    },
-  ).then((res) => {
-    if (!res.ok) {
-      throw new Error()
-    }
-    return res.json()
-  })
-
-  return data
+  userProfile: UserProfile
 }
 
 export default function UserSettingModal({
-  email,
+  userId,
   setModal,
-  nickname,
-  occupation,
-  interest,
-  userExpiration,
+  userProfile,
 }: UserSettingProps) {
   const formMethod = useForm<SettingForm>({
     defaultValues: {
-      nickname,
-      interest,
+      nickname: userProfile.nickname,
+      interest: userProfile.interest,
       isNicknameChecked: false,
-      userExpiration,
-      occupation,
+      userExpiration: userProfile.userExpiration,
+      occupation: userProfile.occupation,
     },
   })
-  const { mutate } = useMutation({
-    mutationFn: postUserSettingForm,
-    onSuccess: () => {
-      setModal(false)
-    },
-  })
+  const { mutate } = useOptimisticProfileUpdate(userId)
 
-  const submitSettingFormHandler = (
-    data: Omit<SettingForm, 'isNicknameChecked'>,
-  ) => {
+  const submitSettingFormHandler = (submitFormData: SettingForm) => {
     const originSettingFormData: Omit<SettingForm, 'isNicknameChecked'> = {
-      nickname,
-      interest,
-      userExpiration,
-      occupation,
+      nickname: userProfile.nickname,
+      interest: userProfile.interest,
+      userExpiration: userProfile.userExpiration,
+      occupation: userProfile.occupation,
     }
-
-    const changeSettingFormData = data
+    const { isNicknameChecked, ...changeSettingFormData } = submitFormData
 
     const changeSettingFormProperty = getChangeSettingFormProperty(
       originSettingFormData,
       changeSettingFormData,
     )
-    // TODO: react-query vs refresh 캐시 강제 업데이트 리팩토링 때 고민해보기 (필수!)
+
     if (changeSettingFormProperty !== null) {
-      mutate({ formData: changeSettingFormData, email })
+      mutate({ formData: changeSettingFormProperty, email: userProfile.email })
     }
 
     setModal(false)
   }
 
+  // 모달창 띄울 시 스크롤 방지
   useEffect(() => {
     const height = window.scrollY
 
@@ -121,9 +86,9 @@ export default function UserSettingModal({
           <p className="text-xl font-bold md:mb-9">개인설정</p>
           <form onSubmit={formMethod.handleSubmit(submitSettingFormHandler)}>
             <div className="flex h-[calc(100vh-18rem)] flex-col gap-9 overflow-y-scroll md:h-[450px]">
-              <UserSettingName nickname={nickname} />
+              <UserSettingName nickname={userProfile.nickname} />
               <UserSettingExpiration />
-              <UserPreferTagField />
+              <UserSettingInterest />
               <UserSettingJob />
             </div>
             <div className="flex gap-2">

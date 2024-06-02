@@ -1,8 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import { Button } from '@attraction/design-system'
 import { SettingForm } from '../model'
+import { useLimitCheckBtn } from '../lib'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -13,7 +14,7 @@ interface UserPreferTagType {
   preferTagList: (keyof typeof NEWSLETTER_CATEGORY)[]
 }
 
-function UserPreferTag({
+function UserInterestTag({
   categoryKey,
   setPreferTagList,
   preferTagList,
@@ -53,7 +54,7 @@ function UserPreferTag({
         onChange={checkboxChangeHandler}
         disabled={disabledTag && !isActive}
       />
-      <button
+      <Button
         type="button"
         className={`rounded-full ${isActive ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700' : 'bg-gray-50 dark:bg-gray-700'} px-6 py-2 `}
         disabled={disabledTag && !isActive}
@@ -61,12 +62,12 @@ function UserPreferTag({
           checkboxRef.current?.click()
         }}>
         <span className="mt-3">{NEWSLETTER_CATEGORY[categoryKey]}</span>
-      </button>
+      </Button>
     </div>
   )
 }
 
-export default function UserPreferTagField() {
+export default function UserSettingInterest() {
   const {
     setValue,
     formState: { errors },
@@ -76,19 +77,7 @@ export default function UserPreferTagField() {
   const [preferTagList, setPreferTagList] = useState<
     (keyof typeof NEWSLETTER_CATEGORY)[]
   >(getValues('interest') ?? [])
-
-  const [alertActive, setAlertActive] = useState(false)
-  const [disabledTag, setDisabledTag] = useState(false)
-
-  useEffect(() => {
-    if (preferTagList.length >= 4) {
-      setDisabledTag(true)
-      setAlertActive(false)
-    } else {
-      setDisabledTag(false)
-      setAlertActive(true)
-    }
-  }, [preferTagList])
+  const { alertActive, disabledTag } = useLimitCheckBtn(preferTagList.length)
 
   useEffect(() => {
     if (preferTagList.length !== 0) {
@@ -108,7 +97,7 @@ export default function UserPreferTagField() {
       </div>
       <div className=" flex flex-wrap gap-4">
         {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
-          <UserPreferTag
+          <UserInterestTag
             key={categoryKey}
             preferTagList={preferTagList}
             disabledTag={disabledTag}

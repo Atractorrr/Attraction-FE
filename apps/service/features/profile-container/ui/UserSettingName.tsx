@@ -1,54 +1,43 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import { useMutation } from '@tanstack/react-query'
+import React, { useCallback } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { SettingForm } from '../model'
+import { useCheckDuplicate } from '../lib'
 
 interface UserSettingNameType {
   nickname: string
-}
-
-const postDuplicateName = async (request: { nickname: string }) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/username-duplicate`,
-    {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-      body: JSON.stringify(request),
-    },
-  ).then((res) => {
-    if (!res.ok) {
-      throw new Error()
-    }
-    return res.json()
-  })
-
-  return data
 }
 
 export default function UserSettingName({ nickname }: UserSettingNameType) {
   const {
     register,
     setValue,
-    watch,
     formState: { errors },
     getValues,
     clearErrors,
+    control,
   } = useFormContext<SettingForm>()
-
-  const { mutate } = useMutation({
-    mutationFn: postDuplicateName,
-    onSuccess: () => {
-      setValue('isNicknameChecked', true)
-      clearErrors('nickname')
-    },
-    onError: () => {
-      setValue('isNicknameChecked', false)
-    },
+  const watchNicknameChecked = useWatch<SettingForm>({
+    name: 'isNicknameChecked',
+    control,
   })
 
-  const duplicateCheckHandler = () => {
+  const duplicateSuccessHandler = useCallback(() => {
+    setValue('isNicknameChecked', true)
+    clearErrors('nickname')
+  }, [clearErrors, setValue])
+
+  const duplicateErrorHandler = useCallback(() => {
+    setValue('isNicknameChecked', false)
+  }, [setValue])
+
+  const { mutate } = useCheckDuplicate({
+    successHandler: duplicateSuccessHandler,
+    errorHandler: duplicateErrorHandler,
+  })
+
+  const duplicateCheckHandler = useCallback(() => {
     mutate({ nickname: getValues('nickname') })
-  }
+  }, [getValues, mutate])
 
   return (
     <fieldset>
@@ -63,7 +52,7 @@ export default function UserSettingName({ nickname }: UserSettingNameType) {
               setValue('isNicknameChecked', false)
             },
             validate: (value) => {
-              if (value !== nickname && !watch('isNicknameChecked')) {
+              if (value !== nickname && !watchNicknameChecked) {
                 return '중복 확인을 해주세요'
               }
               return true

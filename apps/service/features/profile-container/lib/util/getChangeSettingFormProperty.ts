@@ -1,12 +1,8 @@
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { SettingForm } from '../../model'
-
-interface CheckFormDataType {
-  nickname: string | null
-  interest: (keyof typeof NEWSLETTER_CATEGORY)[] | null
-  occupation: string | null
-  userExpiration: number | null
-}
+import {
+  CheckFormDataWithNull,
+  CheckFormDataWithoutNullType,
+  SettingForm,
+} from '../../model'
 
 const checkIsSameFormPrimitiveValue = <T>(originVal: T, changeVal: T) => {
   if (originVal === changeVal) {
@@ -17,17 +13,20 @@ const checkIsSameFormPrimitiveValue = <T>(originVal: T, changeVal: T) => {
 }
 
 const checkIsSameFormArray = <T>(originVal: T[], changeVal: T[]) => {
-  if (originVal.every((category) => changeVal.includes(category))) {
+  if (
+    originVal.every((category) => changeVal.includes(category)) &&
+    originVal.length === changeVal.length
+  ) {
     return null
   }
 
   return changeVal
 }
 
-const getWithoutNullFormData = (formData: CheckFormDataType) => {
+const getWithoutNullFormData = (formData: CheckFormDataWithNull) => {
   const formDataKeysWithoutNull = Object.keys(formData).filter(
-    (key) => formData[key as keyof CheckFormDataType] !== null,
-  ) as (keyof CheckFormDataType)[]
+    (key) => formData[key as keyof CheckFormDataWithNull] !== null,
+  ) as (keyof CheckFormDataWithNull)[]
 
   if (formDataKeysWithoutNull.length === 0) {
     return null
@@ -35,7 +34,7 @@ const getWithoutNullFormData = (formData: CheckFormDataType) => {
 
   const formDataWithoutNull = formDataKeysWithoutNull.reduce((acc, val) => {
     return { ...acc, [val]: formData[val] }
-  }, {})
+  }, {} as CheckFormDataWithoutNullType)
 
   return formDataWithoutNull
 }
