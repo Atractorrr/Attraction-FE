@@ -9,11 +9,11 @@ const mypageHandlers: HttpHandler[] = [
     return HttpResponse.json({
       user: {
         id: 1234,
-        name: 'kang15123',
+        nickname: 'kang15123',
         profileImg: imgUrl,
         backgroundImg: imgUrl,
         email: 'news.Ic@asdf.io',
-        categories: [
+        interest: [
           'IT_TECH',
           'BUSINESS_FINANCIAL_TECHNOLOGY',
           'DESIGN',
