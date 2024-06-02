@@ -1,16 +1,66 @@
 import React, { useEffect } from 'react'
 import { Button } from '@attraction/design-system'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { UserProfile } from '@/entities/profile'
 import { useImgUpload } from '../lib'
 
 interface ProfileSettingModalType {
   setModal: React.Dispatch<React.SetStateAction<boolean>>
+  email: string
+}
+
+// TODO: 추후에 S3 적용할 수 있다 지금은 리팩토링 하지말고 놔두기
+
+const postImgUrl = async ({
+  profileImg,
+  email,
+}: {
+  profileImg: string
+  email: string
+}) => {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${email}/profile`,
+    {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profileImg }),
+    },
+  )
+  return data
 }
 
 export default function ProfileSettingModal({
   setModal,
+  email,
 }: ProfileSettingModalType) {
+  const queryClient = useQueryClient()
   const { setImgSrc, imgSrc, fileUploadHandler } = useImgUpload()
+  const { mutate } = useMutation({
+    mutationFn: postImgUrl,
+    onMutate: async (sendUrl) => {
+      await queryClient.cancelQueries({ queryKey: ['profile', email] })
 
+      const previousData = queryClient.getQueryData<UserProfile>([
+        'profile',
+        email,
+      ])
+
+      queryClient.setQueryData<UserProfile>(['profile', email], (old) => {
+        if (old) {
+          const imgUrl = { profileImg: sendUrl.profileImg }
+
+          return { ...old, ...imgUrl }
+        }
+        return old
+      })
+
+      return { previousData }
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['profiles', email] })
+    },
+  })
   useEffect(() => {
     const height = window.scrollY
 
@@ -68,7 +118,14 @@ export default function ProfileSettingModal({
               onClick={() => setModal(false)}>
               취소
             </Button>
-            <Button className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 md:px-10">
+            <Button
+              className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 md:px-10"
+              onClick={() => {
+                if (imgSrc) {
+                  mutate({ profileImg: imgSrc, email })
+                }
+                setModal(false)
+              }}>
               저장
             </Button>
           </div>
