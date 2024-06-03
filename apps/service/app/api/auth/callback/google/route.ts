@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server'
 
 interface GoogleOAuthResponse {
   email: string
-  hasExtraDetails: string
-  shouldReissueToken: string
+  hasExtraDetails: boolean
+  shouldReissueToken: boolean
   accessToken: string
 }
 
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
     cookieStore.set('shouldReissueToken', 'true')
   }
 
-  return data.hasExtraDetails === 'true'
+  return data.hasExtraDetails
     ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
     : NextResponse.redirect(
         `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-up`,
