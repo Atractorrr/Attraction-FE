@@ -14,7 +14,11 @@ import { checkSignUpFormErr } from '../lib'
 import { postSignUpForm } from '../api'
 import { useSignUpFunnel } from '../lib/hook'
 
-export default function SignUp() {
+interface SignUpPropsType {
+  email: string | undefined
+}
+
+export default function SignUp({ email }: SignUpPropsType) {
   const signUpFieldArr = useMemo(
     () => [
       { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
@@ -25,7 +29,7 @@ export default function SignUp() {
   )
   const formMethod = useForm<SignUpFormType>({
     defaultValues: {
-      email: '',
+      email,
       nickname: '',
       isNickNameChecked: false,
       interest: [],
@@ -55,7 +59,7 @@ export default function SignUp() {
   const onSubmit = (data: SignUpFormType) => {
     if (activeIndex === signUpFieldArr.length - 1) {
       mutate({
-        email: 'swarvy0000@gmail.com',
+        email: email as string,
         nickname: data.nickname,
         interest: data.interest,
         birthDate: data.birthDate,
