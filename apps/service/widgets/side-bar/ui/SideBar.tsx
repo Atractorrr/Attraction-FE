@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ChevronDoubleLeftOutline,
   ChevronDoubleRightOutline,
@@ -12,14 +12,7 @@ import Menu from './Menu'
 
 export default function SideBar() {
   const [isOpen, setOpen] = useState(false)
-  const sideBarAreaRef = useRef<HTMLDivElement | null>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(sideBarAreaRef)
-
-  useEffect(() => {
-    if (isOutOfClicked) {
-      setOpen(false)
-    }
-  }, [isOutOfClicked])
+  const sideBarAreaRef = useClickedOutsideOfElement(() => setOpen(false))
 
   useEffect(() => {
     if (isOpen) {
@@ -38,7 +31,10 @@ export default function SideBar() {
   }, [])
 
   return (
-    <div ref={sideBarAreaRef}>
+    <div
+      ref={(node) => {
+        sideBarAreaRef.current = node
+      }}>
       <div
         className={`fixed inset-y-0 left-0 z-40 ${
           isOpen ? 'inline-block' : 'hidden'

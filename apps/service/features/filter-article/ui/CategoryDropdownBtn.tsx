@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@attraction/design-system'
 import {
   ExclamationCircleOutline,
@@ -79,15 +79,14 @@ export default function CategoryDropdownBtn({
   resetCategory,
 }: CategoryDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
-
-  useEffect(() => {
-    if (isOutOfClicked) setMenuOpen(false)
-  }, [isOutOfClicked])
+  const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
 
   return (
-    <div ref={dropdownBtnAreaRef} className="relative">
+    <div
+      ref={(node) => {
+        dropdownAreaRef.current = node
+      }}
+      className="relative">
       <Button
         className={`flex items-center justify-center rounded-lg py-2 pl-3 pr-4 text-xl transition-colors ${
           selectedCategories.length > 0

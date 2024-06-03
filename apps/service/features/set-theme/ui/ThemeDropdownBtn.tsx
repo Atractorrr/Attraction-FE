@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@attraction/design-system'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import { MoonStarOutline, SunOutline } from '@attraction/icons'
 import { Theme, useTheme } from '../model'
@@ -36,17 +36,14 @@ function ThemeDropdown({ theme, setTheme }: ThemeDropdownProps) {
 export default function ThemeDropdownBtn() {
   const { currentTheme, realTheme, setTheme } = useTheme()
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const dropdownBtnAreaRef = useRef<HTMLDivElement | null>(null)
-  const isClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
-
-  useEffect(() => {
-    if (isClicked) {
-      setMenuOpen(false)
-    }
-  }, [isClicked])
+  const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
 
   return (
-    <div ref={dropdownBtnAreaRef} className="relative">
+    <div
+      ref={(node) => {
+        dropdownAreaRef.current = node
+      }}
+      className="relative">
       <Button
         title="테마 변경"
         className="flex size-12 items-center justify-center rounded-lg border border-gray-100 bg-white p-1 text-xl transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-700"
