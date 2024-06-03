@@ -18,7 +18,12 @@ export default function ImageBox({
   return (
     <div
       className={`relative ${height} ${width} ${rounded} shrink-0 overflow-hidden `}>
-      <Image src={imgSrc} alt={alt} fill className="object-cover" />
+      <Image
+        src={imgSrc || '/images/default-1x1.jpg'}
+        alt={alt}
+        fill
+        className="object-cover"
+      />
     </div>
   )
 }
