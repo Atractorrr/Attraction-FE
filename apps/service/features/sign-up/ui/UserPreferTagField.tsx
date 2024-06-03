@@ -1,63 +1,68 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useMemo, useRef, useState } from 'react'
-import {
-  FieldArrayWithId,
-  UseFieldArrayAppend,
-  UseFieldArrayRemove,
-  useFieldArray,
-  useFormContext,
-} from 'react-hook-form'
-import { ComputerEmoji } from '@attraction/icons'
+import { useFormContext } from 'react-hook-form'
+import { CheckOutline, ComputerEmoji } from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
 import { SignUpFormType } from '../model'
+import { useDisabledBtn } from '../lib'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
-  append: UseFieldArrayAppend<SignUpFormType, 'interest'>
-  fields: FieldArrayWithId<SignUpFormType, 'interest', 'id'>[]
-  remove: UseFieldArrayRemove
   disabledTag: boolean
+  setPreferTagList: React.Dispatch<
+    React.SetStateAction<(keyof typeof NEWSLETTER_CATEGORY)[]>
+  >
 }
 
 function UserPreferTag({
   categoryKey,
-  append,
-  fields,
-  remove,
   disabledTag,
+  setPreferTagList,
 }: UserPreferTagType) {
   const checkboxRef = useRef<HTMLInputElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const {
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<SignUpFormType>()
   // TODO: 이모티콘 깜박임 문제 해결하기 (필수!!!)
   const CategoryEmoji = useMemo(
     () => getCategorySVG(NEWSLETTER_CATEGORY[categoryKey]),
     [categoryKey],
   )
-  const categoryIndex = useMemo(
-    () => fields.findIndex((el) => el.value === categoryKey),
-    [categoryKey, fields],
-  )
-
   const checkboxChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
-      setIsActive((pre) => !pre)
-      append({ value: categoryKey })
+      setPreferTagList((pre) => [...pre, categoryKey])
     } else {
-      remove(categoryIndex)
-      setIsActive((pre) => !pre)
+      setPreferTagList((pre) =>
+        pre.filter((category) => category !== categoryKey),
+      )
     }
+
+    if (errors.interest?.message) {
+      clearErrors('interest')
+    }
+
+    setIsActive((pre) => !pre)
   }
 
   return (
     <div
       className={`relative ${disabledTag && !isActive ? 'opacity-40' : 'opacity-100'}`}>
-      <input
-        type="checkbox"
-        className="absolute right-3 top-3"
-        ref={checkboxRef}
-        onChange={checkboxChangeHandler}
-        disabled={disabledTag && !isActive}
-      />
+      <label
+        htmlFor={categoryKey}
+        className={`absolute right-3 top-3 flex size-5 items-center justify-center rounded-full p-1  ${isActive ? 'bg-gray-700 dark:bg-gray-100' : 'border-2 border-gray-100 dark:border-gray-600'} focus:border-none`}>
+        <input
+          id={categoryKey}
+          type="checkbox"
+          className="peer sr-only"
+          ref={checkboxRef}
+          onChange={checkboxChangeHandler}
+          disabled={disabledTag && !isActive}
+        />
+        <CheckOutline className="invisible size-full rounded-md font-bold text-white peer-checked:visible dark:text-gray-700" />
+      </label>
       <button
         type="button"
         className={`flex w-full flex-col items-center self-center justify-self-center
@@ -78,20 +83,21 @@ function UserPreferTag({
 }
 
 export default function UserPreferTagField() {
-  const { control } = useFormContext<SignUpFormType>()
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'interest',
-  })
-  const [disabledTag, setDisabledTag] = useState(false)
+  const [preferTagList, setPreferTagList] = useState<
+    (keyof typeof NEWSLETTER_CATEGORY)[]
+  >([])
+  const {
+    setValue,
+    formState: { errors },
+  } = useFormContext<SignUpFormType>()
+
+  const { disabledTag } = useDisabledBtn(preferTagList)
 
   useEffect(() => {
-    if (fields.length >= 4) {
-      setDisabledTag(true)
-    } else {
-      setDisabledTag(false)
+    if (preferTagList.length) {
+      setValue('interest', [...preferTagList])
     }
-  }, [fields])
+  }, [preferTagList, setValue])
 
   return (
     <fieldset className="h-[calc(100%-240px)]">
@@ -110,14 +116,15 @@ export default function UserPreferTagField() {
             <UserPreferTag
               key={categoryKey}
               disabledTag={disabledTag}
+              setPreferTagList={setPreferTagList}
               categoryKey={categoryKey as keyof typeof NEWSLETTER_CATEGORY}
-              append={append}
-              fields={fields}
-              remove={remove}
             />
           ))}
         </div>
       </div>
+      {errors.interest?.message && (
+        <p className="mt-2 text-red-500">{errors.interest.message}</p>
+      )}
     </fieldset>
   )
 }

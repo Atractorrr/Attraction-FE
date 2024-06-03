@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { FormProvider, useForm, useFormState } from 'react-hook-form'
+import { useMemo } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@attraction/design-system'
 import {
   SignUpFormType,
@@ -9,25 +9,35 @@ import {
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
+import { checkSignUpFormErr } from '../lib'
+import { postSignUpForm } from '../api'
+import { useSignUpFunnel } from '../lib/hook'
 
-export default function SignUp() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [activeBtn, setActiveBtn] = useState(false)
-  const [checkError, setCheckError] = useState(false)
+interface SignUpPropsType {
+  email: string | undefined
+}
 
-  const signUpFieldArr = [
-    <UserInfoField key={0} />,
-    <UserJobField key={1} />,
-    <UserPreferTagField key={2} />,
-  ]
+export default function SignUp({ email }: SignUpPropsType) {
+  const router = useRouter()
+  const signUpFieldArr = useMemo(
+    () => [
+      { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
+      { activeComponent: <UserJobField key={1} />, type: 'occupation' },
+      { activeComponent: <UserPreferTagField key={2} />, type: 'interest' },
+    ],
+    [],
+  )
   const formMethod = useForm<SignUpFormType>({
     defaultValues: {
-      email: '',
-      nickName: '',
+      email,
+      nickname: '',
       isNickNameChecked: false,
       interest: [],
       birthDate: '',
       userExpiration: 6,
+      adPolices: false,
       occupation: '',
       selectPolicyAll: false,
       policies: [
@@ -43,42 +53,45 @@ export default function SignUp() {
     },
   })
 
-  const { errors } = useFormState({ control: formMethod.control })
-
-  const onSubmit = () => {
-    // TODO: 백엔드랑 맞추기
-    // if (activeIndex === signUpFieldArr.length - 1) {
-    // }
+  const { activeIndex, setActiveBtn } = useSignUpFunnel({
+    errors: formMethod.formState.errors,
+    signUpFieldArr,
+  })
+  const { mutate } = useMutation({
+    mutationFn: postSignUpForm,
+    onSuccess: () => {
+      router.push('/')
+    },
+  })
+  const onSubmit = (data: SignUpFormType) => {
+    if (activeIndex === signUpFieldArr.length - 1) {
+      mutate({
+        email: email as string,
+        nickname: data.nickname,
+        interest: data.interest,
+        birthDate: data.birthDate,
+        adPolices: data.adPolices,
+        occupation: data.occupation,
+        userExpiration: data.userExpiration,
+      })
+    }
   }
-
-  useEffect(() => {
-    if (activeBtn) {
-      setCheckError(true)
-    }
-  }, [activeBtn])
-
-  useEffect(() => {
-    if (
-      checkError &&
-      !Object.keys(errors).length &&
-      activeIndex < signUpFieldArr.length - 1
-    ) {
-      setActiveIndex((pre) => pre + 1)
-      setActiveBtn(false)
-      setCheckError(false)
-    }
-  }, [activeIndex, checkError, errors, signUpFieldArr.length])
 
   return (
     <FormProvider {...formMethod}>
       <form
         className="flex size-full max-w-[540px] flex-col justify-between bg-white p-5 sm:rounded-3xl sm:p-10 dark:bg-gray-800"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
-        {signUpFieldArr[activeIndex]}
+        {signUpFieldArr[activeIndex].activeComponent}
         <Button
           type="submit"
           disabled={!!Object.keys(formMethod.formState.errors).length}
           onClick={() => {
+            checkSignUpFormErr(
+              signUpFieldArr[activeIndex].type,
+              formMethod.getValues,
+              formMethod.setError,
+            )
             setActiveBtn(true)
           }}
           className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>

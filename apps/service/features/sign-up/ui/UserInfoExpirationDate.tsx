@@ -1,13 +1,15 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { USER_INFO_EXPIRATION, UserSettingList } from '@/entities/user-setting'
 import { SignUpFormType } from '../model'
 
 export default function UserInfoExpirationDate() {
-  const { setValue, watch } = useFormContext<SignUpFormType>()
+  const { setValue } = useFormContext<SignUpFormType>()
   const setExpirationFormValue = (keyItem: string) => {
     setValue('userExpiration', Number(keyItem))
   }
-  const watchUserExpiration = watch('userExpiration').toString()
+  const watchUserExpiration = useWatch<SignUpFormType>({
+    name: 'userExpiration',
+  }).toString()
 
   return (
     <label
