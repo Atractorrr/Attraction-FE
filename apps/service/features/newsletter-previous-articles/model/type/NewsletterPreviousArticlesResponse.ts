@@ -1,6 +1,7 @@
-import { NewsletterPreviousArticle } from '@/entities/newsletter-previous-article-item'
+import { NewsletterPreviousArticleData } from '@/entities/newsletter-previous-article-item'
 
 export interface NewsletterPreviousArticlesResponse {
-  data: NewsletterPreviousArticle[]
   status: number
+  message: string
+  data: NewsletterPreviousArticleData[]
 }

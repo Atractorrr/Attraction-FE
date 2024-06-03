@@ -7,13 +7,21 @@ interface EmblaButtonProps {
 }
 
 const LEFT = {
-  icon: <ChevronLeftOutline className="size-5" />,
+  icon: (
+    <div className="size-9 rounded-full p-1 transition-all hover:bg-gray-50 dark:hover:bg-gray-700">
+      <ChevronLeftOutline className="size-full" />
+    </div>
+  ),
   ariaLabel: 'Previous',
   className: 'embla__left__button',
 }
 
 const RIGHT = {
-  icon: <ChevronRightOutline className="size-5" />,
+  icon: (
+    <div className="size-9 rounded-full p-1 transition-all hover:bg-gray-50 dark:hover:bg-gray-700">
+      <ChevronRightOutline className="size-full" />
+    </div>
+  ),
   ariaLabel: 'Next',
   className: 'embla__right__button',
 }

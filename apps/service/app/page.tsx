@@ -1,8 +1,14 @@
 import { cookies } from 'next/headers'
+import dynamic from 'next/dynamic'
 import { MainAds } from '@/widgets/main-ads'
 import { RecentArticlesContainer } from '@/widgets/recent-articles-container'
-import { TrendNewsletters } from '@/widgets/trend-newsletters'
 import { UserRank } from '@/widgets/user-rank'
+
+const TrendNewsletters = dynamic(
+  () =>
+    import('@/widgets/trend-newsletters').then((mod) => mod.TrendNewsletters),
+  { ssr: false },
+)
 
 export default function Home() {
   const email = cookies().has('email') ? cookies().get('email')?.value : ''

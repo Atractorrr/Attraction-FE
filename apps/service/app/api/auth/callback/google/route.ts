@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server'
 
 interface GoogleOAuthResponse {
   email: string
-  hasExtraDetails?: boolean
-  shouldReissueToken?: boolean
+  hasExtraDetails: boolean
+  shouldReissueToken: boolean
   accessToken: string
 }
 
@@ -32,20 +32,22 @@ export async function GET(request: Request) {
 
   const data: GoogleOAuthResponse = await response.json()
 
-  cookieStore.set('accessToken', data.accessToken, {
-    path: '/',
-    maxAge: 60 * 60,
-  })
-  cookieStore.set('email', data.email, {
-    path: '/',
-    maxAge: 60 * 60,
-  })
+  if (data.accessToken.length) {
+    cookieStore.set('accessToken', data.accessToken, {
+      path: '/',
+      maxAge: 60 * 60,
+    })
+    cookieStore.set('email', data.email, {
+      path: '/',
+      maxAge: 60 * 60,
+    })
+  }
 
   if (data.shouldReissueToken) {
     cookieStore.set('shouldReissueToken', 'true')
   }
 
-  return data.hasExtraDetails || response.status === 201
+  return data.hasExtraDetails
     ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
     : NextResponse.redirect(
         `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-up`,

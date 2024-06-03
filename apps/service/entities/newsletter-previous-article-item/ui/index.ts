@@ -1,1 +1,1 @@
-export { default as NewsletterPreviousArticles } from './NewsletterPreviousArticle'
+export { default as NewsletterPreviousArticleItem } from './NewsletterPreviousArticleItem'
