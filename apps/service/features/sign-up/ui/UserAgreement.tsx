@@ -1,6 +1,7 @@
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import { useEffect } from 'react'
 import { SignUpFormType } from '../model'
+import SignUpCheckBox from './SignUpCheckBox'
 
 export default function UserAgreement() {
   const {
@@ -10,10 +11,11 @@ export default function UserAgreement() {
     formState: { errors },
     clearErrors,
     setError,
-    watch,
+    getValues,
   } = useFormContext<SignUpFormType>()
   const { fields } = useFieldArray({ control, name: 'policies' })
   const policesValue = useWatch({ control, name: 'policies' })
+  const policesSelectAll = useWatch({ control, name: 'selectPolicyAll' })
 
   const handleSelectAll = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
@@ -31,6 +33,8 @@ export default function UserAgreement() {
     if (policesValue.every((el) => el.value)) {
       setValue('selectPolicyAll', true)
       clearErrors('selectPolicyAll')
+    } else {
+      setValue('selectPolicyAll', false)
     }
   }, [clearErrors, policesValue, setError, setValue])
 
@@ -38,37 +42,33 @@ export default function UserAgreement() {
     <div className="rounded-lg border border-gray-100 p-5 dark:border-gray-700">
       <div className="mb-2 flex justify-between border-b border-b-gray-100 pb-4 dark:border-gray-700">
         <p>모두 동의</p>
-        <input
-          type="checkbox"
-          {...register('selectPolicyAll', {
+        <SignUpCheckBox
+          inputId="checkAll"
+          register={register('selectPolicyAll', {
             validate: () => {
-              if (!watch('selectPolicyAll')) {
+              if (!getValues('selectPolicyAll')) {
                 return '필수 약관에 동의해주세요'
               }
               return true
             },
+            onChange: handleSelectAll,
           })}
-          onChange={handleSelectAll}
+          activeCheckbox={policesSelectAll}
         />
       </div>
       {fields.map((item, i) => {
         return (
-          <div key={item.id} className="flex justify-between gap-4 py-2">
+          <div key={item.id} className="flex justify-between gap-2 py-4">
             <p className="">
               (필수) 서비스 이용약관 동의{' '}
               <a href="/" className="text-sm">
                 전문보기
               </a>
             </p>
-            <input
-              type="checkbox"
-              {...register(`policies.${i}.value`, {
-                onChange: (e: React.FormEvent<HTMLInputElement>) => {
-                  if (!e.currentTarget.checked) {
-                    setValue('selectPolicyAll', false)
-                  }
-                },
-              })}
+            <SignUpCheckBox
+              inputId={`checkbox-${item.type}`}
+              activeCheckbox={policesValue[i].value}
+              register={register(`policies.${i}.value`)}
             />
           </div>
         )

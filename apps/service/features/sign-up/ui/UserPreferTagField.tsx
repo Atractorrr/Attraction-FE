@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { ComputerEmoji } from '@attraction/icons'
+import { CheckOutline, ComputerEmoji } from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
 import { SignUpFormType } from '../model'
@@ -49,13 +50,19 @@ function UserPreferTag({
   return (
     <div
       className={`relative ${disabledTag && !isActive ? 'opacity-40' : 'opacity-100'}`}>
-      <input
-        type="checkbox"
-        className="absolute right-3 top-3"
-        ref={checkboxRef}
-        onChange={checkboxChangeHandler}
-        disabled={disabledTag && !isActive}
-      />
+      <label
+        htmlFor={categoryKey}
+        className={`absolute right-3 top-3 flex size-5 items-center justify-center rounded-full p-1  ${isActive ? 'bg-gray-700 dark:bg-gray-100' : 'border-2 border-gray-100 dark:border-gray-600'} focus:border-none`}>
+        <input
+          id={categoryKey}
+          type="checkbox"
+          className="peer sr-only"
+          ref={checkboxRef}
+          onChange={checkboxChangeHandler}
+          disabled={disabledTag && !isActive}
+        />
+        <CheckOutline className="invisible size-full rounded-md font-bold text-white peer-checked:visible dark:text-gray-700" />
+      </label>
       <button
         type="button"
         className={`flex w-full flex-col items-center self-center justify-self-center
