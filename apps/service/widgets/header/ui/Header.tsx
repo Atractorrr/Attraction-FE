@@ -23,7 +23,7 @@ export default function Header({ isLogin }: { isLogin: boolean }) {
 
   return (
     <header
-      className={`bg-gray-50 pb-6 pt-12 md:mb-6 md:bg-transparent md:py-0 dark:bg-gray-900 md:dark:bg-transparent ${
+      className={`pb-6 pt-12 md:mb-6 md:py-0 ${
         segments.some((s) => s === 'article') ? 'hidden md:block' : ''
       }`}>
       <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">

@@ -73,13 +73,17 @@ const inboxHandlers: HttpHandler[] = [
         ? filteredArticles.filter((_, i) => i < size)
         : filteredArticles
 
-    const data: UserArticlesResponse = Object.assign(defaultPagination, {
-      data: { content: resultOfArticles },
-      size: resultOfArticles.length,
-      number: page,
-      first: page === 0,
-      last: page >= 2 || resultOfArticles.length < size,
-    })
+    const data: UserArticlesResponse = {
+      data: Object.assign(defaultPagination, {
+        content: resultOfArticles,
+        size: resultOfArticles.length,
+        number: page,
+        first: page === 0,
+        last: page >= 2 || resultOfArticles.length < size,
+      }),
+      status: 'OK',
+      message: 'asdf',
+    }
 
     return HttpResponse.json(data)
   }),

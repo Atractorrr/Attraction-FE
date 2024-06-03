@@ -130,7 +130,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                   : undefined
               }>
               {isLoading && (
-                <div className="flex min-h-full items-center justify-center py-10">
+                <div className="flex min-h-full items-center justify-center pb-40 pt-32">
                   <LoadingSpinner />
                 </div>
               )}
@@ -142,7 +142,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 />
               )}
               {data && data.pages.length === 0 && (
-                <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
+                <div className="flex min-h-full items-center justify-center px-2 pb-40 pt-32">
                   {searchValue ? (
                     <GuideTxt
                       title="검색 결과가 없어요"
@@ -158,7 +158,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 </div>
               )}
               {isError && (
-                <div className="flex min-h-full items-center justify-center px-2 pb-16 pt-12">
+                <div className="flex min-h-full items-center justify-center px-2 pb-40 pt-32">
                   <GuideTxt
                     title="아티클을 가져오는데 실패했어요"
                     sub="새로고침 후 다시 시도 부탁드려요"

@@ -1,10 +1,10 @@
+import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 
 import '@/public/fonts/fonts.css'
 import './globals.css'
 
 import initMSW from '@/__mocks__'
-import { cookies } from 'next/headers'
 import Provider from './provider'
 import Widget from './widget'
 

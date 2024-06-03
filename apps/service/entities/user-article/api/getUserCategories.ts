@@ -10,5 +10,9 @@ export default async function getUserCategories({
   )
   const data: { categories: NewsletterCategory[] } = await res.json()
 
+  if (!res.ok) {
+    throw Error('카테고리를 가져오는데 실패했어요')
+  }
+
   return data
 }

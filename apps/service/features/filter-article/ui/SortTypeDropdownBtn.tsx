@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
 
@@ -38,8 +38,7 @@ export default function SortTypeDropdownBtn({
   setSortType,
 }: SortTypeDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
+  const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
   const setSortTypeAndMenu = useCallback(
     (type: SortType) => {
       setSortType(type)
@@ -48,12 +47,12 @@ export default function SortTypeDropdownBtn({
     [setSortType],
   )
 
-  useEffect(() => {
-    if (isOutOfClicked) setMenuOpen(false)
-  }, [isOutOfClicked])
-
   return (
-    <div ref={dropdownBtnAreaRef} className="relative">
+    <div
+      ref={(node) => {
+        dropdownAreaRef.current = node
+      }}
+      className="relative">
       <Button
         className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
         onClick={() => setMenuOpen((prev) => !prev)}>
