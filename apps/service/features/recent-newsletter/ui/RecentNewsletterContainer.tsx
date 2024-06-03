@@ -32,33 +32,35 @@ export default function RecentNewsletterContainer({
         ">
             <div className="flex min-w-fit items-start justify-start gap-4 px-8 py-2">
               {recentNewLetterList.map((newsItem) => (
-                <NewsCard key={newsItem.id}>
-                  <NewsCard.Thumbnail
-                    imgSrc={newsItem.image.thumbnail}
-                    readingPercentage={newsItem.info.readingPercentage}
-                    readingTime={newsItem.info.readingTime}
-                    alt={`아티클 썸네일 이미지: ${newsItem.info.title}`}
-                  />
-                  <NewsCard.Content>
-                    <NewsCard.Profile
-                      width="w-8"
-                      height="h-8"
-                      rounded="rounded-full"
-                      imgSrc={newsItem.image.profile}
-                      alt={`뉴스레터 프로필 이미지: ${newsItem.info.name}`}
+                <Link href={`inbox/article/${newsItem.id}`} key={newsItem.id}>
+                  <NewsCard key={newsItem.id}>
+                    <NewsCard.Thumbnail
+                      imgSrc={newsItem.image.thumbnail}
+                      readingPercentage={newsItem.info.readingPercentage}
+                      readingTime={newsItem.info.readingTime}
+                      alt={`아티클 썸네일 이미지: ${newsItem.info.title}`}
                     />
-                    <div className="p-0 md:pr-6">
-                      <NewsCard.Title
-                        type="main"
-                        content={newsItem.info.title}
+                    <NewsCard.Content>
+                      <NewsCard.Profile
+                        width="w-8"
+                        height="h-8"
+                        rounded="rounded-full"
+                        imgSrc={newsItem.image.profile}
+                        alt={`뉴스레터 프로필 이미지: ${newsItem.info.name}`}
                       />
-                      <NewsCard.Title
-                        type="sub"
-                        content={`${newsItem.info.name} · 1일 전`}
-                      />
-                    </div>
-                  </NewsCard.Content>
-                </NewsCard>
+                      <div className="p-0 md:pr-6">
+                        <NewsCard.Title
+                          type="main"
+                          content={newsItem.info.title}
+                        />
+                        <NewsCard.Title
+                          type="sub"
+                          content={`${newsItem.info.name} · 1일 전`}
+                        />
+                      </div>
+                    </NewsCard.Content>
+                  </NewsCard>
+                </Link>
               ))}
             </div>
           </div>

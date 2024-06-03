@@ -5,6 +5,7 @@ import {
   ContentTitle,
   ImageBox,
 } from '@/shared/ui'
+import Link from 'next/link'
 import { SubscribeItem } from '../model'
 
 interface SubscribeListProps {
@@ -19,7 +20,10 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
         {subscribeList ? (
           <ul className="h-60 overflow-y-auto lg:h-[calc(100%-64px)]">
             {subscribeList.map((item) => (
-              <li className="p-2" key={item.id}>
+              <Link
+                href={`newsletter/${item.id}`}
+                className="p-2"
+                key={item.id}>
                 <ContentContainer>
                   <ImageBox
                     width="w-8"
@@ -30,7 +34,7 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
                   />
                   <ContentTitle type="main" content={item.title} />
                 </ContentContainer>
-              </li>
+              </Link>
             ))}
           </ul>
         ) : (
