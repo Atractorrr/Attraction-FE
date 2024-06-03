@@ -10,6 +10,7 @@ import {
   UserPreferTagField,
 } from '@/features/sign-up'
 import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { checkSignUpFormErr } from '../lib'
 import { postSignUpForm } from '../api'
 import { useSignUpFunnel } from '../lib/hook'
@@ -19,6 +20,7 @@ interface SignUpPropsType {
 }
 
 export default function SignUp({ email }: SignUpPropsType) {
+  const router = useRouter()
   const signUpFieldArr = useMemo(
     () => [
       { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
@@ -55,7 +57,12 @@ export default function SignUp({ email }: SignUpPropsType) {
     errors: formMethod.formState.errors,
     signUpFieldArr,
   })
-  const { mutate } = useMutation({ mutationFn: postSignUpForm })
+  const { mutate } = useMutation({
+    mutationFn: postSignUpForm,
+    onSuccess: () => {
+      router.push('/')
+    },
+  })
   const onSubmit = (data: SignUpFormType) => {
     if (activeIndex === signUpFieldArr.length - 1) {
       mutate({
