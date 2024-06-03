@@ -1,11 +1,17 @@
-import { NewsletterCategory, UploadDay } from '@/shared/type'
+import { NewsletterCategory } from '@/shared/type'
 
-export default interface NewsletterProfileResponse {
+export interface NewsletterProfileData {
   name: string
   description: string
-  uploadDays: UploadDay[]
+  uploadDays: string
   category: NewsletterCategory
   mainLink: string
   subscribeLink: string
-  thumbnail: string
+  thumbnailUrl: string
+}
+
+export interface NewsletterProfileResponse {
+  status: string
+  message: string
+  data: NewsletterProfileData
 }

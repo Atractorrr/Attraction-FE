@@ -1,1 +1,1 @@
-export type { default as NewsletterProfileResponse } from './newsletterProfileResponse'
+export * from './newsletterProfileResponse'

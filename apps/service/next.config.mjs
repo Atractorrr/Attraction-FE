@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*',
       },
+      {
+        protocol: 'http',
+        hostname: '*',
+      },
     ],
   },
   webpack(config) {

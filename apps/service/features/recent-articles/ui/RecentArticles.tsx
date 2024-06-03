@@ -1,7 +1,7 @@
 'use client'
 
 import { EmblaOptionsType } from 'embla-carousel'
-import { Carousel } from '@/shared/ui'
+import { Carousel, GuideTxt } from '@/shared/ui'
 import {
   RecentArticle,
   RecentArticleItem,
@@ -12,17 +12,30 @@ const carouselOptions: EmblaOptionsType = {
 }
 
 interface RecentArticlesProps {
-  mainArticles: RecentArticle[]
+  mainPageArticles: RecentArticle[]
 }
 
-export default function RecentArticles({ mainArticles }: RecentArticlesProps) {
-  const articleList = mainArticles.map((articleProps) => (
-    <RecentArticleItem key={articleProps.id} {...articleProps} />
-  ))
+export default function RecentArticles({
+  mainPageArticles,
+}: RecentArticlesProps) {
+  const articleList = mainPageArticles.length
+    ? mainPageArticles.map((articleProps) => (
+        <RecentArticleItem key={articleProps.id} {...articleProps} />
+      ))
+    : []
 
   return (
-    <section className="overflow-x-auto">
-      <Carousel options={carouselOptions} slides={articleList} showBlur />
-    </section>
+    <div>
+      {mainPageArticles.length ? (
+        <Carousel options={carouselOptions} slides={articleList} showBlur />
+      ) : (
+        <div className="pb-40 pt-32">
+          <GuideTxt
+            title="받은 뉴스레터가 없어요"
+            sub="뉴스레터를 구독해볼까요?"
+          />
+        </div>
+      )}
+    </div>
   )
 }

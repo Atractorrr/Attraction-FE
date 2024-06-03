@@ -28,10 +28,10 @@ export default function AuthButton({ isLogin }: AuthButtonProps) {
   }, [isOutOfClicked])
 
   return isLogin ? (
-    <div ref={dropdownBtnAreaRef} className="relative">
+    <div ref={dropdownBtnAreaRef} className="relative flex">
       <Button
         type="button"
-        className="size-12 rounded-lg border border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800"
+        className="size-12 rounded-lg border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800"
         onClick={() => setMenuOpen((prev) => !prev)}
       />
       {isMenuOpen ? <AuthButtonDropdown /> : null}
