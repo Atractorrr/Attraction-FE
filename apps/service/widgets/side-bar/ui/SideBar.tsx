@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import {
+  ChevronDoubleLeftOutline,
+  ChevronDoubleRightOutline,
+} from '@attraction/icons'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import Footer from './Footer'
 import MainLogo from './MainLogo'
 import Menu from './Menu'
-import DoubleArrowLeft from './DoubleArrowLeft'
-import DoubleArrowRight from './DoubleArrowRight'
 
 export default function SideBar() {
   const [isOpen, setOpen] = useState(false)
@@ -51,7 +53,7 @@ export default function SideBar() {
                 title="메뉴 닫기"
                 onClick={() => setOpen(false)}>
                 <span className="blind">메뉴 닫기</span>
-                <DoubleArrowLeft />
+                <ChevronDoubleLeftOutline />
               </button>
             </div>
             <Menu />
@@ -74,7 +76,7 @@ export default function SideBar() {
             title="메뉴 열기"
             onClick={() => setOpen(true)}>
             <span className="blind">메뉴 열기</span>
-            <DoubleArrowRight />
+            <ChevronDoubleRightOutline />
           </button>
         </div>
         <Menu mini />
