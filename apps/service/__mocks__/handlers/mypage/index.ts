@@ -5,11 +5,11 @@ const imgUrl =
   'https://images.pexels.com/photos/22669930/pexels-photo-22669930.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load'
 
 const mypageHandlers: HttpHandler[] = [
-  get('/v1/member/:memberId', () => {
+  get('/v1/user/:userId', () => {
     return HttpResponse.json({
       user: {
         id: 1234,
-        name: 'kang15123',
+        nickname: 'kang15123',
         profileImg: imgUrl,
         backgroundImg: imgUrl,
         email: 'news.Ic@asdf.io',
@@ -19,6 +19,8 @@ const mypageHandlers: HttpHandler[] = [
           'DESIGN',
           'TREND_LIFE',
         ],
+        userExpiration: 6,
+        occupation: 'RETIREE',
       },
     })
   }),
@@ -130,7 +132,7 @@ const mypageHandlers: HttpHandler[] = [
       ],
     })
   }),
-  get('/v1/member/:memberId/calendar', () => {
+  get('/v1/user/:userId/calendar', () => {
     return HttpResponse.json({
       calendarData: [
         {

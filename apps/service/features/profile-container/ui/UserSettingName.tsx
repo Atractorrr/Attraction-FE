@@ -1,55 +1,44 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import { useMutation } from '@tanstack/react-query'
+import React, { useCallback } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { SettingForm } from '../model'
+import { useCheckDuplicate } from '../lib'
 
-const User = {
-  nickName: 'Lee',
-  interest: ['IT_TECH', 'CURRENT_AFFAIRS_SOCIETY'],
-  birthDate: '20200202',
-  userExpiration: 6,
-  occupation: '관리직',
+interface UserSettingNameType {
+  nickname: string
 }
 
-const postDuplicateName = async (nickName: string) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/join/username-duplicate`,
-    {
-      method: 'POST',
-      body: JSON.stringify(nickName),
-    },
-  ).then((res) => res.json())
-
-  return data
-}
-
-export default function UserSettingName() {
+export default function UserSettingName({ nickname }: UserSettingNameType) {
   const {
     register,
     setValue,
-    watch,
     formState: { errors },
     getValues,
     clearErrors,
+    control,
   } = useFormContext<SettingForm>()
-
-  const { mutateAsync } = useMutation({
-    mutationFn: postDuplicateName,
+  const watchNicknameChecked = useWatch<SettingForm>({
+    name: 'isNicknameChecked',
+    control,
   })
 
-  const duplicateCheckHandler = async () => {
-    await mutateAsync(getValues('nickName'))
-    // const data = await mutateAsync(getValues('nickName'))
+  const duplicateSuccessHandler = useCallback(() => {
+    setValue('isNicknameChecked', true)
+    clearErrors('nickname')
+  }, [clearErrors, setValue])
 
-    // if (data.message === '409 (MSW)') {
-    //   setError('nickName', { message: '중복된 이메일 입니다' })
-    //   setIsChecked(false)
-    // } else {
+  const duplicateErrorHandler = useCallback(() => {
+    setValue('isNicknameChecked', false)
+  }, [setValue])
 
-    setValue('isNickNameChecked', true)
-    clearErrors('nickName')
-    // }
-  }
+  const { mutate } = useCheckDuplicate({
+    successHandler: duplicateSuccessHandler,
+    errorHandler: duplicateErrorHandler,
+  })
+
+  const duplicateCheckHandler = useCallback(() => {
+    mutate({ nickname: getValues('nickname') })
+  }, [getValues, mutate])
+
   return (
     <fieldset>
       <legend className="mb-2 text-sm font-medium">닉네임</legend>
@@ -58,12 +47,12 @@ export default function UserSettingName() {
           id="nickName"
           className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
-          {...register('nickName', {
+          {...register('nickname', {
             onChange: () => {
-              setValue('isNickNameChecked', false)
+              setValue('isNicknameChecked', false)
             },
             validate: (value) => {
-              if (value !== User.nickName && !watch('isNickNameChecked')) {
+              if (value !== nickname && !watchNicknameChecked) {
                 return '중복 확인을 해주세요'
               }
               return true
@@ -77,10 +66,10 @@ export default function UserSettingName() {
           중복확인
         </button>
       </div>
-      {errors.nickName?.message && (
-        <p className="mt-2 text-red-500">{errors.nickName.message}</p>
+      {errors.nickname?.message && (
+        <p className="mt-2 text-red-500">{errors.nickname.message}</p>
       )}
-      {getValues('isNickNameChecked') && (
+      {getValues('isNicknameChecked') && (
         <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>
       )}
     </fieldset>
