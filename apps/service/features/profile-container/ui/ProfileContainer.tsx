@@ -1,7 +1,12 @@
 'use client'
 
 import { Button } from '@attraction/design-system'
-import { CogOutline, ShareOutline } from '@attraction/icons'
+import {
+  CameraOutline,
+  CogOutline,
+  PaintOutline,
+  ShareOutline,
+} from '@attraction/icons'
 import { useState } from 'react'
 import {
   ProfileBackground,
@@ -44,7 +49,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
               onClick={() => {
                 setBackgroundModal(true)
               }}>
-              <CogOutline className="size-5 opacity-100" />
+              <PaintOutline className="size-5 opacity-100" />
               <span className="opacity-100">배경 이미지 수정</span>
             </Button>
           </div>
@@ -57,7 +62,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
                     type="button"
                     onClick={() => setProfileModal(true)}
                     className="flex size-full flex-col items-center justify-center gap-2 rounded-full bg-black text-white opacity-0 transition-opacity hover:opacity-60">
-                    <CogOutline className="size-9" />
+                    <CameraOutline className="size-9" />
                     이미지 변경
                   </button>
                 </div>

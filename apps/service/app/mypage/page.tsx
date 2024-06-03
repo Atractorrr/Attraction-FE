@@ -5,22 +5,20 @@ import {
   RecentNewsletterContainer,
   fetchNewsletterList,
 } from '@/features/recent-newsletter'
+import { cookies } from 'next/headers'
 
-interface MyPageProps {
-  params: { userId: string }
-}
+export default async function MyPage() {
+  const email = cookies().get('email')?.value as string
 
-export default async function MyPage({ params }: MyPageProps) {
-  // TODO: 사이즈 커질때 배치 신경(max-width 설정)
   const [recentNewLetterList, subscribeList] = await Promise.all([
-    fetchNewsletterList(params.userId),
-    fetchSubscribeList(params.userId),
+    fetchNewsletterList(email),
+    fetchSubscribeList(email),
   ])
 
   return (
     <div className="w-full">
-      <ProfileContainer userId={params.userId} />
-      <UserRecord userId={params.userId} />
+      <ProfileContainer userId={email} />
+      <UserRecord userId={email} />
       <div className="mt-6 flex flex-col items-stretch justify-start gap-6 lg:flex-row lg:justify-between">
         <div className="h-auto w-full lg:w-2/3">
           <RecentNewsletterContainer

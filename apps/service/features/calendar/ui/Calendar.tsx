@@ -16,17 +16,19 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
   ssr: false,
 })
 
+const theme = typeof window !== 'undefined' ? localStorage.getItem('theme') : ''
+
 export default function Calendar({ calendarData }: CalendarProps) {
   return (
     <Background className="flex h-full justify-center p-6">
       <ActivityCalendarNoSSR
-        // TODO: 처음부터 끝까지 보여줄 로직 구상하기
         data={calendarData}
         labels={CALENDAR_LABELS}
+        colorScheme={theme as 'light' | 'dark'}
+        theme={CALENDAR_THEME}
         blockSize={10}
         showWeekdayLabels
         hideMonthLabels={false}
-        theme={CALENDAR_THEME}
         renderBlock={(block, activity) => {
           const message = activity.count
             ? `${activity.date}에 ${activity.count}개의 상식을 쌓았어요 🎉`
