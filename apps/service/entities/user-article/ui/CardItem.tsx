@@ -19,7 +19,7 @@ export default function CardItem({ data, type }: CardItemProps) {
             : 'mb-2 h-[56vw] max-h-60 min-h-40 w-full sm:h-[16vw] sm:max-h-48'
         }`}>
         <Image
-          src={data.thumbnailUrl}
+          src={data.thumbnailUrl || '/images/default-16x9.jpg'}
           className="size-full scale-100 object-cover transition-transform group-hover:scale-110"
           alt={`아티클 썸네일 이미지: ${data.title}`}
           width={1280}
@@ -45,7 +45,7 @@ export default function CardItem({ data, type }: CardItemProps) {
             type === 'list' ? 'hidden' : 'block'
           } mr-2 block size-7 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`}>
           <Image
-            src={data.newsletter.thumbnailUrl}
+            src={data.newsletter.thumbnailUrl || '/images/default-1x1.jpg'}
             alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
             className="size-full object-cover"
             width={300}

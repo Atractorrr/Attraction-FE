@@ -23,5 +23,9 @@ export default async function getUserArticleList({
   const res = await fetch(`${path}?${searchParamsToString}`)
   const data: UserArticlesResponse = await res.json()
 
+  if (!res.ok) {
+    throw Error('보관함 데이터를 가져오는데 실패했어요')
+  }
+
   return data
 }

@@ -16,7 +16,7 @@ export default async function putUserArticle({
   )
   const data = await res.json()
 
-  if (res.status >= 400) {
+  if (!res.ok) {
     throw new Error(data?.message ?? '읽은 양 추적에 실패했어요')
   }
 

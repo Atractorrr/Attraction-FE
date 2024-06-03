@@ -16,8 +16,10 @@ export interface Article {
 }
 
 export type UserArticlesResponse = {
-  data: { content: Article[] }
-} & Pagination
+  data: { content: Article[] } & Pagination
+  message: string
+  status: string
+}
 
 export type UserArticleParams = {
   userId: string | number
