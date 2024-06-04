@@ -13,18 +13,20 @@ interface ProfileSettingModalType {
 // TODO: 추후에 S3 적용할 수 있다 지금은 리팩토링 하지말고 놔두기
 
 const postImgUrl = async ({
-  profileImg,
+  fileImgSrc,
   email,
+  type,
 }: {
-  profileImg: string
+  fileImgSrc: string
   email: string
+  type: 'profile' | 'background'
 }) => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${email}/profile`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${email}/${type === 'profile' ? 'profile' : 'background'}`,
     {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ profileImg }),
+      body: JSON.stringify({ fileImgSrc }),
     },
   )
   return data
@@ -51,8 +53,8 @@ export default function ProfileSettingModal({
         if (old) {
           const imgUrl =
             type === 'profile'
-              ? { profileImg: sendUrl.profileImg }
-              : { backgroundImg: sendUrl.profileImg }
+              ? { profileImg: sendUrl.fileImgSrc }
+              : { backgroundImg: sendUrl.fileImgSrc }
 
           return { ...old, ...imgUrl }
         }
@@ -115,7 +117,7 @@ export default function ProfileSettingModal({
             className="rounded-lg bg-red-50 px-5 py-2 text-red-400 md:px-10"
             onClick={() => {
               setFileInfo((pre) => ({ ...pre, src: '', name: '' }))
-              mutate({ profileImg: '', email })
+              mutate({ fileImgSrc: '', email, type })
               setModal(false)
             }}>
             삭제
@@ -130,7 +132,7 @@ export default function ProfileSettingModal({
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 md:px-10"
               onClick={() => {
                 if (fileInfo.src.length !== 0) {
-                  mutate({ profileImg: fileInfo.src, email })
+                  mutate({ fileImgSrc: fileInfo.src, email, type })
                 }
                 setModal(false)
               }}>
