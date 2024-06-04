@@ -60,9 +60,12 @@ export default function SignUp({ email }: SignUpPropsType) {
   const { mutate } = useMutation({
     mutationFn: postSignUpForm,
     onSuccess: async () => {
-      await fetch(`${process.env.NEXT_PUBLIC_SUCCESS_REGISTER_URL}`, {
-        method: 'DELETE',
-      })
+      await fetch(
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/register-success`,
+        {
+          method: 'DELETE',
+        },
+      )
 
       router.push('/')
     },
