@@ -41,15 +41,23 @@ export async function GET(request: Request) {
       path: '/',
       maxAge: 60 * 60,
     })
-  }
 
-  if (data.shouldReissueToken) {
-    cookieStore.set('shouldReissueToken', 'true')
+    if (data.shouldReissueToken) {
+      cookieStore.set('shouldReissueToken', 'true', {
+        path: '/',
+        maxAge: 60 * 60,
+      })
+    }
+
+    if (!data.hasExtraDetails) {
+      cookieStore.set('notRegistered', 'true', {
+        path: '/',
+        maxAge: 60 * 60,
+      })
+    }
   }
 
   return data.hasExtraDetails
-    ? NextResponse.redirect(process.env.NEXT_PUBLIC_FE_URL as string)
-    : NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_FE_URL as string}/sign-up`,
-      )
+    ? NextResponse.redirect(new URL('/', request.url))
+    : NextResponse.redirect(new URL('/sign-up', request.url))
 }
