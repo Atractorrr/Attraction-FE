@@ -3,7 +3,6 @@
 import { Suspense } from 'react'
 import { Background, ErrorGuideTxt, LoadingSpinner } from '@/shared/ui'
 import Image from 'next/image'
-import Link from 'next/link'
 import { HouseOutline } from '@attraction/icons'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -17,7 +16,7 @@ interface NewsletterProfileProps {
 }
 
 const handleSubscribe = (email: string | undefined, newsletterId: string) =>
-  email ? () => subscribeNewsletter(email, newsletterId) : () => {}
+  email && subscribeNewsletter(email, newsletterId)
 
 function NewsletterProfileContent({
   email,
@@ -45,15 +44,13 @@ function NewsletterProfileContent({
           <h3 className="text-2xl font-bold">{data.data.name}</h3>
           <div className="flex flex-col gap-3 text-gray-500 md:flex-row dark:text-gray-400">
             <p>{data.data.uploadDays}</p>
-            <Link className="flex gap-x-1 text-blue-400" href="/">
-              <HouseOutline className="size-5" />
-              <a
-                href={data.data.mainLink}
-                target="_blank"
-                rel="noopener noreferrer">
-                공식 홈페이지
-              </a>
-            </Link>
+            <a
+              href={data.data.subscribeLink}
+              className="flex gap-x-1 text-blue-400"
+              target="_blank"
+              rel="noopener noreferrer">
+              <HouseOutline className="size-5" /> 공식 홈페이지
+            </a>
           </div>
           <p className="hidden break-keep text-gray-500 md:block dark:text-gray-400">
             {data.data.description}
