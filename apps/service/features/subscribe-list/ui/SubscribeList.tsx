@@ -3,6 +3,7 @@ import {
   Background,
   ContentContainer,
   ContentTitle,
+  GuideTxt,
   ImageBox,
 } from '@/shared/ui'
 import Link from 'next/link'
@@ -17,8 +18,8 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
     <Background className="h-full lg:h-0 lg:min-h-full">
       <div className="h-full px-4 py-5">
         <p className="mb-4 text-lg font-bold">구독 리스트</p>
-        {subscribeList ? (
-          <ul className="h-60 overflow-y-auto lg:h-[calc(100%-64px)]">
+        {subscribeList.length !== 0 ? (
+          <ul className="flex h-60 flex-col justify-start overflow-y-auto lg:h-[calc(100%-64px)]">
             {subscribeList.map((item) => (
               <Link
                 href={`newsletter/${item.id}`}
@@ -39,10 +40,10 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
           </ul>
         ) : (
           <div className="flex cursor-default flex-col items-center justify-center py-20">
-            <p className="mb-5 text-xl font-medium">
-              구독한 뉴스레터가 없습니다
-            </p>
-            <p className="text-gray-500">지금 뉴스레터를 구독해보세요</p>
+            <GuideTxt
+              title="구독한 뉴스레터가 없습니다"
+              sub="지금 뉴스레터를 구독해보세요"
+            />
           </div>
         )}
       </div>

@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form'
 import { USER_INFO_OCCUPATION, UserSettingList } from '@/entities/user-setting'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SignUpFormType } from '../model'
 
 export default function UserJobField() {
@@ -30,7 +31,10 @@ export default function UserJobField() {
         btnClickHandler={setOccupationFormValue}
       />
       {errors.occupation?.message && (
-        <p className="mt-2 text-red-500">{errors.occupation.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
+          <ExclamationCircleOutline />
+          {errors.occupation.message}
+        </p>
       )}
     </fieldset>
   )

@@ -1,5 +1,6 @@
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import { useEffect } from 'react'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SignUpFormType } from '../model'
 import SignUpCheckBox from './SignUpCheckBox'
 
@@ -61,7 +62,9 @@ export default function UserAgreement() {
           <div key={item.id} className="flex justify-between gap-2 py-4">
             <p className="">
               (필수) 서비스 이용약관 동의{' '}
-              <a href="/" className="text-sm">
+              <a
+                href="/"
+                className="ml-2 text-sm text-gray-500 underline dark:text-gray-400">
                 전문보기
               </a>
             </p>
@@ -74,7 +77,10 @@ export default function UserAgreement() {
         )
       })}
       {errors.selectPolicyAll?.message && (
-        <p className="mt-2 text-red-500">{errors.selectPolicyAll.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
+          <ExclamationCircleOutline />
+          {errors.selectPolicyAll.message}
+        </p>
       )}
     </div>
   )

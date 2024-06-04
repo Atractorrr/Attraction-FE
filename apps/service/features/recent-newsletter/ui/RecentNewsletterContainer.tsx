@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { NewsCard } from '@/entities/news-card'
-import { Background } from '@/shared/ui'
+import { Background, GuideTxt } from '@/shared/ui'
 import { RecentNewsletter } from '../model'
 
 interface RecentNewsletterProps {
@@ -67,10 +67,10 @@ export default function RecentNewsletterContainer({
         </div>
       ) : (
         <div className="flex cursor-default flex-col items-center justify-center py-20">
-          <p className="mb-5 text-xl font-medium">
-            최근 읽은 아티클이 없습니다
-          </p>
-          <p className="text-gray-500">지금 아티클을 읽어보세요</p>
+          <GuideTxt
+            title="최근 읽은 아티클이 없습니다"
+            sub="지금 아티클을 읽어보세요"
+          />
         </div>
       )}
     </Background>
