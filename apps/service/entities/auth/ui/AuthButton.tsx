@@ -12,9 +12,19 @@ interface AuthButtonProps {
 }
 
 function AuthButtonDropdown() {
+  const signOutHandler = async () => {
+    await fetch('/api/auth/sign-out', {
+      method: 'DELETE',
+    })
+
+    window.location.reload()
+  }
+
   return (
     <ul className="absolute -bottom-16 -right-2 z-20 mt-2 w-[86vw] rounded-lg border border-gray-100 bg-white px-3 py-4 sm:w-80 dark:border-gray-700 dark:bg-gray-800">
-      <li>로그아웃</li>
+      <li>
+        <Button onClick={signOutHandler}>로그아웃</Button>
+      </li>
     </ul>
   )
 }
