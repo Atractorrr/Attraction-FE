@@ -19,7 +19,7 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
       <div className="h-full px-4 py-5">
         <p className="mb-4 text-lg font-bold">구독 리스트</p>
         {subscribeList.length !== 0 ? (
-          <ul className="flex h-60 flex-col justify-start overflow-y-auto lg:h-[calc(100%-64px)]">
+          <ul className="flex flex-col justify-start overflow-y-auto lg:h-[calc(100%-64px)]">
             {subscribeList.map((item) => (
               <Link
                 href={`newsletter/${item.id}`}

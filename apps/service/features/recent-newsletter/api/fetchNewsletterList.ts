@@ -8,8 +8,8 @@ const fetchNewsletterList = async (
     { cache: 'no-store' },
   ).then((res) => res.json())
 
-  const { myPageArticles } = data
-  return myPageArticles
+  const { mypageArticles } = data
+  return mypageArticles
 }
 
 export default fetchNewsletterList
