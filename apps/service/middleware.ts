@@ -23,6 +23,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
+  if (pathname.startsWith('/sign-up') && !isLoggedIn) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
+
+  if (!pathname.startsWith('/sign-up') && isNotRegistered) {
+    return NextResponse.redirect(new URL('/sign-up', request.url))
+  }
+
   return NextResponse.next({
     request: {
       headers: requestHeaders,
@@ -31,5 +39,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/:path*',
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 }
