@@ -34,14 +34,20 @@ export function CategoryDropdown({
     <>
       {isLoading && <LoadingSpinner />}
       {isError && (
-        <p className="flex items-center justify-center gap-1 py-3 text-lg text-red-400 sm:justify-start dark:text-red-300">
+        <p className="flex items-center justify-center gap-1 p-3 text-lg text-red-400 sm:justify-start dark:text-red-300">
           <ExclamationCircleOutline />
           <span className="text-base">카테고리를 불러오지 못했어요</span>
         </p>
       )}
       {data && (
         <ul className="flex flex-wrap gap-2">
-          {data.categories.map((category) => (
+          {data.length === 0 && (
+            <p className="flex items-center justify-center gap-1 p-3 text-lg text-gray-500 sm:justify-start dark:text-gray-400">
+              <ExclamationCircleOutline />
+              <span className="text-base">구독한 뉴스레터가 없어요</span>
+            </p>
+          )}
+          {data.map((category) => (
             <li key={category}>
               <Button
                 className={`whitespace-nowrap rounded-3xl px-4 py-2 transition-colors ${
