@@ -1,5 +1,6 @@
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import { useEffect } from 'react'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SignUpFormType } from '../model'
 import SignUpCheckBox from './SignUpCheckBox'
 
@@ -74,7 +75,10 @@ export default function UserAgreement() {
         )
       })}
       {errors.selectPolicyAll?.message && (
-        <p className="mt-2 text-red-500">{errors.selectPolicyAll.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+          <ExclamationCircleOutline />
+          {errors.selectPolicyAll.message}
+        </p>
       )}
     </div>
   )

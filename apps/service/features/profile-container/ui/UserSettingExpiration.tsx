@@ -1,6 +1,7 @@
 import { USER_INFO_EXPIRATION, UserSettingList } from '@/entities/user-setting'
 import React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SettingForm } from '../model'
 
 export default function UserSettingExpiration() {
@@ -23,7 +24,8 @@ export default function UserSettingExpiration() {
         btnClickHandler={setExpirationFormValue}
       />
       {USER_INFO_EXPIRATION.get(watchUserExpiration) !== '평생' ? (
-        <p className="mt-2 text-sm text-red-500">
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+          <ExclamationCircleOutline />
           {USER_INFO_EXPIRATION.get(watchUserExpiration)} 동안 서비스를 이용하지
           않을 시 자동으로 회원이 탈퇴돼요
         </p>

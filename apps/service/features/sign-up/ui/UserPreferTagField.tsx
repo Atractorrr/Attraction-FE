@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { CheckOutline, ComputerEmoji } from '@attraction/icons'
+import {
+  CheckOutline,
+  ComputerEmoji,
+  ExclamationCircleOutline,
+} from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
 import { SignUpFormType } from '../model'
@@ -123,7 +127,10 @@ export default function UserPreferTagField() {
         </div>
       </div>
       {errors.interest?.message && (
-        <p className="mt-2 text-red-500">{errors.interest.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+          <ExclamationCircleOutline />
+          {errors.interest.message}
+        </p>
       )}
     </fieldset>
   )

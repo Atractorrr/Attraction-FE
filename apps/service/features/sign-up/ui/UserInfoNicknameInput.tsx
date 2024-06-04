@@ -1,5 +1,6 @@
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SignUpFormType } from '../model'
 import { postDuplicateName } from '../api'
 
@@ -61,7 +62,10 @@ export default function UserInfoNicknameInput() {
         </button>
       </div>
       {errors.nickname?.message && (
-        <p className="mt-2 text-red-500">{errors.nickname.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+          <ExclamationCircleOutline />
+          {errors.nickname.message}
+        </p>
       )}
       {getValues('isNickNameChecked') && (
         <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>

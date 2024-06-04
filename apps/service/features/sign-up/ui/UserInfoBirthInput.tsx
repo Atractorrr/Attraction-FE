@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form'
+import { ExclamationCircleOutline } from '@attraction/icons'
 import { SignUpFormType } from '../model'
 import { BIRTH_REGEX } from '../constant'
 
@@ -25,7 +26,10 @@ export default function UserInfoBirthInput() {
         })}
       />
       {errors.birthDate?.message && (
-        <p className="mt-2 text-red-500">{errors.birthDate.message}</p>
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+          <ExclamationCircleOutline />
+          {errors.birthDate.message}
+        </p>
       )}
     </label>
   )

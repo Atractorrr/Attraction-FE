@@ -3,6 +3,7 @@ import {
   Background,
   ContentContainer,
   ContentTitle,
+  GuideTxt,
   ImageBox,
 } from '@/shared/ui'
 import Link from 'next/link'
@@ -39,10 +40,10 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
           </ul>
         ) : (
           <div className="flex cursor-default flex-col items-center justify-center py-20">
-            <p className="mb-5 text-xl font-medium">
-              구독한 뉴스레터가 없습니다
-            </p>
-            <p className="text-gray-500">지금 뉴스레터를 구독해보세요</p>
+            <GuideTxt
+              title="구독한 뉴스레터가 없습니다"
+              sub="지금 뉴스레터를 구독해보세요"
+            />
           </div>
         )}
       </div>
