@@ -10,7 +10,9 @@ dayjs.locale('ko')
 
 export default function RecentArticleItem({ ...props }: RecentArticle) {
   return (
-    <Link href="/" className="grid max-w-[280px] justify-items-start gap-y-4">
+    <Link
+      href={`/inbox/article/${props.id}`}
+      className="grid max-w-[280px] justify-items-start gap-y-4">
       <div className="relative h-40 w-full overflow-hidden rounded-xl">
         <Image
           className="size-full object-cover transition-all hover:scale-110"
