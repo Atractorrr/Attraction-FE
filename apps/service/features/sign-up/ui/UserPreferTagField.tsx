@@ -8,6 +8,7 @@ import {
 } from '@attraction/icons'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { getCategorySVG } from '@/entities/profile'
+import { NewsletterCategory } from '@/shared/type'
 import { SignUpFormType } from '../model'
 import { useDisabledBtn } from '../lib'
 
@@ -122,7 +123,7 @@ export default function UserPreferTagField() {
               key={categoryKey}
               disabledTag={disabledTag}
               setPreferTagList={setPreferTagList}
-              categoryKey={categoryKey as keyof typeof NEWSLETTER_CATEGORY}
+              categoryKey={categoryKey as NewsletterCategory}
             />
           ))}
         </div>
