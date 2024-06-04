@@ -34,7 +34,7 @@ export default function ProfileSettingModal({
   email,
 }: ProfileSettingModalType) {
   const queryClient = useQueryClient()
-  const { setImgSrc, imgSrc, fileUploadHandler } = useImgUpload()
+  const { setImgSrc, imgSrc, fileUploadHandler, fileInfo } = useImgUpload()
   const { mutate } = useMutation({
     mutationFn: postImgUrl,
     onMutate: async (sendUrl) => {
@@ -98,11 +98,12 @@ export default function ProfileSettingModal({
             <input
               id="file-upload"
               type="file"
+              accept="image/*"
               hidden
               onChange={fileUploadHandler}
             />
           </label>
-          <p className="basis-2/3 overflow-hidden">{imgSrc}</p>
+          <p className="basis-2/3 overflow-hidden">{fileInfo.name}</p>
         </div>
         <div className="flex h-fit w-full justify-between border-t border-t-gray-100 py-4">
           <Button
