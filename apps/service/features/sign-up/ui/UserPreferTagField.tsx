@@ -107,11 +107,12 @@ export default function UserPreferTagField() {
     <fieldset className="h-[calc(100%-240px)]">
       <div className="">
         <legend className="mb-4 text-2xl font-bold ">
-          마지막으로, 관심사를 선택해 주세요
+          마지막으로, <br />
+          관심사를 선택해 주세요
         </legend>
         <p className="mb-12 break-keep text-sm text-gray-500">
-          선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 관심사는 언제든지
-          수정할 수 있어요
+          선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 <br />
+          관심사는 언제든지 수정할 수 있어요
         </p>
       </div>
       <div className="h-full overflow-y-auto">
@@ -127,7 +128,7 @@ export default function UserPreferTagField() {
         </div>
       </div>
       {errors.interest?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
           {errors.interest.message}
         </p>

@@ -26,7 +26,7 @@ export default function UserInfoBirthInput() {
         })}
       />
       {errors.birthDate?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
+        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
           {errors.birthDate.message}
         </p>
