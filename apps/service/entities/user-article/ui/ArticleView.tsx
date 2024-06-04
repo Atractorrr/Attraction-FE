@@ -69,7 +69,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
       <div className="min-h-full w-full overflow-hidden rounded-lg">
         <iframe
           ref={iframeRef}
-          src={data.contentUrl}
+          src={`/html/${data.contentUrl}`}
           className="size-full min-h-full"
           title={data.title}
         />

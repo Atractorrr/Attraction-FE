@@ -32,20 +32,41 @@ export async function GET(request: Request) {
 
   const data: GoogleOAuthResponse = await response.json()
 
+  const responseCookies = response.headers.get('set-cookie')
+
+  if (responseCookies) {
+    const parsedCookies = responseCookies
+      .split(';')
+      .map((s) => s.trim().split('='))
+      .reduce(
+        (obj: { [key: string]: string }, [key, value]) =>
+          Object.assign(obj, { [key]: value ?? true }),
+        {},
+      )
+    cookieStore.set('Refresh-Token', parsedCookies['Refresh-Token'] ?? '', {
+      path: '/',
+      maxAge: Number(parsedCookies['Max-Age'] ?? 604800),
+      httpOnly: true,
+    })
+  }
+
   if (data.accessToken.length) {
     cookieStore.set('accessToken', data.accessToken, {
       path: '/',
       maxAge: 60 * 60,
+      httpOnly: true,
     })
     cookieStore.set('email', data.email, {
       path: '/',
       maxAge: 60 * 60,
+      httpOnly: true,
     })
 
     if (data.shouldReissueToken) {
       cookieStore.set('shouldReissueToken', 'true', {
         path: '/',
         maxAge: 60 * 60,
+        httpOnly: true,
       })
     }
 
@@ -53,6 +74,7 @@ export async function GET(request: Request) {
       cookieStore.set('notRegistered', 'true', {
         path: '/',
         maxAge: 60 * 60,
+        httpOnly: true,
       })
     }
   }
