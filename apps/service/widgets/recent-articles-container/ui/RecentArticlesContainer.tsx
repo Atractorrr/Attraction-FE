@@ -47,9 +47,9 @@ function NonLoginView() {
         style={{
           backgroundImage: 'url(/images/introduce-background.jpg)',
         }}>
-        <div className="flex flex-col text-center text-[28px] font-bold dark:text-black">
+        <div className="flex flex-col text-center text-xl font-bold md:text-3xl dark:text-black">
           <p>뉴스레터의 모든 것</p>
-          <p>어트렉션에서 쉽고 간편하게</p>
+          <p>어트랙션에서 쉽고 간편하게</p>
         </div>
         <Link
           href="/sign-in"

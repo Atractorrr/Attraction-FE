@@ -27,10 +27,12 @@ export default function UserRank() {
               />
             </div>
           </div>
-          <GuideTxt
-            title="랭킹 시스템을 준비하고 있어요"
-            sub="조금만 기다려주시면 좋은 서비스로 돌아올게요"
-          />
+          <div className="mt-3">
+            <GuideTxt
+              title="랭킹 시스템을 준비하고 있어요"
+              sub="조금만 기다려주시면 좋은 서비스로 돌아올게요"
+            />
+          </div>
         </div>
       </div>
     </Background>

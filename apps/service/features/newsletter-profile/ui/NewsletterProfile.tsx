@@ -2,19 +2,27 @@
 
 import { Suspense } from 'react'
 import { Background, ErrorGuideTxt, LoadingSpinner } from '@/shared/ui'
-import { Button } from '@attraction/design-system'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HouseOutline } from '@attraction/icons'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
+import { Button } from '@attraction/design-system'
 import { useNewsletterProfile } from '../lib'
+import { subscribeNewsletter } from '../api'
 
 interface NewsletterProfileProps {
+  email: string | undefined
   newsletterId: string
 }
 
-function NewsletterProfileContent({ newsletterId }: NewsletterProfileProps) {
+const handleSubscribe = (email: string | undefined, newsletterId: string) =>
+  email ? () => subscribeNewsletter(email, newsletterId) : () => {}
+
+function NewsletterProfileContent({
+  email,
+  newsletterId,
+}: NewsletterProfileProps) {
   const { data } = useNewsletterProfile(newsletterId)
 
   return (
@@ -39,7 +47,12 @@ function NewsletterProfileContent({ newsletterId }: NewsletterProfileProps) {
             <p>{data.data.uploadDays}</p>
             <Link className="flex gap-x-1 text-blue-400" href="/">
               <HouseOutline className="size-5" />
-              <p>공식 홈페이지</p>
+              <a
+                href={data.data.mainLink}
+                target="_blank"
+                rel="noopener noreferrer">
+                공식 홈페이지
+              </a>
             </Link>
           </div>
           <p className="hidden break-keep text-gray-500 md:block dark:text-gray-400">
@@ -50,14 +63,22 @@ function NewsletterProfileContent({ newsletterId }: NewsletterProfileProps) {
       <p className="break-keep text-gray-500 md:hidden dark:text-gray-400">
         {data.data.description}
       </p>
-      <Button className="h-[40px] w-full rounded-lg bg-gray-700 py-2 text-white md:w-[180px] dark:bg-white dark:text-gray-700">
-        구독하기
+      <Button
+        className="h-[40px] w-full rounded-lg bg-gray-700 py-2 text-center text-white md:w-[180px] dark:bg-white dark:text-gray-700"
+        onClick={() => handleSubscribe(email, newsletterId)}>
+        <a
+          href={data.data.subscribeLink}
+          target="_blank"
+          rel="noopener noreferrer">
+          구독하기
+        </a>
       </Button>
     </div>
   )
 }
 
 export default function NewsletterProfile({
+  email,
   newsletterId,
 }: NewsletterProfileProps) {
   return (
@@ -68,7 +89,10 @@ export default function NewsletterProfile({
             <div className="flex w-full justify-center">
               <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
                 <Suspense fallback={<LoadingSpinner />}>
-                  <NewsletterProfileContent newsletterId={newsletterId} />
+                  <NewsletterProfileContent
+                    email={email}
+                    newsletterId={newsletterId}
+                  />
                 </Suspense>
               </ErrorBoundary>
             </div>
