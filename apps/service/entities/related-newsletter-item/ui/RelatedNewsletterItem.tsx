@@ -7,7 +7,7 @@ export default function RelatedNewsletterItem({ ...props }: RelatedNewsletter) {
     <Link className="flex gap-x-4" href={`/newsletter/${props.id}`}>
       <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-100 dark:border-gray-700 dark:bg-gray-700">
         <Image
-          className="size-full"
+          className="size-full object-cover"
           src={
             props.thumbnailUrl.length
               ? props.thumbnailUrl
