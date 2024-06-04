@@ -59,11 +59,15 @@ export default function SignUp({ email }: SignUpPropsType) {
   })
   const { mutate } = useMutation({
     mutationFn: postSignUpForm,
-    onSuccess: () => {
+    onSuccess: async () => {
+      await fetch(`${process.env.NEXT_PUBLIC_SUCCESS_REGISTER_URL}`, {
+        method: 'DELETE',
+      })
+
       router.push('/')
     },
   })
-  const onSubmit = (data: SignUpFormType) => {
+  const onSubmit = async (data: SignUpFormType) => {
     if (activeIndex === signUpFieldArr.length - 1) {
       mutate({
         email: email as string,
