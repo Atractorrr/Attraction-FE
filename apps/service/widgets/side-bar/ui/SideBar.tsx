@@ -1,23 +1,18 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import {
+  ChevronDoubleLeftOutline,
+  ChevronDoubleRightOutline,
+} from '@attraction/icons'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import Footer from './Footer'
 import MainLogo from './MainLogo'
 import Menu from './Menu'
-import DoubleArrowLeft from './DoubleArrowLeft'
-import DoubleArrowRight from './DoubleArrowRight'
 
 export default function SideBar() {
   const [isOpen, setOpen] = useState(false)
-  const sideBarAreaRef = useRef<HTMLDivElement | null>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(sideBarAreaRef)
-
-  useEffect(() => {
-    if (isOutOfClicked) {
-      setOpen(false)
-    }
-  }, [isOutOfClicked])
+  const sideBarAreaRef = useClickedOutsideOfElement(() => setOpen(false))
 
   useEffect(() => {
     if (isOpen) {
@@ -36,7 +31,10 @@ export default function SideBar() {
   }, [])
 
   return (
-    <div ref={sideBarAreaRef}>
+    <div
+      ref={(node) => {
+        sideBarAreaRef.current = node
+      }}>
       <div
         className={`fixed inset-y-0 left-0 z-40 ${
           isOpen ? 'inline-block' : 'hidden'
@@ -51,7 +49,7 @@ export default function SideBar() {
                 title="메뉴 닫기"
                 onClick={() => setOpen(false)}>
                 <span className="blind">메뉴 닫기</span>
-                <DoubleArrowLeft />
+                <ChevronDoubleLeftOutline />
               </button>
             </div>
             <Menu />
@@ -74,7 +72,7 @@ export default function SideBar() {
             title="메뉴 열기"
             onClick={() => setOpen(true)}>
             <span className="blind">메뉴 열기</span>
-            <DoubleArrowRight />
+            <ChevronDoubleRightOutline />
           </button>
         </div>
         <Menu mini />

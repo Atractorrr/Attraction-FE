@@ -8,7 +8,11 @@ export default async function getUserCategories({
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/categories`,
   )
-  const data: { categories: NewsletterCategory[] } = await res.json()
+  const { data }: { data: NewsletterCategory[] } = await res.json()
+
+  if (!res.ok) {
+    throw Error('카테고리를 가져오는데 실패했어요')
+  }
 
   return data
 }

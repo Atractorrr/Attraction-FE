@@ -27,6 +27,6 @@ export default function useInfiniteUserArticlesQuery({
       pageParams,
     }),
     getNextPageParam: (lastPage) =>
-      lastPage.last ? undefined : lastPage.number + 1,
+      lastPage.data.last ? undefined : lastPage.data.number + 1,
   })
 }

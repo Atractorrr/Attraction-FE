@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { MemberOutline } from '@attraction/icons'
 import { useClickedOutsideOfElement } from '@/shared/lib'
@@ -21,15 +21,14 @@ function AuthButtonDropdown() {
 
 export default function AuthButton({ isLogin }: AuthButtonProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
-
-  useEffect(() => {
-    if (isOutOfClicked) setMenuOpen(false)
-  }, [isOutOfClicked])
+  const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
 
   return isLogin ? (
-    <div ref={dropdownBtnAreaRef} className="relative flex">
+    <div
+      ref={(node) => {
+        dropdownAreaRef.current = node
+      }}
+      className="relative flex">
       <Button
         type="button"
         className="size-12 overflow-hidden rounded-lg border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800"

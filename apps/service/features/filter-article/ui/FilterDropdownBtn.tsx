@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@attraction/design-system'
 
 import { useClickedOutsideOfElement } from '@/shared/lib'
@@ -61,15 +61,14 @@ export default function FilterDropdownBtn({
   resetCategory,
 }: FilterDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const dropdownBtnAreaRef = useRef<HTMLDivElement>(null)
-  const isOutOfClicked = useClickedOutsideOfElement(dropdownBtnAreaRef)
-
-  useEffect(() => {
-    if (isOutOfClicked) setMenuOpen(false)
-  }, [isOutOfClicked])
+  const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
 
   return (
-    <div ref={dropdownBtnAreaRef} className="relative">
+    <div
+      ref={(node) => {
+        dropdownAreaRef.current = node
+      }}
+      className="relative">
       <Button
         className={`xs:text-xl flex items-center justify-center gap-2 rounded-lg px-3  py-2 text-lg transition-colors ${
           selectedCategories.length > 0

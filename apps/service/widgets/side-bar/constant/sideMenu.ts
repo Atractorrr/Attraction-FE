@@ -30,7 +30,7 @@ const SIDE_MENU = Object.freeze([
   {
     name: '마이페이지',
     shortName: '프로필',
-    href: '/mypage/123',
+    href: '/mypage',
     segment: 'mypage',
     icon: MemberOutline,
   },

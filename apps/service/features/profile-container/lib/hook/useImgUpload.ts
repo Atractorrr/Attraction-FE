@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 const useImgUpload = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [imgSrc, setImgSrc] = useState<string>()
 
   const fileUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +16,7 @@ const useImgUpload = () => {
     }
   }
 
-  return { fileInputRef, imgSrc, fileUploadHandler }
+  return { imgSrc, fileUploadHandler, setImgSrc }
 }
 
 export default useImgUpload

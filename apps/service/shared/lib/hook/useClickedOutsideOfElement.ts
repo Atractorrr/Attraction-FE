@@ -1,25 +1,24 @@
 'use client'
 
-import { useEffect, useState, RefObject } from 'react'
+import { useEffect, useRef } from 'react'
 
-export default function useClickedOutsideOfElement(
-  element: RefObject<HTMLElement | null>,
-) {
-  const [isClickedOutsideOfElement, setIsClickedOutsideOfElement] =
-    useState(false)
+export default function useClickedOutsideOfElement(callback: () => void) {
+  const targetAreaRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
-      setIsClickedOutsideOfElement(
-        (element.current && !element.current.contains(e.target as Node)) ??
-          false,
-      )
+      if (
+        targetAreaRef.current &&
+        !targetAreaRef.current.contains(e.target as Node | null)
+      ) {
+        callback()
+      }
     }
     document.addEventListener('click', clickHandler)
     return () => {
       document.removeEventListener('click', clickHandler)
     }
-  }, [element])
+  }, [callback])
 
-  return isClickedOutsideOfElement
+  return targetAreaRef
 }
