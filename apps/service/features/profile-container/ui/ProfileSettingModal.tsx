@@ -7,6 +7,7 @@ import { useImgUpload } from '../lib'
 interface ProfileSettingModalType {
   setModal: React.Dispatch<React.SetStateAction<boolean>>
   email: string
+  type: 'profile' | 'background'
 }
 
 // TODO: 추후에 S3 적용할 수 있다 지금은 리팩토링 하지말고 놔두기
@@ -32,9 +33,10 @@ const postImgUrl = async ({
 export default function ProfileSettingModal({
   setModal,
   email,
+  type,
 }: ProfileSettingModalType) {
   const queryClient = useQueryClient()
-  const { setImgSrc, imgSrc, fileUploadHandler, fileInfo } = useImgUpload()
+  const { setFileInfo, fileUploadHandler, fileInfo } = useImgUpload()
   const { mutate } = useMutation({
     mutationFn: postImgUrl,
     onMutate: async (sendUrl) => {
@@ -47,7 +49,10 @@ export default function ProfileSettingModal({
 
       queryClient.setQueryData<UserProfile>(['profile', email], (old) => {
         if (old) {
-          const imgUrl = { profileImg: sendUrl.profileImg }
+          const imgUrl =
+            type === 'profile'
+              ? { profileImg: sendUrl.profileImg }
+              : { backgroundImg: sendUrl.profileImg }
 
           return { ...old, ...imgUrl }
         }
@@ -109,7 +114,9 @@ export default function ProfileSettingModal({
           <Button
             className="rounded-lg bg-red-50 px-5 py-2 text-red-400 md:px-10"
             onClick={() => {
-              setImgSrc('')
+              setFileInfo((pre) => ({ ...pre, src: '', name: '' }))
+              mutate({ profileImg: '', email })
+              setModal(false)
             }}>
             삭제
           </Button>
@@ -122,8 +129,8 @@ export default function ProfileSettingModal({
             <Button
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 md:px-10"
               onClick={() => {
-                if (imgSrc) {
-                  mutate({ profileImg: imgSrc, email })
+                if (fileInfo.src.length !== 0) {
+                  mutate({ profileImg: fileInfo.src, email })
                 }
                 setModal(false)
               }}>

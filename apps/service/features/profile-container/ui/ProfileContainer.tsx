@@ -108,10 +108,18 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
             />
           )}
           {profileModal && (
-            <ProfileSettingModal email={userId} setModal={setProfileModal} />
+            <ProfileSettingModal
+              email={userId}
+              setModal={setProfileModal}
+              type="profile"
+            />
           )}
           {backgroundModal && (
-            <ProfileSettingModal email={userId} setModal={setBackgroundModal} />
+            <ProfileSettingModal
+              email={userId}
+              setModal={setBackgroundModal}
+              type="background"
+            />
           )}
         </ErrorBoundary>
       </Background>
