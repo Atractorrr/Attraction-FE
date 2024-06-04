@@ -26,7 +26,14 @@ export default function UserInfoNicknameInput() {
   })
 
   const duplicateCheckHandler = () => {
-    mutate({ nickname: getValues('nickname') })
+    if (
+      getValues('nickname').length >= 4 &&
+      getValues('nickname').length <= 20
+    ) {
+      mutate({ nickname: getValues('nickname') })
+    } else {
+      setError('nickname', { message: '닉네임은 4자 이상 20자 이하 입니다.' })
+    }
   }
 
   const watchIsNickNameChecked = useWatch<SignUpFormType>({
