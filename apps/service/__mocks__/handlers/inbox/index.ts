@@ -28,9 +28,9 @@ const defaultPagination: Pagination = {
 }
 
 const sorted: Record<SortType, (a: Article, b: Article) => number> = {
-  desc: (a, b) =>
+  'receivedAt,desc': (a, b) =>
     new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
-  asc: (a, b) =>
+  'receivedAt,asc': (a, b) =>
     new Date(b.receivedAt).getTime() - new Date(a.receivedAt).getTime(),
 }
 
@@ -54,8 +54,10 @@ const inboxHandlers: HttpHandler[] = [
       page > 0
         ? articles
             .map((article, i) => ({ ...article, id: page * size + i + 1 }))
-            .sort(sorted[sort as SortType] ?? sorted.asc)
-        : [...articles].sort(sorted[sort as SortType] ?? sorted.asc)
+            .sort(sorted[sort as SortType] ?? sorted['receivedAt,asc'])
+        : [...articles].sort(
+            sorted[sort as SortType] ?? sorted['receivedAt,asc'],
+          )
     const readArticles = isRead
       ? sortedArticles.filter((article) => article.readPercentage === 0)
       : sortedArticles
