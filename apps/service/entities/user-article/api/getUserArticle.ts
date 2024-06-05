@@ -10,7 +10,7 @@ export default async function getArticle({
   const data: { data: Article } = await res.json()
 
   if (!res.ok) {
-    throw Error('아티클을 가져오는데 실패했어요')
+    throw new Error('아티클을 가져오는데 실패했어요')
   }
 
   return data.data

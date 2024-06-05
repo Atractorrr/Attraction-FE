@@ -24,10 +24,10 @@ export default function ScrollTracker({
 
   useEffect(() => {
     if (debouncedScroll > progressRef.current) {
-      const percentage =
+      const readPercentage =
         debouncedScroll > MAX_SCROLL_CRITERIA ? 100 : debouncedScroll
-      progressRef.current = percentage
-      mutate(percentage)
+      progressRef.current = readPercentage
+      mutate(readPercentage)
     }
   }, [debouncedScroll, mutate])
 

@@ -1,1 +1,1 @@
-export type SortType = 'desc' | 'asc'
+export type SortType = 'receivedAt,desc' | 'receivedAt,asc'
