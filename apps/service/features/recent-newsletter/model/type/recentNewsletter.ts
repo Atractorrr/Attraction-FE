@@ -9,6 +9,6 @@ export interface RecentNewsletter {
     name: string
     date: string
     readingTime: number
-    readingPercentage: number
+    readPercentage: number
   }
 }
