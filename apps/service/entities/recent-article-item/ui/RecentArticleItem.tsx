@@ -13,7 +13,7 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
     <Link
       href={`/inbox/article/${props.id}`}
       className="grid max-w-[280px] justify-items-start gap-y-4">
-      <div className="relative h-40 w-full overflow-hidden rounded-xl">
+      <div className="relative h-40 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-700">
         <Image
           className="size-full object-cover transition-all hover:scale-110"
           width={260}
