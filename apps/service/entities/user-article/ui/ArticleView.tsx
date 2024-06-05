@@ -47,7 +47,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
               title={`뉴스레터 상세 보기: ${data.newsletter.name}`}
               className="mr-2 block size-8 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700">
               <Image
-                src={data.newsletter.thumbnailUrl}
+                src={data.newsletter.thumbnailUrl || '/images/default-1x1.jpg'}
                 alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
                 className="size-full object-cover"
                 width={300}

@@ -36,7 +36,7 @@ export default function RecentNewsletterContainer({
                   <NewsCard key={newsItem.id}>
                     <NewsCard.Thumbnail
                       imgSrc={newsItem.image.thumbnail}
-                      readingPercentage={newsItem.info.readPercentage}
+                      readPercentage={newsItem.info.readPercentage}
                       readingTime={newsItem.info.readingTime}
                       alt={`아티클 썸네일 이미지: ${newsItem.info.title}`}
                     />

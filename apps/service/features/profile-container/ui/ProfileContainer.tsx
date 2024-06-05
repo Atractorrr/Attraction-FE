@@ -44,7 +44,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
           <div className="relative flex w-full flex-col">
             <div className="group relative px-5 pt-5">
               <ProfileBackground
-                imgSrc={userProfile.backgroundImg || '/images/default-1x1.jpg'}
+                imgSrc={userProfile.backgroundImg || '/images/default-4x1.jpg'}
               />
               <Button
                 type="button"
@@ -60,7 +60,9 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
             <div className="flex size-full flex-col pl-5 md:flex-row md:pl-14">
               <div className="relative size-20 md:size-auto">
                 <div className="relative size-40 shrink-0 -translate-y-1/2 rounded-full bg-white p-2 dark:bg-gray-800">
-                  <ProfileImage imaSrc={userProfile.profileImg} />
+                  <ProfileImage
+                    imaSrc={userProfile.profileImg || '/images/default-1x1.jpg'}
+                  />
                   <div className="absolute left-0 top-0 size-full p-2">
                     <button
                       type="button"

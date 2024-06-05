@@ -19,7 +19,6 @@ const userArticleQueryKeys = {
   }: UserArticleListOption) => [
     ...userArticleQueryKeys.allUserArticles({ userId }),
     'articles',
-    userId,
     category,
     options,
   ],

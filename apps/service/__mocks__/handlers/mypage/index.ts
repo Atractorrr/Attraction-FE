@@ -39,7 +39,7 @@ const mypageHandlers: HttpHandler[] = [
             name: '뉴닉',
             date: '2023-03-03',
             readingTime: 8,
-            readingPercentage: 80,
+            readPercentage: 80,
           },
         },
         {
@@ -53,7 +53,7 @@ const mypageHandlers: HttpHandler[] = [
             name: '다음',
             date: '2023-03-03',
             readingTime: 4,
-            readingPercentage: 20,
+            readPercentage: 20,
           },
         },
         {
@@ -67,7 +67,7 @@ const mypageHandlers: HttpHandler[] = [
             name: '네이버',
             date: '2023-03-03',
             readingTime: 10,
-            readingPercentage: 10,
+            readPercentage: 10,
           },
         },
         {
@@ -81,7 +81,7 @@ const mypageHandlers: HttpHandler[] = [
             name: '뉴닉',
             date: '2023-03-03',
             readingTime: 8,
-            readingPercentage: 40,
+            readPercentage: 40,
           },
         },
         {
@@ -95,7 +95,7 @@ const mypageHandlers: HttpHandler[] = [
             name: '뉴닉',
             date: '2023-03-03',
             readingTime: 1,
-            readingPercentage: 30,
+            readPercentage: 30,
           },
         },
       ],

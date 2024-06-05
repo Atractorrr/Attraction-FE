@@ -35,7 +35,7 @@ export default function ArticleDetail({
           <ArticleView data={data} />
         </>
       )}
-      {isError && (
+      {!data && isError && (
         <div className="px-8 py-48 md:min-h-dvh">
           <GuideTxt
             title="아티클을 불러오는데 실패했어요"
