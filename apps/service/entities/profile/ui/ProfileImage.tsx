@@ -7,7 +7,7 @@ interface ProfileImageProps {
 
 export default function ProfileImage({ imaSrc }: ProfileImageProps) {
   return (
-    <div className="relative size-full">
+    <div className="relative size-full rounded-full bg-gray-100 p-2 dark:bg-gray-700">
       <Image
         src={imaSrc}
         alt="프로필 사진"

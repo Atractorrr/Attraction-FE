@@ -15,8 +15,16 @@ interface NewsletterProfileProps {
   newsletterId: string
 }
 
-const handleSubscribe = (email: string | undefined, newsletterId: string) =>
-  email && subscribeNewsletter(email, newsletterId)
+const handleSubscribe = (
+  email: string | undefined,
+  newsletterId: string,
+  subscribeLink: string,
+) => {
+  window.open(subscribeLink, '_blank', 'noopener,noreferrer')
+  if (email) {
+    subscribeNewsletter(email, newsletterId)
+  }
+}
 
 function NewsletterProfileContent({
   email,
@@ -62,13 +70,10 @@ function NewsletterProfileContent({
       </p>
       <Button
         className="h-[40px] w-full rounded-lg bg-gray-700 py-2 text-center text-white md:w-[180px] dark:bg-white dark:text-gray-700"
-        onClick={() => handleSubscribe(email, newsletterId)}>
-        <a
-          href={data.data.subscribeLink}
-          target="_blank"
-          rel="noopener noreferrer">
-          구독하기
-        </a>
+        onClick={() =>
+          handleSubscribe(email, newsletterId, data.data.subscribeLink)
+        }>
+        구독하기
       </Button>
     </div>
   )

@@ -40,10 +40,12 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
   return (
     userProfile && (
       <Background>
-        <ErrorBoundary fallback={<ErrorGuideTxt />}>
+        <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
           <div className="relative flex w-full flex-col">
             <div className="group relative px-5 pt-5">
-              <ProfileBackground imgSrc={userProfile.backgroundImg ?? ''} />
+              <ProfileBackground
+                imgSrc={userProfile.backgroundImg || '/images/default-1x1.jpg'}
+              />
               <Button
                 type="button"
                 className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black p-1 text-gray-50 opacity-0 transition-all
