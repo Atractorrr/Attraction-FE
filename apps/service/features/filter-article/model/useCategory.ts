@@ -5,17 +5,12 @@ import { NewsletterCategory } from '@/shared/type'
 
 export default function useCategory() {
   const [selectedCategory, setSelectedCategory] = useState<
-    NewsletterCategory[]
-  >([])
+    NewsletterCategory | undefined
+  >(undefined)
   const setCategory = useCallback((category: NewsletterCategory) => {
-    setSelectedCategory((prev) => {
-      if (prev.some((categories) => categories === category)) {
-        return prev.filter((categories) => categories !== category)
-      }
-      return [...prev, category]
-    })
+    setSelectedCategory(category)
   }, [])
-  const resetCategory = useCallback(() => setSelectedCategory([]), [])
+  const resetCategory = useCallback(() => setSelectedCategory(undefined), [])
 
   return { selectedCategory, setCategory, resetCategory } as const
 }

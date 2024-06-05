@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Button } from '@attraction/design-system'
 
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import { AdjustmentHorizontalOutline } from '@attraction/icons'
+import { NewsletterCategory } from '@/shared/type'
+import { SortType } from '@/entities/user-article'
 import { CategoryDropdown, CategoryDropdownProps } from './CategoryDropdownBtn'
 import { SortTypeDropdownProps, btns } from './SortTypeDropdownBtn'
 
@@ -62,6 +64,21 @@ export default function FilterDropdownBtn({
 }: FilterDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
+  const setCategoryAndCloseMenu = useCallback(
+    (category: NewsletterCategory) => {
+      setCategory(category)
+      setMenuOpen(false)
+    },
+    [setCategory],
+  )
+  const resetCategoryAndCloseMenu = useCallback(() => {
+    resetCategory()
+    setMenuOpen(false)
+  }, [resetCategory])
+  const setSortTypeAndCloseMenu = useCallback((type: SortType) => {
+    setSortType(type)
+    setMenuOpen(false)
+  }, [])
 
   return (
     <div
@@ -71,7 +88,7 @@ export default function FilterDropdownBtn({
       className="relative">
       <Button
         className={`xs:text-xl flex items-center justify-center gap-2 rounded-lg px-3  py-2 text-lg transition-colors ${
-          selectedCategories.length > 0
+          selectedCategories
             ? 'bg-blue-50 text-blue-400 dark:bg-blue-800 dark:text-blue-300'
             : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
         }`}
@@ -86,10 +103,10 @@ export default function FilterDropdownBtn({
         <FilterDropdown
           userId={userId}
           selectedCategories={selectedCategories}
-          setCategory={setCategory}
-          resetCategory={resetCategory}
+          setCategory={setCategoryAndCloseMenu}
+          resetCategory={resetCategoryAndCloseMenu}
           sortType={sortType}
-          setSortType={setSortType}
+          setSortType={setSortTypeAndCloseMenu}
         />
       )}
     </div>

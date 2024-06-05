@@ -11,7 +11,6 @@ export interface Article {
   receivedAt: string
   readPercentage: number
   readingTime: number
-  // isRead: boolean
   newsletter: Pick<Newsletter, 'id' | 'name' | 'category' | 'thumbnailUrl'>
 }
 
@@ -32,6 +31,6 @@ export type UserArticleListOption = {
   size?: number
   sort?: SortType
   isHideRead?: boolean
-  category?: NewsletterCategory[]
+  category?: NewsletterCategory
   q?: string
 }

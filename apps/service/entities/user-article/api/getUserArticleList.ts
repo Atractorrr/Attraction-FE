@@ -10,11 +10,6 @@ export default async function getUserArticleList({
     ...params,
     page: params.page ?? 0,
     size: params.size ?? DEFAULT_LIST_SIZE,
-    category:
-      params.category && params.category.length > 0
-        ? // ? params.category.join(',') // TODO: 백엔드랑 협의 필요
-          params.category[0]
-        : undefined,
   }
   const searchParamsToString = Object.entries(searchParams)
     .map((entry) => (entry[1] !== undefined ? entry.join('=') : undefined))
