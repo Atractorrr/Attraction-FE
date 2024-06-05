@@ -80,6 +80,10 @@ export async function GET(request: Request) {
   }
 
   return data.hasExtraDetails
-    ? NextResponse.redirect(new URL('/', request.url))
-    : NextResponse.redirect(new URL('/sign-up', request.url))
+    ? NextResponse.redirect(
+        new URL(`${process.env.NEXT_PUBLIC_FE_URL}`, request.url),
+      )
+    : NextResponse.redirect(
+        new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
+      )
 }
