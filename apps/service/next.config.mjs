@@ -33,6 +33,7 @@ const nextConfig = {
       test: /\.svg$/i,
       use: ['@svgr/webpack'],
     })
+    config.cache = false
 
     return config
   },
