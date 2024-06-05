@@ -4,14 +4,14 @@ import { ImageBox } from '@/shared/ui'
 interface CardThumbnailProps {
   imgSrc: string
   alt: string
-  readingPercentage: number
+  readPercentage: number
   readingTime: number
 }
 
 export default function CardThumbnail({
   imgSrc,
   alt,
-  readingPercentage,
+  readPercentage,
   readingTime,
 }: CardThumbnailProps) {
   // TODO: clsx cva 적용 필수
@@ -28,7 +28,7 @@ export default function CardThumbnail({
       <div className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
         <span
           className="absolute inset-y-0 bg-blue-400"
-          style={{ width: `${readingPercentage}%` }}
+          style={{ width: `${readPercentage}%` }}
         />
       </div>
       <div className="absolute bottom-2 right-2 w-fit self-end rounded-md bg-black/60 p-1 text-xs text-white ">
