@@ -12,7 +12,8 @@ export default async function getUserArticleList({
     size: params.size ?? DEFAULT_LIST_SIZE,
     category:
       params.category && params.category.length > 0
-        ? params.category.join(',')
+        ? // ? params.category.join(',') // TODO: 백엔드랑 협의 필요
+          params.category[0]
         : undefined,
   }
   const searchParamsToString = Object.entries(searchParams)
@@ -24,7 +25,7 @@ export default async function getUserArticleList({
   const data: UserArticlesResponse = await res.json()
 
   if (!res.ok) {
-    throw Error('보관함 데이터를 가져오는데 실패했어요')
+    throw new Error('보관함 데이터를 가져오는데 실패했어요')
   }
 
   return data

@@ -31,7 +31,7 @@ export type UserArticleListOption = {
   page?: number
   size?: number
   sort?: SortType
-  isRead?: boolean
+  isHideRead?: boolean
   category?: NewsletterCategory[]
   q?: string
 }

@@ -21,9 +21,14 @@ function AuthButtonDropdown() {
   }
 
   return (
-    <ul className="absolute -bottom-16 -right-2 z-20 mt-2 w-[86vw] rounded-lg border border-gray-100 bg-white px-3 py-4 sm:w-80 dark:border-gray-700 dark:bg-gray-800">
+    <ul className="absolute -bottom-16 -right-2 z-20 mt-2 w-[86vw] rounded-lg border border-gray-100 bg-white p-2 sm:w-52 dark:border-gray-700 dark:bg-gray-800">
       <li>
-        <Button onClick={signOutHandler}>로그아웃</Button>
+        <Button
+          onClick={signOutHandler}
+          className="block w-full rounded-lg px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-700"
+          title="로그아웃">
+          로그아웃
+        </Button>
       </li>
     </ul>
   )

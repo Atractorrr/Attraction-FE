@@ -46,7 +46,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     userId,
     sort: currentSortType,
     category: selectedCategory,
-    isRead: isHideReadArticles || undefined,
+    isHideRead: isHideReadArticles || undefined,
     q: searchValue || undefined,
   })
   const scrollRef = useInfiniteScroll(() => {

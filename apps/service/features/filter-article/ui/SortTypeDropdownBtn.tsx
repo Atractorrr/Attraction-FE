@@ -3,7 +3,6 @@
 import { useCallback, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import { ChevronDownOutline } from '@attraction/icons'
-
 import { SortType } from '@/entities/user-article'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 
@@ -13,8 +12,8 @@ export interface SortTypeDropdownProps {
 }
 
 export const btns: Array<[SortType, string]> = [
-  ['asc', '최신순'],
-  ['desc', '오래된순'],
+  ['receivedAt,asc', '최신순'],
+  ['receivedAt,asc', '오래된순'],
 ]
 
 function SortTypeDropdown({ sortType, setSortType }: SortTypeDropdownProps) {
@@ -57,7 +56,7 @@ export default function SortTypeDropdownBtn({
         className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
         onClick={() => setMenuOpen((prev) => !prev)}>
         <span className="whitespace-nowrap">
-          {sortType === 'desc' ? '오래된순' : '최신순'}
+          {sortType === 'receivedAt,desc' ? '오래된순' : '최신순'}
         </span>
         <ChevronDownOutline className={isMenuOpen ? 'rotate-180' : ''} />
       </Button>

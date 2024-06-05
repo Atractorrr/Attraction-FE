@@ -1,18 +1,15 @@
 import type { UserArticleParams } from '../model'
 
-type PutUserArticleParams = { percentage: number } & UserArticleParams
+type PutUserArticleParams = { readPercentage: number } & UserArticleParams
 
 export default async function putUserArticle({
   userId,
   articleId,
-  percentage,
+  readPercentage,
 }: PutUserArticleParams) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/article/${articleId}?percentage=${percentage}`,
-    {
-      method: 'PUT',
-      body: JSON.stringify({ percentage }),
-    },
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/article/${articleId}?readPercentage=${parseInt(String(readPercentage), 10)}`,
+    { method: 'PUT' },
   )
   const data = await res.json()
 
