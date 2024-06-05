@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Button } from '@attraction/design-system'
 import {
   ExclamationCircleOutline,
@@ -15,7 +15,7 @@ import { LoadingSpinner } from '@/shared/ui'
 
 export interface CategoryDropdownProps {
   userId: string | number
-  selectedCategories: NewsletterCategory[]
+  selectedCategories: NewsletterCategory | undefined
   setCategory: (category: NewsletterCategory) => void
   resetCategory: () => void
 }
@@ -51,9 +51,7 @@ export function CategoryDropdown({
             <li key={category}>
               <Button
                 className={`whitespace-nowrap rounded-3xl px-4 py-2 transition-colors ${
-                  selectedCategories.some(
-                    (categories) => categories === category,
-                  )
+                  selectedCategories === category
                     ? 'bg-gray-700 text-gray-50 dark:bg-gray-100 dark:text-gray-700'
                     : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
                 }`}
@@ -62,10 +60,10 @@ export function CategoryDropdown({
               </Button>
             </li>
           ))}
-          {selectedCategories.length > 0 && (
+          {!!selectedCategories && (
             <li>
               <Button
-                className="flex items-center justify-center gap-2 rounded-3xl bg-blue-50 px-4 py-2 text-xl text-blue-400 dark:bg-blue-800 dark:text-blue-300"
+                className="flex items-center justify-center gap-2 rounded-3xl bg-gray-50 px-4 py-2 text-xl transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
                 onClick={resetCategory}>
                 <RefreshOutline />
                 <span className="whitespace-nowrap pr-1 text-base">초기화</span>
@@ -86,6 +84,17 @@ export default function CategoryDropdownBtn({
 }: CategoryDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
+  const setCategoryAndCloseMenu = useCallback(
+    (category: NewsletterCategory) => {
+      setCategory(category)
+      setMenuOpen(false)
+    },
+    [setCategory],
+  )
+  const resetCategoryAndCloseMenu = useCallback(() => {
+    resetCategory()
+    setMenuOpen(false)
+  }, [resetCategory])
 
   return (
     <div
@@ -95,30 +104,22 @@ export default function CategoryDropdownBtn({
       className="relative">
       <Button
         className={`flex items-center justify-center rounded-lg py-2 pl-3 pr-4 text-xl transition-colors ${
-          selectedCategories.length > 0
+          selectedCategories
             ? 'bg-blue-50 text-blue-400 dark:bg-blue-800 dark:text-blue-300'
             : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
         }`}
         title="카테고리 변경"
         onClick={() => setMenuOpen((prev) => !prev)}>
         <TagOutline />
-        <span className="mx-2 whitespace-nowrap text-base">카테고리</span>
-        <span
-          className={`text-sm ${
-            selectedCategories.length > 0
-              ? 'text-blue-400'
-              : 'text-gray-500 dark:text-gray-400'
-          }`}>
-          {selectedCategories.length}
-        </span>
+        <span className="ml-2 whitespace-nowrap text-base">카테고리</span>
       </Button>
       {isMenuOpen && (
         <div className="absolute -left-2 z-20 mt-2 w-96 rounded-lg border border-gray-100 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
           <CategoryDropdown
             userId={userId}
             selectedCategories={selectedCategories}
-            setCategory={setCategory}
-            resetCategory={resetCategory}
+            setCategory={setCategoryAndCloseMenu}
+            resetCategory={resetCategoryAndCloseMenu}
           />
         </div>
       )}

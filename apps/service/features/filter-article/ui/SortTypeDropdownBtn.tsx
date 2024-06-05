@@ -13,7 +13,7 @@ export interface SortTypeDropdownProps {
 
 export const btns: Array<[SortType, string]> = [
   ['receivedAt,asc', '최신순'],
-  ['receivedAt,asc', '오래된순'],
+  ['receivedAt,desc', '오래된순'],
 ]
 
 function SortTypeDropdown({ sortType, setSortType }: SortTypeDropdownProps) {
@@ -38,7 +38,7 @@ export default function SortTypeDropdownBtn({
 }: SortTypeDropdownProps) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const dropdownAreaRef = useClickedOutsideOfElement(() => setMenuOpen(false))
-  const setSortTypeAndMenu = useCallback(
+  const setSortTypeAndCloseMenu = useCallback(
     (type: SortType) => {
       setSortType(type)
       setMenuOpen(false)
@@ -63,7 +63,7 @@ export default function SortTypeDropdownBtn({
       {isMenuOpen && (
         <SortTypeDropdown
           sortType={sortType}
-          setSortType={setSortTypeAndMenu}
+          setSortType={setSortTypeAndCloseMenu}
         />
       )}
     </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import {
   useArticleFilter,
   CategoryDropdownBtn,
@@ -52,6 +53,14 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
   const scrollRef = useInfiniteScroll(() => {
     if (hasNextPage) fetchNextPage()
   })
+
+  useEffect(() => {
+    if (isArticleView) {
+      setViewType('list')
+      return
+    }
+    setViewType('gallery')
+  }, [isArticleView, setViewType])
 
   return (
     <section

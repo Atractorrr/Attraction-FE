@@ -23,9 +23,7 @@ export const post = (path: string, resolver: HttpResponseResolver) =>
 
 export const put = (path: string, resolver: HttpResponseResolver) =>
   http.put(baseURL + path, async (info) => {
-    const body = await info.request.json()
     console.log(`[MSW]: ${info.request.method} ${info.request.url} ✅`)
-    console.log(` ﾤ ${JSON.stringify(body)}`)
     await delay(delayMS)
     return resolver(info)
   })

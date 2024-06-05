@@ -1,3 +1,3 @@
-const MAX_SCROLL_CRITERIA = 86
+const MAX_SCROLL_CRITERIA = 80
 
 export default MAX_SCROLL_CRITERIA
