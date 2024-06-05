@@ -1,7 +1,7 @@
 'use client'
 
 import { AuthButton } from '@/entities/auth'
-import { ThemeDropdownBtn } from '@/features/set-theme/ui'
+import { ThemeDropdownBtn } from '@/features/set-theme'
 import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
 
 const getTitle = (pathname: string) => {
