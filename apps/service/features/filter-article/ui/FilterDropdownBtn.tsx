@@ -14,7 +14,7 @@ function FilterDropdown({
   sortType,
   setSortType,
   userId,
-  selectedCategories,
+  selectedCategory,
   setCategory,
   resetCategory,
 }: FilterDropdownProps) {
@@ -26,7 +26,7 @@ function FilterDropdown({
         </h3>
         <CategoryDropdown
           userId={userId}
-          selectedCategories={selectedCategories}
+          selectedCategory={selectedCategory}
           setCategory={setCategory}
           resetCategory={resetCategory}
         />
@@ -58,7 +58,7 @@ export default function FilterDropdownBtn({
   sortType,
   setSortType,
   userId,
-  selectedCategories,
+  selectedCategory,
   setCategory,
   resetCategory,
 }: FilterDropdownProps) {
@@ -75,10 +75,13 @@ export default function FilterDropdownBtn({
     resetCategory()
     setMenuOpen(false)
   }, [resetCategory])
-  const setSortTypeAndCloseMenu = useCallback((type: SortType) => {
-    setSortType(type)
-    setMenuOpen(false)
-  }, [])
+  const setSortTypeAndCloseMenu = useCallback(
+    (type: SortType) => {
+      setSortType(type)
+      setMenuOpen(false)
+    },
+    [setSortType],
+  )
 
   return (
     <div
@@ -88,8 +91,8 @@ export default function FilterDropdownBtn({
       className="relative">
       <Button
         className={`xs:text-xl flex items-center justify-center gap-2 rounded-lg px-3  py-2 text-lg transition-colors ${
-          selectedCategories
-            ? 'bg-blue-50 text-blue-400 dark:bg-blue-800 dark:text-blue-300'
+          selectedCategory
+            ? 'bg-gray-700 text-gray-50 dark:bg-gray-50 dark:text-gray-700'
             : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
         }`}
         title="필터 설정"
@@ -102,7 +105,7 @@ export default function FilterDropdownBtn({
       {isMenuOpen && (
         <FilterDropdown
           userId={userId}
-          selectedCategories={selectedCategories}
+          selectedCategory={selectedCategory}
           setCategory={setCategoryAndCloseMenu}
           resetCategory={resetCategoryAndCloseMenu}
           sortType={sortType}

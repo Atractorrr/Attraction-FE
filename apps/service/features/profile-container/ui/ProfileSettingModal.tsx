@@ -112,7 +112,7 @@ export default function ProfileSettingModal({
         </div>
         <div className="flex h-fit w-full justify-between border-t border-t-gray-100 pt-4 dark:border-t-gray-700">
           <Button
-            className="rounded-lg bg-red-50 px-5 py-2 text-red-400 md:px-10 dark:bg-red-800 dark:text-red-300"
+            className="rounded-lg bg-red-50 px-5 py-2 text-red-400 transition-colors hover:bg-red-100 md:px-10 dark:bg-red-400 dark:text-red-50 dark:hover:bg-red-500"
             onClick={() => {
               setFileInfo((pre) => ({ ...pre, src: '', name: '' }))
               mutate({ fileImgSrc: '', email, type })
@@ -127,7 +127,7 @@ export default function ProfileSettingModal({
               취소
             </Button>
             <Button
-              className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 md:px-10 dark:bg-blue-800 dark:text-blue-300"
+              className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
               onClick={() => {
                 if (fileInfo.src.length !== 0) {
                   mutate({ fileImgSrc: fileInfo.src, email, type })

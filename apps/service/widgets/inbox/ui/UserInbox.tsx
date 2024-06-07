@@ -92,7 +92,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 className={`flex gap-2 sm:hidden md:flex lg:hidden ${isArticleView && '!flex'}`}>
                 <FilterDropdownBtn
                   userId={userId}
-                  selectedCategories={selectedCategory}
+                  selectedCategory={selectedCategory}
                   setCategory={setCategory}
                   resetCategory={resetCategory}
                   sortType={currentSortType}
@@ -103,7 +103,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 className={`hidden gap-2 sm:flex md:hidden lg:flex ${isArticleView && '!hidden'}`}>
                 <CategoryDropdownBtn
                   userId={userId}
-                  selectedCategories={selectedCategory}
+                  selectedCategory={selectedCategory}
                   setCategory={setCategory}
                   resetCategory={resetCategory}
                 />
