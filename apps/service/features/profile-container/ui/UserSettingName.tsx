@@ -15,6 +15,7 @@ export default function UserSettingName({ nickname }: UserSettingNameType) {
     formState: { errors },
     getValues,
     clearErrors,
+    setError,
     control,
   } = useFormContext<SettingForm>()
   const watchNicknameChecked = useWatch<SettingForm>({
@@ -29,7 +30,8 @@ export default function UserSettingName({ nickname }: UserSettingNameType) {
 
   const duplicateErrorHandler = useCallback(() => {
     setValue('isNicknameChecked', false)
-  }, [setValue])
+    setError('nickname', { message: '중복된 이메일 입니다.' })
+  }, [setError, setValue])
 
   const { mutate } = useCheckDuplicate({
     successHandler: duplicateSuccessHandler,
