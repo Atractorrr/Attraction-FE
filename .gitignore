@@ -8,6 +8,3 @@ node_modules
 .env.development
 .env.production
 *storybook.log
-
-// build
-dist
