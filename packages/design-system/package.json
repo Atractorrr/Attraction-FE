@@ -7,8 +7,10 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "tsup components/index.ts --format cjs,esm --dts --minify --injectStyle",
+    "build:storybook": "storybook build"
   },
+  "exports": "./dist/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "@attraction/config": "workspace:^",
+    "@changesets/cli": "^2.27.5",
     "@chromatic-com/storybook": "^1.5.0",
     "@storybook/addon-essentials": "^8.1.6",
     "@storybook/addon-interactions": "^8.1.6",
@@ -30,7 +33,8 @@
     "@storybook/test": "^8.1.6",
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
-    "storybook": "^8.1.6"
+    "storybook": "^8.1.6",
+    "tsup": "^8.1.0"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
