@@ -6,6 +6,8 @@ module.exports = {
   },
   rules: {
     'react/require-default-props': 'off',
+    'react/prop-types': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
   },
   settings: {
     'import/resolver': {

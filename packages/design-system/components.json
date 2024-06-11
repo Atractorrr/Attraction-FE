@@ -8,7 +8,7 @@
     "css": "./global.css",
     "baseColor": "gray",
     "cssVariables": false,
-    "prefix": ""
+    "prefix": "ds-"
   },
   "aliases": {
     "components": "@/components",

@@ -34,6 +34,7 @@
     "tsup": "^8.1.0"
   },
   "dependencies": {
+    "@attraction/icons": "workspace:^",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
