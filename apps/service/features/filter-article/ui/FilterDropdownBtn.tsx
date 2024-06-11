@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import { AdjustmentHorizontalOutline } from '@attraction/icons'

@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { useEffect } from 'react'
 import { UserProfile } from '@/entities/profile'
 import UserSettingJob from './UserSettingJob'

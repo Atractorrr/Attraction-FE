@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import {
   CameraOutline,
   CogOutline,

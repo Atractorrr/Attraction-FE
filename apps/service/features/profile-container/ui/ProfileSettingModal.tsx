@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { UserProfile } from '@/entities/profile'
 import { useImgUpload } from '../lib'

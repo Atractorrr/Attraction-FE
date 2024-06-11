@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import {
   SignUpFormType,
   UserInfoField,

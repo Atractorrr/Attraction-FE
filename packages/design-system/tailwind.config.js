@@ -1,10 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   presets: [require('@attraction/config/attraction-preset')],
+  mode: 'jit',
   darkMode: ['selector', '.dark'],
   content: ['./**/*.{ts,tsx}'],
   prefix: 'ds-',
   theme: {
+    fontFamily: {
+      sans: ['"Pretendard"', ...defaultTheme.fontFamily.sans],
+    },
     container: {
       center: true,
       padding: '2rem',

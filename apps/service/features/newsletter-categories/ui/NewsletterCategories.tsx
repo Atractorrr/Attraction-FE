@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 import { Carousel } from '@/shared/ui'

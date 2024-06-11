@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { ViewType } from '@/entities/user-article'
 import { BarsLeftOutline, GridOutline } from '@attraction/icons'
 

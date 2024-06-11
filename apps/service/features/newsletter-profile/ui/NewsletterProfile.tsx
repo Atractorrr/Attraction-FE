@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { HouseOutline } from '@attraction/icons'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { useNewsletterProfile } from '../lib'
 import { subscribeNewsletter } from '../api'
 

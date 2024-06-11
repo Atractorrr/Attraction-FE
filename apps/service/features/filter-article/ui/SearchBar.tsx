@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Input, Button } from '@attraction/design-system'
+import { Input, Button } from '@attraction/design-system/dist'
 import { MagnifyingGlassOutline } from '@attraction/icons'
 
 import { useDebounce } from '@/shared/lib'

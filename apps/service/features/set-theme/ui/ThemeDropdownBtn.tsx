@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { useState } from 'react'
 import { useClickedOutsideOfElement } from '@/shared/lib'
 import { MoonStarOutline, SunOutline } from '@attraction/icons'

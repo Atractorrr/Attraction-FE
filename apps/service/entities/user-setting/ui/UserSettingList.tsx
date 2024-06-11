@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../constant'
 
 interface UserSettingListProps {

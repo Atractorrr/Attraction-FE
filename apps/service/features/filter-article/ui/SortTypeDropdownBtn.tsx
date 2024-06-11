@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { ChevronDownOutline } from '@attraction/icons'
 import { SortType } from '@/entities/user-article'
 import { useClickedOutsideOfElement } from '@/shared/lib'
