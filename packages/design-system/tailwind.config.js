@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
-  content: ['./components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
-  prefix: '',
+  presets: [require('@attraction/config/attraction-preset')],
+  darkMode: ['selector', '.dark'],
+  content: ['./**/*.{ts,tsx}'],
+  prefix: 'ds-',
   theme: {
     container: {
       center: true,

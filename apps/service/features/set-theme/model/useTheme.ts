@@ -16,10 +16,12 @@ export default function useTheme() {
 
   const setLightTheme = () => {
     document.body.classList.remove('dark')
+    document.body.classList.remove('ds-dark')
     setRealTheme('light')
   }
   const setDarkTheme = () => {
     document.body.classList.add('dark')
+    document.body.classList.add('ds-dark')
     setRealTheme('dark')
   }
 
