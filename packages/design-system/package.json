@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build": "tsup src/index.ts --format cjs,esm --dts --minify",
+    "build": "tsup src/index.ts --format cjs,esm --dts --minify && tailwind -i src/global.css -o ./dist/index.css --minify",
     "build:storybook": "storybook build"
   },
   "keywords": [],
