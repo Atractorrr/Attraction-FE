@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@attraction/design-system/dist'
 import { MoonStarOutline, SunOutline } from '@attraction/icons'
-import { Theme, useTheme } from '../model'
+import { Theme, useTheme } from '@/entities/theme'
 
 const themeBtns: Array<[Theme, string]> = [
   ['system', '시스템 테마'],
@@ -35,6 +35,7 @@ export default function ThemeDropdownBtn() {
             <DropdownMenuRadioItem
               key={theme}
               value={theme}
+              title={`테마 변경: ${label}`}
               onClick={() => setTheme(theme)}>
               {label}
             </DropdownMenuRadioItem>

@@ -10,7 +10,7 @@ function getCurrentTheme(): Theme {
   return (localStorage.getItem('theme') as Theme | null) ?? 'system'
 }
 
-export default function useTheme() {
+export default function useThemeSetting() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(getCurrentTheme())
   const [realTheme, setRealTheme] = useState<RealTheme>('light')
 
