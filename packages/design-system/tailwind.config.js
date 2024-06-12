@@ -1,11 +1,15 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
+import { join } from 'node:path'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   presets: [require('@attraction/config/attraction-preset')],
   mode: 'jit',
   darkMode: ['selector', '.dark'],
-  content: ['./**/*.{ts,tsx}'],
+  content: [
+    join(__dirname, './src/**/*.{js,ts,jsx,tsx}'),
+    join(__dirname, './components/**/*.{js,ts,jsx,tsx}'),
+  ],
   prefix: 'ds-',
   theme: {
     fontFamily: {
