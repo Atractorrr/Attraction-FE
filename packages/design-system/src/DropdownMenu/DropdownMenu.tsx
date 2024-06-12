@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import { CheckOutline, ChevronRightOutline } from '@attraction/icons'
 
-import { cn } from '@/utils'
+import { cn } from '../utils'
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -25,7 +25,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded-sm ds-px-2 ds-py-1.5 ds-text-sm ds-outline-none focus:ds-bg-gray-100 data-[state=open]:ds-bg-gray-100 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-600',
+      'ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none focus:ds-bg-gray-100 data-[state=open]:ds-bg-gray-100 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-700',
       inset && 'ds-pl-8',
       className,
     )}
@@ -44,7 +44,7 @@ const DropdownMenuSubContent = React.forwardRef<
   <DropdownMenuPrimitive.SubContent
     ref={ref}
     className={cn(
-      'ds-z-50 ds-min-w-[8rem] ds-overflow-hidden ds-rounded-md ds-border ds-border-gray-200 ds-bg-white ds-p-1 ds-text-gray-700 ds-shadow-lg data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[side=bottom]:ds-slide-in-from-top-2 data-[side=left]:ds-slide-in-from-right-2 data-[side=right]:ds-slide-in-from-left-2 data-[side=top]:ds-slide-in-from-bottom-2 dark:ds-border-gray-600 dark:ds-bg-gray-700 dark:ds-text-gray-50',
+      'ds-z-50 ds-min-w-[8rem] ds-overflow-hidden ds-rounded-lg ds-border ds-border-gray-100 ds-bg-white ds-p-2 ds-text-gray-700 ds-shadow-lg data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[side=bottom]:ds-slide-in-from-top-2 data-[side=left]:ds-slide-in-from-right-2 data-[side=right]:ds-slide-in-from-left-2 data-[side=top]:ds-slide-in-from-bottom-2 dark:ds-border-gray-700 dark:ds-bg-gray-800 dark:ds-text-gray-50',
       className,
     )}
     {...props}
@@ -62,7 +62,7 @@ const DropdownMenuContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        'ds-z-50 ds-min-w-[8rem] ds-overflow-hidden ds-rounded-md ds-border ds-border-gray-200 ds-bg-white ds-p-1 ds-text-gray-700 ds-shadow-md data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[side=bottom]:ds-slide-in-from-top-2 data-[side=left]:ds-slide-in-from-right-2 data-[side=right]:ds-slide-in-from-left-2 data-[side=top]:ds-slide-in-from-bottom-2 dark:ds-border-gray-600 dark:ds-bg-gray-700 dark:ds-text-gray-50',
+        'ds-z-50 ds-min-w-[8rem] ds-overflow-hidden ds-rounded-lg ds-border ds-border-gray-100 ds-bg-white ds-p-2 ds-text-gray-700 ds-shadow-md data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[side=bottom]:ds-slide-in-from-top-2 data-[side=left]:ds-slide-in-from-right-2 data-[side=right]:ds-slide-in-from-left-2 data-[side=top]:ds-slide-in-from-bottom-2 dark:ds-border-gray-700 dark:ds-bg-gray-800 dark:ds-text-gray-50',
         className,
       )}
       {...props}
@@ -80,7 +80,7 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded-sm ds-px-2 ds-py-1.5 ds-text-sm ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-700 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-600 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       inset && 'ds-pl-8',
       className,
     )}
@@ -96,7 +96,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded-sm ds-py-1.5 ds-pl-8 ds-pr-2 ds-text-sm ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-600 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-py-2 ds-pl-8 ds-pr-3 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     checked={checked}
@@ -119,7 +119,7 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded-sm ds-py-1.5 ds-pl-8 ds-pr-2 ds-text-sm ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-600 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-py-2 ds-pl-8 ds-pr-3 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     {...props}>
@@ -142,7 +142,7 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      'ds-px-2 ds-py-1.5 ds-text-sm ds-font-semibold',
+      'ds-px-1 ds-pb-2 ds-pt-1 ds-text-sm ds-text-gray-500 dark:ds-text-gray-400 ds-font-medium',
       inset && 'ds-pl-8',
       className,
     )}
@@ -158,7 +158,7 @@ const DropdownMenuSeparator = React.forwardRef<
   <DropdownMenuPrimitive.Separator
     ref={ref}
     className={cn(
-      'ds--mx-1 ds-my-1 ds-h-px ds-bg-gray-100 dark:ds-bg-gray-600',
+      'ds-m-1 ds-h-px ds-bg-gray-100 dark:ds-bg-gray-700',
       className,
     )}
     {...props}
@@ -173,7 +173,7 @@ function DropdownMenuShortcut({
   return (
     <span
       className={cn(
-        'ds-ml-auto ds-text-xs ds-tracking-widest ds-opacity-60',
+        'ds-ml-auto ds-text-sm ds-text-gray-500 dark:ds-text-gray-400 ds-tracking-widest',
         className,
       )}
       {...props}
