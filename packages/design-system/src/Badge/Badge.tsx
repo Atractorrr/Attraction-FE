@@ -3,12 +3,23 @@ import { cn } from '../utils'
 import { BadgeVaraintsProps } from './Badge.type'
 import badgeVariants from './Badge.style'
 
-export interface BadgeProps
+interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    BadgeVaraintsProps {}
-
-export default function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
-  )
+    BadgeVaraintsProps {
+  variant: 'default' | 'active' | 'red' | 'blue' | 'green' | 'yellow'
+  className?: string
 }
+
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+  ({ className, variant, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(badgeVariants({ variant }), className)}
+        {...props}
+      />
+    )
+  },
+)
+
+export default Badge
