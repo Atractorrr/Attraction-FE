@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build": "tsup src/index.ts --format cjs,esm --dts --minify && tailwind -i src/global.css -o ./dist/index.css --minify",
+    "build": "tsup",
     "build:storybook": "storybook build"
   },
   "keywords": [],
@@ -29,8 +29,7 @@
     "@storybook/test": "^8.1.6",
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
-    "storybook": "^8.1.6",
-    "tsup": "^8.1.0"
+    "storybook": "^8.1.6"
   },
   "dependencies": {
     "@attraction/icons": "workspace:^",
@@ -57,6 +56,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "tsup": "^8.1.0",
     "vaul": "^0.9.1"
   }
 }
