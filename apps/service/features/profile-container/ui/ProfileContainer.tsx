@@ -15,7 +15,7 @@ import {
   PreferTagList,
   PreferTagItem,
 } from '@/entities/profile'
-import { Background, ErrorGuideTxt } from '@/shared/ui'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 import { useQuery } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import UserSettingModal from './UserSettingModal'
@@ -39,7 +39,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
 
   return (
     userProfile && (
-      <Background>
+      <Container>
         <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
           <div className="relative flex w-full flex-col">
             <div className="group relative px-5 pt-5">
@@ -88,14 +88,14 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
                   />
                   <div className="flex w-full shrink-0 gap-2 md:self-end lg:w-auto">
                     <Button
-                      className="xs:px-2 flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 py-1.5 hover:bg-gray-100 sm:px-3 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 py-1.5 hover:bg-gray-100 xs:px-2 sm:px-3 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600"
                       onClick={() => {
                         setModal(true)
                       }}>
                       <CogOutline className="size-5" />
                       개인설정
                     </Button>
-                    <Button className="xs:px-2 flex w-full items-center justify-center gap-2 rounded-lg  bg-gray-700 py-1.5 text-white sm:px-3 lg:w-fit dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
+                    <Button className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-700  py-1.5 text-white xs:px-2 sm:px-3 lg:w-fit dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
                       <ShareOutline className="size-5" />
                       프로필 공유
                     </Button>
@@ -126,7 +126,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
             />
           )}
         </ErrorBoundary>
-      </Background>
+      </Container>
     )
   )
 }

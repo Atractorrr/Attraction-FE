@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react'
 import {
-  Background,
+  Container,
   ErrorGuideTxt,
   GuideTxt,
   LoadingSpinner,
@@ -44,7 +44,7 @@ export default function RelatedNewsletters({
   newsletterId,
 }: RelatedNewsletterProps) {
   return (
-    <Background>
+    <Container>
       <div className="flex w-full flex-col justify-start gap-y-5 p-5">
         <Title text="연관 뉴스레터" />
         <QueryErrorResetBoundary>
@@ -57,6 +57,6 @@ export default function RelatedNewsletters({
           )}
         </QueryErrorResetBoundary>
       </div>
-    </Background>
+    </Container>
   )
 }

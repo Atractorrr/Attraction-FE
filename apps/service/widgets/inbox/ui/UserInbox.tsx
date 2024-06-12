@@ -13,7 +13,7 @@ import {
   ArticleList,
 } from '@/entities/user-article'
 import { useInfiniteScroll } from '@/shared/lib'
-import { LoadingSpinner, BackBtn, GuideTxt, Background } from '@/shared/ui'
+import { LoadingSpinner, BackBtn, GuideTxt, Container } from '@/shared/ui'
 
 interface InboxProps {
   userId: string | number
@@ -67,7 +67,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
           ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:w-[342px]'
           : undefined
       }`}>
-      <Background>
+      <Container>
         <div
           className={
             isArticleView
@@ -172,7 +172,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
             </div>
           </div>
         </div>
-      </Background>
+      </Container>
     </section>
   )
 }

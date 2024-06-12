@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Background,
+  Container,
   ContentContainer,
   ContentTitle,
   GuideTxt,
@@ -15,7 +15,7 @@ interface SubscribeListProps {
 
 export default function SubscribeList({ subscribeList }: SubscribeListProps) {
   return (
-    <Background className="h-full lg:h-0 lg:min-h-full">
+    <Container className="h-full lg:h-0 lg:min-h-full">
       <div className="h-full px-4 py-5">
         <p className="mb-4 text-lg font-bold">구독 리스트</p>
         {subscribeList.length !== 0 ? (
@@ -47,6 +47,6 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
           </div>
         )}
       </div>
-    </Background>
+    </Container>
   )
 }

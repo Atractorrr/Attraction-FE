@@ -5,7 +5,7 @@ import React from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Background, ErrorGuideTxt } from '@/shared/ui'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 import { useTheme } from '@/entities/theme'
 import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
 import { CalendarElement } from '../model'
@@ -23,7 +23,7 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 export default function Calendar({ calendarData }: CalendarProps) {
   const { realTheme } = useTheme()
   return (
-    <Background className="flex h-full justify-center p-6">
+    <Container className="flex h-full justify-center p-6">
       <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
         <ActivityCalendarNoSSR
           data={calendarData}
@@ -46,6 +46,6 @@ export default function Calendar({ calendarData }: CalendarProps) {
         />
         <ReactTooltip id="react-tooltip" />
       </ErrorBoundary>
-    </Background>
+    </Container>
   )
 }
