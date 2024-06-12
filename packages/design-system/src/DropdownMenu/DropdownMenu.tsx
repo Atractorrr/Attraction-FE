@@ -25,7 +25,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none focus:ds-bg-gray-100 data-[state=open]:ds-bg-gray-100 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-700',
+      'ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none focus:ds-bg-gray-50 data-[state=open]:ds-bg-gray-50 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-700',
       inset && 'ds-pl-8',
       className,
     )}
@@ -80,7 +80,7 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-px-3 ds-py-2 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-px-3 ds-py-2 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-50 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       inset && 'ds-pl-8',
       className,
     )}
@@ -96,7 +96,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-50 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     checked={checked}
@@ -119,7 +119,7 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-50 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     {...props}>
@@ -158,7 +158,7 @@ const DropdownMenuSeparator = React.forwardRef<
   <DropdownMenuPrimitive.Separator
     ref={ref}
     className={cn(
-      'ds-mx-1 ds-my-2 ds-h-px ds-bg-gray-100 dark:ds-bg-gray-700',
+      'ds-mx-1 ds-my-2 ds-h-px ds-bg-gray-50 dark:ds-bg-gray-700',
       className,
     )}
     {...props}

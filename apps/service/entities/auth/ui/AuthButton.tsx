@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 // import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@attraction/design-system/dist'
 import { MemberOutline } from '@attraction/icons'
@@ -37,6 +39,7 @@ function LogoutIcon({ className }: { className?: string }) {
 }
 
 export default function AuthButton({ isLogin }: AuthButtonProps) {
+  const router = useRouter()
   const signOutHandler = async () => {
     await fetch('/api/auth/sign-out', {
       method: 'DELETE',
@@ -55,6 +58,15 @@ export default function AuthButton({ isLogin }: AuthButtonProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
+        <DropdownMenuItem
+          title="마이페이지 이동"
+          onClick={() => {
+            router.push('/mypage')
+          }}>
+          <MemberOutline className="text-lg" />
+          <span className="ml-2">마이페이지</span>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem title="로그아웃" onClick={signOutHandler}>
           <LogoutIcon className="text-lg" />
           <span className="ml-2">로그아웃</span>
