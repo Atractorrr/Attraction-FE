@@ -3,10 +3,8 @@
 import { useEffect } from 'react'
 import {
   useArticleFilter,
-  CategoryDropdownBtn,
   HideReadToggleBtn,
   SearchBar,
-  SortTypeDropdownBtn,
   ViewTypeTabMenu,
   FilterDropdownBtn,
 } from '@/features/filter-article'
@@ -66,7 +64,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     <section
       className={`relative ${
         isArticleView
-          ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:max-w-[342px]'
+          ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:w-[342px]'
           : undefined
       }`}>
       <Background>
@@ -88,30 +86,14 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 : 'md:flex-row md:items-center md:justify-between md:gap-5'
             }`}>
             <div className="flex gap-2">
-              <div
-                className={`flex gap-2 sm:hidden md:flex lg:hidden ${isArticleView && '!flex'}`}>
-                <FilterDropdownBtn
-                  userId={userId}
-                  selectedCategory={selectedCategory}
-                  setCategory={setCategory}
-                  resetCategory={resetCategory}
-                  sortType={currentSortType}
-                  setSortType={setSortType}
-                />
-              </div>
-              <div
-                className={`hidden gap-2 sm:flex md:hidden lg:flex ${isArticleView && '!hidden'}`}>
-                <CategoryDropdownBtn
-                  userId={userId}
-                  selectedCategory={selectedCategory}
-                  setCategory={setCategory}
-                  resetCategory={resetCategory}
-                />
-                <SortTypeDropdownBtn
-                  sortType={currentSortType}
-                  setSortType={setSortType}
-                />
-              </div>
+              <FilterDropdownBtn
+                userId={userId}
+                selectedCategory={selectedCategory}
+                setCategory={setCategory}
+                resetCategory={resetCategory}
+                sortType={currentSortType}
+                setSortType={setSortType}
+              />
               <HideReadToggleBtn
                 isRead={isHideReadArticles}
                 toggleHideFn={toggleHideReadArticles}

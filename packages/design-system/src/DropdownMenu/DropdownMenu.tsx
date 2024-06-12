@@ -25,7 +25,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none focus:ds-bg-gray-100 data-[state=open]:ds-bg-gray-100 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-700',
+      'ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none focus:ds-bg-gray-100 data-[state=open]:ds-bg-gray-100 dark:focus:ds-bg-gray-600 dark:data-[state=open]:ds-bg-gray-700',
       inset && 'ds-pl-8',
       className,
     )}
@@ -80,7 +80,7 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-px-3 ds-py-2 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-px-3 ds-py-2 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       inset && 'ds-pl-8',
       className,
     )}
@@ -96,14 +96,14 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-py-2 ds-pl-8 ds-pr-3 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     checked={checked}
     {...props}>
-    <span className="ds-absolute ds-left-2 ds-flex ds-h-3.5 ds-w-3.5 ds-items-center ds-justify-center">
+    <span className="ds-absolute ds-left-3 ds-flex ds-size-4 ds-items-center ds-justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <CheckOutline className="ds-h-4 ds-w-4" />
+        <CheckOutline className="ds-fill-current ds-text-lg" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -119,13 +119,13 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      'ds-relative ds-flex ds-cursor-default ds-select-none ds-items-center ds-rounded ds-py-2 ds-pl-8 ds-pr-3 ds-outline-none ds-transition-colors ds-text-gray-700 dark:ds-text-gray-50 ds-bg-white dark:ds-bg-gray-800 focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
+      'ds-relative ds-flex ds-cursor-pointer ds-select-none ds-items-center ds-rounded ds-bg-white ds-py-2 ds-pl-9 ds-pr-3 ds-text-gray-700 ds-outline-none ds-transition-colors focus:ds-bg-gray-100 focus:ds-text-gray-700 data-[disabled]:ds-pointer-events-none data-[disabled]:ds-opacity-50 dark:ds-bg-gray-800 dark:ds-text-gray-50 dark:focus:ds-bg-gray-700 dark:focus:ds-text-gray-50',
       className,
     )}
     {...props}>
-    <span className="ds-absolute ds-left-2 ds-flex ds-h-3.5 ds-w-3.5 ds-items-center ds-justify-center">
+    <span className="ds-absolute ds-left-3 ds-flex ds-size-4 ds-items-center ds-justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <CheckOutline className="ds-h-2 ds-w-2 ds-fill-current" />
+        <CheckOutline className="ds-fill-current ds-text-lg" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -142,7 +142,7 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      'ds-px-1 ds-pb-2 ds-pt-1 ds-text-sm ds-text-gray-500 dark:ds-text-gray-400 ds-font-medium',
+      'ds-px-1 ds-pb-2 ds-pt-1 ds-text-sm ds-font-medium ds-text-gray-500 dark:ds-text-gray-400',
       inset && 'ds-pl-8',
       className,
     )}
@@ -158,7 +158,7 @@ const DropdownMenuSeparator = React.forwardRef<
   <DropdownMenuPrimitive.Separator
     ref={ref}
     className={cn(
-      'ds-m-1 ds-h-px ds-bg-gray-100 dark:ds-bg-gray-700',
+      'ds-mx-1 ds-my-2 ds-h-px ds-bg-gray-100 dark:ds-bg-gray-700',
       className,
     )}
     {...props}
@@ -173,7 +173,7 @@ function DropdownMenuShortcut({
   return (
     <span
       className={cn(
-        'ds-ml-auto ds-text-sm ds-text-gray-500 dark:ds-text-gray-400 ds-tracking-widest',
+        'ds-ml-auto ds-text-sm ds-tracking-widest ds-text-gray-500 dark:ds-text-gray-400',
         className,
       )}
       {...props}
