@@ -42,21 +42,26 @@ export default function ProfileSettingModal({
     useImgUpload()
   const { mutate } = useMutation({
     mutationFn: postImgUrl,
-    onMutate: async (sendUrl) => {
+    onMutate: async (postImgArg) => {
       await queryClient.cancelQueries({ queryKey: ['profile', email] })
-
       const previousData = queryClient.getQueryData<UserProfile>([
         'profile',
         email,
       ])
 
+      fetch('/api/s3-upload', {
+        body: JSON.stringify({
+          deleteS3ImgUrl: `${type === 'profile' ? previousData?.profileImg : previousData?.backgroundImg}`,
+        }),
+        method: 'DELETE',
+      })
+
       queryClient.setQueryData<UserProfile>(['profile', email], (old) => {
         if (old) {
           const imgUrl =
             type === 'profile'
-              ? { profileImg: sendUrl.fileImgSrc }
-              : { backgroundImg: sendUrl.fileImgSrc }
-
+              ? { profileImg: postImgArg.fileImgSrc }
+              : { backgroundImg: postImgArg.fileImgSrc }
           return { ...old, ...imgUrl }
         }
         return old
@@ -64,9 +69,11 @@ export default function ProfileSettingModal({
 
       return { previousData }
     },
-
+    onError: (err, postImgArg, context) => {
+      queryClient.setQueryData(['profile', email], context?.previousData)
+    },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['profiles', email] })
+      queryClient.invalidateQueries({ queryKey: ['profile', email] })
     },
   })
 
