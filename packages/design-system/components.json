@@ -11,7 +11,7 @@
     "prefix": "ds-"
   },
   "aliases": {
-    "components": "@/components",
-    "utils": "@/src/utils"
+    "components": "components",
+    "utils": "../utils"
   }
 }
