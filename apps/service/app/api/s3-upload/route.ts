@@ -45,5 +45,4 @@ export async function POST(request: Request) {
   } catch (err) {
     return NextResponse.json({ error: 'Error uploading file' })
   }
-  return NextResponse.json({})
 }

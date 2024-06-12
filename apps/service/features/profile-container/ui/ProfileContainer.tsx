@@ -1,5 +1,13 @@
 'use client'
 
+import {
+  PreferTagItem,
+  PreferTagList,
+  ProfileBackground,
+  ProfileImage,
+  UserInfo,
+} from '@/entities/profile'
+import { Background, ErrorGuideTxt } from '@/shared/ui'
 import { Button } from '@attraction/design-system'
 import {
   CameraOutline,
@@ -7,20 +15,12 @@ import {
   PaintOutline,
   ShareOutline,
 } from '@attraction/icons'
-import { useState } from 'react'
-import {
-  ProfileBackground,
-  ProfileImage,
-  UserInfo,
-  PreferTagList,
-  PreferTagItem,
-} from '@/entities/profile'
-import { Background, ErrorGuideTxt } from '@/shared/ui'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import UserSettingModal from './UserSettingModal'
-import ProfileSettingModal from './ProfileSettingModal'
 import { fetchUserProfile } from '../api'
+import ProfileSettingModal from './ProfileSettingModal'
+import UserSettingModal from './UserSettingModal'
 
 interface ProfileContainerProps {
   userId: string
