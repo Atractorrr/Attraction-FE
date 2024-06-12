@@ -24,7 +24,6 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
   const {
     selectedCategory,
     setCategory,
-    resetCategory,
     viewType,
     setViewType,
     isHideReadArticles,
@@ -90,7 +89,6 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                 userId={userId}
                 selectedCategory={selectedCategory}
                 setCategory={setCategory}
-                resetCategory={resetCategory}
                 sortType={currentSortType}
                 setSortType={setSortType}
               />
