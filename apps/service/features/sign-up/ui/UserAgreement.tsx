@@ -41,7 +41,9 @@ export default function UserAgreement() {
 
   return (
     <fieldset className="rounded-lg">
-      <p className="mb-4 text-2xl font-bold">어트랙션에 오신 걸 환영해요! 🎉</p>
+      <legend className="mb-4 text-2xl font-bold">
+        어트랙션에 오신 걸 환영해요! 🎉
+      </legend>
       <p className="mb-10 text-gray-500">서비스 이용약관에 동의해주세요</p>
       <div className="mb-2 flex items-center gap-2 border-b border-b-gray-100 px-2 pb-4 dark:border-gray-700">
         <SignUpCheckBox
