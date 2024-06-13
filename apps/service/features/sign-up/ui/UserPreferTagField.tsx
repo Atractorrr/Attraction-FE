@@ -1,16 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { getCategorySVG } from '@/entities/profile'
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import { NewsletterCategory } from '@/shared/type'
 import {
   CheckOutline,
   ComputerEmoji,
   ExclamationCircleOutline,
 } from '@attraction/icons'
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { getCategorySVG } from '@/entities/profile'
-import { NewsletterCategory } from '@/shared/type'
-import { SignUpFormType } from '../model'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { useDisabledBtn } from '../lib'
+import { SignUpFormType } from '../model'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -99,22 +99,23 @@ export default function UserPreferTagField() {
   const { disabledTag } = useDisabledBtn(preferTagList)
 
   useEffect(() => {
-    if (preferTagList.length) {
-      setValue('interest', [...preferTagList])
-    }
+    setValue('interest', [...preferTagList])
   }, [preferTagList, setValue])
 
   return (
-    <fieldset className="h-[calc(100%-240px)]">
-      <div className="">
-        <legend className="mb-4 text-2xl font-bold ">
-          마지막으로, <br />
-          관심사를 선택해 주세요
-        </legend>
-        <p className="mb-12 break-keep text-sm text-gray-500">
+    <fieldset className="h-[calc(100%-200px)]">
+      <legend className="mb-4 text-2xl font-bold ">
+        마지막으로, <br />
+        관심사를 선택해 주세요
+      </legend>
+      <div className="mb-12 flex justify-between">
+        <p className=" break-keep text-sm text-gray-500">
           선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 <br />
           관심사는 언제든지 수정할 수 있어요
         </p>
+        <span className="self-end rounded-2xl bg-[#F1F4F9] px-3 py-1 text-sm text-blue-500">
+          {preferTagList.length}/4
+        </span>
       </div>
       <div className="h-full overflow-y-auto">
         <div className="xs:grid xs:grid-cols-2 xs:content-center xs:justify-center flex flex-col gap-5">
@@ -129,7 +130,7 @@ export default function UserPreferTagField() {
         </div>
       </div>
       {errors.interest?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
+        <p className="mt-4 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
           {errors.interest.message}
         </p>
