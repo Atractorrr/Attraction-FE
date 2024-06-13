@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import { Badge } from '@attraction/design-system/dist'
 import { BackBtn } from '@/shared/ui'
+import { Badge } from '@attraction/design-system/dist'
 import { Article } from '../model'
 
 interface ArticleViewProps {

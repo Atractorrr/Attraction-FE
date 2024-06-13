@@ -2,7 +2,7 @@
 
 import { useSelectedLayoutSegments } from 'next/navigation'
 import { ReactNode, createElement } from 'react'
-import { Background } from '@/shared/ui'
+import { Container } from '@/shared/ui'
 import UserInbox from './UserInbox'
 
 interface InboxLayoutProps {
@@ -25,7 +25,7 @@ export default function UserInboxLayout({
           : undefined
       }>
       <UserInbox userId={userId} isArticleView={isArticleView} />
-      {createElement(isArticleView ? Background : 'div', undefined, children)}
+      {createElement(isArticleView ? Container : 'div', undefined, children)}
     </div>
   )
 }
