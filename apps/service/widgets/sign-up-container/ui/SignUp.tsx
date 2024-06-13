@@ -26,9 +26,9 @@ export default function SignUp({ email }: SignUpPropsType) {
   const router = useRouter()
   const signUpFieldArr = useMemo(
     () => [
+      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
       { activeComponent: <UserAgreement key={0} />, type: 'userInfo' },
       { activeComponent: <UserInfoNicknameInput key={1} />, type: 'userInfo' },
-      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
       { activeComponent: <UserInfoExpirationDate key={3} />, type: 'userInfo' },
       { activeComponent: <UserJobField key={4} />, type: 'occupation' },
       { activeComponent: <UserPreferTagField key={5} />, type: 'interest' },
