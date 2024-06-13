@@ -4,16 +4,27 @@
 import { Background, Title } from '@/shared/ui'
 import { Button } from '@attraction/design-system'
 import { TrophyOutline } from '@attraction/icons'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useState } from 'react'
+import { getUserRanking } from '../api'
 import UserRankMedal from './UserRankMedal'
 
 const mock = Array.from({ length: 10 })
 
 export default function UserRank() {
+  // TODO: 쿼리키 바뀔 때 캐시 데이터 쓰는지 알아보기
+
   const [activeRanking, setActiveRanking] = useState<'article' | 'strict'>(
     'article',
   )
+  const { data } = useQuery({
+    queryKey: ['userRanking', activeRanking],
+    queryFn: () => {
+      return getUserRanking(activeRanking)
+    },
+  })
+
   return (
     <Background>
       <div className="flex min-h-[540px] w-full flex-col p-5">
@@ -46,17 +57,17 @@ export default function UserRank() {
                   <Image
                     width={40}
                     height={40}
-                    src="/images/default-1x1.jpg"
+                    src={data?.profileImg || '/images/default-4x1.jpg'}
                     className="rounded-full"
                     alt="프로필사진"
                   />
                 </div>
                 <div className="">
                   <p className="font-medium text-black dark:text-white">
-                    {i + 1}위 유저 이름
+                    {i + 1}위 {data?.nickname}
                   </p>
                   <p className="text-sm text-gray-500">
-                    최장 23일 연속 아티클을 읽었어요! 🎉
+                    최장 {data?.value}일 연속 아티클을 읽었어요! 🎉
                   </p>
                 </div>
               </div>
