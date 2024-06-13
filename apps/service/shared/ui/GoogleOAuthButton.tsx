@@ -1,5 +1,5 @@
 import { GoogleSVG } from '@/public/svgs/svg'
-import { GOOGLE_OAUTH_URL } from '@/shared/constant/oAuthURL'
+import { GOOGLE_OAUTH_URL } from '../constant'
 
 export default function GoogleOAuthButton() {
   return (
