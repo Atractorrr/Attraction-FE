@@ -16,7 +16,10 @@ export default function UserAgreement() {
   } = useFormContext<SignUpFormType>()
   const { fields } = useFieldArray({ control, name: 'policies' })
   const policesValue = useWatch({ control, name: 'policies' })
-  const policesSelectAll = useWatch({ control, name: 'selectPolicyAll' })
+  const policesSelectAll = useWatch({
+    control,
+    name: 'selectPolicyAll',
+  })
 
   const handleSelectAll = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
@@ -31,9 +34,19 @@ export default function UserAgreement() {
   }
 
   useEffect(() => {
+    const mandatoryPolicies = policesValue.filter((el) =>
+      el.type.includes('mandatory'),
+    )
+
+    if (mandatoryPolicies.every((el) => el.value)) {
+      setValue('selectMandatoryPolicyAll', true)
+      clearErrors('selectMandatoryPolicyAll')
+    } else {
+      setValue('selectMandatoryPolicyAll', false)
+    }
+
     if (policesValue.every((el) => el.value)) {
       setValue('selectPolicyAll', true)
-      clearErrors('selectPolicyAll')
     } else {
       setValue('selectPolicyAll', false)
     }
@@ -48,9 +61,9 @@ export default function UserAgreement() {
       <div className="mb-2 flex items-center gap-2 border-b border-b-gray-100 px-2 pb-4 dark:border-gray-700">
         <SignUpCheckBox
           inputId="checkAll"
-          register={register('selectPolicyAll', {
+          register={register('selectMandatoryPolicyAll', {
             validate: () => {
-              if (!getValues('selectPolicyAll')) {
+              if (!getValues('selectMandatoryPolicyAll')) {
                 return '필수 약관에 동의해주세요'
               }
               return true
@@ -70,7 +83,7 @@ export default function UserAgreement() {
                 activeCheckbox={policesValue[i].value}
                 register={register(`policies.${i}.value`)}
               />
-              <p>(필수) 서비스 이용약관 동의 </p>
+              <p>{item.text} </p>
             </div>
             <a
               href="/"
@@ -80,10 +93,11 @@ export default function UserAgreement() {
           </div>
         )
       })}
-      {errors.selectPolicyAll?.message && (
+
+      {errors.selectMandatoryPolicyAll?.message && (
         <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
-          {errors.selectPolicyAll.message}
+          {errors.selectMandatoryPolicyAll.message}
         </p>
       )}
     </fieldset>

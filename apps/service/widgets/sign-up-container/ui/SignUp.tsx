@@ -26,9 +26,9 @@ export default function SignUp({ email }: SignUpPropsType) {
   const router = useRouter()
   const signUpFieldArr = useMemo(
     () => [
-      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
       { activeComponent: <UserAgreement key={0} />, type: 'userInfo' },
       { activeComponent: <UserInfoNicknameInput key={1} />, type: 'userInfo' },
+      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
       { activeComponent: <UserInfoExpirationDate key={3} />, type: 'userInfo' },
       { activeComponent: <UserJobField key={4} />, type: 'occupation' },
       { activeComponent: <UserPreferTagField key={5} />, type: 'interest' },
@@ -46,14 +46,22 @@ export default function SignUp({ email }: SignUpPropsType) {
       adPolices: false,
       occupation: '',
       selectPolicyAll: false,
+      selectMandatoryPolicyAll: false,
       policies: [
         {
           type: 'mandatory1',
           value: false,
+          text: '(필수) 서비스 이용약관 동의',
         },
         {
           type: 'mandatory2',
           value: false,
+          text: '(필수) 개인정보 수집 및 이용 동의',
+        },
+        {
+          type: 'adPolices',
+          value: false,
+          text: '(선택) 마케팅 정보 수신 동의',
         },
       ],
     },
