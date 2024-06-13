@@ -28,7 +28,7 @@ export default function ViewTypeTabMenu({
           key={viewType}
           type="button"
           title={`${label} 보기`}
-          className={`xs:text-xl relative flex grow items-center justify-center gap-2 rounded-lg px-3 py-2 text-lg transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
+          className={`relative flex grow items-center justify-center gap-2 rounded-lg px-3 py-2 text-lg transition-colors hover:bg-gray-50 xs:text-xl dark:hover:bg-gray-700 ${
             isArticleView ? '' : 'md:grow-0'
           } ${
             type === viewType
@@ -37,10 +37,10 @@ export default function ViewTypeTabMenu({
           }`}
           onClick={() => setType(viewType)}>
           <Icon />
-          <span className="xs:block hidden whitespace-nowrap text-base">
+          <span className="hidden whitespace-nowrap text-base xs:block">
             {`${label} 보기`}
           </span>
-          <span className="xs:hidden block whitespace-nowrap text-sm">
+          <span className="block whitespace-nowrap text-sm xs:hidden">
             {label}
           </span>
           {type === viewType && (

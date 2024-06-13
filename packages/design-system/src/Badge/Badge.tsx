@@ -10,7 +10,7 @@ interface BadgeProps
   className?: string
 }
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
   ({ className, variant, ...props }, ref) => {
     return (
       <div
@@ -21,5 +21,3 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
     )
   },
 )
-
-export default Badge

@@ -7,7 +7,7 @@ import useSortType from './useSortType'
 import useViewType from './useViewType'
 
 export default function useArticleFilter() {
-  const { selectedCategory, setCategory, resetCategory } = useCategory()
+  const { selectedCategory, setCategory } = useCategory()
   const { currentSortType, setSortType } = useSortType()
   const { isHideReadArticles, toggleHideReadArticles } = useHideReadArticles()
   const { viewType, setViewType } = useViewType()
@@ -16,7 +16,6 @@ export default function useArticleFilter() {
   return {
     selectedCategory,
     setCategory,
-    resetCategory,
     currentSortType,
     setSortType,
     isHideReadArticles,

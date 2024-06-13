@@ -1,11 +1,9 @@
 'use client'
 
 import {
-  DropdownMenuItem,
   DropdownMenuRadioItem,
   DropdownMenuRadioGroup,
 } from '@attraction/design-system/dist'
-import { RefreshOutline } from '@attraction/icons'
 import { useUserCategoriesQuery } from '@/entities/user-article'
 import { NewsletterCategory } from '@/shared/type'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
@@ -14,15 +12,13 @@ import { LoadingSpinner, WarnTxt } from '@/shared/ui'
 export interface CategoryDropdownProps {
   userId: string | number
   selectedCategory?: NewsletterCategory
-  setCategory: (category: NewsletterCategory) => void
-  resetCategory: () => void
+  setCategory: (category?: NewsletterCategory) => void
 }
 
 export default function CategoryDropdown({
   userId,
   selectedCategory,
   setCategory,
-  resetCategory,
 }: CategoryDropdownProps) {
   const { data, isLoading, isError } = useUserCategoriesQuery({
     userId,
@@ -37,7 +33,15 @@ export default function CategoryDropdown({
       {data && (
         <>
           {data.length === 0 && <WarnTxt content="구독한 뉴스레터가 없어요" />}
-          <DropdownMenuRadioGroup value={selectedCategory}>
+          <DropdownMenuRadioGroup value={selectedCategory ?? 'all'}>
+            {data.length > 0 && (
+              <DropdownMenuRadioItem
+                value="all"
+                title="카테고리 선택: 전체"
+                onClick={() => setCategory(undefined)}>
+                전체
+              </DropdownMenuRadioItem>
+            )}
             {data.map((category) => (
               <DropdownMenuRadioItem
                 key={category}
@@ -47,12 +51,6 @@ export default function CategoryDropdown({
                 {NEWSLETTER_CATEGORY[category]}
               </DropdownMenuRadioItem>
             ))}
-            {!!selectedCategory && (
-              <DropdownMenuItem title="카테고리 초기화" onClick={resetCategory}>
-                <RefreshOutline className="text-lg" />
-                <span className="ml-2 whitespace-nowrap">초기화</span>
-              </DropdownMenuItem>
-            )}
           </DropdownMenuRadioGroup>
         </>
       )}
