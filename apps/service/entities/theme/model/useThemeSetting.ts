@@ -10,16 +10,18 @@ function getCurrentTheme(): Theme {
   return (localStorage.getItem('theme') as Theme | null) ?? 'system'
 }
 
-export default function useTheme() {
+export default function useThemeSetting() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(getCurrentTheme())
   const [realTheme, setRealTheme] = useState<RealTheme>('light')
 
   const setLightTheme = () => {
     document.body.classList.remove('dark')
+    document.body.classList.remove('ds-dark')
     setRealTheme('light')
   }
   const setDarkTheme = () => {
     document.body.classList.add('dark')
+    document.body.classList.add('ds-dark')
     setRealTheme('dark')
   }
 

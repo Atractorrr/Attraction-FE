@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { NewsCard } from '@/entities/news-card'
-import { Background, GuideTxt } from '@/shared/ui'
+import { Container, GuideTxt } from '@/shared/ui'
 import { RecentNewsletter } from '../model'
 
 interface RecentNewsletterProps {
@@ -11,7 +11,7 @@ export default function RecentNewsletterContainer({
   recentNewLetterList,
 }: RecentNewsletterProps) {
   return (
-    <Background className="h-full overflow-hidden">
+    <Container className="h-full overflow-hidden">
       <div className="flex items-center justify-between p-5">
         <p className="cursor-default text-lg font-bold">최근 읽은 아티클</p>
         {recentNewLetterList.length !== 0 ? (
@@ -73,6 +73,6 @@ export default function RecentNewsletterContainer({
           />
         </div>
       )}
-    </Background>
+    </Container>
   )
 }

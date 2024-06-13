@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { TrophyOutline } from '@attraction/icons'
-import { Background, GuideTxt, Title } from '@/shared/ui'
+import { Container, GuideTxt, Title } from '@/shared/ui'
 
 export default function UserRank() {
   return (
-    <Background>
+    <Container>
       <div className="flex min-h-[540px] w-full flex-col items-center gap-y-16 p-5">
         <div className="flex w-full items-center justify-between">
           <Title icon={<TrophyOutline className="size-5" />} text="유저 랭킹" />
@@ -35,6 +35,6 @@ export default function UserRank() {
           </div>
         </div>
       </div>
-    </Background>
+    </Container>
   )
 }

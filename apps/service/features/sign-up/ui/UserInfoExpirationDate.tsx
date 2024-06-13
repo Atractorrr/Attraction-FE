@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { USER_INFO_EXPIRATION } from '@/features/user-setting'
-import { Button } from '@attraction/design-system'
 import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
 import { useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { Button } from '@attraction/design-system/dist'
 import { SignUpFormType } from '../model'
 
 export default function UserInfoExpirationDate() {

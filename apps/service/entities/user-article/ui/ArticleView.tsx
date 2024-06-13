@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { BackBtn } from '@/shared/ui'
+import { Badge } from '@attraction/design-system/dist'
 import { Article } from '../model'
 
 interface ArticleViewProps {
@@ -60,9 +61,9 @@ export default function ArticleView({ data }: ArticleViewProps) {
           </p>
           <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
             <span>{data.receivedAt}</span>
-            <span className="inline-block whitespace-nowrap rounded-full bg-blue-50 px-2 py-1 text-sm text-blue-400 dark:bg-blue-800 dark:text-blue-300">
+            <Badge variant="blue">
               {data.readingTime ? `약 ${data.readingTime}분` : '1분 미만'}
-            </span>
+            </Badge>
           </p>
         </div>
       </div>

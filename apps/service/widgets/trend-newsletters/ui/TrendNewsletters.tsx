@@ -8,7 +8,7 @@ import {
 } from '@/entities/trend-newsletters'
 import { NewsletterCategories } from '@/features/newsletter-categories'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Background, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
+import { Container, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
 import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -41,7 +41,7 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
   }
 
   return (
-    <Background>
+    <Container>
       <div className="flex w-full flex-col gap-y-4 p-5">
         <div className="w-full">
           <Title
@@ -66,6 +66,6 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
           </QueryErrorResetBoundary>
         </div>
       </div>
-    </Background>
+    </Container>
   )
 }

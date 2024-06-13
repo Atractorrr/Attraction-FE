@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
 import { RecentArticles } from '@/features/recent-articles'
 
-import { Background, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
+import { Container, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
 import { useRecentArticles } from '@/features/recent-articles/model'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -17,7 +17,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
   const { data, isLoading } = useRecentArticles(email)
 
   return (
-    <Background>
+    <Container>
       <div className="flex w-full flex-col gap-y-4 p-5">
         <div className="flex h-fit w-full items-center justify-between">
           <Title
@@ -35,7 +35,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
           <RecentArticles mainPageArticles={data.mainPageArticles} />
         ) : null}
       </div>
-    </Background>
+    </Container>
   )
 }
 
@@ -62,6 +62,14 @@ function NonLoginView() {
   )
 }
 
+function ErrorGuideTxtWithContainer() {
+  return (
+    <Container>
+      <ErrorGuideTxt />
+    </Container>
+  )
+}
+
 export default function RecentArticlesContainer({
   email,
 }: RecentArticlesContainerProps) {
@@ -70,7 +78,9 @@ export default function RecentArticlesContainer({
       {email ? (
         <QueryErrorResetBoundary>
           {({ reset }) => (
-            <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+            <ErrorBoundary
+              onReset={reset}
+              FallbackComponent={ErrorGuideTxtWithContainer}>
               <LoginView email={email} />
             </ErrorBoundary>
           )}

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 
 import '@/public/fonts/fonts.css'
 import './globals.css'
+import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
 import Provider from './provider'
