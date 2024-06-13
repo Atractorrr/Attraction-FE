@@ -12,8 +12,9 @@ export default function UserJobField() {
     setValue,
     formState: { errors },
     clearErrors,
+    getValues,
   } = useFormContext<SignUpFormType>()
-  const [activeKey, setActiveKey] = useState<string>()
+  const [activeKey, setActiveKey] = useState<string>(getValues('occupation'))
 
   const setOccupationFormValue = (keyItem: string) => {
     setValue('occupation', keyItem)

@@ -26,10 +26,19 @@ export default function SignUp({ email }: SignUpPropsType) {
   const router = useRouter()
   const signUpFieldArr = useMemo(
     () => [
-      { activeComponent: <UserAgreement key={0} />, type: 'userInfo' },
-      { activeComponent: <UserInfoNicknameInput key={1} />, type: 'userInfo' },
-      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
-      { activeComponent: <UserInfoExpirationDate key={3} />, type: 'userInfo' },
+      { activeComponent: <UserAgreement key={0} />, type: 'userInfoAgreement' },
+      {
+        activeComponent: <UserInfoNicknameInput key={1} />,
+        type: 'userInfoNicknameInput',
+      },
+      {
+        activeComponent: <UserInfoBirthInput key={2} />,
+        type: 'userInfoBirthInput',
+      },
+      {
+        activeComponent: <UserInfoExpirationDate key={3} />,
+        type: 'userInfoExpiration',
+      },
       { activeComponent: <UserJobField key={4} />, type: 'occupation' },
       { activeComponent: <UserPreferTagField key={5} />, type: 'interest' },
     ],
@@ -59,7 +68,7 @@ export default function SignUp({ email }: SignUpPropsType) {
           text: '(필수) 개인정보 수집 및 이용 동의',
         },
         {
-          type: 'adPolices',
+          type: 'adPolicy',
           value: false,
           text: '(선택) 마케팅 정보 수신 동의',
         },
@@ -67,7 +76,7 @@ export default function SignUp({ email }: SignUpPropsType) {
     },
   })
 
-  const { activeIndex, setActiveBtn } = useSignUpFunnel({
+  const { activeIndex, setActiveBtn, setActiveIndex } = useSignUpFunnel({
     errors: formMethod.formState.errors,
     signUpFieldArr,
   })
@@ -91,7 +100,8 @@ export default function SignUp({ email }: SignUpPropsType) {
         nickname: data.nickname,
         interest: data.interest,
         birthDate: data.birthDate,
-        adPolices: data.adPolices,
+        adPolices: data.policies.find((el) => el.type === 'adPolicy')
+          ?.value as boolean,
         occupation: data.occupation,
         userExpiration: data.userExpiration,
       })
@@ -105,22 +115,32 @@ export default function SignUp({ email }: SignUpPropsType) {
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex].activeComponent}
 
-        <Button
-          type="submit"
-          disabled={!!Object.keys(formMethod.formState.errors).length}
-          onClick={() => {
-            checkSignUpFormErr(
-              signUpFieldArr[activeIndex].type,
-              formMethod.getValues,
-              formMethod.setError,
-            )
-            setActiveBtn(true)
-          }}
-          className={`mt-14 w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
-          {activeIndex === signUpFieldArr.length - 1
-            ? '가입 할래요!'
-            : '다음으로'}
-        </Button>
+        <div className="mt-14 flex gap-5">
+          <Button
+            type="button"
+            className={`${activeIndex === 0 ? 'hidden' : 'block'} w-1/3 rounded-xl bg-gray-50 dark:bg-gray-700`}
+            onClick={() => {
+              setActiveIndex((pre) => pre - 1)
+            }}>
+            이전으로
+          </Button>
+          <Button
+            type="submit"
+            disabled={!!Object.keys(formMethod.formState.errors).length}
+            onClick={() => {
+              checkSignUpFormErr(
+                signUpFieldArr[activeIndex].type,
+                formMethod.getValues,
+                formMethod.setError,
+              )
+              setActiveBtn(true)
+            }}
+            className={` w-full rounded-xl bg-gray-700 py-5 font-medium text-white dark:bg-gray-50 dark:text-gray-700 ${Object.keys(formMethod.formState.errors).length ? 'opacity-40' : 'opacity-100'}`}>
+            {activeIndex === signUpFieldArr.length - 1
+              ? '가입 할래요!'
+              : '다음으로'}
+          </Button>
+        </div>
       </form>
     </FormProvider>
   )

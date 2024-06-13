@@ -7,14 +7,16 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { SignUpFormType } from '../model'
 
 export default function UserInfoExpirationDate() {
-  const { setValue } = useFormContext<SignUpFormType>()
+  const { setValue, getValues } = useFormContext<SignUpFormType>()
   const setExpirationFormValue = (keyItem: string) => {
     setValue('userExpiration', Number(keyItem))
   }
   const watchUserExpiration = useWatch<SignUpFormType>({
     name: 'userExpiration',
   }).toString()
-  const [activeKey, setActiveKey] = useState('6')
+  const [activeKey, setActiveKey] = useState(
+    getValues('userExpiration').toString(),
+  )
   const listDataKeys = Array.from(USER_INFO_EXPIRATION.keys())
 
   return (

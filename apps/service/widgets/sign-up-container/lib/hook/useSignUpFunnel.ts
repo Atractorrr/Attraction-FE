@@ -34,7 +34,7 @@ const useSignUpFunnel = ({
     }
   }, [activeIndex, checkError, errors, signUpFieldArr.length])
 
-  return { activeIndex, setActiveBtn }
+  return { activeIndex, setActiveBtn, setActiveIndex }
 }
 
 export default useSignUpFunnel
