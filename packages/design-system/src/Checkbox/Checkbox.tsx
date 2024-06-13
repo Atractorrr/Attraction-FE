@@ -1,9 +1,11 @@
+'use client'
+
 import * as React from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckOutline } from '@attraction/icons'
 import { cn } from '../utils'
 
-const Checkbox = React.forwardRef<
+export const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 >(({ className, ...props }, ref) => (
@@ -22,6 +24,5 @@ const Checkbox = React.forwardRef<
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
-export default Checkbox
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
