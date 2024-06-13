@@ -1,18 +1,21 @@
 'use client'
 
-import { useMemo } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Button } from '@attraction/design-system'
 import {
   SignUpFormType,
-  UserInfoField,
+  UserAgreement,
+  UserInfoBirthInput,
+  UserInfoExpirationDate,
+  UserInfoNicknameInput,
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
+import { Button } from '@attraction/design-system'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { checkSignUpFormErr } from '../lib'
+import { useMemo } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { postSignUpForm } from '../api'
+import { checkSignUpFormErr } from '../lib'
 import { useSignUpFunnel } from '../lib/hook'
 
 interface SignUpPropsType {
@@ -23,9 +26,12 @@ export default function SignUp({ email }: SignUpPropsType) {
   const router = useRouter()
   const signUpFieldArr = useMemo(
     () => [
-      { activeComponent: <UserInfoField key={0} />, type: 'userInfo' },
-      { activeComponent: <UserJobField key={1} />, type: 'occupation' },
-      { activeComponent: <UserPreferTagField key={2} />, type: 'interest' },
+      { activeComponent: <UserAgreement key={0} />, type: 'userInfo' },
+      { activeComponent: <UserInfoNicknameInput key={1} />, type: 'userInfo' },
+      { activeComponent: <UserInfoBirthInput key={2} />, type: 'userInfo' },
+      { activeComponent: <UserInfoExpirationDate key={3} />, type: 'userInfo' },
+      { activeComponent: <UserJobField key={4} />, type: 'occupation' },
+      { activeComponent: <UserPreferTagField key={5} />, type: 'interest' },
     ],
     [],
   )
@@ -90,6 +96,7 @@ export default function SignUp({ email }: SignUpPropsType) {
         className="flex size-full max-w-[540px] flex-col justify-between bg-white p-5 sm:rounded-3xl sm:p-10 dark:bg-gray-800"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex].activeComponent}
+
         <Button
           type="submit"
           disabled={!!Object.keys(formMethod.formState.errors).length}
