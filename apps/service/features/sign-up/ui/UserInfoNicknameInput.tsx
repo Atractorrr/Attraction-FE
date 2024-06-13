@@ -1,8 +1,11 @@
-import { useFormContext, useWatch } from 'react-hook-form'
-import { useMutation } from '@tanstack/react-query'
+import { checkInputValid } from '@/features/user-setting/lib'
+import { useDebounce } from '@/shared/lib'
 import { ExclamationCircleOutline } from '@attraction/icons'
-import { SignUpFormType } from '../model'
+import { useMutation } from '@tanstack/react-query'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { postDuplicateName } from '../api'
+import { SignUpFormType } from '../model'
 
 export default function UserInfoNicknameInput() {
   const {
@@ -12,11 +15,14 @@ export default function UserInfoNicknameInput() {
     setValue,
     setError,
     clearErrors,
-    control,
   } = useFormContext<SignUpFormType>()
+  const [nickname, setNickname] = useState<string>()
+  const debounceDuplicateInputValue = useDebounce(nickname, 200)
+
   const { mutate } = useMutation({
     mutationFn: postDuplicateName,
     onError: () => {
+      setValue('isNickNameChecked', false)
       setError('nickname', { message: '중복된 이메일 입니다' })
     },
     onSuccess: () => {
@@ -25,49 +31,37 @@ export default function UserInfoNicknameInput() {
     },
   })
 
-  const duplicateCheckHandler = () => {
+  useEffect(() => {
     if (
-      getValues('nickname').length >= 4 &&
-      getValues('nickname').length <= 20
+      debounceDuplicateInputValue &&
+      checkInputValid(debounceDuplicateInputValue, setError)
     ) {
-      mutate({ nickname: getValues('nickname') })
-    } else {
-      setError('nickname', { message: '닉네임은 4자 이상 20자 이하 입니다.' })
+      mutate({ nickname: debounceDuplicateInputValue })
     }
-  }
+  }, [debounceDuplicateInputValue, mutate, setError])
 
-  const watchIsNickNameChecked = useWatch<SignUpFormType>({
-    name: 'isNickNameChecked',
-    control,
-  })
   return (
-    <label htmlFor="nickName" className="mb-6 block" aria-label="닉네임">
-      <p className="mb-2 text-sm">닉네임</p>
-      <div className="flex flex-col gap-2 md:flex-row">
+    <fieldset className="mb-6 block">
+      <legend className="mb-4 text-2xl font-bold">
+        앞으로 어트랙션에서 사용할
+        <br /> 닉네임을 입력해주세요
+      </legend>
+      <p className="mb-10 text-gray-500">닉네임은 언제든지 수정할 수 있어요</p>
+      <label htmlFor="nickName" className="mb-2 flex flex-col gap-2 text-sm">
+        닉네임
         <input
           autoComplete="off"
           id="nickName"
           className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
           {...register('nickname', {
-            onChange: () => {
+            onChange: (e: ChangeEvent<HTMLInputElement>) => {
+              setNickname(e.target.value)
               setValue('isNickNameChecked', false)
-            },
-            validate: () => {
-              if (!watchIsNickNameChecked) {
-                return '중복 확인을 해주세요'
-              }
-              return true
             },
           })}
         />
-        <button
-          type="button"
-          onClick={() => duplicateCheckHandler()}
-          className="rounded-lg bg-gray-50 px-5 py-3 text-sm dark:bg-gray-700">
-          중복확인
-        </button>
-      </div>
+      </label>
       {errors.nickname?.message && (
         <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
@@ -75,8 +69,8 @@ export default function UserInfoNicknameInput() {
         </p>
       )}
       {getValues('isNickNameChecked') && (
-        <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>
+        <p className="mt-2 text-green-500">멋진 닉네임이에요! 👍</p>
       )}
-    </label>
+    </fieldset>
   )
 }
