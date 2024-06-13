@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ADMIN_EMAIL, COPY_RIGHT } from '../constant'
+import { ADMIN_EMAIL } from '@/shared/constant'
+import { COPY_RIGHT } from '../constant'
 
 export default function Footer() {
   return (

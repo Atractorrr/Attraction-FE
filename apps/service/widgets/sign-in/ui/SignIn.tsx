@@ -1,7 +1,7 @@
-import { SignInCarousel } from '@/features/sign-in-carousel'
-import { LogoSVG } from '@/public/svgs/svg'
-import { GoogleOAuthButton } from '@/shared/ui/oauth-button'
 import Link from 'next/link'
+import { LogoSVG } from '@/public/svgs/svg'
+import { SignInCarousel } from '@/features/sign-in-carousel'
+import { GoogleOAuthButton } from '@/shared/ui'
 import { INTRODUCE_MESSAGE } from '../constant'
 
 export default function SignIn() {
