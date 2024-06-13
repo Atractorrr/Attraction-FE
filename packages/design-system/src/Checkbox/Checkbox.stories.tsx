@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import Checkbox from './Checkbox'
+import { Checkbox } from './Checkbox'
 
 const meta: Meta<typeof Checkbox> = {
   title: 'UI/Checkbox',
