@@ -1,6 +1,6 @@
-import { useFormContext, useWatch } from 'react-hook-form'
-import { USER_INFO_EXPIRATION, UserSettingList } from '@/entities/user-setting'
+import { USER_INFO_EXPIRATION, UserSettingList } from '@/features/user-setting'
 import { ExclamationCircleOutline } from '@attraction/icons'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { SignUpFormType } from '../model'
 
 export default function UserInfoExpirationDate() {

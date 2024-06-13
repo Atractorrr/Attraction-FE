@@ -1,4 +1,4 @@
-import { USER_INFO_OCCUPATION, UserSettingList } from '@/entities/user-setting'
+import { USER_INFO_OCCUPATION, UserSettingList } from '@/features/user-setting'
 import { useFormContext } from 'react-hook-form'
 import { SettingForm } from '../model'
 
