@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { postUserSettingJob } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
+import UserDuplicateCheckInput from './UserDuplicateCheckInput'
 import UserSettingExpiration from './modal/UserSettingExpiration'
 import UserSettingInterest from './modal/UserSettingInterest'
 import UserSettingItem from './modal/UserSettingItem'
@@ -49,15 +50,11 @@ export default function UserInfoSetting() {
       {activeNicknameModal && (
         <UserSettingModal
           postUserSetting={postUserSettingJob}
-          setActiveModal={setActiveUserJobModal}
+          setActiveModal={setActiveNicknameModal}
           renderItem={(setPostValue) => (
-            <UserSettingList
-              listData={USER_INFO_OCCUPATION}
-              wrap
-              btnClickHandler={(keyItem) => {
-                setPostValue(keyItem)
-              }}
-              initialItem="PROFESSION"
+            <UserDuplicateCheckInput
+              setModalValue={setPostValue}
+              initialValue="kang15123"
             />
           )}
         />
