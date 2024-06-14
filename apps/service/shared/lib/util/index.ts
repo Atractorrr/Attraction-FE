@@ -1,2 +1,2 @@
-export * from './react-query'
+export { default as QueryProvider } from './QueryProvider'
 export { default as censoringAnchorTags } from './censoringAnchorTags'
