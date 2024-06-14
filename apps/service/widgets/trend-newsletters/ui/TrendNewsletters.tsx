@@ -27,6 +27,10 @@ function TrendNewsletterContent({
   return <TrendNewsletterList mainPageNewsletters={data.mainPageNewsletters} />
 }
 
+function ErrorGuideTxtWithContainer() {
+  return <ErrorGuideTxt />
+}
+
 export default function TrendNewsletters({ email }: TrendNewslettersProps) {
   const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
 
@@ -50,14 +54,16 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
           />
         </div>
         <div className="flex flex-col gap-y-8">
-          <NewsletterCategories
-            currentCategory={category}
-            email={email}
-            onClick={handleCategoryChange}
-          />
           <QueryErrorResetBoundary>
             {({ reset }) => (
-              <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+              <ErrorBoundary
+                onReset={reset}
+                FallbackComponent={ErrorGuideTxtWithContainer}>
+                <NewsletterCategories
+                  currentCategory={category}
+                  email={email}
+                  onClick={handleCategoryChange}
+                />
                 <Suspense fallback={<LoadingSpinner />}>
                   <TrendNewsletterContent category={category} />
                 </Suspense>

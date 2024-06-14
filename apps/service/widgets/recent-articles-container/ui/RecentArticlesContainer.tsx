@@ -26,7 +26,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
           />
           <Link
             href="/inbox"
-            className="text-sm text-gray-400 transition-colors  dark:hover:text-blue-300">
+            className="text-sm text-gray-400 transition-colors dark:hover:text-blue-300">
             보관함 바로가기
           </Link>
         </div>
@@ -65,7 +65,9 @@ function NonLoginView() {
 function ErrorGuideTxtWithContainer() {
   return (
     <Container>
-      <ErrorGuideTxt />
+      <div className="overflow-hidden">
+        <ErrorGuideTxt />
+      </div>
     </Container>
   )
 }
