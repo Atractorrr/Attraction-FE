@@ -1,4 +1,4 @@
-import UserSettingItem from './UserSettingItem'
+import UserSettingItem from './modal/UserSettingItem'
 
 export default function UserInfoGeneral() {
   return (
