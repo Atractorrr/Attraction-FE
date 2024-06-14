@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { QueryProvider } from '@/shared/lib'
+import { QueryProvider, DeviceProvider } from '@/shared/lib'
 import { ThemeProvider } from '@/entities/theme'
 
 interface ProviderProps {
@@ -9,7 +9,9 @@ interface ProviderProps {
 export default function Provider({ children }: ProviderProps) {
   return (
     <QueryProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <DeviceProvider>{children}</DeviceProvider>
+      </ThemeProvider>
     </QueryProvider>
   )
 }
