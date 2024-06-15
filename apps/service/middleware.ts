@@ -9,26 +9,31 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
   const { pathname } = request.nextUrl
 
-  requestHeaders.set('x-pathname', request.nextUrl.pathname)
+  requestHeaders.set('x-pathname', pathname)
 
-  if (PRIVATE_PATH.some((path) => pathname.startsWith(path)) && !isLoggedIn) {
-    return NextResponse.redirect(new URL('/', request.url))
+  // Helper functions for readability
+  const isPathMatch = (paths: string[]) =>
+    paths.some((path) => pathname.startsWith(path))
+  const redirect = (path: string) =>
+    NextResponse.redirect(new URL(path, request.url))
+
+  // Redirect to /need-login
+  if (isPathMatch(PRIVATE_PATH) && !isLoggedIn) {
+    return redirect('/need-login')
   }
 
+  // Redirect to /
   if (
-    PUBLIC_PATH.some((path) => pathname.startsWith(path)) &&
-    isLoggedIn &&
-    !isNotRegistered
+    (isPathMatch(PUBLIC_PATH) && isLoggedIn && !isNotRegistered) ||
+    (pathname.startsWith('/need-login') && isLoggedIn) ||
+    (pathname.startsWith('/sign-up') && !isLoggedIn)
   ) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return redirect('/')
   }
 
-  if (pathname.startsWith('/sign-up') && !isLoggedIn) {
-    return NextResponse.redirect(new URL('/', request.url))
-  }
-
+  // Redirect to /sign-up
   if (!pathname.startsWith('/sign-up') && isNotRegistered) {
-    return NextResponse.redirect(new URL('/sign-up', request.url))
+    return redirect('/sign-up')
   }
 
   return NextResponse.next({
