@@ -1,7 +1,8 @@
 'use client'
 
-import { RefreshOutline, SirenEmoji } from '@attraction/icons'
+import { RefreshOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system'
+import Image from 'next/image'
 import GuideTxt from './GuideTxt'
 
 interface ErrorGuideTxtProps {
@@ -21,7 +22,13 @@ export default function ErrorGuideTxt({
     <div className="grid grid-cols-1 justify-items-center gap-y-9 pb-[100px] pt-20">
       <div className="grid grid-cols-1 justify-items-center gap-y-6">
         <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-gray-100 ">
-          <SirenEmoji className="size-9" />
+          <Image
+            className="size-9"
+            src="/images/siren-icon.jpg"
+            width={100}
+            height={100}
+            alt="siren"
+          />
         </div>
         <GuideTxt title={title} sub={sub} />
       </div>
