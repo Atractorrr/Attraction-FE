@@ -26,6 +26,10 @@ interface ProfileContainerProps {
   userId: string
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function ProfileContainer({ userId }: ProfileContainerProps) {
   const { data: userProfile } = useQuery({
     queryKey: ['profile', userId],
@@ -40,7 +44,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
   return (
     userProfile && (
       <Container>
-        <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
+        <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
           <div className="relative flex w-full flex-col">
             <div className="group relative px-5 pt-5">
               <ProfileBackground
@@ -48,8 +52,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
               />
               <Button
                 type="button"
-                className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black p-1 text-gray-50 opacity-0 transition-all
-            group-hover:visible group-hover:right-8 group-hover:opacity-60"
+                className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black p-1 text-gray-50 opacity-0 transition-all group-hover:visible group-hover:right-8 group-hover:opacity-60"
                 onClick={() => {
                   setBackgroundModal(true)
                 }}>

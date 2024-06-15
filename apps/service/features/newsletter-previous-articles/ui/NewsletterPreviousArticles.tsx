@@ -46,7 +46,7 @@ function NewsletterPreviousArticlesContent({
   )
 }
 
-function CustomErrorGuidTxt() {
+function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
 }
 
@@ -61,7 +61,7 @@ export default function NewsletterPreviousArticles({
           {({ reset }) => (
             <ErrorBoundary
               onReset={reset}
-              FallbackComponent={CustomErrorGuidTxt}>
+              FallbackComponent={CustomErrorGuideTxt}>
               <Suspense fallback={<LoadingSpinner />}>
                 <NewsletterPreviousArticlesContent
                   newsletterId={newsletterId}
