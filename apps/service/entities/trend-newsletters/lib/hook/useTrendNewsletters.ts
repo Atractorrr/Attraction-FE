@@ -1,10 +1,10 @@
 import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query'
-import { NewsletterCategory } from '@/shared/type'
+import { MainCategory } from '@/features/newsletter-categories'
 import { fetchNewsletters } from '../../api'
 import type { TrendNewsletterResponse } from '../../model/type'
 
 export default function useTrendNewsletters(
-  category: NewsletterCategory,
+  category: MainCategory,
   size: number = 10,
 ): UseSuspenseQueryResult<TrendNewsletterResponse, Error> {
   return useSuspenseQuery({
