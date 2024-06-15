@@ -40,6 +40,10 @@ function RelatedNewsletterContent({ newsletterId }: RelatedNewsletterProps) {
   )
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function RelatedNewsletters({
   newsletterId,
 }: RelatedNewsletterProps) {
@@ -49,7 +53,9 @@ export default function RelatedNewsletters({
         <Title text="연관 뉴스레터" />
         <QueryErrorResetBoundary>
           {({ reset }) => (
-            <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+            <ErrorBoundary
+              onReset={reset}
+              FallbackComponent={CustomErrorGuideTxt}>
               <Suspense fallback={<LoadingSpinner />}>
                 <RelatedNewsletterContent newsletterId={newsletterId} />
               </Suspense>

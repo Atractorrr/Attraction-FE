@@ -17,25 +17,23 @@ function LoginView({ email }: RecentArticlesContainerProps) {
   const { data, isLoading } = useRecentArticles(email)
 
   return (
-    <Container>
-      <div className="flex w-full flex-col gap-y-4 p-5">
-        <div className="flex h-fit w-full items-center justify-between">
-          <Title
-            icon={<ClockOutline className="size-5" />}
-            text="최근 받은 아티클"
-          />
-          <Link
-            href="/inbox"
-            className="text-sm text-gray-400 transition-colors  dark:hover:text-blue-300">
-            보관함 바로가기
-          </Link>
-        </div>
-        {isLoading ? <LoadingSpinner /> : null}
-        {data ? (
-          <RecentArticles mainPageArticles={data.mainPageArticles} />
-        ) : null}
+    <div className="flex w-full flex-col gap-y-4 p-5">
+      <div className="flex h-fit w-full items-center justify-between">
+        <Title
+          icon={<ClockOutline className="size-5" />}
+          text="최근 받은 아티클"
+        />
+        <Link
+          href="/inbox"
+          className="text-sm text-gray-400 transition-colors dark:hover:text-blue-300">
+          보관함 바로가기
+        </Link>
       </div>
-    </Container>
+      {isLoading ? <LoadingSpinner /> : null}
+      {data ? (
+        <RecentArticles mainPageArticles={data.mainPageArticles} />
+      ) : null}
+    </div>
   )
 }
 
@@ -62,11 +60,11 @@ function NonLoginView() {
   )
 }
 
-function ErrorGuideTxtWithContainer() {
+function CustomErrorGuideTxt() {
   return (
-    <Container>
+    <div className="overflow-hidden">
       <ErrorGuideTxt />
-    </Container>
+    </div>
   )
 }
 
@@ -74,13 +72,13 @@ export default function RecentArticlesContainer({
   email,
 }: RecentArticlesContainerProps) {
   return (
-    <div>
+    <Container>
       {email ? (
         <QueryErrorResetBoundary>
           {({ reset }) => (
             <ErrorBoundary
               onReset={reset}
-              FallbackComponent={ErrorGuideTxtWithContainer}>
+              FallbackComponent={CustomErrorGuideTxt}>
               <LoginView email={email} />
             </ErrorBoundary>
           )}
@@ -88,6 +86,6 @@ export default function RecentArticlesContainer({
       ) : (
         <NonLoginView />
       )}
-    </div>
+    </Container>
   )
 }

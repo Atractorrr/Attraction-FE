@@ -20,11 +20,15 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 
 // const theme = typeof window !== 'undefined' ? localStorage.getItem('theme') : ''
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function Calendar({ calendarData }: CalendarProps) {
   const { realTheme } = useTheme()
   return (
     <Container className="flex h-full justify-center p-6">
-      <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
+      <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
         <ActivityCalendarNoSSR
           data={calendarData}
           labels={CALENDAR_LABELS}

@@ -1,12 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/ko'
+import { getTimeFromNow } from '@/shared/lib'
 import { RecentArticle } from '../model'
-
-dayjs.extend(relativeTime)
-dayjs.locale('ko')
 
 export default function RecentArticleItem({ ...props }: RecentArticle) {
   return (
@@ -48,7 +43,7 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
           <div className="flex text-sm text-gray-500 dark:text-gray-400">
             <p>{props.newsletterTitle}</p>
             <p className="before:mx-1 before:content-['·']">
-              {dayjs(props.date).fromNow()}
+              {getTimeFromNow(props.date)}
             </p>
           </div>
         </div>
