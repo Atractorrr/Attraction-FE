@@ -64,12 +64,7 @@ function DrawerHeader({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
-  return (
-    <div
-      className={cn('ds-p-5 ds-text-center sm:ds-text-left', className)}
-      {...props}
-    />
-  )
+  return <div className={cn('ds-p-5', className)} {...props} />
 }
 DrawerHeader.displayName = 'DrawerHeader'
 

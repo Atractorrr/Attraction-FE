@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@attraction/design-system/dist'
-import { MemberOutline } from '@attraction/icons'
+import { CogOutline, MemberOutline } from '@attraction/icons'
 
 interface AuthButtonProps {
   isLogin: boolean
@@ -60,11 +60,15 @@ export default function AuthButton({ isLogin }: AuthButtonProps) {
       <DropdownMenuContent className="w-48">
         <DropdownMenuItem
           title="마이페이지 이동"
-          onClick={() => {
-            router.push('/mypage')
-          }}>
+          onClick={() => router.push('/mypage')}>
           <MemberOutline className="text-lg" />
           <span className="ml-2">마이페이지</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          title="개인설정 페이지 이동"
+          onClick={() => router.push('/setting')}>
+          <CogOutline className="text-lg" />
+          <span className="ml-2">개인설정</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem title="로그아웃" onClick={signOutHandler}>

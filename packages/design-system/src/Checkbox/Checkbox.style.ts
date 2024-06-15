@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 const checkboxVariants = cva(
-  'ds-size-6 ds-cursor-pointer ds-appearance-none ds-rounded ds-border-2 ds-border-gray-100 ds-transition-colors dark:ds-border-gray-600',
+  'ds-size-6 ds-cursor-pointer ds-appearance-none ds-rounded ds-border-2 ds-border-gray-100 ds-transition-colors disabled:ds-cursor-auto dark:ds-border-gray-600',
   {
     variants: {
       variant: {

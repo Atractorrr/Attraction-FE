@@ -25,8 +25,9 @@ const Checkbox = React.forwardRef<
         ? ({
             htmlFor: id,
             className: cn(
-              'ds-inline-flex ds-cursor-pointer ds-items-center ds-justify-start',
+              'ds-inline-flex ds-items-center ds-justify-start',
               className,
+              disabled ? 'ds-cursor-auto' : 'ds-cursor-pointer',
             ),
           } as React.DetailedHTMLProps<
             React.InputHTMLAttributes<HTMLLabelElement>,
