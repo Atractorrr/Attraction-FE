@@ -46,6 +46,10 @@ function NewsletterPreviousArticlesContent({
   )
 }
 
+function CustomErrorGuidTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function NewsletterPreviousArticles({
   newsletterId,
 }: NewsletterPreviousArticlesProps) {
@@ -55,7 +59,9 @@ export default function NewsletterPreviousArticles({
         <Title icon={<ClockOutline className="size-6" />} text="지난 아티클" />
         <QueryErrorResetBoundary>
           {({ reset }) => (
-            <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+            <ErrorBoundary
+              onReset={reset}
+              FallbackComponent={CustomErrorGuidTxt}>
               <Suspense fallback={<LoadingSpinner />}>
                 <NewsletterPreviousArticlesContent
                   newsletterId={newsletterId}
