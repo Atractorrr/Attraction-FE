@@ -1,4 +1,9 @@
+import { Metadata } from 'next'
 import { Container, NotFound } from '@/shared/ui'
+
+export const metadata: Metadata = {
+  title: '404',
+}
 
 export default function NotFoundPage() {
   return (
