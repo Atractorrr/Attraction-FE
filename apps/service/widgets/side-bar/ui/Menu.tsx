@@ -26,7 +26,7 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
               href={href}
               className={`flex size-full rounded-lg md:h-auto ${
                 isMiniSize
-                  ? 'flex-col items-center justify-start gap-2 px-2 pb-2 pt-3 md:justify-center md:pb-3 md:pt-4'
+                  ? 'flex-col items-center justify-start gap-1 px-2 pb-1 pt-2 md:justify-center md:gap-2 md:pb-3 md:pt-4'
                   : 'gap-3 p-3'
               } text-xl transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
                 pathname === href || segments.some((s) => s === segment)

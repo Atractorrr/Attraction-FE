@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Article, ViewType } from '../model'
+import { daysAgo } from '../lib'
+import ToBeDeletedTxt from './ToBeDeletedTxt'
 
 interface CardItemProps {
   data: Article
@@ -67,6 +69,7 @@ export default function CardItem({ data, type }: CardItemProps) {
             className="block break-keep text-sm text-gray-500 dark:text-gray-400">
             {data.newsletter.name} &middot; {data.receivedAt}
           </span>
+          {daysAgo(data.receivedAt) === 7 && <ToBeDeletedTxt />}
         </p>
       </div>
     </div>
