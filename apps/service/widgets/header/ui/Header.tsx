@@ -18,7 +18,7 @@ const getTitle = (pathname: string) => {
   return target ? target[1] : '어트랙션'
 }
 
-export default function Header({ isLogin }: { isLogin: boolean }) {
+export default function Header() {
   const pathname = usePathname()
   const segments = useSelectedLayoutSegments()
 
@@ -33,7 +33,7 @@ export default function Header({ isLogin }: { isLogin: boolean }) {
         </h3>
         <div className="flex items-center justify-end gap-2">
           <ThemeDropdownBtn />
-          <AuthButton isLogin={isLogin} />
+          <AuthButton />
         </div>
       </div>
     </header>
