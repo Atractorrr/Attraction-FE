@@ -12,6 +12,7 @@ const getTitle = (pathname: string) => {
     ['/inbox', '뉴스레터 보관함'],
     ['/newsletter', '뉴스레터 소개'],
     ['/mypage', '마이페이지'],
+    ['/setting', '개인설정'],
     ['/discover', '탐색'],
   ].find(([path]) => pathname.startsWith(path))
   return target ? target[1] : '어트랙션'

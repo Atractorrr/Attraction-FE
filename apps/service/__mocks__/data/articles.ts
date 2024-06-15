@@ -3,6 +3,18 @@ import { Article } from '@/entities/user-article'
 const getThumbnailUrl = (keyword: string) =>
   `https://source.unsplash.com/random/1280x720/?${keyword}`
 
+const getDate = (day: number) => {
+  const now = new Date()
+  const targetDate = new Date(now.setDate(now.getDate() - day))
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format
+
+  return formatter(targetDate)
+}
+
 export const articles: Article[] = [
   {
     id: 1,
@@ -10,10 +22,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '최신 트렌드에 대한 모든 것을 알아보세요',
     category: 'TREND_LIFE',
-    receivedAt: '2024-03-05',
+    receivedAt: getDate(1),
     readPercentage: 0,
     readingTime: 15,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -28,10 +39,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '미래를 바꿀 블록체인 기술의 주요 동향',
     category: 'IT_TECH',
-    receivedAt: '2024-02-20',
+    receivedAt: getDate(3),
     readPercentage: 68,
     readingTime: 8,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -46,10 +56,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '글로벌 경제 전망과 주요 이슈 분석',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-03-10',
+    receivedAt: getDate(2),
     readPercentage: 82,
     readingTime: 2,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -64,10 +73,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '인공지능 기술의 현재와 미래에 대한 분석',
     category: 'IT_TECH',
-    receivedAt: '2024-02-29',
+    receivedAt: getDate(5),
     readPercentage: 0,
     readingTime: 12,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -82,10 +90,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '스타트업 동향 및 성공 전략에 대한 깊이 있는 분석',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-03-15',
+    receivedAt: getDate(6),
     readPercentage: 53,
     readingTime: 4,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -100,10 +107,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '지속 가능한 환경을 위한 글로벌 노력',
     category: 'CURRENT_AFFAIRS_SOCIETY',
-    receivedAt: '2024-02-18',
+    receivedAt: getDate(2),
     readPercentage: 0,
     readingTime: 18,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -118,10 +124,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '건강한 생활을 위한 실천 가능한 팁',
     category: 'HEALTH_MEDICINE',
-    receivedAt: '2024-03-01',
+    receivedAt: getDate(1),
     readPercentage: 0,
     readingTime: 5,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -136,10 +141,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '안전한 투자 전략과 다양한 팁',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-02-25',
+    receivedAt: getDate(4),
     readPercentage: 0,
     readingTime: 7,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -154,10 +158,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '빅데이터의 중요성과 활용 방안 분석',
     category: 'IT_TECH',
-    receivedAt: '2024-03-05',
+    receivedAt: getDate(3),
     readPercentage: 45,
     readingTime: 13,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -172,10 +175,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '금융 시장의 최신 동향과 미래 전망',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-02-15',
+    receivedAt: getDate(5),
     readPercentage: 65,
     readingTime: 20,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -190,10 +192,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '인터넷 보안의 중요성과 최신 대응 전략',
     category: 'IT_TECH',
-    receivedAt: '2024-02-22',
+    receivedAt: getDate(4),
     readPercentage: 75,
     readingTime: 16,
-    // isRead: true,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -208,10 +209,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '디지털 마케팅의 효과적인 전략과 실행 방법',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-03-10',
+    receivedAt: getDate(3),
     readPercentage: 0,
     readingTime: 3,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -226,10 +226,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '현대 교육의 혁신과 미래 도전 과제',
     category: 'CURRENT_AFFAIRS_SOCIETY',
-    receivedAt: '2024-02-29',
+    receivedAt: getDate(2),
     readPercentage: 0,
     readingTime: 14,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -244,10 +243,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '성공적인 리더십의 핵심 요소와 발전 방향',
     category: 'BUSINESS_FINANCIAL_TECHNOLOGY',
-    receivedAt: '2024-03-20',
+    receivedAt: getDate(1),
     readPercentage: 0,
     readingTime: 11,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -262,10 +260,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '건강한 식생활을 위한 맛있는 레시피 모음',
     category: 'FOOD',
-    receivedAt: '2024-02-17',
+    receivedAt: getDate(6),
     readPercentage: 0,
     readingTime: 19,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -280,10 +277,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '국내 여행지 추천 및 유용한 여행 팁',
     category: 'LOCAL_TRAVEL',
-    receivedAt: '2024-03-12',
+    receivedAt: getDate(3),
     readPercentage: 0,
     readingTime: 10,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -298,10 +294,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '세계 각국의 다양한 문화와 특징 소개',
     category: 'CULTURE_ART',
-    receivedAt: '2024-03-07',
+    receivedAt: getDate(4),
     readPercentage: 0,
     readingTime: 0,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -316,10 +311,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '최신 디자인 트렌드와 창의적인 아이디어',
     category: 'DESIGN',
-    receivedAt: '2024-02-28',
+    receivedAt: getDate(5),
     readPercentage: 0,
     readingTime: 6,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -334,10 +328,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '연예계 소식과 인기 유명인 인터뷰 모음',
     category: 'ENTERTAINMENT',
-    receivedAt: '2024-02-21',
+    receivedAt: getDate(2),
     readPercentage: 0,
     readingTime: 17,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',
@@ -352,10 +345,9 @@ export const articles: Article[] = [
     contentUrl: '/test/test.html',
     title: '현재 사회 문제와 그에 대한 해결 방안 분석',
     category: 'CURRENT_AFFAIRS_SOCIETY',
-    receivedAt: '2024-03-18',
+    receivedAt: getDate(2),
     readPercentage: 0,
     readingTime: 9,
-    // isRead: false,
     newsletter: {
       id: 1,
       name: '뉴닉',

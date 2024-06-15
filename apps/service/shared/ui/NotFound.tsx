@@ -31,18 +31,18 @@ export default function NotFound() {
           관리자({ADMIN_EMAIL})에게 문의해 주세요
         </p>
       </div>
-      <p className="mt-12 flex items-center justify-center gap-2 sm:mt-16 lg:gap-3">
+      <p className="mt-16 flex flex-col-reverse items-center justify-center gap-2 xs:mt-12 xs:flex-row sm:mt-16 lg:gap-3">
         <button
           type="button"
           title="이전 페이지로 이동"
           onClick={router.back}
-          className="whitespace-nowrap rounded-lg bg-gray-50 px-6 py-3 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600">
+          className="w-full whitespace-nowrap rounded-lg bg-gray-50 px-6 py-3 text-center transition-colors hover:bg-gray-100 xs:w-auto dark:bg-gray-700 dark:hover:bg-gray-600">
           이전 페이지
         </button>
         <Link
           href="/"
           title="메인 페이지로 이동"
-          className="whitespace-nowrap rounded-lg bg-gray-700 px-8 py-3 text-gray-50 transition-colors hover:bg-gray-800 dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
+          className="w-full whitespace-nowrap rounded-lg bg-gray-700 px-8 py-3 text-center text-gray-50 transition-colors hover:bg-gray-800 xs:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
           메인으로
         </Link>
       </p>

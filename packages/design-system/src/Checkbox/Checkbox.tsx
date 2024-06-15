@@ -1,28 +1,63 @@
 'use client'
 
 import * as React from 'react'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckOutline } from '@attraction/icons'
 import { cn } from '../utils'
+import checkboxVariants from './Checkbox.style'
 
-export const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
-      'ds-peer ds-size-4 ds-shrink-0 ds-rounded-sm ds-border ds-border-gray-200 ds-ring-offset-white focus-visible:ds-outline-none focus-visible:ds-ring-2 focus-visible:ds-ring-gray-950 focus-visible:ds-ring-offset-2 disabled:ds-cursor-not-allowed disabled:ds-opacity-50 data-[state=checked]:ds-bg-gray-900 data-[state=checked]:ds-text-gray-50 dark:ds-border-gray-50 dark:ds-border-gray-800 dark:ds-border-gray-900 dark:ds-ring-offset-gray-950 dark:focus-visible:ds-ring-gray-300 dark:data-[state=checked]:ds-bg-gray-50 dark:data-[state=checked]:ds-text-gray-900',
-      className,
-    )}
-    {...props}>
-    <CheckboxPrimitive.Indicator
-      className={cn(
-        'ds-flex ds-items-center ds-justify-center ds-text-current',
-      )}>
-      <CheckOutline className="ds-size-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
+const Checkbox = React.forwardRef<
+  HTMLInputElement,
+  React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > & {
+    label?: string
+    color?: 'default' | 'red' | 'blue' | 'green' | 'yellow'
+  }
+>(
+  (
+    { className, id, label, checked, color = 'default', disabled, ...props },
+    ref,
+  ) =>
+    React.createElement(
+      label ? 'label' : React.Fragment,
+      label
+        ? ({
+            htmlFor: id,
+            className: cn(
+              'ds-inline-flex ds-items-center ds-justify-start',
+              className,
+              disabled ? 'ds-cursor-auto' : 'ds-cursor-pointer',
+            ),
+          } as React.DetailedHTMLProps<
+            React.InputHTMLAttributes<HTMLLabelElement>,
+            HTMLLabelElement
+          >)
+        : undefined,
+      <>
+        <span className="ds-relative ds-block ds-size-6">
+          <input
+            ref={ref}
+            id={id}
+            checked={checked}
+            className={cn(
+              'ds-peer',
+              checkboxVariants({ variant: disabled ? 'disabled' : color }),
+            )}
+            disabled={disabled}
+            type="checkbox"
+            {...props}
+          />
+          <CheckOutline
+            className={cn(
+              'ds-pointer-events-none ds-absolute ds-inset-0 ds-m-auto ds-hidden ds-text-base ds-text-white peer-checked:ds-inline-block peer-disabled:ds-inline-block peer-disabled:ds-text-gray-200 dark:peer-disabled:ds-text-gray-500',
+              color === 'default' && 'dark:ds-text-gray-700',
+            )}
+          />
+        </span>
+        {label ? <span className="ds-ml-3 ds-break-keep">{label}</span> : null}
+      </>,
+    ),
+)
 
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+export default Checkbox
