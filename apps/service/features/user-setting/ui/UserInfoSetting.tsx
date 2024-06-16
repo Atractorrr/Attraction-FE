@@ -29,7 +29,7 @@ export default function UserInfoSetting() {
   const userEmail = 'kang151135@gmail.com'
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: userProfile } = useQuery({
+  const { data: userProfile, refetch } = useQuery({
     queryKey: ['profile', userEmail],
     queryFn: () => fetchUserProfile(userEmail),
   })
@@ -50,6 +50,7 @@ export default function UserInfoSetting() {
       setActiveUserJobModal(false)
       setActiveUserInterestModal(false)
       setActiveUserExpirationModal(false)
+      refetch()
     },
   })
 

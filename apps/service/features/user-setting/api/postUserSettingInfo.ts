@@ -8,7 +8,7 @@ const postUserSettingInfo = async (
     {
       headers: { 'Content-Type': 'application/json' },
       method: 'PATCH',
-      body: value,
+      body: JSON.stringify(value),
     },
   ).then((res) => {
     if (!res.ok) {

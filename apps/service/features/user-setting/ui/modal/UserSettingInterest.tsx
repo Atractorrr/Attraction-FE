@@ -88,7 +88,7 @@ export default function UserSettingInterest({
     if (alertActive) {
       setModalValue(undefined)
     } else {
-      setModalValue(preferTagList)
+      setModalValue({ interest: preferTagList })
     }
   }, [alertActive, preferTagList, setModalValue])
 
