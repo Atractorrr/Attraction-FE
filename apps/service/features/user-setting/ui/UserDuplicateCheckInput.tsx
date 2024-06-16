@@ -26,7 +26,7 @@ export default function UserInfoNicknameInput({
     },
     onSuccess: () => {
       setAlert('')
-      setModalValue(debounceDuplicateInputValue)
+      setModalValue({ nickname: debounceDuplicateInputValue })
       setIsValid(true)
     },
   })

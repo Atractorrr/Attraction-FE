@@ -1,7 +1,9 @@
 'use client'
 
+import { UserProfile } from '@/entities/profile'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
-import { postUserSettingJob } from '../api'
+import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
 import UserDuplicateCheckInput from './UserDuplicateCheckInput'
 import UserSettingExpiration from './modal/UserSettingExpiration'
@@ -10,12 +12,46 @@ import UserSettingItem from './modal/UserSettingItem'
 import UserSettingList from './modal/UserSettingList'
 import UserSettingModal from './modal/UserSettingModal'
 
+const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}`,
+  ).then((res) => res.json())
+  const { user } = data
+  return user
+}
+
 export default function UserInfoSetting() {
   const [activeNicknameModal, setActiveNicknameModal] = useState(false)
   const [activeUserJobModal, setActiveUserJobModal] = useState(false)
   const [activeUserInterestModal, setActiveUserInterestModal] = useState(false)
   const [activeUserExpirationModal, setActiveUserExpirationModal] =
     useState(false)
+  const userEmail = 'kang151135@gmail.com'
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { data: userProfile } = useQuery({
+    queryKey: ['profile', userEmail],
+    queryFn: () => fetchUserProfile(userEmail),
+  })
+  const { mutate } = useMutation({
+    mutationFn: ({
+      value,
+      type,
+      email,
+    }: {
+      value: any
+      type: 'interest' | 'nickname' | 'occupation' | 'expiration'
+      email: string
+    }) => {
+      return postUserSettingInfo(value, type, email)
+    },
+    onSuccess: () => {
+      setActiveNicknameModal(false)
+      setActiveUserJobModal(false)
+      setActiveUserInterestModal(false)
+      setActiveUserExpirationModal(false)
+    },
+  })
 
   return (
     <div className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl bg-white p-6 dark:bg-gray-700">
@@ -49,7 +85,9 @@ export default function UserInfoSetting() {
 
       {activeNicknameModal && (
         <UserSettingModal
-          postUserSetting={postUserSettingJob}
+          postUserSetting={(value) => {
+            mutate({ value, type: 'nickname', email: userEmail })
+          }}
           setActiveModal={setActiveNicknameModal}
           renderItem={(setPostValue) => (
             <UserDuplicateCheckInput
@@ -61,14 +99,16 @@ export default function UserInfoSetting() {
       )}
       {activeUserJobModal && (
         <UserSettingModal
-          postUserSetting={postUserSettingJob}
+          postUserSetting={(value) => {
+            mutate({ value, type: 'occupation', email: userEmail })
+          }}
           setActiveModal={setActiveUserJobModal}
           renderItem={(setPostValue) => (
             <UserSettingList
               listData={USER_INFO_OCCUPATION}
               wrap
               btnClickHandler={(keyItem) => {
-                setPostValue(keyItem)
+                setPostValue({ occupation: keyItem })
               }}
               initialItem="PROFESSION"
             />
@@ -77,7 +117,9 @@ export default function UserInfoSetting() {
       )}
       {activeUserInterestModal && (
         <UserSettingModal
-          postUserSetting={postUserSettingJob}
+          postUserSetting={(value) => {
+            mutate({ value, type: 'interest', email: userEmail })
+          }}
           setActiveModal={setActiveUserInterestModal}
           renderItem={(setPostValue) => (
             <UserSettingInterest
@@ -89,7 +131,9 @@ export default function UserInfoSetting() {
       )}
       {activeUserExpirationModal && (
         <UserSettingModal
-          postUserSetting={postUserSettingJob}
+          postUserSetting={(value) => {
+            mutate({ value, type: 'expiration', email: userEmail })
+          }}
           setActiveModal={setActiveUserExpirationModal}
           renderItem={(setPostValue) => (
             <UserSettingExpiration

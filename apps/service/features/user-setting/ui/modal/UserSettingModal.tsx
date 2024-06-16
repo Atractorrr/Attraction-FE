@@ -1,9 +1,8 @@
 import { Button } from '@attraction/design-system'
-import { useMutation } from '@tanstack/react-query'
 import React, { ReactNode, useState } from 'react'
 
 type UserSettingModalType = {
-  postUserSetting: (value: unknown) => Promise<void>
+  postUserSetting: (value: unknown) => void
   setActiveModal: React.Dispatch<React.SetStateAction<boolean>>
   renderItem: (
     setPostValue: React.Dispatch<React.SetStateAction<unknown | undefined>>,
@@ -16,13 +15,6 @@ export default function UserSettingModal({
   setActiveModal,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
-
-  const { mutate } = useMutation({
-    mutationFn: postUserSetting,
-    onSuccess: () => {
-      setActiveModal!(false)
-    },
-  })
 
   return (
     <div className="fixed left-0 top-0 z-50 flex size-full min-h-screen items-center justify-center">
@@ -46,7 +38,7 @@ export default function UserSettingModal({
             <Button
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
               onClick={() => {
-                mutate(postValue)
+                postUserSetting(postValue)
               }}>
               변경
             </Button>

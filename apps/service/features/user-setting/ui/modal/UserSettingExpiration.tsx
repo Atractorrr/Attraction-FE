@@ -27,7 +27,7 @@ export default function UserInfoExpirationDate({
             key={listDataKey}
             className="mb-5 flex gap-4"
             onClick={() => {
-              setModalValue(Number(listDataKey))
+              setModalValue({ userExpiration: Number(listDataKey) })
               setActiveKey(listDataKey)
             }}>
             <label
