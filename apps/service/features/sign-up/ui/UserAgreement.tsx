@@ -11,10 +11,12 @@ export default function UserAgreement() {
     setValue,
     formState: { errors },
     clearErrors,
-    setError,
     getValues,
   } = useFormContext<SignUpFormType>()
-  const { fields } = useFieldArray({ control, name: 'policies' })
+  const { fields } = useFieldArray({
+    control,
+    name: 'policies',
+  })
   const policesValue = useWatch({ control, name: 'policies' })
   const policesSelectAll = useWatch({
     control,
@@ -50,7 +52,7 @@ export default function UserAgreement() {
     } else {
       setValue('selectPolicyAll', false)
     }
-  }, [clearErrors, policesValue, setError, setValue])
+  }, [clearErrors, policesValue, setValue])
 
   return (
     <fieldset className="rounded-lg">

@@ -33,6 +33,12 @@ const checkInputValid = (
     return false
   }
 
+  if (nickname === '') {
+    setError('nickname', { message: '닉네임을 입력해주세요' })
+
+    return false
+  }
+
   return true
 }
 
