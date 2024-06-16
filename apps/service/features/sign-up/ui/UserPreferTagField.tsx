@@ -114,7 +114,7 @@ export default function UserPreferTagField() {
         </span>
       </div>
       <div className="h-full overflow-y-auto">
-        <div className="xs:grid xs:grid-cols-2 xs:content-center xs:justify-center flex flex-col gap-5">
+        <div className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
           {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
             <UserPreferTag
               key={categoryKey}

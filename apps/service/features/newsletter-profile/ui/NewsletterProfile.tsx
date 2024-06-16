@@ -1,12 +1,12 @@
 'use client'
 
 import { Suspense } from 'react'
-import { Background, ErrorGuideTxt, LoadingSpinner } from '@/shared/ui'
+import { Container, ErrorGuideTxt, LoadingSpinner } from '@/shared/ui'
 import Image from 'next/image'
 import { HouseOutline } from '@attraction/icons'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { useNewsletterProfile } from '../lib'
 import { subscribeNewsletter } from '../api'
 
@@ -79,17 +79,23 @@ function NewsletterProfileContent({
   )
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function NewsletterProfile({
   email,
   newsletterId,
 }: NewsletterProfileProps) {
   return (
-    <Background>
+    <Container>
       <div className="flex w-full justify-start gap-x-6">
         <QueryErrorResetBoundary>
           {({ reset }) => (
             <div className="flex w-full justify-center">
-              <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+              <ErrorBoundary
+                onReset={reset}
+                FallbackComponent={CustomErrorGuideTxt}>
                 <Suspense fallback={<LoadingSpinner />}>
                   <NewsletterProfileContent
                     email={email}
@@ -101,6 +107,6 @@ export default function NewsletterProfile({
           )}
         </QueryErrorResetBoundary>
       </div>
-    </Background>
+    </Container>
   )
 }

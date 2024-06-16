@@ -1,5 +1,3 @@
-export { default as CategoryDropdownBtn } from './CategoryDropdownBtn'
-export { default as SortTypeDropdownBtn } from './SortTypeDropdownBtn'
 export { default as HideReadToggleBtn } from './HideReadToggleBtn'
 export { default as ViewTypeTabMenu } from './ViewTypeTabMenu'
 export { default as SearchBar } from './SearchBar'

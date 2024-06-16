@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react'
 import {
-  Background,
+  Container,
   ErrorGuideTxt,
   GuideTxt,
   LoadingSpinner,
@@ -46,16 +46,22 @@ function NewsletterPreviousArticlesContent({
   )
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function NewsletterPreviousArticles({
   newsletterId,
 }: NewsletterPreviousArticlesProps) {
   return (
-    <Background>
+    <Container>
       <div className="grid w-full gap-y-5 p-5">
         <Title icon={<ClockOutline className="size-6" />} text="지난 아티클" />
         <QueryErrorResetBoundary>
           {({ reset }) => (
-            <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+            <ErrorBoundary
+              onReset={reset}
+              FallbackComponent={CustomErrorGuideTxt}>
               <Suspense fallback={<LoadingSpinner />}>
                 <NewsletterPreviousArticlesContent
                   newsletterId={newsletterId}
@@ -65,6 +71,6 @@ export default function NewsletterPreviousArticles({
           )}
         </QueryErrorResetBoundary>
       </div>
-    </Background>
+    </Container>
   )
 }

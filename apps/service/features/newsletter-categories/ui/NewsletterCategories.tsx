@@ -2,17 +2,17 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
-import { Button } from '@attraction/design-system'
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
+import { Button } from '@attraction/design-system/dist'
 import { Carousel } from '@/shared/ui'
 import NewsletterCategoriesSkeleton from './NewletterCategoriesSkeleton'
 import { usePreferCategories } from '../lib'
+import { MainCategory, MainCategoryName } from '../model'
+import { allCategories } from '../constant'
 
 interface NewsletterCategoriesProps {
-  currentCategory: NewsletterCategory
+  currentCategory: MainCategory
   email: string | undefined
-  onClick: (category: NewsletterCategoryName) => void
+  onClick: (category: MainCategoryName) => void
 }
 
 function NewsletterCategoriesContent({
@@ -20,7 +20,8 @@ function NewsletterCategoriesContent({
   email,
   onClick,
 }: NewsletterCategoriesProps) {
-  const [categories, setCategories] = useState<NewsletterCategory[]>([])
+  const [categories, setCategories] = useState<MainCategory[]>([])
+
   const { data } = usePreferCategories(email)
   const option: EmblaOptionsType = {
     dragFree: true,
@@ -34,8 +35,8 @@ function NewsletterCategoriesContent({
           ? 'bg-gray-700 text-white dark:bg-white dark:text-gray-700'
           : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
       }`}
-      onClick={() => onClick(NEWSLETTER_CATEGORY[category])}>
-      {NEWSLETTER_CATEGORY[category]}
+      onClick={() => onClick(allCategories[category])}>
+      {allCategories[category]}
     </Button>
   ))
 

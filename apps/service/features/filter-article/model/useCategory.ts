@@ -7,10 +7,9 @@ export default function useCategory() {
   const [selectedCategory, setSelectedCategory] = useState<
     NewsletterCategory | undefined
   >(undefined)
-  const setCategory = useCallback((category: NewsletterCategory) => {
+  const setCategory = useCallback((category?: NewsletterCategory) => {
     setSelectedCategory(category)
   }, [])
-  const resetCategory = useCallback(() => setSelectedCategory(undefined), [])
 
-  return { selectedCategory, setCategory, resetCategory } as const
+  return { selectedCategory, setCategory } as const
 }

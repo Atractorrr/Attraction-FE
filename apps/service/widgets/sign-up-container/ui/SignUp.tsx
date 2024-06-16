@@ -9,11 +9,11 @@ import {
   UserJobField,
   UserPreferTagField,
 } from '@/features/sign-up'
-import { Button } from '@attraction/design-system'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { Button } from '@attraction/design-system/dist'
 import { postSignUpForm } from '../api'
 import { checkSignUpFormErr } from '../lib'
 import { useSignUpFunnel } from '../lib/hook'

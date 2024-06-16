@@ -2,26 +2,39 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
-import { BackBtn } from '@/shared/ui'
+import { useEffect, useRef, useState } from 'react'
+import { Badge } from '@attraction/design-system/dist'
+import { BackBtn, ErrorGuideTxt } from '@/shared/ui'
+import { censoringAnchorTags } from '@/shared/lib'
 import { Article } from '../model'
 
 interface ArticleViewProps {
   data: Article
+  censored?: boolean
 }
 
-export default function ArticleView({ data }: ArticleViewProps) {
+export default function ArticleView({ data, censored }: ArticleViewProps) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
+  const [isIframeNotFound, setIframeNotFound] = useState(false)
 
   useEffect(() => {
     const iframe = iframeRef.current
     const handleIframe = () => {
       if (iframe === null) return
+
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
-      if (iframeDoc) {
-        const iframeBody = iframeDoc.body
-        iframe.style.height = `${iframeBody.scrollHeight + 10}px`
+      if (!iframeDoc) return
+
+      if (iframeDoc.title.includes('404')) {
+        setIframeNotFound(true)
+        return
       }
+      iframe.style.display = 'block'
+
+      if (censored) censoringAnchorTags(iframeDoc)
+
+      const iframeBody = iframeDoc.body
+      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
     }
     iframe?.addEventListener('load', handleIframe)
     window.addEventListener('resize', handleIframe)
@@ -29,7 +42,7 @@ export default function ArticleView({ data }: ArticleViewProps) {
       iframe?.removeEventListener('load', handleIframe)
       window.removeEventListener('resize', handleIframe)
     }
-  }, [])
+  }, [censored])
 
   return (
     <div className="h-auto min-h-dvh w-full p-5 pb-20 pt-12 md:pb-12 md:pt-5">
@@ -60,19 +73,27 @@ export default function ArticleView({ data }: ArticleViewProps) {
           </p>
           <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
             <span>{data.receivedAt}</span>
-            <span className="inline-block whitespace-nowrap rounded-full bg-blue-50 px-2 py-1 text-sm text-blue-400 dark:bg-blue-800 dark:text-blue-300">
+            <Badge variant="blue">
               {data.readingTime ? `약 ${data.readingTime}분` : '1분 미만'}
-            </span>
+            </Badge>
           </p>
         </div>
       </div>
       <div className="min-h-full w-full overflow-hidden rounded-lg">
-        <iframe
-          ref={iframeRef}
-          src={`/html/${data.contentUrl}`}
-          className="size-full min-h-full"
-          title={data.title}
-        />
+        {!isIframeNotFound &&
+        !!data.contentUrl &&
+        /\.html$/.test(data.contentUrl) ? (
+          <iframe
+            ref={(node) => {
+              iframeRef.current = node
+            }}
+            src={`/html/${data.contentUrl}`}
+            className="hidden size-full min-h-full"
+            title={data.title}
+          />
+        ) : (
+          <ErrorGuideTxt />
+        )}
       </div>
     </div>
   )

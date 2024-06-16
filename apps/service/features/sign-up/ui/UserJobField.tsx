@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { USER_INFO_OCCUPATION } from '@/features/user-setting'
-import { Button } from '@attraction/design-system'
 import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { Button } from '@attraction/design-system/dist'
 import { SignUpFormType } from '../model'
 
 export default function UserJobField() {
@@ -47,7 +47,7 @@ export default function UserJobField() {
               <label
                 htmlFor={listDataKey}
                 className={`  flex size-6 cursor-pointer items-center justify-center rounded-full p-1  ${activeKey === listDataKey ? 'inline bg-white dark:bg-gray-600' : 'hidden border-2 border-gray-700 dark:border-gray-100'} focus:border-none`}>
-                <CheckOutline className="peer size-full rounded-md  font-bold text-gray-700 dark:text-white" />
+                <CheckOutline className="peer size-full rounded-md font-bold text-gray-700 dark:text-white" />
               </label>
               {USER_INFO_OCCUPATION.get(listDataKey)}
             </Button>

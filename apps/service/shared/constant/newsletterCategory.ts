@@ -1,5 +1,4 @@
 const NEWSLETTER_CATEGORY = Object.freeze({
-  RECOMMEND: '추천', // TODO: 추후 논의 (백엔드에 없는 enum)
   TREND_LIFE: '트렌드/라이프',
   ENTERTAINMENT: '엔터테인먼트',
   BUSINESS_FINANCIAL_TECHNOLOGY: '비즈/재테크',

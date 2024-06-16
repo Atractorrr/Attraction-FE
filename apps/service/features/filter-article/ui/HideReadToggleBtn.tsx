@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { CheckOutline } from '@attraction/icons'
 
 interface HideReadToggleBtnProps {
@@ -22,7 +22,7 @@ export default function HideReadToggleBtn({
       title={`읽은 아티클 ${isRead ? '보기' : '숨김'}`}
       onClick={toggleHideFn}>
       <CheckOutline />
-      <span className="xs:text-base whitespace-nowrap text-sm">
+      <span className="whitespace-nowrap text-sm xs:text-base">
         읽은 아티클 숨김
       </span>
     </Button>

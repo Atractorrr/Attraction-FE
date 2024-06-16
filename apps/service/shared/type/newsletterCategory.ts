@@ -1,8 +1,4 @@
-import { NEWSLETTER_CATEGORY, UPLOAD_DAYS } from '../constant'
-
-export type UploadDay = keyof typeof UPLOAD_DAYS
-
-export type UploadDayName = (typeof UPLOAD_DAYS)[UploadDay]
+import { NEWSLETTER_CATEGORY } from '../constant'
 
 export type NewsletterCategory = keyof typeof NEWSLETTER_CATEGORY
 

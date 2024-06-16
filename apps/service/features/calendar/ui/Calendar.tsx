@@ -4,8 +4,9 @@ import dynamic from 'next/dynamic'
 import React from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
-import { Background, ErrorGuideTxt } from '@/shared/ui'
 import { ErrorBoundary } from 'react-error-boundary'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
+import { useTheme } from '@/entities/theme'
 import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
 import { CalendarElement } from '../model'
 
@@ -19,14 +20,19 @@ const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
 
 // const theme = typeof window !== 'undefined' ? localStorage.getItem('theme') : ''
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function Calendar({ calendarData }: CalendarProps) {
+  const { realTheme } = useTheme()
   return (
-    <Background className="flex h-full justify-center p-6">
-      <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
+    <Container className="flex h-full justify-center p-6">
+      <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
         <ActivityCalendarNoSSR
           data={calendarData}
           labels={CALENDAR_LABELS}
-          colorScheme="dark"
+          colorScheme={realTheme}
           theme={CALENDAR_THEME}
           blockSize={10}
           showWeekdayLabels
@@ -44,6 +50,6 @@ export default function Calendar({ calendarData }: CalendarProps) {
         />
         <ReactTooltip id="react-tooltip" />
       </ErrorBoundary>
-    </Background>
+    </Container>
   )
 }

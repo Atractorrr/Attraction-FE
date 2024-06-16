@@ -1,8 +1,8 @@
 'use client'
 
 /* eslint-disable react/jsx-key */
-import { Background, Title } from '@/shared/ui'
-import { Button } from '@attraction/design-system'
+import { Container, Title } from '@/shared/ui'
+import { Button } from '@attraction/design-system/dist'
 import { TrophyOutline } from '@attraction/icons'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -24,9 +24,9 @@ export default function UserRank() {
   })
 
   return (
-    <Background>
-      <div className="min-h-[540px] w-full p-5">
-        <div className="mb-4 flex w-full items-center justify-between">
+    <Container>
+      <div className="flex min-h-[540px] w-full flex-col items-center p-5">
+        <div className="flex w-full items-center justify-between">
           <Title icon={<TrophyOutline className="size-5" />} text="유저 랭킹" />
         </div>
         <div className="mb-5 flex w-full">
@@ -73,6 +73,6 @@ export default function UserRank() {
           })}
         </div>
       </div>
-    </Background>
+    </Container>
   )
 }
