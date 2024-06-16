@@ -1,8 +1,10 @@
-import { ExclamationCircleOutline } from '@attraction/icons'
+'use client'
+
 import { useEffect } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
+import { WarnTxt } from '@/shared/ui'
+import { Checkbox } from '@attraction/design-system/dist'
 import { SignUpFormType } from '../model'
-import SignUpCheckBox from './SignUpCheckBox'
 
 export default function UserAgreement() {
   const {
@@ -18,10 +20,6 @@ export default function UserAgreement() {
     name: 'policies',
   })
   const policesValue = useWatch({ control, name: 'policies' })
-  const policesSelectAll = useWatch({
-    control,
-    name: 'selectPolicyAll',
-  })
 
   const handleSelectAll = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
@@ -55,15 +53,19 @@ export default function UserAgreement() {
   }, [clearErrors, policesValue, setValue])
 
   return (
-    <fieldset className="rounded-lg">
-      <legend className="mb-4 text-2xl font-bold">
-        어트랙션에 오신 걸 환영해요! 🎉
+    <fieldset className="block px-5 sm:px-10">
+      <legend className="mb-4 block break-keep text-2xl font-bold">
+        어트랙션에 오신 걸{' '}
+        <span className="whitespace-nowrap">환영해요! 🎉</span>
       </legend>
-      <p className="mb-10 text-gray-500">서비스 이용약관에 동의해주세요</p>
+      <p className="mb-12 break-keep text-gray-500 dark:text-gray-400">
+        서비스 이용약관에 동의해주세요
+      </p>
       <div className="mb-2 flex items-center gap-2 border-b border-b-gray-100 px-2 pb-4 dark:border-gray-700">
-        <SignUpCheckBox
-          inputId="checkAll"
-          register={register('selectMandatoryPolicyAll', {
+        <Checkbox
+          id="checkAll"
+          label="모두 동의"
+          {...register('selectMandatoryPolicyAll', {
             validate: () => {
               if (!getValues('selectMandatoryPolicyAll')) {
                 return '필수 약관에 동의해주세요'
@@ -72,24 +74,23 @@ export default function UserAgreement() {
             },
             onChange: handleSelectAll,
           })}
-          activeCheckbox={policesSelectAll}
         />
-        <p>모두 동의</p>
       </div>
       {fields.map((item, i) => {
         return (
-          <div key={item.id} className="flex justify-between gap-2 px-2 py-4">
+          <div
+            key={item.id}
+            className="flex items-center justify-between gap-2 px-2 py-4">
             <div className="flex items-center gap-2">
-              <SignUpCheckBox
-                inputId={`checkbox-${item.type}`}
-                activeCheckbox={policesValue[i].value}
-                register={register(`policies.${i}.value`)}
+              <Checkbox
+                id={`checkbox-${item.type}`}
+                label={item.text}
+                {...register(`policies.${i}.value`)}
               />
-              <p>{item.text} </p>
             </div>
             <a
               href="/"
-              className="ml-2 text-sm text-gray-500 underline dark:text-gray-400">
+              className="ml-2 whitespace-nowrap text-sm text-gray-500 underline dark:text-gray-400">
               전문보기
             </a>
           </div>
@@ -97,10 +98,12 @@ export default function UserAgreement() {
       })}
 
       {errors.selectMandatoryPolicyAll?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
-          <ExclamationCircleOutline />
-          {errors.selectMandatoryPolicyAll.message}
-        </p>
+        <div className="mt-6">
+          <WarnTxt
+            content={errors.selectMandatoryPolicyAll.message}
+            color="red"
+          />
+        </div>
       )}
     </fieldset>
   )

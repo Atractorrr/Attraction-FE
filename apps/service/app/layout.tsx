@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 
 import '@/public/fonts/fonts.css'
@@ -6,6 +5,7 @@ import './globals.css'
 import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
+import { useToken } from '@/entities/auth'
 import Provider from './provider'
 import Widget from './widget'
 
@@ -43,13 +43,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const isLogin = cookies().has('accessToken')
-
+  const { ...props } = await useToken()
   return (
     <html lang="ko">
       <body
@@ -57,8 +56,8 @@ export default function RootLayout({
         suppressHydrationWarning>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
-        <Provider>
-          <Widget isLogin={isLogin}>{children}</Widget>
+        <Provider {...props}>
+          <Widget>{children}</Widget>
         </Provider>
       </body>
     </html>
