@@ -14,7 +14,7 @@ export default function Widget({
   const isPublicPath = PUBLIC_PATH.some((path) => pathname.startsWith(path))
 
   return isPublicPath ? (
-    <div className="flex h-dvh min-h-[768px] w-full items-center justify-center lg:p-16 xl:p-20">
+    <div className="flex h-auto min-h-dvh w-full items-center justify-center lg:p-12">
       {children}
     </div>
   ) : (
