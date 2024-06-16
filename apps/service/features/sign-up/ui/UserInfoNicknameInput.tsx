@@ -3,7 +3,7 @@ import { useDebounce } from '@/shared/lib'
 import { ExclamationCircleOutline } from '@attraction/icons'
 import { useMutation } from '@tanstack/react-query'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { postDuplicateName } from '../api'
 import { SignUpFormType } from '../model'
 
@@ -11,13 +11,17 @@ export default function UserInfoNicknameInput() {
   const {
     register,
     formState: { errors },
-    getValues,
     setValue,
     setError,
     clearErrors,
   } = useFormContext<SignUpFormType>()
   const [nickname, setNickname] = useState<string>()
   const debounceDuplicateInputValue = useDebounce(nickname, 200)
+  const watchIsNickNameChecked = useWatch<SignUpFormType>({
+    name: 'isNickNameChecked',
+  })
+
+  // TODO: 닉네임 입력할때 다음 버튼 비활성화 기능 추가하기
 
   const { mutate } = useMutation({
     mutationFn: postDuplicateName,
@@ -68,7 +72,7 @@ export default function UserInfoNicknameInput() {
           {errors.nickname.message}
         </p>
       )}
-      {getValues('isNickNameChecked') && (
+      {watchIsNickNameChecked && (
         <p className="mt-2 text-green-500">멋진 닉네임이에요! 👍</p>
       )}
     </fieldset>
