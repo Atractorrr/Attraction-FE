@@ -39,9 +39,9 @@ function LoginView({ email }: RecentArticlesContainerProps) {
 
 function NonLoginView() {
   return (
-    <div className="px-5 md:px-0">
+    <div className="overflow-hidden px-5 md:px-0">
       <div
-        className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 rounded-xl border-gray-100 p-10 md:border"
+        className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 rounded-xl p-10"
         style={{
           backgroundImage: 'url(/images/introduce-background.jpg)',
         }}>
@@ -72,7 +72,7 @@ export default function RecentArticlesContainer({
   email,
 }: RecentArticlesContainerProps) {
   return (
-    <Container>
+    <Container className="overflow-hidden">
       {email ? (
         <QueryErrorResetBoundary>
           {({ reset }) => (
