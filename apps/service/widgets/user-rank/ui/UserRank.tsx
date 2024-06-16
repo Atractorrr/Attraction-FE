@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-key */
 import { Container, Title } from '@/shared/ui'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { TrophyOutline } from '@attraction/icons'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
