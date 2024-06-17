@@ -1,5 +1,13 @@
 'use client'
 
+import {
+  PreferTagItem,
+  PreferTagList,
+  ProfileBackground,
+  ProfileImage,
+  UserInfo,
+} from '@/entities/profile'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 import { Button } from '@attraction/design-system/dist'
 import {
   CameraOutline,
@@ -7,20 +15,12 @@ import {
   PaintOutline,
   ShareOutline,
 } from '@attraction/icons'
-import { useState } from 'react'
-import {
-  ProfileBackground,
-  ProfileImage,
-  UserInfo,
-  PreferTagList,
-  PreferTagItem,
-} from '@/entities/profile'
-import { Container, ErrorGuideTxt } from '@/shared/ui'
 import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
+import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import UserSettingModal from './UserSettingModal'
-import ProfileSettingModal from './ProfileSettingModal'
 import { fetchUserProfile } from '../api'
+import ProfileSettingModal from './ProfileSettingModal'
 
 interface ProfileContainerProps {
   userId: string
@@ -37,7 +37,6 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
   })
 
   // TODO: 모달 패턴 찾아보기
-  const [modal, setModal] = useState(false)
   const [backgroundModal, setBackgroundModal] = useState(false)
   const [profileModal, setProfileModal] = useState(false)
 
@@ -90,14 +89,12 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
                     )}
                   />
                   <div className="flex w-full shrink-0 gap-2 md:self-end lg:w-auto">
-                    <Button
+                    <Link
                       className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 py-1.5 hover:bg-gray-100 xs:px-2 sm:px-3 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600"
-                      onClick={() => {
-                        setModal(true)
-                      }}>
+                      href="/setting">
                       <CogOutline className="size-5" />
                       개인설정
-                    </Button>
+                    </Link>
                     <Button className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-700  py-1.5 text-white xs:px-2 sm:px-3 lg:w-fit dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
                       <ShareOutline className="size-5" />
                       프로필 공유
@@ -107,13 +104,6 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
               </div>
             </div>
           </div>
-          {modal && (
-            <UserSettingModal
-              setModal={setModal}
-              userProfile={userProfile}
-              userId={userId}
-            />
-          )}
           {profileModal && (
             <ProfileSettingModal
               email={userId}

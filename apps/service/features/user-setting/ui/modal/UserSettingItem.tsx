@@ -9,6 +9,7 @@ interface UserSettingItemType {
   subTitle?: string
   setActiveModal?: React.Dispatch<React.SetStateAction<boolean>>
   bottomSubTitle?: boolean
+  icon: 'none' | 'chevron' | 'toogle'
 }
 
 export default function UserSettingItem({
@@ -16,6 +17,7 @@ export default function UserSettingItem({
   subTitle,
   setActiveModal,
   bottomSubTitle = false,
+  icon,
 }: UserSettingItemType) {
   return (
     <div
@@ -27,7 +29,9 @@ export default function UserSettingItem({
       </div>
       <div className="flex items-center gap-4">
         {!bottomSubTitle && <p className="size-sm text-gray-500">{subTitle}</p>}
-        <ChevronRightOutline className="size-5 shrink-0" />
+        {icon === 'chevron' && (
+          <ChevronRightOutline className="size-5 shrink-0" />
+        )}
       </div>
     </div>
   )

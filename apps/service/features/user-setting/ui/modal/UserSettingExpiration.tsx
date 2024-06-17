@@ -18,7 +18,7 @@ export default function UserInfoExpirationDate({
   const listDataKeys = Array.from(USER_INFO_EXPIRATION.keys())
 
   return (
-    <fieldset className="mb-5 block">
+    <div className="mb-5 block">
       <p className="mb-6">개인정보 수집 유효기간</p>
       {listDataKeys.map((listDataKey) => {
         return (
@@ -50,6 +50,6 @@ export default function UserInfoExpirationDate({
       ) : (
         ''
       )}
-    </fieldset>
+    </div>
   )
 }

@@ -9,4 +9,6 @@ export interface UserProfile {
   userExpiration: number
   occupation: string
   email: string
+  userExpirationDate: string
+  agreeAt: string
 }
