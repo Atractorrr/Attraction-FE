@@ -20,7 +20,6 @@ export function middleware(request: NextRequest) {
   // Redirect to /
   if (
     (isPathMatch(PUBLIC_PATH) && isLoggedIn && !isNotRegistered) ||
-    (pathname.startsWith('/need-login') && isLoggedIn) ||
     (pathname.startsWith('/sign-up') && !isLoggedIn)
   ) {
     return redirect('/')
