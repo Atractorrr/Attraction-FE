@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { PropsWithChildren } from 'react'
 
 import '@/public/fonts/fonts.css'
 import './globals.css'
@@ -43,11 +44,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   const { ...props } = await useToken()
   return (
     <html lang="ko">

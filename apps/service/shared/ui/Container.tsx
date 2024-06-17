@@ -1,11 +1,13 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 interface ContainerProps {
-  children: ReactNode
   className?: string
 }
 
-export default function Container({ children, className }: ContainerProps) {
+export default function Container({
+  children,
+  className,
+}: PropsWithChildren<ContainerProps>) {
   return (
     <div
       className={`w-full ${className ?? ''} border-gray-100 bg-white md:rounded-2xl md:border dark:border-gray-800 dark:bg-gray-800`}>

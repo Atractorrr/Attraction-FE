@@ -1,7 +1,7 @@
 'use client'
 
 import {
-  ReactNode,
+  PropsWithChildren,
   createContext,
   useContext,
   useEffect,
@@ -13,11 +13,7 @@ const DeviceContext = createContext<boolean>(true)
 
 export const useCheckDevice = () => useContext(DeviceContext)
 
-export default function DeviceProvider({
-  children,
-}: {
-  children: Readonly<ReactNode>
-}) {
+export default function DeviceProvider({ children }: PropsWithChildren) {
   const [isMobile, setDeviceType] = useState(true)
 
   useEffect(() => {

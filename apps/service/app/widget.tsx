@@ -1,15 +1,12 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { PropsWithChildren } from 'react'
 import { Footer, SideBar } from '@/widgets/side-bar'
 import { Header } from '@/widgets/header'
 import { PUBLIC_PATH } from '@/entities/auth'
 
-export default function Widget({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function Widget({ children }: PropsWithChildren) {
   const pathname = usePathname()
   const isPublicPath = PUBLIC_PATH.some((path) => pathname.startsWith(path))
 

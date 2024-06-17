@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import {
   QueryCache,
   QueryClient,
@@ -12,11 +12,7 @@ async function queryErrorHandler() {
   await fetch('/api/auth/re-issue')
 }
 
-export default function QueryProvider({
-  children,
-}: {
-  children: Readonly<ReactNode>
-}) {
+export default function QueryProvider({ children }: PropsWithChildren) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
