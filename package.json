@@ -17,6 +17,7 @@
     "build": "pnpm -r run build",
     "dev:service": "pnpm -F @attraction/service dev",
     "dev:ds": "pnpm -F @attraction/design-system storybook",
+    "build:service": "pnpm -F @attraction/service build",
     "build:icons": "pnpm -F @attraction/icons build",
     "build:ds": "pnpm -F @attraction/design-system build"
   },
