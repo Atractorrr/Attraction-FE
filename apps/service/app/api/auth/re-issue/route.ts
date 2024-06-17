@@ -4,7 +4,7 @@ interface ReIssueResponse {
   accessToken: string
 }
 
-export async function GET(): Promise<ReIssueResponse> {
+export async function GET() {
   const cookieStore = cookies()
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/reissue-token`,
@@ -20,5 +20,9 @@ export async function GET(): Promise<ReIssueResponse> {
     })
   }
 
-  return { accessToken: data.accessToken }
+  return new Response(JSON.stringify({ accessToken: data.accessToken }), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }
