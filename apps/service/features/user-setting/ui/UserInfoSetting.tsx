@@ -97,6 +97,7 @@ export default function UserInfoSetting() {
 
         {activeNicknameModal && (
           <UserSettingModal
+            title="닉네임 변경"
             postUserSetting={(value) => {
               mutate({ value, type: 'nickname', email: userEmail })
             }}
@@ -111,6 +112,7 @@ export default function UserInfoSetting() {
         )}
         {activeUserJobModal && (
           <UserSettingModal
+            title="산업분야 변경"
             postUserSetting={(value) => {
               mutate({ value, type: 'occupation', email: userEmail })
             }}
@@ -129,6 +131,7 @@ export default function UserInfoSetting() {
         )}
         {activeUserInterestModal && (
           <UserSettingModal
+            title="관심사 변경"
             postUserSetting={(value) => {
               mutate({ value, type: 'interest', email: userEmail })
             }}
@@ -143,6 +146,7 @@ export default function UserInfoSetting() {
         )}
         {activeUserExpirationModal && (
           <UserSettingModal
+            title="개인정보 수집 유효기간 변경"
             postUserSetting={(value) => {
               mutate({ value, type: 'expiration', email: userEmail })
             }}

@@ -7,12 +7,14 @@ type UserSettingModalType = {
   renderItem: (
     setPostValue: React.Dispatch<React.SetStateAction<unknown | undefined>>,
   ) => ReactNode
+  title: string
 }
 
 export default function UserSettingModal({
   postUserSetting,
   renderItem,
   setActiveModal,
+  title,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
 
@@ -26,7 +28,7 @@ export default function UserSettingModal({
         }}
       />
       <div className="h-fit w-[95%] rounded-xl bg-white p-6 sm:w-2/3 md:w-[30rem] dark:bg-gray-800">
-        <p className="mb-8 text-xl font-bold">프로필 이미지 변경</p>
+        <p className="mb-8 text-xl font-bold">{title}</p>
         <div className="">{renderItem(setPostValue)}</div>
         <div className="mt-10 flex h-fit w-full justify-end border-t border-t-gray-100 pt-4 dark:border-t-gray-700">
           <div className="flex gap-2">

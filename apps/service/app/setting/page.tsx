@@ -1,5 +1,4 @@
 import {
-  UserInfoAlert,
   UserInfoGeneral,
   UserInfoSetting,
   UserInfoWithdraw,
@@ -10,7 +9,7 @@ export default function SettingPage() {
     <div className="flex w-full flex-col items-center justify-center gap-6">
       <UserInfoSetting />
       <UserInfoGeneral />
-      <UserInfoAlert />
+      {/* <UserInfoAlert /> */}
       <UserInfoWithdraw />
     </div>
   )
