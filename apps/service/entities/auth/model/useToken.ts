@@ -13,7 +13,19 @@ export default async function useToken(): Promise<DefaultAuthState> {
   const userEmail = cookieStore.get('email')?.value
 
   if (shouldReissueToken) {
-    // TODO: 리이슈 로직 추가 (+ userEmail)
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/re-issue`,
+    )
+    const parsedResponse: { accessToken: string } = await response.json()
+
+    return {
+      accessToken: parsedResponse.accessToken,
+      refreshToken,
+      isNotRegistered,
+      isLogin,
+      shouldReissueToken: false,
+      userEmail,
+    }
   }
   if (isLogin) {
     // TODO: userEmail 받아오는 로직 추가

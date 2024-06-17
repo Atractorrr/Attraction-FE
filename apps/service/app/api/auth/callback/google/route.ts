@@ -18,6 +18,7 @@ export async function GET(request: Request) {
   const queryParams = new URL(url).searchParams
   const code = queryParams.get('code')
   const defaultMaxAge = 3600
+  const refreshTokenMaxAge = defaultMaxAge * 24 * 7
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
@@ -45,9 +46,9 @@ export async function GET(request: Request) {
         {},
       )
 
-    cookieStore.set('Refresh-Token', parsedCookies['Refresh-Token'] ?? '', {
+    cookieStore.set('refreshToken', parsedCookies['Refresh-Token'] ?? '', {
       path: '/',
-      maxAge: defaultMaxAge,
+      maxAge: refreshTokenMaxAge,
       httpOnly: true,
     })
   }
@@ -60,7 +61,7 @@ export async function GET(request: Request) {
     })
     cookieStore.set('email', data.email, {
       path: '/',
-      maxAge: defaultMaxAge,
+      maxAge: refreshTokenMaxAge,
       httpOnly: true,
     })
 
