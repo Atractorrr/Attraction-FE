@@ -6,10 +6,13 @@ import {
   TrendNewsletterList,
   useTrendNewsletters,
 } from '@/entities/trend-newsletters'
-import { NewsletterCategories } from '@/features/newsletter-categories'
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import {
+  MainCategory,
+  MainCategoryName,
+  NewsletterCategories,
+  allCategories,
+} from '@/features/newsletter-categories'
 import { Container, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
-import { NewsletterCategory, NewsletterCategoryName } from '@/shared/type'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -17,23 +20,23 @@ interface TrendNewslettersProps {
   email: string | undefined
 }
 
-function TrendNewsletterContent({
-  category,
-}: {
-  category: NewsletterCategory
-}) {
+function TrendNewsletterContent({ category }: { category: MainCategory }) {
   const { data } = useTrendNewsletters(category)
 
   return <TrendNewsletterList mainPageNewsletters={data.mainPageNewsletters} />
 }
 
-export default function TrendNewsletters({ email }: TrendNewslettersProps) {
-  const [category, setCategory] = useState<NewsletterCategory>('RECOMMEND')
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
 
-  const handleCategoryChange = (categoryName: NewsletterCategoryName) => {
-    const categoryKey = (
-      Object.keys(NEWSLETTER_CATEGORY) as NewsletterCategory[]
-    ).find((key) => NEWSLETTER_CATEGORY[key] === categoryName)
+export default function TrendNewsletters({ email }: TrendNewslettersProps) {
+  const [category, setCategory] = useState<MainCategory>('RECOMMEND')
+
+  const handleCategoryChange = (categoryName: MainCategoryName) => {
+    const categoryKey = (Object.keys(allCategories) as MainCategory[]).find(
+      (key: MainCategory) => allCategories[key] === categoryName,
+    )
 
     if (categoryKey) {
       setCategory(categoryKey)
@@ -50,14 +53,16 @@ export default function TrendNewsletters({ email }: TrendNewslettersProps) {
           />
         </div>
         <div className="flex flex-col gap-y-8">
-          <NewsletterCategories
-            currentCategory={category}
-            email={email}
-            onClick={handleCategoryChange}
-          />
           <QueryErrorResetBoundary>
             {({ reset }) => (
-              <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+              <ErrorBoundary
+                onReset={reset}
+                FallbackComponent={CustomErrorGuideTxt}>
+                <NewsletterCategories
+                  currentCategory={category}
+                  email={email}
+                  onClick={handleCategoryChange}
+                />
                 <Suspense fallback={<LoadingSpinner />}>
                   <TrendNewsletterContent category={category} />
                 </Suspense>

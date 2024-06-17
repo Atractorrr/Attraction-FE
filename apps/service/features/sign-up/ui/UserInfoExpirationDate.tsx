@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { USER_INFO_EXPIRATION } from '@/features/user-setting'
-import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
 import { useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { CheckOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system/dist'
+import { USER_INFO_EXPIRATION } from '@/features/user-setting'
+import { WarnTxt } from '@/shared/ui'
 import { SignUpFormType } from '../model'
 
 export default function UserInfoExpirationDate() {
@@ -20,16 +21,18 @@ export default function UserInfoExpirationDate() {
   const listDataKeys = Array.from(USER_INFO_EXPIRATION.keys())
 
   return (
-    <fieldset className="mb-5 block">
-      <legend className="mb-4 text-2xl font-bold">
+    <fieldset className="mb-5 block px-5 sm:px-10">
+      <legend className="mb-4 break-keep text-2xl font-bold">
         개인정보 수집 유효기간을 선택해주세요
       </legend>
-      <p className="mb-10 text-gray-500">
+      <p className="mb-12 break-keep text-gray-500 dark:text-gray-400">
         선택한 기간 동안 아무런 활동을 하지 않으면
-        <br />
+        <br className="hidden xs:block" />
         자동으로 탈퇴시켜 드려요
       </p>
-      <p className="mb-6">개인정보 수집 유효기간</p>
+      <p className="mb-6 whitespace-nowrap px-1 text-sm font-medium">
+        개인정보 수집 유효기간
+      </p>
       {listDataKeys.map((listDataKey) => {
         return (
           <Button
@@ -52,14 +55,12 @@ export default function UserInfoExpirationDate() {
         )
       })}
       {USER_INFO_EXPIRATION.get(watchUserExpiration) !== '평생' ? (
-        <p className="mt-4 flex items-center gap-1 text-sm text-blue-400">
-          <ExclamationCircleOutline />
-          {USER_INFO_EXPIRATION.get(watchUserExpiration)} 동안 서비스를 이용하지
-          않을 시 자동으로 회원이 탈퇴돼요
-        </p>
-      ) : (
-        ''
-      )}
+        <WarnTxt
+          content={`${USER_INFO_EXPIRATION.get(watchUserExpiration)} 동안 서비스를 이용하지 않을 시 자동으로 회원이 탈퇴돼요`}
+          color="blue"
+          type="error"
+        />
+      ) : null}
     </fieldset>
   )
 }

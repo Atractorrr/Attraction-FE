@@ -28,7 +28,9 @@ export default function CategoryDropdown({
     <>
       {isLoading && <LoadingSpinner />}
       {isError && (
-        <WarnTxt content="카테고리를 불러오지 못했어요" color="red" />
+        <div className="p-3">
+          <WarnTxt content="카테고리를 불러오지 못했어요" color="red" />
+        </div>
       )}
       {data && (
         <>

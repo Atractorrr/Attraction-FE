@@ -1,4 +1,5 @@
 import { SignUpFormType } from '@/features/sign-up'
+import { checkInputValid } from '@/features/user-setting/lib'
 import { UseFormGetValues, UseFormSetError } from 'react-hook-form'
 
 export const checkSignUpFormErr = (
@@ -10,6 +11,9 @@ export const checkSignUpFormErr = (
     setError('occupation', {
       message: '직업을 선택 해주세요',
     })
+  }
+  if (type === 'nickname') {
+    checkInputValid(getValues('nickname'), setError)
   }
   if (type === 'interest' && getValues('interest').length === 0) {
     setError('interest', {

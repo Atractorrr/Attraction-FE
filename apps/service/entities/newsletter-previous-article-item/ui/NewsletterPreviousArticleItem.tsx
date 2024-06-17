@@ -1,19 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/ko'
+import { getTimeFromNow } from '@/shared/lib'
 import { NewsletterPreviousArticleData } from '../model'
-
-dayjs.extend(relativeTime)
-dayjs.locale('ko')
 
 export default function NewsletterPreviousArticleItem({
   ...props
 }: NewsletterPreviousArticleData) {
   return (
     <Link href={props.contentUrl} className="flex w-full gap-x-5">
-      <div className="relative flex size-full max-h-[120px] max-w-[130px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
+      <div className="relative flex size-full h-[120px] w-[180px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
         <Image
           className="size-full object-cover transition-all hover:scale-110"
           src={
@@ -37,7 +32,7 @@ export default function NewsletterPreviousArticleItem({
         <div className="flex text-sm text-gray-500 dark:text-gray-400">
           <p>{props.newsletterName}</p>
           <p className="before:mx-1 before:content-['·']">
-            {dayjs(props.receivedAt).fromNow()}
+            {getTimeFromNow(props.receivedAt)}
           </p>
         </div>
       </div>

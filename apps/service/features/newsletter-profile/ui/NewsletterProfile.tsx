@@ -79,6 +79,10 @@ function NewsletterProfileContent({
   )
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 export default function NewsletterProfile({
   email,
   newsletterId,
@@ -89,7 +93,9 @@ export default function NewsletterProfile({
         <QueryErrorResetBoundary>
           {({ reset }) => (
             <div className="flex w-full justify-center">
-              <ErrorBoundary onReset={reset} FallbackComponent={ErrorGuideTxt}>
+              <ErrorBoundary
+                onReset={reset}
+                FallbackComponent={CustomErrorGuideTxt}>
                 <Suspense fallback={<LoadingSpinner />}>
                   <NewsletterProfileContent
                     email={email}

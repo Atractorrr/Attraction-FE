@@ -1,5 +1,5 @@
-import { NewsletterCategory } from '@/shared/type'
+import { MainCategory } from './mainCategories'
 
 export default interface PreferCateroriesResponse {
-  categories: NewsletterCategory[]
+  categories: MainCategory[]
 }

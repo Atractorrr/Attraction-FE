@@ -6,8 +6,9 @@ import {
   fetchNewsletterList,
 } from '@/features/recent-newsletter'
 import { cookies } from 'next/headers'
+import WithAuth from '@/entities/auth/ui/WithAuth'
 
-export default async function MyPage() {
+async function MypageContent() {
   const email = cookies().get('email')?.value as string
 
   const [recentNewLetterList, subscribeList] = await Promise.all([
@@ -31,4 +32,8 @@ export default async function MyPage() {
       </div>
     </div>
   )
+}
+
+export default async function MyPage() {
+  return WithAuth(<MypageContent />)
 }

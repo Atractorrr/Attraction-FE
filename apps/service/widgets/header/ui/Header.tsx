@@ -12,12 +12,13 @@ const getTitle = (pathname: string) => {
     ['/inbox', '뉴스레터 보관함'],
     ['/newsletter', '뉴스레터 소개'],
     ['/mypage', '마이페이지'],
+    ['/setting', '개인설정'],
     ['/discover', '탐색'],
   ].find(([path]) => pathname.startsWith(path))
   return target ? target[1] : '어트랙션'
 }
 
-export default function Header({ isLogin }: { isLogin: boolean }) {
+export default function Header() {
   const pathname = usePathname()
   const segments = useSelectedLayoutSegments()
 
@@ -32,7 +33,7 @@ export default function Header({ isLogin }: { isLogin: boolean }) {
         </h3>
         <div className="flex items-center justify-end gap-2">
           <ThemeDropdownBtn />
-          <AuthButton isLogin={isLogin} />
+          <AuthButton />
         </div>
       </div>
     </header>

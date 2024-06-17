@@ -2,13 +2,11 @@
 import { getCategorySVG } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory } from '@/shared/type'
-import {
-  CheckOutline,
-  ComputerEmoji,
-  ExclamationCircleOutline,
-} from '@attraction/icons'
+import { CheckOutline, ComputerEmoji } from '@attraction/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { WarnTxt } from '@/shared/ui'
+import { Badge } from '@attraction/design-system/dist'
 import { useDisabledBtn } from '../lib'
 import { SignUpFormType } from '../model'
 
@@ -100,37 +98,38 @@ export default function UserPreferTagField() {
 
   return (
     <fieldset className="h-[calc(100%-200px)]">
-      <legend className="mb-4 text-2xl font-bold ">
-        마지막으로, <br />
-        관심사를 선택해 주세요
-      </legend>
-      <div className="mb-12 flex justify-between">
-        <p className=" break-keep text-sm text-gray-500">
-          선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 <br />
-          관심사는 언제든지 수정할 수 있어요
-        </p>
-        <span className="self-end rounded-2xl bg-[#F1F4F9] px-3 py-1 text-sm text-blue-500">
-          {preferTagList.length}/4
-        </span>
+      <div className="px-5 sm:px-10">
+        <legend className="mb-4 text-2xl font-bold ">
+          마지막으로, <br />
+          관심사를 선택해 주세요
+        </legend>
+        <div className="mb-8 flex items-end justify-between">
+          <p className="break-keep text-gray-500 dark:text-gray-400">
+            선택하신 관심사를 바탕으로 뉴스레터를 추천해드려요 <br />
+            관심사는 언제든지 수정할 수 있어요
+          </p>
+          <Badge variant="blue">{preferTagList.length}/4</Badge>
+        </div>
       </div>
-      <div className="h-full overflow-y-auto">
-        <div className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
-          {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
-            <UserPreferTag
-              key={categoryKey}
-              disabledTag={disabledTag}
-              setPreferTagList={setPreferTagList}
-              preferTagList={preferTagList}
-              categoryKey={categoryKey as NewsletterCategory}
-            />
-          ))}
+      <div className="relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent sm:px-5 dark:before:from-gray-800 dark:after:from-gray-800">
+        <div className="max-h-[calc(100dvh-360px)] min-h-64 overflow-y-auto p-5 sm:max-h-[calc(100dvh-450px)] lg:max-h-[calc(100dvh-540px)]">
+          <div className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
+            {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
+              <UserPreferTag
+                key={categoryKey}
+                disabledTag={disabledTag}
+                setPreferTagList={setPreferTagList}
+                preferTagList={preferTagList}
+                categoryKey={categoryKey as NewsletterCategory}
+              />
+            ))}
+          </div>
         </div>
       </div>
       {errors.interest?.message && (
-        <p className="mt-4 flex items-center gap-1 text-sm text-red-400">
-          <ExclamationCircleOutline />
-          {errors.interest.message}
-        </p>
+        <div className="mt-4 px-5 sm:px-10">
+          <WarnTxt content={errors.interest.message} color="red" />
+        </div>
       )}
     </fieldset>
   )

@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { USER_INFO_OCCUPATION } from '@/features/user-setting'
-import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { CheckOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system/dist'
+import { USER_INFO_OCCUPATION } from '@/features/user-setting'
+import { WarnTxt } from '@/shared/ui'
 import { SignUpFormType } from '../model'
 
 export default function UserJobField() {
@@ -25,15 +26,17 @@ export default function UserJobField() {
   const listDataKeys = Array.from(USER_INFO_OCCUPATION.keys())
 
   return (
-    <fieldset className="h-fit">
-      <legend className="mb-4 text-2xl font-bold">어떤일을 하시나요</legend>
-      <p className="mb-12 break-keep text-gray-500">
+    <fieldset className="block h-fit px-5 sm:px-10">
+      <legend className="mb-4 block break-keep text-2xl font-bold">
+        어떤일을 하시나요?
+      </legend>
+      <p className="mb-12 break-keep text-gray-500 dark:text-gray-400">
         현재 몸담고 계시는 산업 분야를 알려주세요
-        <br />
+        <br className="hidden xs:block" />
         직업 정보는 뉴스레터 맞춤 추천 및 통계에 사용돼요
       </p>
       <p className="mb-5 text-sm">산업분야</p>
-      <div className="flex flex-wrap  gap-4 *:rounded-full">
+      <div className="flex flex-wrap gap-4 *:rounded-full">
         {listDataKeys.map((listDataKey) => {
           return (
             <Button
@@ -56,10 +59,9 @@ export default function UserJobField() {
       </div>
 
       {errors.occupation?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
-          <ExclamationCircleOutline />
-          {errors.occupation.message}
-        </p>
+        <div className="mt-8">
+          <WarnTxt content={errors.occupation.message} color="red" />
+        </div>
       )}
     </fieldset>
   )
