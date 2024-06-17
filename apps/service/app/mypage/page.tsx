@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers'
 import { UserRecord } from '@/widgets/user-record'
 import { SubscribeList, fetchSubscribeList } from '@/features/subscribe-list'
 import { ProfileContainer } from '@/features/profile-container'
@@ -5,10 +6,9 @@ import {
   RecentNewsletterContainer,
   fetchNewsletterList,
 } from '@/features/recent-newsletter'
-import { cookies } from 'next/headers'
-import WithAuth from '@/entities/auth/ui/WithAuth'
+import { WithAuth } from '@/entities/auth'
 
-async function MypageContent() {
+async function MyPageContent() {
   const email = cookies().get('email')?.value as string
 
   const [recentNewLetterList, subscribeList] = await Promise.all([
@@ -20,7 +20,7 @@ async function MypageContent() {
     <div className="w-full">
       <ProfileContainer userId={email} />
       <UserRecord userId={email} />
-      <div className="mt-6 flex flex-col items-stretch justify-start gap-6 lg:flex-row lg:justify-between">
+      <div className="mt-6 flex flex-col items-stretch justify-start gap-6 lg:flex-row-reverse lg:justify-between">
         <div className="h-auto w-full lg:w-2/3">
           <RecentNewsletterContainer
             recentNewLetterList={recentNewLetterList}
@@ -34,6 +34,10 @@ async function MypageContent() {
   )
 }
 
-export default async function MyPage() {
-  return WithAuth(<MypageContent />)
+export default function MyPage() {
+  return (
+    <WithAuth>
+      <MyPageContent />
+    </WithAuth>
+  )
 }
