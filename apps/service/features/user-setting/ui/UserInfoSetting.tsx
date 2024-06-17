@@ -18,6 +18,10 @@ import UserSettingItem from './modal/UserSettingItem'
 import UserSettingList from './modal/UserSettingList'
 import UserSettingModal from './modal/UserSettingModal'
 
+interface UserInfoSettingType {
+  email: string
+}
+
 const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}`,
@@ -26,17 +30,18 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   return user
 }
 
-export default function UserInfoSetting() {
+export default function UserInfoSetting({
+  email: userEmail,
+}: UserInfoSettingType) {
   const [activeNicknameModal, setActiveNicknameModal] = useState(false)
   const [activeUserJobModal, setActiveUserJobModal] = useState(false)
   const [activeUserInterestModal, setActiveUserInterestModal] = useState(false)
   const [activeUserExpirationModal, setActiveUserExpirationModal] =
     useState(false)
-  const userEmail = 'kang151135@gmail.com'
+
   const queryClient = useQueryClient()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: userProfile, refetch } = useSuspenseQuery({
+  const { data: userProfile } = useSuspenseQuery({
     queryKey: ['profile', userEmail],
     queryFn: () => fetchUserProfile(userEmail),
   })
@@ -58,7 +63,6 @@ export default function UserInfoSetting() {
       setActiveUserInterestModal(false)
       setActiveUserExpirationModal(false)
       queryClient.invalidateQueries({ queryKey: ['profile', userEmail] })
-      refetch()
     },
   })
 

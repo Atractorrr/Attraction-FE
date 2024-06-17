@@ -104,8 +104,9 @@ export default function SignUp({ email }: SignUpPropsType) {
         nickname: data.nickname,
         interest: data.interest,
         birthDate: data.birthDate,
-        adPolices: data.policies.find((el) => el.type === 'adPolicy')
-          ?.value as boolean,
+        // adPolices: data.policies.find((el) => el.type === 'adPolicy')
+        //   ?.value as boolean,
+        adPolices: false,
         occupation: data.occupation,
         userExpiration: data.userExpiration,
       })

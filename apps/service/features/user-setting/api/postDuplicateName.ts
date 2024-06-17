@@ -10,7 +10,7 @@ const postDuplicateName = async (nickname: { nickname: string }) => {
     },
   ).then((res) => {
     if (!res.ok) {
-      throw new Error('중복확인을 해주세요')
+      throw new Error('중복된 이름입니다')
     }
     return res.json()
   })
