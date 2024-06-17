@@ -1,6 +1,7 @@
 'use client'
 
 import { Theme, useTheme } from '@/entities/theme'
+import { Container } from '@/shared/ui'
 import { useState } from 'react'
 import UserSettingItem from './modal/UserSettingItem'
 import UserSettingModal from './modal/UserSettingModal'
@@ -11,7 +12,7 @@ export default function UserInfoGeneral() {
   const { setTheme } = useTheme()
 
   return (
-    <div className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl bg-white p-6 dark:bg-gray-700">
+    <Container className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl p-6">
       <p className="text-lg font-bold">일반</p>
       {/* <UserSettingItem
         title="프로필 관심사 노출 설정"
@@ -37,6 +38,6 @@ export default function UserInfoGeneral() {
           )}
         />
       )}
-    </div>
+    </Container>
   )
 }

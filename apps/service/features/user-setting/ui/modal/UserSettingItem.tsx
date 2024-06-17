@@ -21,7 +21,7 @@ export default function UserSettingItem({
 }: UserSettingItemType) {
   return (
     <div
-      className="flex cursor-pointer items-center justify-between"
+      className={`flex ${setActiveModal ? 'cursor-pointer' : 'cursor-default'}  items-center justify-between`}
       onClick={() => setActiveModal!(true)}>
       <div className="flex flex-col gap-2">
         <p className="font-medium">{title}</p>

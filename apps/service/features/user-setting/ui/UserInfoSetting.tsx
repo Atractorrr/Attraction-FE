@@ -2,7 +2,12 @@
 
 import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Container } from '@/shared/ui'
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query'
 import { useState } from 'react'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
@@ -31,7 +36,7 @@ export default function UserInfoSetting() {
   const queryClient = useQueryClient()
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: userProfile, refetch } = useQuery({
+  const { data: userProfile, refetch } = useSuspenseQuery({
     queryKey: ['profile', userEmail],
     queryFn: () => fetchUserProfile(userEmail),
   })
@@ -59,7 +64,7 @@ export default function UserInfoSetting() {
 
   return (
     userProfile && (
-      <div className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl bg-white p-6 dark:bg-gray-700">
+      <Container className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl p-6">
         <p className="text-lg font-bold">계정</p>
         <UserSettingItem
           title="닉네임 변경"
@@ -71,7 +76,7 @@ export default function UserInfoSetting() {
           title="관심사 변경"
           subTitle={userProfile?.interest
             .map((el) => NEWSLETTER_CATEGORY[el])
-            .join(',')}
+            .join(', ')}
           setActiveModal={setActiveUserInterestModal}
           icon="chevron"
         />
@@ -159,7 +164,7 @@ export default function UserInfoSetting() {
             )}
           />
         )}
-      </div>
+      </Container>
     )
   )
 }

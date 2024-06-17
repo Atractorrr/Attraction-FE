@@ -1,4 +1,14 @@
-import { Button } from '@attraction/design-system'
+import { useCheckDevice } from '@/shared/lib'
+import {
+  Button,
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from '@attraction/design-system'
 import React, { ReactNode, useState } from 'react'
 
 type UserSettingModalType = {
@@ -17,8 +27,34 @@ export default function UserSettingModal({
   title,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
+  const isMobile = useCheckDevice()
 
-  return (
+  return isMobile ? (
+    <Drawer open>
+      <DrawerContent>
+        <DrawerHeader className="text-left">
+          <DrawerTitle className="mb-8">{title}</DrawerTitle>
+          <DrawerDescription>{renderItem(setPostValue)}</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter className="pt-2">
+          <Button
+            className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
+            onClick={() => {
+              postUserSetting(postValue)
+            }}>
+            변경
+          </Button>
+          <DrawerClose asChild>
+            <Button
+              className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
+              onClick={() => setActiveModal(false)}>
+              Cancel
+            </Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  ) : (
     <div className="fixed left-0 top-0 z-50 flex size-full min-h-screen items-center justify-center">
       <div
         role="presentation"
