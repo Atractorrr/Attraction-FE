@@ -1,16 +1,14 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { useAuth } from '../model'
-import NeedLogin from './NeedLogin'
+import NeedLogin, { NeedLoginProps } from './NeedLogin'
 
-interface WithAuthProps {
-  children: Readonly<ReactNode>
-  title?: string
-  sub?: string
-}
-
-export default function WithAuth({ children, title, sub }: WithAuthProps) {
+export default function WithAuth({
+  children,
+  title,
+  sub,
+}: PropsWithChildren<NeedLoginProps>) {
   const { isLogin } = useAuth()
 
   return isLogin ? children : <NeedLogin title={title} sub={sub} />

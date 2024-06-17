@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Container } from '@/shared/ui'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
 
-interface NeedLoginProps {
+export interface NeedLoginProps {
   title?: string
   sub?: string
 }
