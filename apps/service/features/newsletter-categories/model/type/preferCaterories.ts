@@ -1,5 +1,5 @@
 import { MainCategory } from './mainCategories'
 
-export default interface PreferCateroriesResponse {
+export default interface PreferCategoriesResponse {
   categories: MainCategory[]
 }

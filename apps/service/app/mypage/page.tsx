@@ -11,7 +11,7 @@ import { WithAuth } from '@/entities/auth'
 async function MyPageContent() {
   const email = cookies().get('email')?.value as string
 
-  const [recentNewLetterList, subscribeList] = await Promise.all([
+  const [recentNewsletterList, subscribeList] = await Promise.all([
     fetchNewsletterList(email),
     fetchSubscribeList(email),
   ])
@@ -23,7 +23,7 @@ async function MyPageContent() {
       <div className="mt-6 flex flex-col items-stretch justify-start gap-6 lg:flex-row-reverse lg:justify-between">
         <div className="h-auto w-full lg:w-2/3">
           <RecentNewsletterContainer
-            recentNewLetterList={recentNewLetterList}
+            recentNewsletterList={recentNewsletterList}
           />
         </div>
         <div className="h-auto w-full lg:w-1/3">

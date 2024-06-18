@@ -1,2 +1,2 @@
-export type { default as PreferCateroriesResponse } from './preferCaterories'
+export type { default as PreferCategoriesResponse } from './preferCategories'
 export * from './mainCategories'

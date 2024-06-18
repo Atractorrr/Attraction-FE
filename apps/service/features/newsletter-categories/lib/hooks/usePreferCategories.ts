@@ -1,10 +1,10 @@
 import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query'
 import { fetchPreferCategories } from '../../api'
-import { PreferCateroriesResponse } from '../../model'
+import { PreferCategoriesResponse } from '../../model'
 
 export default function usePreferCategories(
   email: string | undefined,
-): UseSuspenseQueryResult<PreferCateroriesResponse, Error> {
+): UseSuspenseQueryResult<PreferCategoriesResponse, Error> {
   return useSuspenseQuery({
     queryKey: ['prefer-categories', email],
     queryFn: () => fetchPreferCategories(email ?? ''),
