@@ -1,7 +1,13 @@
 import withPWAInit from '@ducanh2912/next-pwa'
 
 const withPWA = withPWAInit({
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
   dest: 'public',
+  fallbacks: {
+    document: '/offline',
+  },
 })
 
 /** @type {import('next').NextConfig} */
