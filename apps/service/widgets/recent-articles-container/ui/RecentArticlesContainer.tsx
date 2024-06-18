@@ -41,9 +41,9 @@ function LoginView({ email }: RecentArticlesContainerProps) {
 
 function NonLoginView() {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-100 px-5 md:px-0 dark:border-gray-800">
+    <div className="px-5 md:px-0">
       <div
-        className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 p-10"
+        className="flex min-h-[294px] flex-col items-center justify-center gap-y-10 overflow-hidden rounded-xl border-gray-100 p-10 md:border dark:border-gray-800"
         style={{
           backgroundImage: 'url(/images/introduce-background.jpg)',
         }}>

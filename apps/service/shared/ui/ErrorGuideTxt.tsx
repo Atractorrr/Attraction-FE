@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { RefreshOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system'
+import { useRouter } from 'next/navigation'
 import GuideTxt from './GuideTxt'
 
 interface ErrorGuideTxtProps {
@@ -14,9 +15,7 @@ export default function ErrorGuideTxt({
   title = '이용에 불편을 드려 죄송해요',
   sub = '동일한 현상이 계속될 경우 문의 부탁드려요',
 }: ErrorGuideTxtProps) {
-  const refresh = () => {
-    window.location.reload()
-  }
+  const router = useRouter()
 
   return (
     <div className="grid grid-cols-1 justify-items-center gap-y-9 pb-[100px] pt-20">
@@ -36,18 +35,12 @@ export default function ErrorGuideTxt({
             type="button"
             className="flex items-center justify-center gap-x-2 rounded-md bg-gray-50 py-2 pl-4 pr-5 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
             title="다시시도하기"
-            onClick={() => window.location.reload()}>
+            onClick={router.refresh}>
             <RefreshOutline className="text-xl" />
             <span>다시시도</span>
           </Button>
         </p>
       </div>
-      <Button
-        className="flex w-[120px] items-center justify-center gap-x-2 rounded-md bg-gray-50 py-2 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
-        onClick={refresh}>
-        <RefreshOutline />
-        <span>다시시도</span>
-      </Button>
     </div>
   )
 }

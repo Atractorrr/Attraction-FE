@@ -39,4 +39,8 @@ next-env.d.ts
 # pwa
 
 sw.js
+sw.js.map
 workbox-*.js
+workbox-*.js.map
+swe-worker-development.js
+fallback-development.js
