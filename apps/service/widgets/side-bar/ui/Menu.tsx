@@ -21,7 +21,7 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
           isMiniSize ? 'gap-2' : 'gap-1'
         }`}>
         {SIDE_MENU.map(
-          ({ name, shortName, href, segment, icon: Icon, needLogin }) => (
+          ({ name, shortName, href, segment, icon: Icon, needLogin }, i) => (
             <li
               key={href}
               className={`${!isLogin && needLogin ? 'hidden' : ''} ${
@@ -29,6 +29,9 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
                   ? `${!shortName ? 'hidden' : ''} h-auto w-full grow md:grow-0`
                   : ''
               }`}>
+              {isLogin && !isMiniSize && i === 3 && (
+                <div className="mx-2 mb-4 mt-3 h-px bg-gray-100 dark:bg-gray-700" />
+              )}
               <Link
                 href={href}
                 className={`flex size-full rounded-lg md:h-auto ${

@@ -49,7 +49,7 @@ const SIDE_MENU = Object.freeze([
     needLogin: true,
   },
   {
-    name: '개인 설정',
+    name: '개인설정',
     shortName: null,
     href: '/setting',
     segment: 'setting',
