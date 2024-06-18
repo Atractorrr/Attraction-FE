@@ -7,6 +7,7 @@ import { ADMIN_EMAIL } from '../constant'
 
 export default function NotFound() {
   const router = useRouter()
+
   return (
     <div>
       <div className="mx-auto mb-8 flex size-36 items-center justify-center rounded-full bg-gray-50 sm:mb-12 sm:size-48 lg:size-60 dark:bg-gray-700">
