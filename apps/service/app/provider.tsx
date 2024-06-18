@@ -4,6 +4,7 @@ import { PropsWithChildren, ReactElement, cloneElement } from 'react'
 import { AuthProvider, DefaultAuthState } from '@/entities/auth'
 import { ThemeProvider } from '@/entities/theme'
 import { QueryProvider, DeviceProvider } from '@/shared/lib'
+import { PWAProvider } from '@/entities/pwa'
 
 interface MultiProviderProps {
   providers: ReactElement[]
@@ -29,6 +30,7 @@ export default function Provider({
   return (
     <MultiProvider
       providers={[
+        <PWAProvider />,
         <AuthProvider {...props} />,
         <QueryProvider />,
         <ThemeProvider />,
