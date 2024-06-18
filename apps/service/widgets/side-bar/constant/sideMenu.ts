@@ -1,4 +1,6 @@
 import {
+  BookmarkOutline,
+  CogOutline,
   EnvelopeOpenOutline,
   HouseOutline,
   MagnifyingGlassOutline,
@@ -12,6 +14,7 @@ const SIDE_MENU = Object.freeze([
     href: '/',
     segment: null,
     icon: HouseOutline,
+    needLogin: false,
   },
   {
     name: '뉴스레터 보관함',
@@ -19,13 +22,15 @@ const SIDE_MENU = Object.freeze([
     href: '/inbox',
     segment: 'inbox',
     icon: EnvelopeOpenOutline,
+    needLogin: false,
   },
   {
-    name: '탐색',
+    name: '뉴스레터 탐색',
     shortName: '탐색',
     href: '/discover',
     segment: 'discover',
     icon: MagnifyingGlassOutline,
+    needLogin: false,
   },
   {
     name: '마이페이지',
@@ -33,6 +38,23 @@ const SIDE_MENU = Object.freeze([
     href: '/mypage',
     segment: 'mypage',
     icon: MemberOutline,
+    needLogin: false,
+  },
+  {
+    name: '북마크한 아티클',
+    shortName: null,
+    href: '/inbox-bookmark',
+    segment: 'inbox-bookmark',
+    icon: BookmarkOutline,
+    needLogin: true,
+  },
+  {
+    name: '개인 설정',
+    shortName: null,
+    href: '/setting',
+    segment: 'setting',
+    icon: CogOutline,
+    needLogin: true,
   },
 ])
 

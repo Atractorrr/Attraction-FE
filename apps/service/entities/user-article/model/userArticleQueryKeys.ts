@@ -1,4 +1,4 @@
-import { UserArticleParams, UserArticleListOption } from './type'
+import { UserArticleParams, UserArticleListOption, UserEmail } from './type'
 
 const userArticleQueryKeys = {
   all: ['user-article'] as const,
@@ -6,23 +6,21 @@ const userArticleQueryKeys = {
     ...userArticleQueryKeys.all,
     params,
   ],
-  allUserArticles: ({ userId }: Pick<UserArticleListOption, 'userId'>) => [
-    ...userArticleQueryKeys.all,
-    'list',
-    { userId },
-  ],
   userArticles: ({
-    userId,
+    userEmail,
     category,
+    pageType,
     page,
     ...options
   }: UserArticleListOption) => [
-    ...userArticleQueryKeys.allUserArticles({ userId }),
+    ...userArticleQueryKeys.all,
     'articles',
+    { userEmail },
+    { pageType },
     category,
     options,
   ],
-  userCategories: (params: { userId: string | number }) => [
+  userCategories: (params: { userEmail: UserEmail }) => [
     ...userArticleQueryKeys.all,
     'categories',
     params,

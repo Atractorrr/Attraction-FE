@@ -2,17 +2,20 @@ import { DEFAULT_LIST_SIZE } from '../constant'
 import type { UserArticlesResponse, UserArticleListOption } from '../model'
 
 export default async function getUserArticleList({
-  userId,
+  userEmail,
+  pageType,
+  page = 0,
+  size = DEFAULT_LIST_SIZE,
   ...params
 }: UserArticleListOption) {
-  const path = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}/articles`
-  const searchParams = {
-    ...params,
-    page: params.page ?? 0,
-    size: params.size ?? DEFAULT_LIST_SIZE,
+  if (!userEmail) {
+    throw new Error('보관함 접근에 실패했어요')
   }
+
+  const path = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userEmail}/articles${pageType === 'bookmark' ? '/bookmark' : ''}`
+  const searchParams = { ...params, page, size }
   const searchParamsToString = Object.entries(searchParams)
-    .map((entry) => (entry[1] !== undefined ? entry.join('=') : undefined))
+    .map((entry) => (entry[1] ? entry.join('=') : undefined))
     .filter((param) => !!param)
     .join('&')
 

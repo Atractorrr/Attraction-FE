@@ -9,6 +9,7 @@ const getTitle = (pathname: string) => {
     return '홈'
   }
   const target = [
+    ['/inbox-bookmark', '북마크한 아티클'],
     ['/inbox', '뉴스레터 보관함'],
     ['/newsletter', '뉴스레터 소개'],
     ['/mypage', '마이페이지'],

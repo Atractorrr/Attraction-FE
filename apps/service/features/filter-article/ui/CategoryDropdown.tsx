@@ -10,19 +10,15 @@ import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { LoadingSpinner, WarnTxt } from '@/shared/ui'
 
 export interface CategoryDropdownProps {
-  userId: string | number
   selectedCategory?: NewsletterCategory
   setCategory: (category?: NewsletterCategory) => void
 }
 
 export default function CategoryDropdown({
-  userId,
   selectedCategory,
   setCategory,
 }: CategoryDropdownProps) {
-  const { data, isLoading, isError } = useUserCategoriesQuery({
-    userId,
-  })
+  const { data, isLoading, isError } = useUserCategoriesQuery()
 
   return (
     <>

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@attraction/design-system/dist'
 import { BackBtn, ErrorGuideTxt } from '@/shared/ui'
-import { censoringAnchorTags } from '@/shared/lib'
+import { censoringAnchorTags, getTimeFromNow } from '@/shared/lib'
 import { Article } from '../model'
 
 interface ArticleViewProps {
@@ -48,7 +48,7 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
     <div className="h-auto min-h-dvh w-full p-5 pb-20 pt-12 md:pb-12 md:pt-5">
       <div className="mb-7">
         <div className="mb-5 block xl:hidden">
-          <BackBtn href="/inbox" />
+          <BackBtn />
         </div>
         <h3 className="mb-3 break-keep text-lg font-bold md:text-xl">
           {data.title}
@@ -72,7 +72,7 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
             </span>
           </p>
           <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-            <span>{data.receivedAt}</span>
+            <span>{getTimeFromNow(data.receivedAt)}</span>
             <Badge variant="blue">
               {data.readingTime ? `약 ${data.readingTime}분` : '1분 미만'}
             </Badge>

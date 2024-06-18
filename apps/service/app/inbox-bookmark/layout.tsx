@@ -2,10 +2,10 @@ import { PropsWithChildren } from 'react'
 import { UserInboxLayout } from '@/widgets/inbox'
 import { WithAuth } from '@/entities/auth'
 
-export default function InboxLayout({ children }: PropsWithChildren) {
+export default function InboxBookmarkLayout({ children }: PropsWithChildren) {
   return (
     <WithAuth>
-      <UserInboxLayout pageType="default">{children}</UserInboxLayout>
+      <UserInboxLayout pageType="bookmark">{children}</UserInboxLayout>
     </WithAuth>
   )
 }
