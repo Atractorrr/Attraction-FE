@@ -12,9 +12,7 @@ export default function UserRankContent({
 }: UserRankContentType) {
   const { data: userRankingArr } = useSuspenseQuery({
     queryKey: ['userRanking', activeRanking],
-    queryFn: () => {
-      return getUserRanking(activeRanking)
-    },
+    queryFn: () => getUserRanking(activeRanking),
   })
 
   return (
@@ -38,8 +36,11 @@ export default function UserRankContent({
               <p className="truncate font-medium">
                 {i + 1}위 {user?.nickname}
               </p>
-              <p className="text-sm text-gray-500">
-                최장 {user?.value}일 연속 아티클을 읽었어요! 🎉
+              <p className="break-keep text-sm text-gray-500 dark:text-gray-400">
+                {activeRanking === 'article'
+                  ? `총 ${user?.value ?? 'N'}개의 아티클을 `
+                  : `최장 ${user?.value ?? 'N'}일 연속 아티클을 `}
+                <span className="whitespace-nowrap">읽었어요! 🎉</span>
               </p>
             </div>
           </div>
