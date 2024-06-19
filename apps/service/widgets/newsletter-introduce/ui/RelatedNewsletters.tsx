@@ -8,10 +8,10 @@ import {
   LoadingSpinner,
   Title,
 } from '@/shared/ui'
-import { RelatedNewsletterItem } from '@/entities/related-newsletter-item'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useRelatedNewsletters } from '../lib'
+import RelatedNewsletterItem from './RelatedNewsletterItem'
 
 interface RelatedNewsletterProps {
   newsletterId: string

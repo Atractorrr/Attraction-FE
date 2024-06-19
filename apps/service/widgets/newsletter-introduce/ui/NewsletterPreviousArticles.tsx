@@ -9,10 +9,10 @@ import {
   Title,
 } from '@/shared/ui'
 import { ClockOutline } from '@attraction/icons'
-import { NewsletterPreviousArticleItem } from '@/entities/newsletter-previous-article-item'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useNewsletterPreviousArticles } from '../lib'
+import NewsletterPreviousArticleItem from './NewsletterPreviousArticleItem'
 
 interface NewsletterPreviousArticlesProps {
   newsletterId: string
@@ -55,7 +55,7 @@ export default function NewsletterPreviousArticles({
 }: NewsletterPreviousArticlesProps) {
   return (
     <Container>
-      <div className="grid w-full gap-y-5 p-5">
+      <div className="grid w-full grid-cols-1 gap-y-5 p-5">
         <Title icon={<ClockOutline className="size-6" />} text="지난 아티클" />
         <QueryErrorResetBoundary>
           {({ reset }) => (

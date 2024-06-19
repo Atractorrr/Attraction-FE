@@ -1,6 +1,6 @@
 import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query'
-import { NewsletterPreviousArticlesResponse } from '../../model'
 import { fetchNewsletterPreviousArticles } from '../../api'
+import { NewsletterPreviousArticlesResponse } from '../../model'
 
 export default function useNewsletterPreviousArticles(
   newsletterId: string,

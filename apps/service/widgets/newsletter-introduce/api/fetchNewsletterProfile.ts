@@ -1,4 +1,4 @@
-import { NewsletterProfileResponse } from '../model/types'
+import { NewsletterProfileResponse } from '../model/type'
 
 export default async function fetchNewsletterProfile(
   newsletterId: string,
