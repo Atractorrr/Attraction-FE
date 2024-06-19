@@ -5,11 +5,12 @@ import {
   useRouter,
   useSelectedLayoutSegments,
 } from 'next/navigation'
-import { BarsOutline, ChevronLeftOutline } from '@attraction/icons'
-import { AuthButton } from '@/entities/auth'
+import { ChevronLeftOutline } from '@attraction/icons'
+import { AuthButton, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/features/set-theme'
 import { useCheckDevice } from '@/shared/lib'
 import MobileHeaderBtn from './MobileHeaderBtn'
+import MobileHeaderMenuBtn from './MobileHeaderMenuBtn'
 
 const getTitle = (pathname: string) => {
   if (pathname === '/') {
@@ -31,26 +32,24 @@ export default function Header() {
   const segments = useSelectedLayoutSegments()
   const router = useRouter()
   const { isMobileView } = useCheckDevice()
+  const { isLogin } = useAuth()
 
   if (isMobileView && segments.length > 1) {
     return (
       <header className="mt-[60px]">
         <div className="fixed inset-x-0 top-0 z-50 h-[60px] border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
-          <div className="flex size-full items-center justify-between p-2 pr-4">
-            <div className="flex items-center justify-start gap-2">
+          <div className="flex size-full items-center justify-between gap-4 p-2 pr-4">
+            <div className="flex w-[calc(100%-3.5rem)] grow items-center justify-start gap-2">
               <MobileHeaderBtn
                 icon={<ChevronLeftOutline />}
                 label="뒤로가기"
                 onClick={router.back}
               />
-              <h3 className="whitespace-nowrap text-lg font-medium">
+              <h3 className="w-[calc(100%-3.5rem)] truncate text-lg font-medium">
                 {getTitle(pathname)}
               </h3>
             </div>
-            <MobileHeaderBtn
-              icon={<BarsOutline className="text-2xl" />}
-              label="메뉴 열기"
-            />
+            {isLogin && <MobileHeaderMenuBtn />}
           </div>
         </div>
       </header>
