@@ -1,22 +1,13 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
 import { GraphOutline } from '@attraction/icons'
-
-import { Container, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
-import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
-import { useTrendNewsletters } from '../lib'
-import TrendNewsletterList from './TrendNewsletterList'
+import { useState } from 'react'
+import NewsletterCategories from './NewsletterCategories'
 import { MainCategory, MainCategoryName } from '../model'
 import { allCategories } from '../constant'
-import NewsletterCategories from './NewsletterCategories'
-
-function TrendNewsletterContent({ category }: { category: MainCategory }) {
-  const { data } = useTrendNewsletters(category)
-
-  return <TrendNewsletterList mainPageNewsletters={data.mainPageNewsletters} />
-}
+import TrendNewsletterList from './TrendNewsletterList'
 
 function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
@@ -45,21 +36,13 @@ export default function TrendNewsletters() {
           />
         </div>
         <div className="flex flex-col gap-y-8">
-          <QueryErrorResetBoundary>
-            {({ reset }) => (
-              <ErrorBoundary
-                onReset={reset}
-                FallbackComponent={CustomErrorGuideTxt}>
-                <NewsletterCategories
-                  currentCategory={category}
-                  onClick={handleCategoryChange}
-                />
-                <Suspense fallback={<LoadingSpinner />}>
-                  <TrendNewsletterContent category={category} />
-                </Suspense>
-              </ErrorBoundary>
-            )}
-          </QueryErrorResetBoundary>
+          <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
+            <NewsletterCategories
+              currentCategory={category}
+              onClick={handleCategoryChange}
+            />
+            <TrendNewsletterList category={category} />
+          </ErrorBoundary>
         </div>
       </div>
     </Container>

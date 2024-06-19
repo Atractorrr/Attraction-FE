@@ -1,15 +1,20 @@
-import { GuideTxt } from '@/shared/ui'
-import TrendNewsletterItem from './TrendNewsletterItem'
-import { TrendNewsletterResponse } from '../model'
+'use client'
 
-export default function TrendNewsletterList({
-  mainPageNewsletters,
-}: TrendNewsletterResponse) {
+import { Suspense } from 'react'
+import { GuideTxt } from '@/shared/ui'
+import TrendNewsletterSkeleton from './TrendNewsletterSkeleton'
+import TrendNewsletterItem from './TrendNewsletterItem'
+import { useTrendNewsletters } from '../lib'
+import { MainCategory } from '../model'
+
+function TrendNewsletterContent({ category }: { category: MainCategory }) {
+  const { data } = useTrendNewsletters(category)
+
   return (
     <div>
-      {mainPageNewsletters.length ? (
+      {data.mainPageNewsletters.length ? (
         <div className="grid gap-4 xl:grid-cols-2">
-          {mainPageNewsletters.map((newsletter) => (
+          {data.mainPageNewsletters.map((newsletter) => (
             <TrendNewsletterItem key={newsletter.id} newsletter={newsletter} />
           ))}
         </div>
@@ -19,5 +24,17 @@ export default function TrendNewsletterList({
         </div>
       )}
     </div>
+  )
+}
+
+export default function TrendNewsletterList({
+  category,
+}: {
+  category: MainCategory
+}) {
+  return (
+    <Suspense fallback={<TrendNewsletterSkeleton />}>
+      <TrendNewsletterContent category={category} />
+    </Suspense>
   )
 }
