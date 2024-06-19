@@ -1,4 +1,4 @@
-import { UserRankingInfoType } from '../model'
+import type { UserRankingInfoType } from '../model'
 
 const getUserRanking = async (
   type: 'article' | 'streak',

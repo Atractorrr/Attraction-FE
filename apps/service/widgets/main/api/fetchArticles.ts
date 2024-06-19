@@ -1,4 +1,4 @@
-import { RecentArticleResponse } from '@/entities/recent-article-item'
+import type { RecentArticleResponse } from '../model'
 
 export default async function fetchArticles(
   email: string,

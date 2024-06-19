@@ -2,10 +2,8 @@
 
 import { EmblaOptionsType } from 'embla-carousel'
 import { Carousel, GuideTxt } from '@/shared/ui'
-import {
-  RecentArticle,
-  RecentArticleItem,
-} from '@/entities/recent-article-item'
+import RecentArticleItem from './RecentArticleItem'
+import { RecentArticle } from '../model'
 
 const carouselOptions: EmblaOptionsType = {
   dragFree: true,

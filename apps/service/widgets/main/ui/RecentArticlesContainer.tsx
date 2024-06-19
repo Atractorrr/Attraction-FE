@@ -2,14 +2,13 @@
 
 import Link from 'next/link'
 import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
-import { RecentArticles } from '@/features/recent-articles'
 
 import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
-import { useRecentArticles } from '@/features/recent-articles/model'
-import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useAuth } from '@/entities/auth'
 import RecentArticlesSkeleton from './RecentArticlesSkeleton'
+import RecentArticles from './RecentArticles'
+import { useRecentArticles } from '../model'
 
 interface RecentArticlesContainerProps {
   email: string | undefined
@@ -19,25 +18,23 @@ function LoginView({ email }: RecentArticlesContainerProps) {
   const { data, isLoading } = useRecentArticles(email)
 
   return (
-    <Container>
-      <div className="flex w-full flex-col gap-y-4 p-5">
-        <div className="flex h-fit w-full items-center justify-between">
-          <Title
-            icon={<ClockOutline className="size-5" />}
-            text="최근 받은 아티클"
-          />
-          <Link
-            href="/inbox"
-            className="text-sm text-gray-400 transition-colors dark:hover:text-blue-300">
-            보관함 바로가기
-          </Link>
-        </div>
-        {isLoading ? <RecentArticlesSkeleton /> : null}
-        {data ? (
-          <RecentArticles mainPageArticles={data.mainPageArticles} />
-        ) : null}
+    <div className="flex w-full flex-col gap-y-4 p-5">
+      <div className="flex h-fit w-full items-center justify-between">
+        <Title
+          icon={<ClockOutline className="size-5" />}
+          text="최근 받은 아티클"
+        />
+        <Link
+          href="/inbox"
+          className="text-sm text-gray-400 transition-colors dark:hover:text-blue-300">
+          보관함 바로가기
+        </Link>
       </div>
-    </Container>
+      {isLoading ? <RecentArticlesSkeleton /> : null}
+      {data ? (
+        <RecentArticles mainPageArticles={data.mainPageArticles} />
+      ) : null}
+    </div>
   )
 }
 
@@ -78,15 +75,11 @@ export default function RecentArticlesContainer() {
   return (
     <div>
       {userEmail ? (
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <ErrorBoundary
-              onReset={reset}
-              FallbackComponent={CustomErrorGuideTxt}>
-              <LoginView email={userEmail} />
-            </ErrorBoundary>
-          )}
-        </QueryErrorResetBoundary>
+        <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
+          <Container>
+            <LoginView email={userEmail} />
+          </Container>
+        </ErrorBoundary>
       ) : (
         <NonLoginView />
       )}
