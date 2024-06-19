@@ -33,7 +33,7 @@ export default function ArticleDetail({
               initProgress={data.readPercentage}
             />
           )}
-          <ArticleView data={data} />
+          <ArticleView data={data} censored />
         </>
       )}
       {!data && isError && (

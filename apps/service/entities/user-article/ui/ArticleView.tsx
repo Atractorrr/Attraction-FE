@@ -82,12 +82,12 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
       <div className="min-h-full w-full overflow-hidden rounded-lg">
         {!isIframeNotFound &&
         !!data.contentUrl &&
-        /\.html$/.test(data.contentUrl) ? (
+        /\/[^\\/]+\.html$/g.test(data.contentUrl) ? (
           <iframe
             ref={(node) => {
               iframeRef.current = node
             }}
-            src={`/html/${data.contentUrl}`}
+            src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
             className="hidden size-full min-h-full"
             title={data.title}
           />

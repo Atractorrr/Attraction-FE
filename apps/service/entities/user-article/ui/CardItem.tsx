@@ -24,7 +24,7 @@ export default function CardItem({ type, ...data }: CardItemProps) {
       <Link
         href={data.articleUrl}
         title={`아티클 보기: ${data.articleTitle}`}
-        className={`group relative block overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 ${
+        className={`group relative block overflow-hidden rounded-lg border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700 ${
           type === 'list'
             ? 'mr-3 h-[8vw] max-h-24 min-h-20 w-1/4 min-w-28'
             : 'mb-2 h-[56vw] max-h-60 min-h-40 w-full sm:h-[16vw] sm:max-h-48'
