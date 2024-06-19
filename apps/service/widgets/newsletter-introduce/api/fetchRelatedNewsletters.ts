@@ -1,7 +1,9 @@
+import { RelatedNewslettersResponse } from '../model'
+
 export default async function fetchRelatedNewsletters(
   newsletterId: string,
   size: number = 5,
-) {
+): Promise<RelatedNewslettersResponse> {
   const apiURL = new URL(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/newsletters/${newsletterId}/related`,
   )

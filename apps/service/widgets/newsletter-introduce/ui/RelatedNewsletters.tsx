@@ -1,67 +1,36 @@
-'use client'
-
-import { Suspense } from 'react'
-import {
-  Container,
-  ErrorGuideTxt,
-  GuideTxt,
-  LoadingSpinner,
-  Title,
-} from '@/shared/ui'
-import { QueryErrorResetBoundary } from '@tanstack/react-query'
-import { ErrorBoundary } from 'react-error-boundary'
-import { useRelatedNewsletters } from '../lib'
+import { Container, GuideTxt, Title } from '@/shared/ui'
 import RelatedNewsletterItem from './RelatedNewsletterItem'
+import { fetchRelatedNewsletters } from '../api'
 
 interface RelatedNewsletterProps {
   newsletterId: string
 }
 
-function RelatedNewsletterContent({ newsletterId }: RelatedNewsletterProps) {
-  const { data } = useRelatedNewsletters(newsletterId)
-
-  return (
-    <div>
-      {data.data.length ? (
-        <div className="flex flex-col gap-y-5">
-          {data.data.map((newsletter) => (
-            <RelatedNewsletterItem key={newsletter.id} {...newsletter} />
-          ))}
-        </div>
-      ) : (
-        <div className="pb-40 pt-32">
-          <GuideTxt
-            title="연관 뉴스레터가 없어요"
-            sub="데이터 추가 예정이니 조금만 기다려주세요"
-          />
-        </div>
-      )}
-    </div>
-  )
-}
-
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
-
-export default function RelatedNewsletters({
+export default async function RelatedNewsletters({
   newsletterId,
 }: RelatedNewsletterProps) {
+  const { data } = await fetchRelatedNewsletters(newsletterId)
+
   return (
     <Container>
       <div className="flex w-full flex-col justify-start gap-y-5 p-5">
         <Title text="연관 뉴스레터" />
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <ErrorBoundary
-              onReset={reset}
-              FallbackComponent={CustomErrorGuideTxt}>
-              <Suspense fallback={<LoadingSpinner />}>
-                <RelatedNewsletterContent newsletterId={newsletterId} />
-              </Suspense>
-            </ErrorBoundary>
+        <div>
+          {data.length ? (
+            <div className="flex flex-col gap-y-5">
+              {data.map((newsletter) => (
+                <RelatedNewsletterItem key={newsletter.id} {...newsletter} />
+              ))}
+            </div>
+          ) : (
+            <div className="pb-40 pt-32">
+              <GuideTxt
+                title="연관 뉴스레터가 없어요"
+                sub="데이터 추가 예정이니 조금만 기다려주세요"
+              />
+            </div>
           )}
-        </QueryErrorResetBoundary>
+        </div>
       </div>
     </Container>
   )
