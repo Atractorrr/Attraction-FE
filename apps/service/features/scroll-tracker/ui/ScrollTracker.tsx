@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import {
   type UserArticleParams,
-  useUserArticleMutation,
+  useTrackingUserArticleScroll,
 } from '@/entities/user-article'
 import { useDebounce } from '@/shared/lib'
 import { useScrollProgress } from '../lib'
@@ -16,7 +16,7 @@ export default function ScrollTracker({
   articleId,
   initProgress,
 }: ScrollTrackerProps) {
-  const { mutate } = useUserArticleMutation({ articleId })
+  const { mutate } = useTrackingUserArticleScroll({ articleId })
   const { scrollProgress } = useScrollProgress()
   const debouncedScroll = useDebounce(scrollProgress, 800)
   const progressRef = useRef(initProgress)

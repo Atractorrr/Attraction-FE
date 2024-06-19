@@ -7,7 +7,16 @@ import {
   MemberOutline,
 } from '@attraction/icons'
 
-const SIDE_MENU = Object.freeze([
+interface SideMenu {
+  name: string
+  shortName: string | null
+  href: string
+  segment: string | null
+  icon: typeof HouseOutline
+  needLogin: boolean
+}
+
+const SIDE_MENU: Readonly<SideMenu[]> = Object.freeze([
   {
     name: '홈',
     shortName: '홈',

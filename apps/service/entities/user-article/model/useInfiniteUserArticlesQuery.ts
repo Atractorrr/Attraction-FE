@@ -13,7 +13,7 @@ export default function useInfiniteUserArticlesQuery({
   const queryClient = useQueryClient()
 
   return useInfiniteQuery({
-    queryKey: userArticleQueryKeys.userArticles({ ...option, userEmail }),
+    queryKey: userArticleQueryKeys.userArticleList({ ...option, userEmail }),
     queryFn: ({ pageParam }) =>
       getUserArticleList({ ...option, userEmail, page: pageParam }),
     initialPageParam: 0,

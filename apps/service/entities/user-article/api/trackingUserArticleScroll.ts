@@ -2,7 +2,7 @@ import type { UserArticleParams } from '../model'
 
 type PutUserArticleParams = { readPercentage: number } & UserArticleParams
 
-export default async function putUserArticle({
+export default async function trackingUserArticleScroll({
   userEmail,
   articleId,
   readPercentage,
