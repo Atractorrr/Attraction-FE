@@ -20,7 +20,7 @@ export default function SignIn() {
             뉴스레터 생활을 더욱 풍요롭게 만들어보세요!
           </p>
         </div>
-        <div className="flex flex-col justify-center pb-10">
+        <div className="pb-10">
           <div className="mb-4 flex items-center px-2 sm:mb-8">
             <div className="flex h-px w-full grow bg-gray-100 dark:bg-gray-700" />
             <p className="shrink-0 whitespace-nowrap px-4 text-gray-500 dark:text-gray-400">

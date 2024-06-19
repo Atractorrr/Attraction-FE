@@ -8,16 +8,15 @@ import { useScrollProgress } from '../lib'
 import ScrollProgressBar from './ScrollProgressBar'
 import { MAX_SCROLL_CRITERIA } from '../constant'
 
-interface ScrollTrackerProps extends UserArticleParams {
+interface ScrollTrackerProps extends Omit<UserArticleParams, 'userEmail'> {
   initProgress: number
 }
 
 export default function ScrollTracker({
-  userId,
   articleId,
   initProgress,
 }: ScrollTrackerProps) {
-  const { mutate } = useUserArticleMutation({ userId, articleId })
+  const { mutate } = useUserArticleMutation({ articleId })
   const { scrollProgress } = useScrollProgress()
   const debouncedScroll = useDebounce(scrollProgress, 800)
   const progressRef = useRef(initProgress)

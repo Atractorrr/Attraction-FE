@@ -27,7 +27,7 @@ function CustomErrorGuideTxt() {
 export default function Calendar({ calendarData }: CalendarProps) {
   const { realTheme } = useTheme()
   return (
-    <Container className="flex h-full justify-center p-6">
+    <Container className="flex h-full justify-center p-5 pt-7">
       <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
         <ActivityCalendarNoSSR
           data={calendarData}
@@ -39,8 +39,8 @@ export default function Calendar({ calendarData }: CalendarProps) {
           hideMonthLabels={false}
           renderBlock={(block, activity) => {
             const message = activity.count
-              ? `${activity.date}에 ${activity.count}개의 상식을 쌓았어요 🎉`
-              : `${activity.date}에는 상식을 쌓지 못했어요 🥲`
+              ? `${activity.date}에 ${activity.count}개의 아티클을 읽었어요 🎉`
+              : `${activity.date}에는 아티클을 읽지 못했어요 🥲`
 
             return React.cloneElement(block, {
               'data-tooltip-id': 'react-tooltip',

@@ -9,6 +9,7 @@ const getTitle = (pathname: string) => {
     return '홈'
   }
   const target = [
+    ['/inbox-bookmark', '북마크한 아티클'],
     ['/inbox', '뉴스레터 보관함'],
     ['/newsletter', '뉴스레터 소개'],
     ['/mypage', '마이페이지'],
@@ -25,7 +26,9 @@ export default function Header() {
   return (
     <header
       className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-        segments.some((s) => s === 'article') ? 'hidden md:block' : ''
+        segments.some((s) => s === 'article' || s === 'mypage')
+          ? 'hidden md:block'
+          : ''
       }`}>
       <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
         <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
