@@ -1,10 +1,6 @@
 'use client'
 
-interface ReturnTypeOfShare {
-  status: boolean
-}
-
-export default async function copy(text: string): Promise<ReturnTypeOfShare> {
+export default async function copy(text: string) {
   if (navigator?.clipboard) {
     await navigator.clipboard.writeText(text)
     return { status: true }

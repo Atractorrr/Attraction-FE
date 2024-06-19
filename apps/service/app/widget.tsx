@@ -2,8 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
-import { Footer, SideBar } from '@/widgets/side-bar'
-import { Header } from '@/widgets/header'
+import { Footer, SideBar, Header } from '@/widgets/menu'
 import { PUBLIC_PATH } from '@/entities/auth'
 
 export default function Widget({ children }: PropsWithChildren) {
