@@ -29,7 +29,7 @@ export default function RecentArticles({
       {mainPageArticles.length ? (
         <Carousel options={carouselOptions} slides={articleList} showBlur />
       ) : (
-        <div className="pb-40 pt-32">
+        <div className="pb-32 pt-24">
           <GuideTxt
             title="받은 뉴스레터가 없어요"
             sub="뉴스레터를 구독해볼까요?"

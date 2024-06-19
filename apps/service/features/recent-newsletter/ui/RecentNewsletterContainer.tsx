@@ -1,19 +1,25 @@
+'use server'
+
 import Link from 'next/link'
+import { cookies } from 'next/headers'
+import { ClockOutline } from '@attraction/icons'
 import { NewsCard } from '@/entities/news-card'
-import { Container, GuideTxt } from '@/shared/ui'
+import { Container, GuideTxt, Title } from '@/shared/ui'
 import { RecentNewsletter } from '../model'
+import { fetchNewsletterList } from '../api'
 
-interface RecentNewsletterProps {
-  recentNewsletterList: RecentNewsletter[]
-}
+export default async function RecentNewsletterContainer() {
+  const email = cookies().get('email')?.value as string
+  const recentNewsletterList: RecentNewsletter[] =
+    await fetchNewsletterList(email)
 
-export default function RecentNewsletterContainer({
-  recentNewsletterList,
-}: RecentNewsletterProps) {
   return (
     <Container className="h-full overflow-hidden">
       <div className="flex items-center justify-between p-5">
-        <p className="cursor-default text-lg font-bold">최근 읽은 아티클</p>
+        <Title
+          icon={<ClockOutline className="text-2xl" />}
+          text="최근 읽은 아티클"
+        />
         {recentNewsletterList.length !== 0 ? (
           <Link
             href="/inbox"
@@ -66,7 +72,7 @@ export default function RecentNewsletterContainer({
           </div>
         </div>
       ) : (
-        <div className="flex cursor-default flex-col items-center justify-center py-20">
+        <div className="flex cursor-default flex-col items-center justify-center pb-32 pt-20">
           <GuideTxt
             title="최근 읽은 아티클이 없습니다"
             sub="지금 아티클을 읽어보세요"

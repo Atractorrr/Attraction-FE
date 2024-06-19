@@ -34,7 +34,7 @@ export default function UserRankContent({
             </div>
             <div className="w-full max-w-[calc(100%-3rem-40px)]">
               <p className="truncate font-medium">
-                {i + 1}위 {user?.nickname}
+                {user?.nickname ?? `${i + 1}위 유저`}
               </p>
               <p className="break-keep text-sm text-gray-500 dark:text-gray-400">
                 {activeRanking === 'article'
