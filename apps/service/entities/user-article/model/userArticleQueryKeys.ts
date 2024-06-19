@@ -4,9 +4,10 @@ const userArticleQueryKeys = {
   all: ['user-article'] as const,
   userArticle: (params: UserArticleParams) => [
     ...userArticleQueryKeys.all,
+    'detail',
     params,
   ],
-  userArticles: ({
+  userArticleList: ({
     userEmail,
     category,
     pageType,
@@ -19,6 +20,26 @@ const userArticleQueryKeys = {
     { pageType },
     category,
     options,
+  ],
+  trackingUserArticleScroll: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'tracking-article',
+    params,
+  ],
+  checkUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'check-bookmark',
+    params,
+  ],
+  addUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'add-bookmark',
+    params,
+  ],
+  cancelUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'cancel-bookmark',
+    params,
   ],
   userCategories: (params: { userEmail: UserEmail }) => [
     ...userArticleQueryKeys.all,

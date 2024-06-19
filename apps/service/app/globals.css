@@ -25,4 +25,10 @@
     @apply absolute size-px overflow-hidden;
     clip: rect(1px, 1px, 1px, 1px);
   }
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 }
