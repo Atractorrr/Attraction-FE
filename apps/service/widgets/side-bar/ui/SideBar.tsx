@@ -64,7 +64,7 @@ export default function SideBar() {
           onClick={() => setOpen(false)}
         />
       )}
-      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto border-t bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:border-gray-700 dark:bg-gray-800">
+      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto border-t border-gray-100 bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 hidden items-center justify-center md:flex">
           <button
             type="button"
