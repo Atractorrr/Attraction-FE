@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { RefreshOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system'
+import { useRouter } from 'next/navigation'
 import GuideTxt from './GuideTxt'
 
 interface ErrorGuideTxtProps {
