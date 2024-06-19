@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
 import { RecentArticles } from '@/features/recent-articles'
 
-import { Container, ErrorGuideTxt, LoadingSpinner, Title } from '@/shared/ui'
+import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
 import { useRecentArticles } from '@/features/recent-articles/model'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useAuth } from '@/entities/auth'
+import RecentArticlesSkeleton from './RecentArticlesSkeleton'
 
 interface RecentArticlesContainerProps {
   email: string | undefined
@@ -31,7 +32,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
             보관함 바로가기
           </Link>
         </div>
-        {isLoading ? <LoadingSpinner /> : null}
+        {isLoading ? <RecentArticlesSkeleton /> : null}
         {data ? (
           <RecentArticles mainPageArticles={data.mainPageArticles} />
         ) : null}
