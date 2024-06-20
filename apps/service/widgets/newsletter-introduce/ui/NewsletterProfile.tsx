@@ -5,12 +5,10 @@ import NewsletterSubscribeButton from './NewsletterSubscribeButton'
 import { fetchNewsletterProfile } from '../api'
 
 interface NewsletterProfileProps {
-  email: string | undefined
   newsletterId: string
 }
 
 export default async function NewsletterProfile({
-  email,
   newsletterId,
 }: NewsletterProfileProps) {
   const { data } = await fetchNewsletterProfile(newsletterId)
@@ -54,7 +52,6 @@ export default async function NewsletterProfile({
             {data.description}
           </p>
           <NewsletterSubscribeButton
-            email={email}
             newsletterId={newsletterId}
             subscribeLink={data.subscribeLink}
           />

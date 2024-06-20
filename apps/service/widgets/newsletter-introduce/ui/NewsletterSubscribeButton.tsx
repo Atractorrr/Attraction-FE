@@ -1,24 +1,24 @@
 'use client'
 
 import { Button } from '@attraction/design-system'
+import { useAuth } from '@/entities/auth'
 import { subscribeNewsletter } from '../api'
 
 interface NewsletterSubscribeButtonProps {
-  email: string | undefined
   newsletterId: string
   subscribeLink: string
 }
 
 export default function NewsletterSubscribeButton({
-  email,
   newsletterId,
   subscribeLink,
 }: NewsletterSubscribeButtonProps) {
+  const { userEmail } = useAuth()
   const handleSubscribe = () => {
     window.open(subscribeLink, '_blank', 'noopener,noreferrer')
 
-    if (email) {
-      subscribeNewsletter(email, newsletterId)
+    if (userEmail) {
+      subscribeNewsletter(userEmail, newsletterId)
     }
   }
 
