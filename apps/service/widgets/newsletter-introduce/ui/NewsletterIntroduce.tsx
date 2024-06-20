@@ -1,19 +1,11 @@
-import { NewsletterPreviousArticles } from '@/features/newsletter-previous-articles'
-import { RelatedNewsletters } from '@/features/related-newsletters'
-import dynamic from 'next/dynamic'
+import NewsletterPreviousArticles from './NewsletterPreviousArticles'
+import NewsletterProfile from './NewsletterProfile'
+import RelatedNewsletters from './RelatedNewsletters'
 
 interface NewsletterIntroduceProps {
   email: string | undefined
   newsletterId: string
 }
-
-const NewsletterProfile = dynamic(
-  () =>
-    import('@/features/newsletter-profile').then(
-      (mod) => mod.NewsletterProfile,
-    ),
-  { ssr: false },
-)
 
 export default function NewsletterIntroduce({
   email,
