@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import { UserProfile } from '@/entities/profile'
 import { Button } from '@attraction/design-system/dist'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { UserProfile } from '@/entities/profile'
+import React, { useEffect } from 'react'
 import { useImgUpload } from '../lib'
 
 interface ProfileSettingModalType {
@@ -38,24 +38,30 @@ export default function ProfileSettingModal({
   type,
 }: ProfileSettingModalType) {
   const queryClient = useQueryClient()
-  const { setFileInfo, fileUploadHandler, fileInfo } = useImgUpload()
+  const { deleteImgUrl, getS3ImgUrl, fileUploadHandler, fileInfo } =
+    useImgUpload()
   const { mutate } = useMutation({
     mutationFn: postImgUrl,
-    onMutate: async (sendUrl) => {
+    onMutate: async (postImgArg) => {
       await queryClient.cancelQueries({ queryKey: ['profile', email] })
-
       const previousData = queryClient.getQueryData<UserProfile>([
         'profile',
         email,
       ])
 
+      fetch('/api/s3-upload', {
+        body: JSON.stringify({
+          deleteS3ImgUrl: `${type === 'profile' ? previousData?.profileImg : previousData?.backgroundImg}`,
+        }),
+        method: 'DELETE',
+      })
+
       queryClient.setQueryData<UserProfile>(['profile', email], (old) => {
         if (old) {
           const imgUrl =
             type === 'profile'
-              ? { profileImg: sendUrl.fileImgSrc }
-              : { backgroundImg: sendUrl.fileImgSrc }
-
+              ? { profileImg: postImgArg.fileImgSrc }
+              : { backgroundImg: postImgArg.fileImgSrc }
           return { ...old, ...imgUrl }
         }
         return old
@@ -63,11 +69,22 @@ export default function ProfileSettingModal({
 
       return { previousData }
     },
-
+    onError: (err, postImgArg, context) => {
+      queryClient.setQueryData(['profile', email], context?.previousData)
+    },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['profiles', email] })
+      queryClient.invalidateQueries({ queryKey: ['profile', email] })
     },
   })
+
+  const storeS3ImgHandler = async () => {
+    const response = await getS3ImgUrl()
+
+    if (response?.s3ImgUrl) {
+      mutate({ fileImgSrc: response.s3ImgUrl, email, type })
+    }
+    setModal(false)
+  }
   useEffect(() => {
     const height = window.scrollY
 
@@ -108,14 +125,13 @@ export default function ProfileSettingModal({
               onChange={fileUploadHandler}
             />
           </label>
-          <p className="basis-2/3 overflow-hidden">{fileInfo.name}</p>
+          <p className="basis-2/3 overflow-hidden">{fileInfo?.name}</p>
         </div>
         <div className="flex h-fit w-full justify-between border-t border-t-gray-100 pt-4 dark:border-t-gray-700">
           <Button
             className="rounded-lg bg-red-50 px-5 py-2 text-red-400 transition-colors hover:bg-red-100 md:px-10 dark:bg-red-400 dark:text-red-50 dark:hover:bg-red-500"
             onClick={() => {
-              setFileInfo((pre) => ({ ...pre, src: '', name: '' }))
-              mutate({ fileImgSrc: '', email, type })
+              deleteImgUrl()
               setModal(false)
             }}>
             삭제
@@ -128,12 +144,7 @@ export default function ProfileSettingModal({
             </Button>
             <Button
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-              onClick={() => {
-                if (fileInfo.src.length !== 0) {
-                  mutate({ fileImgSrc: fileInfo.src, email, type })
-                }
-                setModal(false)
-              }}>
+              onClick={storeS3ImgHandler}>
               저장
             </Button>
           </div>

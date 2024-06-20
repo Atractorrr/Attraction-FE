@@ -1,27 +1,27 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from '@attraction/design-system/dist'
+import { useAuth } from '@/entities/auth'
+import {
+  PreferTagItem,
+  PreferTagList,
+  ProfileBackground,
+  ProfileImage,
+  UserInfo,
+} from '@/entities/profile'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
+import { Button } from '@attraction/design-system'
 import {
   CameraOutline,
   CogOutline,
   PaintOutline,
   ShareOutline,
 } from '@attraction/icons'
-import {
-  ProfileBackground,
-  ProfileImage,
-  UserInfo,
-  PreferTagList,
-  PreferTagItem,
-} from '@/entities/profile'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '@/entities/auth'
-import { Container, ErrorGuideTxt } from '@/shared/ui'
+import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import UserSettingModal from './UserSettingModal'
-import ProfileSettingModal from './ProfileSettingModal'
 import { fetchUserProfile } from '../api'
+import ProfileSettingModal from './ProfileSettingModal'
+import UserSettingModal from './UserSettingModal'
 
 function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
