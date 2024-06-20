@@ -4,8 +4,8 @@ import HotKeywords from './HotKeywords'
 
 export default function DiscoverLayout() {
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-y-12">
-      <div className="flex w-full justify-center px-4 lg:px-0">
+    <div>
+      <div className="mb-12 flex w-full justify-center px-4 lg:px-0">
         <DiscoverInput />
       </div>
       <div className="flex w-full flex-col justify-center gap-6 lg:flex-row">

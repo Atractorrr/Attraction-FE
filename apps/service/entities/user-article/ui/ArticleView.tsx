@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@attraction/design-system/dist'
-import { ErrorGuideTxt } from '@/shared/ui'
+import { ErrorGuideTxt, ThumbnailImage } from '@/shared/ui'
 import { censoringAnchorTags, getTimeFromNow } from '@/shared/lib'
 import { Article } from '../model'
 import BookmarkBtn from './BookmarkBtn'
@@ -22,21 +21,28 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
   useEffect(() => {
     const iframe = iframeRef.current
     const handleIframe = () => {
-      if (iframe === null) return
+      try {
+        if (iframe === null) return
 
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
-      if (!iframeDoc) return
+        const iframeDoc =
+          iframe.contentDocument || iframe.contentWindow?.document
+        if (!iframeDoc) return
 
-      if (iframeDoc.title.includes('404')) {
+        if (iframeDoc.title.includes('404')) {
+          setIframeNotFound(true)
+          return
+        }
+        iframe.style.display = 'block'
+
+        if (censored) censoringAnchorTags(iframeDoc)
+
+        const iframeBody = iframeDoc.body
+        iframe.style.height = `${iframeBody.scrollHeight + 10}px`
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err)
         setIframeNotFound(true)
-        return
       }
-      iframe.style.display = 'block'
-
-      if (censored) censoringAnchorTags(iframeDoc)
-
-      const iframeBody = iframeDoc.body
-      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
     }
     iframe?.addEventListener('load', handleIframe)
     window.addEventListener('resize', handleIframe)
@@ -59,14 +65,10 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
               title={`뉴스레터 상세 보기: ${data.newsletter.name}`}
               className="flex items-center justify-center">
               <span className="mr-2 block size-8 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700">
-                <Image
-                  src={
-                    data.newsletter.thumbnailUrl || '/images/default-1x1.jpg'
-                  }
+                <ThumbnailImage
+                  src={data.newsletter.thumbnailUrl}
                   alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
-                  className="size-full object-cover"
-                  width={300}
-                  height={300}
+                  type="profile"
                 />
               </span>
               <span className="max-w-[calc(100%-2.5rem)] break-keep font-medium">
@@ -97,6 +99,7 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
             src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
             className="hidden size-full min-h-full"
             title={data.title}
+            onError={() => setIframeNotFound(true)}
           />
         ) : (
           <div className="px-5">

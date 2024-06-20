@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { getTimeFromNow } from '@/shared/lib'
+import { ThumbnailImage } from '@/shared/ui'
 import { ViewType } from '../model'
 import { daysAgo } from '../lib'
 import ToBeDeletedTxt from './ToBeDeletedTxt'
@@ -29,12 +29,10 @@ export default function CardItem({ type, ...data }: CardItemProps) {
             ? 'mr-3 h-[8vw] max-h-24 min-h-20 w-1/4 min-w-28'
             : 'mb-2 h-[56vw] max-h-60 min-h-40 w-full sm:h-[16vw] sm:max-h-48'
         }`}>
-        <Image
-          src={data.articleThumbnailUrl || '/images/default-16x9.jpg'}
-          className="size-full scale-100 object-cover transition-transform group-hover:scale-110"
+        <ThumbnailImage
+          src={data.articleThumbnailUrl}
           alt={`아티클 썸네일 이미지: ${data.articleTitle}`}
-          width={1280}
-          height={720}
+          type="article"
         />
         {!!data.readPercentage && data.readPercentage > 0 && (
           <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
@@ -55,12 +53,13 @@ export default function CardItem({ type, ...data }: CardItemProps) {
           className={`${
             type === 'list' ? 'hidden' : 'block'
           } mr-2 block size-7 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`}>
-          <Image
+          <ThumbnailImage
             src={data.newsletterThumbnailUrl || '/images/default-1x1.jpg'}
             alt={`뉴스레터 썸네일 이미지: ${data.newsletterName}`}
-            className="size-full object-cover"
-            width={300}
-            height={300}
+            type="profile"
+            // className="size-full object-cover"
+            // width={300}
+            // height={300}
           />
         </Link>
         <p

@@ -47,8 +47,8 @@ export default function AuthButton() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem title="로그아웃" onClick={logout}>
-          <ArrowLeftStartOnRectangleOutline className="text-lg" />
-          <span className="ml-2">로그아웃</span>
+          <ArrowLeftStartOnRectangleOutline className="text-lg text-red-400 dark:text-red-300" />
+          <span className="ml-2 text-red-400 dark:text-red-300">로그아웃</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

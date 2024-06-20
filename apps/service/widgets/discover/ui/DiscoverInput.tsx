@@ -11,7 +11,9 @@ export default function DiscoverInput() {
   const handleSearch = () => {
     if (inputRef.current) {
       const searchTerm = inputRef.current.value
-      router.push(`/discover/${searchTerm}`)
+      if (searchTerm) {
+        router.push(`/discover/${searchTerm}`)
+      }
     }
   }
 
@@ -22,9 +24,9 @@ export default function DiscoverInput() {
   }
 
   return (
-    <div className="flex w-full gap-x-2 overflow-hidden rounded-full border border-gray-100 bg-white px-7 py-5 text-gray-400 shadow-lg lg:max-w-screen-md dark:border-gray-800 dark:bg-gray-800 dark:text-gray-300">
+    <div className="relative mx-auto h-[60px] w-full max-w-3xl">
       <input
-        className="w-full bg-transparent focus:outline-none"
+        className="size-full rounded-full border border-gray-100 bg-white py-3 pl-7 pr-16 outline-none transition-all placeholder:text-gray-500 focus:border-blue-400 focus:shadow-lg xs:text-lg dark:border-gray-800 dark:bg-gray-800 dark:shadow-none dark:placeholder:text-gray-400"
         ref={inputRef}
         type="text"
         placeholder="검색어를 입력하세요"
@@ -32,10 +34,11 @@ export default function DiscoverInput() {
       />
       <button
         type="button"
-        className="flex size-6 items-center justify-center"
+        className="absolute inset-y-0 right-5 my-auto flex size-10 items-center justify-center rounded-full transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
         onClick={handleSearch}
+        title="검색하기"
         aria-label="검색 버튼">
-        <MagnifyingGlassOutline className="size-full" />
+        <MagnifyingGlassOutline className="size-5" />
       </button>
     </div>
   )

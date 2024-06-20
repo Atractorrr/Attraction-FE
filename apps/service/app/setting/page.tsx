@@ -1,11 +1,16 @@
+import { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { Suspense } from 'react'
 import {
   UserInfoGeneral,
   UserInfoSetting,
   UserInfoWithdraw,
 } from '@/features/user-setting'
 import { LoadingSpinner } from '@/shared/ui'
-import { cookies } from 'next/headers'
-import { Suspense } from 'react'
+
+export const metadata: Metadata = {
+  title: '개인설정',
+}
 
 export default function SettingPage() {
   const email = cookies().get('email')?.value as string

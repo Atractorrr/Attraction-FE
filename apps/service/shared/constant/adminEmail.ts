@@ -1,3 +1,3 @@
-const ADMIN_EMAIL = 'attractionmanager@gmail.com'
+const ADMIN_EMAIL = 'support@attraction.run'
 
 export default ADMIN_EMAIL
