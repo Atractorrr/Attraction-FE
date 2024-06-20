@@ -1,7 +1,7 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
-import { fetchArticles } from '../../api'
-import type { RecentArticleResponse } from '../type'
-import mainQueryKeys from '../mainQueryKeys'
+import { fetchArticles } from '../api'
+import type { RecentArticleResponse } from './type'
+import mainQueryKeys from './mainQueryKeys'
 
 export default function useRecentArticles(
   email: string | undefined,
