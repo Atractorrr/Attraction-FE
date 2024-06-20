@@ -21,21 +21,28 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
   useEffect(() => {
     const iframe = iframeRef.current
     const handleIframe = () => {
-      if (iframe === null) return
+      try {
+        if (iframe === null) return
 
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
-      if (!iframeDoc) return
+        const iframeDoc =
+          iframe.contentDocument || iframe.contentWindow?.document
+        if (!iframeDoc) return
 
-      if (iframeDoc.title.includes('404')) {
+        if (iframeDoc.title.includes('404')) {
+          setIframeNotFound(true)
+          return
+        }
+        iframe.style.display = 'block'
+
+        if (censored) censoringAnchorTags(iframeDoc)
+
+        const iframeBody = iframeDoc.body
+        iframe.style.height = `${iframeBody.scrollHeight + 10}px`
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err)
         setIframeNotFound(true)
-        return
       }
-      iframe.style.display = 'block'
-
-      if (censored) censoringAnchorTags(iframeDoc)
-
-      const iframeBody = iframeDoc.body
-      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
     }
     iframe?.addEventListener('load', handleIframe)
     window.addEventListener('resize', handleIframe)
@@ -92,6 +99,7 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
             src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
             className="hidden size-full min-h-full"
             title={data.title}
+            onError={() => setIframeNotFound(true)}
           />
         ) : (
           <div className="px-5">
