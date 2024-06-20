@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MainLogoSVG } from '@/shared/ui'
+import { MainTextLogoSVG } from '@/shared/ui'
 
 export default function MainLogo() {
   return (
@@ -9,7 +9,7 @@ export default function MainLogo() {
         className="block size-full text-gray-800 dark:text-white"
         title="메인페이지로 이동">
         <span className="blind">Attraction</span>
-        <MainLogoSVG />
+        <MainTextLogoSVG />
       </Link>
     </h1>
   )

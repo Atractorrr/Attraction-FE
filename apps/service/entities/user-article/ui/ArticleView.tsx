@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@attraction/design-system/dist'
-import { ErrorGuideTxt } from '@/shared/ui'
+import { ErrorGuideTxt, ThumbnailImage } from '@/shared/ui'
 import { censoringAnchorTags, getTimeFromNow } from '@/shared/lib'
 import { Article } from '../model'
 import BookmarkBtn from './BookmarkBtn'
@@ -59,14 +58,10 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
               title={`뉴스레터 상세 보기: ${data.newsletter.name}`}
               className="flex items-center justify-center">
               <span className="mr-2 block size-8 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700">
-                <Image
-                  src={
-                    data.newsletter.thumbnailUrl || '/images/default-1x1.jpg'
-                  }
+                <ThumbnailImage
+                  src={data.newsletter.thumbnailUrl}
                   alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
-                  className="size-full object-cover"
-                  width={300}
-                  height={300}
+                  type="profile"
                 />
               </span>
               <span className="max-w-[calc(100%-2.5rem)] break-keep font-medium">

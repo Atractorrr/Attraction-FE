@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { GoogleOAuthButton, MainLogoSVG } from '@/shared/ui'
+import { GoogleOAuthButton, MainTextLogoSVG } from '@/shared/ui'
 import SignInCarousel from './SignInCarousel'
 
 export default function SignIn() {
@@ -12,7 +12,7 @@ export default function SignIn() {
         <div className="px-2 pt-5 sm:px-0">
           <h1 className="mb-5 flex items-center justify-start sm:mb-8">
             <Link href="/" title="메인페이지로 이동">
-              <MainLogoSVG className="h-8 w-auto sm:h-[42px]" />
+              <MainTextLogoSVG className="h-8 w-auto sm:h-[42px]" />
             </Link>
           </h1>
           <p className="break-keep text-gray-500 sm:text-lg dark:text-gray-400">
