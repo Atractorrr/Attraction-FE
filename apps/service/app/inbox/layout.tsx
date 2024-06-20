@@ -1,12 +1,16 @@
-import { cookies } from 'next/headers'
+import { Metadata } from 'next'
+import { PropsWithChildren } from 'react'
 import { UserInboxLayout } from '@/widgets/inbox'
-import WithAuth from '@/entities/auth/ui/WithAuth'
+import { WithAuth } from '@/entities/auth'
 
-export default function InboxLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  const email = cookies().get('email')?.value ?? 12 // TODO: 테스트용 상수 제거
-  return WithAuth(<UserInboxLayout userId={email}>{children}</UserInboxLayout>)
+export const metadata: Metadata = {
+  title: '뉴스레터 보관함',
+}
+
+export default function InboxLayout({ children }: PropsWithChildren) {
+  return (
+    <WithAuth>
+      <UserInboxLayout pageType="default">{children}</UserInboxLayout>
+    </WithAuth>
+  )
 }

@@ -1,11 +1,9 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { ThemeContext, useThemeSetting } from '../../model'
 
-export default function ThemeProvider({
-  children,
-}: Readonly<{ children: ReactNode }>) {
+export default function ThemeProvider({ children }: PropsWithChildren) {
   const { currentTheme, realTheme, setTheme } = useThemeSetting()
 
   return (

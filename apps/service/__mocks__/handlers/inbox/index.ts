@@ -1,6 +1,5 @@
 import { HttpHandler, HttpResponse } from 'msw'
 import { articles } from '@/__mocks__/data'
-
 import {
   Article,
   SortType,
@@ -26,8 +25,11 @@ const defaultPagination: Pagination = {
   last: true, // 마지막 페이지
   empty: true,
 }
-
-const sorted: Record<SortType, (a: Article, b: Article) => number> = {
+type BookmarkArticle = Omit<Article, 'readPercentage'>
+const sorted: Record<
+  SortType,
+  (a: Article | BookmarkArticle, b: Article | BookmarkArticle) => number
+> = {
   'receivedAt,desc': (a, b) =>
     new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
   'receivedAt,asc': (a, b) =>
@@ -35,8 +37,59 @@ const sorted: Record<SortType, (a: Article, b: Article) => number> = {
 }
 
 const inboxHandlers: HttpHandler[] = [
-  get('/v1/user/:userId/articles', ({ request, params }) => {
-    const { userId } = params
+  get('/v1/user/:userEmail/articles/bookmark', ({ request, params }) => {
+    const { userEmail } = params
+    const searchParams = getParams(request.url)
+    const page = Number(searchParams.get('page') ?? 0)
+    const size = Number(searchParams.get('size') ?? 20)
+    const sort = searchParams.get('sort') ?? 'receivedAt,asc'
+    const query = searchParams.get('q')
+    const category = searchParams.get('category')
+    const isInvalidRequest = !userEmail || [page, size].some(Number.isNaN)
+
+    if (isInvalidRequest) {
+      return error('잘못된 요청입니다', 400)
+    }
+
+    const bookmarkArticle = articles.map((article) => ({
+      ...article,
+      readPercentage: undefined,
+    }))
+    const sortedArticles =
+      page > 0
+        ? bookmarkArticle
+            .map((article, i) => ({ ...article, id: page * size + i + 1 }))
+            .sort(sorted[sort as SortType] ?? sorted['receivedAt,asc'])
+        : [...bookmarkArticle].sort(
+            sorted[sort as SortType] ?? sorted['receivedAt,asc'],
+          )
+    const searchedArticles = query
+      ? sortedArticles.filter((article) => article.title.includes(query))
+      : sortedArticles
+    const filteredArticles = category
+      ? searchedArticles.filter((article) => article.category === category)
+      : searchedArticles
+    const resultOfArticles =
+      searchedArticles.length > size
+        ? filteredArticles.filter((_, i) => i < size)
+        : filteredArticles
+
+    const data = {
+      data: Object.assign(defaultPagination, {
+        content: resultOfArticles,
+        size: resultOfArticles.length,
+        number: page,
+        first: page === 0,
+        last: page >= 2 || resultOfArticles.length < size,
+      }),
+      status: 'OK',
+      message: 'asdf',
+    }
+
+    return HttpResponse.json(data)
+  }),
+  get('/v1/user/:userEmail/articles', ({ request, params }) => {
+    const { userEmail } = params
     const searchParams = getParams(request.url)
     const page = Number(searchParams.get('page') ?? 0)
     const size = Number(searchParams.get('size') ?? 20)
@@ -44,7 +97,7 @@ const inboxHandlers: HttpHandler[] = [
     const isRead = searchParams.get('isHideRead') === 'true'
     const query = searchParams.get('q')
     const category = searchParams.get('category')
-    const isInvalidRequest = !userId || [page, size].some(Number.isNaN)
+    const isInvalidRequest = !userEmail || [page, size].some(Number.isNaN)
 
     if (isInvalidRequest) {
       return error('잘못된 요청입니다', 400)
@@ -86,10 +139,10 @@ const inboxHandlers: HttpHandler[] = [
 
     return HttpResponse.json(data)
   }),
-  get('/v1/user/:userId/categories', ({ params }) => {
-    const { userId } = params
+  get('/v1/user/:userEmail/categories', ({ params }) => {
+    const { userEmail } = params
 
-    if (!userId) {
+    if (!userEmail) {
       return error('잘못된 요청입니다', 400)
     }
 
@@ -106,10 +159,10 @@ const inboxHandlers: HttpHandler[] = [
         ),
     })
   }),
-  get('/v1/user/:userId/article/:articleId', ({ params }) => {
-    const { userId } = params
+  get('/v1/user/:userEmail/article/:articleId', ({ params }) => {
+    const { userEmail } = params
     const articleId = Number(params.articleId)
-    const isInvalidRequest = !userId || Number.isNaN(articleId)
+    const isInvalidRequest = !userEmail || Number.isNaN(articleId)
 
     if (isInvalidRequest) {
       return error('잘못된 요청입니다', 400)
@@ -121,13 +174,13 @@ const inboxHandlers: HttpHandler[] = [
       data: articles.find((article) => article.id === articleId),
     })
   }),
-  put('/v1/user/:userId/article/:articleId', ({ request, params }) => {
-    const { userId } = params
+  put('/v1/user/:userEmail/article/:articleId', ({ request, params }) => {
+    const { userEmail } = params
     const articleId = Number(params.articleId)
     const searchParams = getParams(request.url)
     const percentage = Number(searchParams.get('readPercentage'))
     const isInvalidRequest =
-      !userId || [articleId, percentage].some(Number.isNaN)
+      !userEmail || [articleId, percentage].some(Number.isNaN)
 
     if (isInvalidRequest) {
       return error('잘못된 요청입니다', 400)

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { PropsWithChildren } from 'react'
 
 import '@/public/fonts/fonts.css'
 import './globals.css'
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_FE_URL!),
   title: {
-    template: '%s | Attraction',
+    template: '%s - Attraction',
     default: 'Attraction',
   },
   description: '나만의 뉴스레터 관리 서비스',
@@ -43,11 +44,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   const { ...props } = await useToken()
   return (
     <html lang="ko">

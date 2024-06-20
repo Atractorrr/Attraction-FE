@@ -8,12 +8,12 @@ interface PreferTagItemProps {
 }
 
 export default function PreferTagItem({ category }: PreferTagItemProps) {
-  // TODO: 나머지 카테고리 아이콘 정하기
   const CategorySvg = getCategorySVG(NEWSLETTER_CATEGORY[category])
+
   return (
-    <div className="flex items-center gap-2 rounded-[1.25rem] bg-gray-50 px-3 py-1.5 text-sm dark:bg-gray-700">
+    <li className="flex h-9 items-center gap-2 rounded-full bg-gray-50 px-4 py-2 text-sm dark:bg-gray-700">
       {CategorySvg && <CategorySvg className="size-5" />}
       <span>{NEWSLETTER_CATEGORY[category]}</span>
-    </div>
+    </li>
   )
 }

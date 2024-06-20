@@ -6,13 +6,14 @@ import { useRouter } from 'next/navigation'
 import { Container } from '@/shared/ui'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
 
-interface NeedLoginProps {
+export interface NeedLoginProps {
   title?: string
   sub?: string
 }
 
 export default function NeedLogin({ title, sub }: NeedLoginProps) {
   const router = useRouter()
+
   return (
     <Container>
       <div className="flex min-h-96 w-full items-center justify-center px-5 pb-32 pt-20">

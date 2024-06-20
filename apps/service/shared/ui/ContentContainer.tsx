@@ -1,9 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, { PropsWithChildren } from 'react'
 
-interface ContentContainerProps {
-  children: ReactNode
-}
-
-export default function ContentContainer({ children }: ContentContainerProps) {
+export default function ContentContainer({ children }: PropsWithChildren) {
   return <div className="mt-3 flex gap-2">{children}</div>
 }

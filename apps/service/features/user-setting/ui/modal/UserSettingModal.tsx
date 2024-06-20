@@ -27,9 +27,9 @@ export default function UserSettingModal({
   title,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
-  const isMobile = useCheckDevice()
+  const { isMobile, isMobileView } = useCheckDevice()
 
-  return isMobile ? (
+  return isMobile || isMobileView ? (
     <Drawer open>
       <DrawerContent>
         <DrawerHeader className="text-left">

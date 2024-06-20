@@ -37,9 +37,7 @@ export const SeparatorDefault: Story = {
         <h4 className="ds-text-sm ds-font-medium ds-leading-none">
           Radix Primitives
         </h4>
-        <p className="ds-text-muted-foreground ds-text-sm">
-          An open-source UI component library.
-        </p>
+        <p className="ds-text-sm">An open-source UI component library.</p>
       </div>
       <Separator className="ds-my-4" />
       <div className="ds-flex ds-h-5 ds-items-center ds-space-x-4 ds-text-sm">

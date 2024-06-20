@@ -1,28 +1,47 @@
-import { UserArticleParams, UserArticleListOption } from './type'
+import { UserArticleParams, UserArticleListOption, UserEmail } from './type'
 
 const userArticleQueryKeys = {
   all: ['user-article'] as const,
   userArticle: (params: UserArticleParams) => [
     ...userArticleQueryKeys.all,
+    'detail',
     params,
   ],
-  allUserArticles: ({ userId }: Pick<UserArticleListOption, 'userId'>) => [
-    ...userArticleQueryKeys.all,
-    'list',
-    { userId },
-  ],
-  userArticles: ({
-    userId,
+  userArticleList: ({
+    userEmail,
     category,
+    pageType,
     page,
     ...options
   }: UserArticleListOption) => [
-    ...userArticleQueryKeys.allUserArticles({ userId }),
+    ...userArticleQueryKeys.all,
     'articles',
+    { userEmail },
+    { pageType },
     category,
     options,
   ],
-  userCategories: (params: { userId: string | number }) => [
+  trackingUserArticleScroll: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'tracking-article',
+    params,
+  ],
+  checkUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'check-bookmark',
+    params,
+  ],
+  addUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'add-bookmark',
+    params,
+  ],
+  cancelUserArticleBookmark: (params: UserArticleParams) => [
+    ...userArticleQueryKeys.all,
+    'cancel-bookmark',
+    params,
+  ],
+  userCategories: (params: { userEmail: UserEmail }) => [
     ...userArticleQueryKeys.all,
     'categories',
     params,

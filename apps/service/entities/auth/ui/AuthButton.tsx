@@ -16,16 +16,11 @@ import {
   ArrowLeftStartOnRectangleOutline,
 } from '@attraction/icons'
 import { useAuth } from '../model'
+import { logout } from '../lib'
 
 export default function AuthButton() {
   const router = useRouter()
   const { isLogin } = useAuth()
-  const signOutHandler = async () => {
-    await fetch('/api/auth/sign-out', {
-      method: 'DELETE',
-    })
-    window.location.reload()
-  }
 
   return isLogin ? (
     <DropdownMenu>
@@ -51,7 +46,7 @@ export default function AuthButton() {
           <span className="ml-2">개인설정</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem title="로그아웃" onClick={signOutHandler}>
+        <DropdownMenuItem title="로그아웃" onClick={logout}>
           <ArrowLeftStartOnRectangleOutline className="text-lg" />
           <span className="ml-2">로그아웃</span>
         </DropdownMenuItem>

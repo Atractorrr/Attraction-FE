@@ -11,6 +11,7 @@ import {
 import {
   useInfiniteUserArticlesQuery,
   ArticleList,
+  ArticlePageType,
 } from '@/entities/user-article'
 import { useInfiniteScroll } from '@/shared/lib'
 import {
@@ -19,14 +20,15 @@ import {
   GuideTxt,
   Container,
   WarnTxt,
+  ErrorGuideTxt,
 } from '@/shared/ui'
 
 interface InboxProps {
-  userId: string | number
   isArticleView?: boolean
+  pageType: ArticlePageType
 }
 
-export default function UserInbox({ userId, isArticleView }: InboxProps) {
+export default function UserInbox({ isArticleView, pageType }: InboxProps) {
   const {
     selectedCategory,
     setCategory,
@@ -47,10 +49,11 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
     isFetchingNextPage,
     isError,
   } = useInfiniteUserArticlesQuery({
-    userId,
+    pageType,
     sort: currentSortType,
     category: selectedCategory,
-    isHideRead: isHideReadArticles || undefined,
+    isHideRead:
+      pageType === 'bookmark' ? undefined : isHideReadArticles || undefined,
     q: searchValue || undefined,
   })
   const scrollRef = useInfiniteScroll(() => {
@@ -70,7 +73,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
       className={`relative ${
         isArticleView
           ? 'hidden max-h-fit transition-all xl:sticky xl:top-10 xl:block xl:w-[342px]'
-          : undefined
+          : ''
       }`}>
       <Container>
         <div
@@ -81,7 +84,7 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
           }>
           {isArticleView && (
             <div className="mb-5">
-              <BackBtn href="/inbox" />
+              <BackBtn />
             </div>
           )}
           <div
@@ -92,16 +95,17 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
             }`}>
             <div className="flex gap-2">
               <FilterDropdownBtn
-                userId={userId}
                 selectedCategory={selectedCategory}
                 setCategory={setCategory}
                 sortType={currentSortType}
                 setSortType={setSortType}
               />
-              <HideReadToggleBtn
-                isRead={isHideReadArticles}
-                toggleHideFn={toggleHideReadArticles}
-              />
+              {pageType !== 'bookmark' && (
+                <HideReadToggleBtn
+                  isRead={isHideReadArticles}
+                  toggleHideFn={toggleHideReadArticles}
+                />
+              )}
             </div>
             <SearchBar setValue={setSearchValue} />
           </div>
@@ -139,7 +143,11 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                       />
                     ) : (
                       <GuideTxt
-                        title="보관함이 비었어요"
+                        title={
+                          pageType === 'bookmark'
+                            ? '북마크한 아티클이 없어요'
+                            : '보관함이 비었어요'
+                        }
                         sub="아티클은 최대 7일까지 보관돼요"
                       />
                     )}
@@ -154,14 +162,15 @@ export default function UserInbox({ userId, isArticleView }: InboxProps) {
                     </div>
                     <ArticleList
                       data={data.pages}
-                      type={viewType}
+                      pageType={pageType}
+                      viewType={viewType}
                       isArticleView={isArticleView}
                     />
                   </>
                 ))}
               {isError && (
                 <div className="flex min-h-full items-center justify-center px-2 pb-40 pt-32">
-                  <GuideTxt
+                  <ErrorGuideTxt
                     title="아티클을 가져오는데 실패했어요"
                     sub="새로고침 후 다시 시도 부탁드려요"
                   />

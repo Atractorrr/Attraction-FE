@@ -26,7 +26,6 @@ const sortTypeBtns: Array<[SortType, string]> = [
 export default function FilterDropdownBtn({
   sortType,
   setSortType,
-  userId,
   selectedCategory,
   setCategory,
 }: FilterDropdownProps) {
@@ -49,7 +48,6 @@ export default function FilterDropdownBtn({
       <DropdownMenuContent className="w-52">
         <DropdownMenuLabel>카테고리</DropdownMenuLabel>
         <CategoryDropdown
-          userId={userId}
           selectedCategory={selectedCategory}
           setCategory={setCategory}
         />

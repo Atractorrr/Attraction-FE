@@ -1,4 +1,5 @@
-import { cookies } from 'next/headers'
+'use client'
+
 import { ArticleDetail } from '@/widgets/inbox'
 
 interface ArticleDetailPageProps {
@@ -6,8 +7,11 @@ interface ArticleDetailPageProps {
 }
 
 export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const email = cookies().get('email')?.value ?? 12 // TODO: 테스트용 상수 제거
   const articleId = Number(params.articleId)
 
-  return <ArticleDetail userId={email} articleId={articleId} />
+  if (Number.isNaN(articleId)) {
+    throw new Error('유효하지 않은 아티클이에요')
+  }
+
+  return <ArticleDetail articleId={articleId} pageType="default" />
 }

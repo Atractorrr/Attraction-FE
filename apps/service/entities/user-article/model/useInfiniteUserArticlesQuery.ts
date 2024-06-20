@@ -1,23 +1,27 @@
+'use client'
+
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
+import { useAuth } from '@/entities/auth'
 import { getUserArticleList } from '../api'
 import { Article, UserArticleListOption } from './type'
 import userArticleQueryKeys from './userArticleQueryKeys'
 
 export default function useInfiniteUserArticlesQuery({
   ...option
-}: Omit<UserArticleListOption, 'page'>) {
+}: Omit<UserArticleListOption, 'page' | 'userEmail'>) {
+  const { userEmail } = useAuth()
   const queryClient = useQueryClient()
 
   return useInfiniteQuery({
-    queryKey: userArticleQueryKeys.userArticles(option),
+    queryKey: userArticleQueryKeys.userArticleList({ ...option, userEmail }),
     queryFn: ({ pageParam }) =>
-      getUserArticleList({ ...option, page: pageParam }),
+      getUserArticleList({ ...option, userEmail, page: pageParam }),
     initialPageParam: 0,
     select: ({ pages, pageParams }) => ({
       pages: pages.reduce((flatArticles: Article[], { data }) => {
         data.content.forEach((article) => {
           const key = userArticleQueryKeys.userArticle({
-            userId: option.userId,
+            userEmail,
             articleId: article.id,
           })
           queryClient.setQueryData(key, article)
