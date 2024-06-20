@@ -8,7 +8,7 @@ export default function Footer() {
       <ul className="mb-2 flex items-center justify-center">
         <li>
           <Link
-            href="/"
+            href="/policy/service"
             className="hover:text-blue-400 dark:hover:text-blue-300"
             title="이용약관 보기">
             이용약관
@@ -17,7 +17,7 @@ export default function Footer() {
         <li className="mx-3 h-3 w-px bg-gray-100 dark:bg-gray-700" />
         <li>
           <Link
-            href="/"
+            href="/policy/privacy"
             className="hover:text-blue-400 dark:hover:text-blue-300"
             title="개인정보처리방침 보기">
             개인정보처리방침
