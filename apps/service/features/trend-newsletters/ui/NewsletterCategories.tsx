@@ -6,8 +6,7 @@ import { Button } from '@attraction/design-system/dist'
 import { Carousel } from '@/shared/ui'
 import { useAuth } from '@/entities/auth'
 import NewsletterCategoriesSkeleton from './NewsletterCategoriesSkeleton'
-import { usePreferCategories } from '../lib'
-import { MainCategory, MainCategoryName } from '../model'
+import { MainCategory, MainCategoryName, usePreferCategories } from '../model'
 import { allCategories } from '../constant'
 
 interface NewsletterCategoriesProps {

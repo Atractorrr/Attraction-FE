@@ -4,8 +4,7 @@ import { Suspense } from 'react'
 import { GuideTxt } from '@/shared/ui'
 import TrendNewsletterSkeleton from './TrendNewsletterSkeleton'
 import TrendNewsletterItem from './TrendNewsletterItem'
-import { useTrendNewsletters } from '../lib'
-import { MainCategory } from '../model'
+import { MainCategory, useTrendNewsletters } from '../model'
 
 function TrendNewsletterContent({ category }: { category: MainCategory }) {
   const { data } = useTrendNewsletters(category)
