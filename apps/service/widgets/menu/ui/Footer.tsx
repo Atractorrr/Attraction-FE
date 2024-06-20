@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { ADMIN_EMAIL } from '@/shared/constant'
-import { COPY_RIGHT } from '../constant'
+import { ADMIN_EMAIL, TEAM_NAME } from '@/shared/constant'
 
 export default function Footer() {
   return (
@@ -25,7 +24,7 @@ export default function Footer() {
         </li>
       </ul>
       <p>고객지원: {ADMIN_EMAIL}</p>
-      <p className="mt-6">&copy; {COPY_RIGHT}</p>
+      <p className="mt-6">&copy; 2024 {TEAM_NAME}</p>
     </footer>
   )
 }
