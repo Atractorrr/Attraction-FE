@@ -1,4 +1,9 @@
+import { Metadata } from 'next'
 import { DiscoverResultLayout } from '@/widgets/discover'
+
+export const metadata: Metadata = {
+  title: '검색 결과',
+}
 
 export default function DiscoverResultPage({
   params,
