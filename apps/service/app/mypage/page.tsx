@@ -1,8 +1,13 @@
+import { Metadata } from 'next'
 import { UserRecord } from '@/widgets/user-record'
 import { SubscribeList } from '@/features/subscribe-list'
 import { ProfileContainer } from '@/features/profile-container'
 import { RecentNewsletterContainer } from '@/features/recent-newsletter'
 import { WithAuth } from '@/entities/auth'
+
+export const metadata: Metadata = {
+  title: '마이페이지',
+}
 
 function MyPageContent() {
   return (

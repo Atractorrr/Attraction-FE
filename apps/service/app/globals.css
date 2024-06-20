@@ -31,4 +31,34 @@
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
+  ol.numbering-list {
+    list-style: none;
+    counter-reset: list-number;
+  }
+  ol.numbering-list > li,
+  ul.marker-list li {
+    counter-increment: list-number;
+    @apply relative pl-5;
+  }
+  ol.numbering-list > li::before {
+    content: counter(list-number) '. ';
+    @apply absolute left-0 top-0;
+  }
+  ol.numbering-list li + li,
+  ul.marker-list li + li {
+    @apply mt-2;
+  }
+  ol.numbering-list > li > ol {
+    @apply my-3 pl-8;
+  }
+  ol.numbering-list > li > ol > li {
+    list-style-type: hangul;
+  }
+  ul.marker-list li::before {
+    content: '';
+    @apply absolute left-2 top-2.5 size-1 rounded-full bg-gray-600 dark:bg-gray-100;
+  }
+  ul.marker-list > li > ul {
+    @apply my-3 pl-2;
+  }
 }

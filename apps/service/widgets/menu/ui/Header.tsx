@@ -1,38 +1,20 @@
 'use client'
 
-import {
-  usePathname,
-  useRouter,
-  useSelectedLayoutSegments,
-} from 'next/navigation'
+import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
 import { ChevronLeftOutline } from '@attraction/icons'
 import { AuthButton, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/features/set-theme'
 import { useCheckDevice } from '@/shared/lib'
+import { useTitle } from '../lib'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import MobileHeaderMenuBtn from './MobileHeaderMenuBtn'
 
-const getTitle = (pathname: string) => {
-  if (pathname === '/') {
-    return '홈'
-  }
-  const target = [
-    ['/inbox-bookmark', '북마크한 아티클'],
-    ['/inbox', '뉴스레터 보관함'],
-    ['/newsletter', '뉴스레터 소개'],
-    ['/mypage', '마이페이지'],
-    ['/setting', '개인설정'],
-    ['/discover', '탐색'],
-  ].find(([path]) => pathname.startsWith(path))
-  return target ? target[1] : '어트랙션'
-}
-
 export default function Header() {
-  const pathname = usePathname()
   const segments = useSelectedLayoutSegments()
   const router = useRouter()
   const { isMobileView } = useCheckDevice()
   const { isLogin } = useAuth()
+  const title = useTitle()
 
   if (isMobileView && segments.length > 1) {
     return (
@@ -46,7 +28,7 @@ export default function Header() {
                 onClick={router.back}
               />
               <h3 className="w-[calc(100%-3.5rem)] truncate text-lg font-medium">
-                {getTitle(pathname)}
+                {title}
               </h3>
             </div>
             {isLogin && <MobileHeaderMenuBtn />}
@@ -58,11 +40,11 @@ export default function Header() {
   return (
     <header
       className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-        segments.some((s) => s === 'mypage') ? 'hidden md:block' : ''
+        isLogin && segments.some((s) => s === 'mypage') ? 'hidden md:block' : ''
       }`}>
       <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
         <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
-          {getTitle(pathname)}
+          {title}
         </h3>
         <div className="flex items-center justify-end gap-2">
           <ThemeDropdownBtn />

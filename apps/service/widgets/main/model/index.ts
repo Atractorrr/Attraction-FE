@@ -1,2 +1,2 @@
 export * from './type'
-export * from './hook'
+export { default as useRecentArticles } from './useRecentArticles'

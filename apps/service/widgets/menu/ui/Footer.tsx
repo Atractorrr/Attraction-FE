@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { ADMIN_EMAIL } from '@/shared/constant'
-import { COPY_RIGHT } from '../constant'
+import { ADMIN_EMAIL, TEAM_NAME } from '@/shared/constant'
 
 export default function Footer() {
   return (
@@ -8,7 +7,7 @@ export default function Footer() {
       <ul className="mb-2 flex items-center justify-center">
         <li>
           <Link
-            href="/"
+            href="/policy/service"
             className="hover:text-blue-400 dark:hover:text-blue-300"
             title="이용약관 보기">
             이용약관
@@ -17,7 +16,7 @@ export default function Footer() {
         <li className="mx-3 h-3 w-px bg-gray-100 dark:bg-gray-700" />
         <li>
           <Link
-            href="/"
+            href="/policy/privacy"
             className="hover:text-blue-400 dark:hover:text-blue-300"
             title="개인정보처리방침 보기">
             개인정보처리방침
@@ -25,7 +24,7 @@ export default function Footer() {
         </li>
       </ul>
       <p>고객지원: {ADMIN_EMAIL}</p>
-      <p className="mt-6">&copy; {COPY_RIGHT}</p>
+      <p className="mt-6">&copy; 2024 {TEAM_NAME}</p>
     </footer>
   )
 }
