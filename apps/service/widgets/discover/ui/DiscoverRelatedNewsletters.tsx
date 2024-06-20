@@ -24,7 +24,7 @@ export default async function DiscoverRelatedNewsletters({
             ))}
           </div>
         ) : (
-          <div className="flex flex-col justify-center pb-32 pt-20">
+          <div className="flex flex-col justify-center pb-28 pt-24">
             <GuideTxt
               title="관련 뉴스레터 결과가 없어요"
               sub="다른 키워드로 검색해보세요"
