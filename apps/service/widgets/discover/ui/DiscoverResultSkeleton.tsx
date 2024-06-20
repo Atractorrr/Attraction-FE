@@ -18,8 +18,9 @@ function DiscoverArticleItemSkeleton() {
 function DiscoverArticlesSkeleton() {
   return (
     <Container>
-      <div className="p-5">
-        <div className="mt-6 flex flex-col gap-y-5">
+      <div className="w-full p-5">
+        <div className="h-5 w-full max-w-[240px] rounded-md bg-gray-100 dark:bg-gray-800" />
+        <div className="mt-6 flex w-full flex-col gap-y-5">
           {Array.from({ length: 4 }, (_, idx) => (
             <DiscoverArticleItemSkeleton key={idx} />
           ))}
