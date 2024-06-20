@@ -40,7 +40,7 @@ export default function Header() {
   return (
     <header
       className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-        segments.some((s) => s === 'mypage') ? 'hidden md:block' : ''
+        isLogin && segments.some((s) => s === 'mypage') ? 'hidden md:block' : ''
       }`}>
       <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
         <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">

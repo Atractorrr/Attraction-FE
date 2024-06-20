@@ -32,14 +32,14 @@ export default function UserRank() {
         </div>
         <div className="mb-5 flex w-full">
           <Button
-            className={`w-full border-b-2 py-3 ${activeRanking === 'article' ? 'border-gray-700 text-gray-700 dark:border-gray-50  dark:text-gray-50' : 'border-gray-100  text-gray-500 dark:border-gray-700 dark:text-gray-400'}`}
+            className={`w-full border-b-2 py-3 ${activeRanking === 'article' ? 'border-gray-700 font-medium text-gray-700 dark:border-gray-50  dark:text-gray-50' : 'border-gray-100  text-gray-500 dark:border-gray-700 dark:text-gray-400'}`}
             onClick={() => {
               setActiveRanking('article')
             }}>
             아티클
           </Button>
           <Button
-            className={`w-full border-b-2 py-3 ${activeRanking === 'streak' ? 'border-gray-700 text-gray-700 dark:border-gray-50  dark:text-gray-50' : 'border-gray-100  text-gray-500 dark:border-gray-700 dark:text-gray-400'}`}
+            className={`w-full border-b-2 py-3 ${activeRanking === 'streak' ? 'border-gray-700 font-medium text-gray-700 dark:border-gray-50  dark:text-gray-50' : 'border-gray-100  text-gray-500 dark:border-gray-700 dark:text-gray-400'}`}
             onClick={() => {
               setActiveRanking('streak')
             }}>
