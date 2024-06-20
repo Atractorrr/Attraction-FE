@@ -1,10 +1,12 @@
-import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
+import type { PropsWithChildren } from 'react'
 
 import '@/public/fonts/fonts.css'
 import './globals.css'
+import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
+import { useToken } from '@/entities/auth'
 import Provider from './provider'
 import Widget from './widget'
 
@@ -15,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_FE_URL!),
   title: {
-    template: '%s | Attraction',
+    template: '%s - Attraction',
     default: 'Attraction',
   },
   description: '나만의 뉴스레터 관리 서비스',
@@ -42,13 +44,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  const isLogin = cookies().has('accessToken')
-
+export default async function RootLayout({ children }: PropsWithChildren) {
+  const { ...props } = await useToken()
   return (
     <html lang="ko">
       <body
@@ -56,8 +53,8 @@ export default function RootLayout({
         suppressHydrationWarning>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
-        <Provider>
-          <Widget isLogin={isLogin}>{children}</Widget>
+        <Provider {...props}>
+          <Widget>{children}</Widget>
         </Provider>
       </body>
     </html>

@@ -3,7 +3,10 @@ import { SignUpFormType } from '@/features/sign-up'
 const postSignUpForm = async (
   signUpFormData: Omit<
     SignUpFormType,
-    'isNickNameChecked' | 'selectPolicyAll' | 'policies'
+    | 'isNickNameChecked'
+    | 'selectMandatoryPolicyAll'
+    | 'policies'
+    | 'selectPolicyAll'
   >,
 ) => {
   const data = await fetch(

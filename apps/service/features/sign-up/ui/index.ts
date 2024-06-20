@@ -1,3 +1,6 @@
-export { default as UserInfoField } from './UserInfoField'
+export { default as UserAgreement } from './UserAgreement'
+export { default as UserInfoBirthInput } from './UserInfoBirthInput'
+export { default as UserInfoExpirationDate } from './UserInfoExpirationDate'
+export { default as UserInfoNicknameInput } from './UserInfoNicknameInput'
 export { default as UserJobField } from './UserJobField'
 export { default as UserPreferTagField } from './UserPreferTagField'

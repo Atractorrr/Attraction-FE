@@ -1,45 +1,49 @@
+'use server'
+
 import React from 'react'
-import {
-  Background,
-  ContentContainer,
-  ContentTitle,
-  GuideTxt,
-  ImageBox,
-} from '@/shared/ui'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
+import { DocumentListOutline } from '@attraction/icons'
+import { Container, GuideTxt, ImageBox, Title } from '@/shared/ui'
 import { SubscribeItem } from '../model'
+import { fetchSubscribeList } from '../api'
 
-interface SubscribeListProps {
-  subscribeList: SubscribeItem[]
-}
+export default async function SubscribeList() {
+  const email = cookies().get('email')?.value as string
+  const subscribeList: SubscribeItem[] = await fetchSubscribeList(email)
 
-export default function SubscribeList({ subscribeList }: SubscribeListProps) {
   return (
-    <Background className="h-full lg:h-0 lg:min-h-full">
-      <div className="h-full px-4 py-5">
-        <p className="mb-4 text-lg font-bold">구독 리스트</p>
+    <Container className="h-full xl:h-auto xl:min-h-full">
+      <div className="h-full pb-6">
+        <div className="p-5 pb-4">
+          <Title
+            icon={<DocumentListOutline className="text-2xl" />}
+            text="구독한 뉴스레터"
+          />
+        </div>
         {subscribeList.length !== 0 ? (
-          <ul className="flex flex-col justify-start overflow-y-auto lg:h-[calc(100%-64px)]">
-            {subscribeList.map((item) => (
-              <Link
-                href={`newsletter/${item.id}`}
-                className="p-2"
-                key={item.id}>
-                <ContentContainer>
+          <ul className="flex flex-col justify-start overflow-y-auto px-3 xl:max-h-[calc(100%-64px)]">
+            {subscribeList.map((newsletter) => (
+              <li key={newsletter.id} className="peer peer-[]:mt-1">
+                <Link
+                  href={`/newsletter/${newsletter.id}`}
+                  className="flex items-center justify-start gap-3 rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
                   <ImageBox
                     width="w-8"
                     height="h-8"
-                    imgSrc={item.thumbnailUrl}
-                    alt="뉴스 프로필"
+                    imgSrc={newsletter.thumbnailUrl}
+                    alt={`뉴스레터 썸네일 이미지: ${newsletter.title}`}
                     rounded="rounded-full"
                   />
-                  <ContentTitle type="main" content={item.title} />
-                </ContentContainer>
-              </Link>
+                  <span className="w-[calc(100%-4rem)] truncate font-medium">
+                    {newsletter.title}
+                  </span>
+                </Link>
+              </li>
             ))}
           </ul>
         ) : (
-          <div className="flex cursor-default flex-col items-center justify-center py-20">
+          <div className="pb-32 pt-20">
             <GuideTxt
               title="구독한 뉴스레터가 없습니다"
               sub="지금 뉴스레터를 구독해보세요"
@@ -47,6 +51,6 @@ export default function SubscribeList({ subscribeList }: SubscribeListProps) {
           </div>
         )}
       </div>
-    </Background>
+    </Container>
   )
 }

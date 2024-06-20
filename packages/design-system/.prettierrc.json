@@ -1,0 +1,12 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "printWidth": 80,
+  "tailwindFunction": ["cva"],
+  "tailwindConfig": "./tailwind.config.js"
+}

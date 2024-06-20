@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuth } from '@/entities/auth'
 import {
   PreferTagItem,
   PreferTagList,
@@ -7,7 +8,7 @@ import {
   ProfileImage,
   UserInfo,
 } from '@/entities/profile'
-import { Background, ErrorGuideTxt } from '@/shared/ui'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 import { Button } from '@attraction/design-system'
 import {
   CameraOutline,
@@ -22,14 +23,15 @@ import { fetchUserProfile } from '../api'
 import ProfileSettingModal from './ProfileSettingModal'
 import UserSettingModal from './UserSettingModal'
 
-interface ProfileContainerProps {
-  userId: string
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
 }
 
-export default function ProfileContainer({ userId }: ProfileContainerProps) {
+export default function ProfileContainer() {
+  const { userEmail } = useAuth()
   const { data: userProfile } = useQuery({
-    queryKey: ['profile', userId],
-    queryFn: () => fetchUserProfile(userId),
+    queryKey: ['profile', userEmail],
+    queryFn: () => fetchUserProfile(userEmail),
   })
 
   // TODO: 모달 패턴 찾아보기
@@ -39,25 +41,24 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
 
   return (
     userProfile && (
-      <Background>
-        <ErrorBoundary FallbackComponent={ErrorGuideTxt}>
+      <Container>
+        <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
           <div className="relative flex w-full flex-col">
-            <div className="group relative px-5 pt-5">
+            <div className="group relative md:px-5 md:pt-5">
               <ProfileBackground
                 imgSrc={userProfile.backgroundImg || '/images/default-4x1.jpg'}
               />
               <Button
                 type="button"
-                className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black p-1 text-gray-50 opacity-0 transition-all
-            group-hover:visible group-hover:right-8 group-hover:opacity-60"
+                className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black/60 px-3 py-2 text-white opacity-0 transition-all group-hover:visible group-hover:right-8 group-hover:opacity-100"
                 onClick={() => {
                   setBackgroundModal(true)
                 }}>
-                <PaintOutline className="size-5 opacity-100" />
-                <span className="opacity-100">배경 이미지 수정</span>
+                <PaintOutline className="size-5" />
+                <span className="whitespace-nowrap">배경 이미지 수정</span>
               </Button>
             </div>
-            <div className="flex size-full flex-col pl-5 md:flex-row md:pl-14">
+            <div className="flex size-full flex-col pl-5 md:flex-row md:pl-12">
               <div className="relative size-20 md:size-auto">
                 <div className="relative size-40 shrink-0 -translate-y-1/2 rounded-full bg-white p-2 dark:bg-gray-800">
                   <ProfileImage
@@ -74,7 +75,7 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-5">
+              <div className="w-full py-6 pl-1 pr-6 md:p-5">
                 <UserInfo
                   nickname={userProfile.nickname}
                   userEmail={userProfile.email}
@@ -86,18 +87,18 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
                       <PreferTagItem key={category} category={category} />
                     )}
                   />
-                  <div className="flex w-full shrink-0 gap-2 md:self-end lg:w-auto">
+                  <div className="mt-8 flex w-full shrink-0 gap-2 md:self-end lg:mt-0 lg:w-auto">
                     <Button
-                      className="xs:px-2 flex w-full items-center justify-center gap-2 rounded-lg bg-gray-50 py-1.5 hover:bg-gray-100 sm:px-3 lg:w-fit dark:bg-gray-700 dark:hover:bg-gray-600"
+                      className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-50 py-2 pl-3 pr-4 transition-colors hover:bg-gray-100 lg:w-auto dark:bg-gray-700 dark:hover:bg-gray-600"
                       onClick={() => {
                         setModal(true)
                       }}>
                       <CogOutline className="size-5" />
-                      개인설정
+                      <span>개인설정</span>
                     </Button>
-                    <Button className="xs:px-2 flex w-full items-center justify-center gap-2 rounded-lg  bg-gray-700 py-1.5 text-white sm:px-3 lg:w-fit dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
+                    <Button className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-700 py-2 pl-3 pr-4 text-white transition-colors hover:bg-gray-800 lg:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
                       <ShareOutline className="size-5" />
-                      프로필 공유
+                      <span>프로필 공유</span>
                     </Button>
                   </div>
                 </div>
@@ -108,25 +109,25 @@ export default function ProfileContainer({ userId }: ProfileContainerProps) {
             <UserSettingModal
               setModal={setModal}
               userProfile={userProfile}
-              userId={userId}
+              userId={userEmail!}
             />
           )}
           {profileModal && (
             <ProfileSettingModal
-              email={userId}
+              email={userEmail!}
               setModal={setProfileModal}
               type="profile"
             />
           )}
           {backgroundModal && (
             <ProfileSettingModal
-              email={userId}
+              email={userEmail!}
               setModal={setBackgroundModal}
               type="background"
             />
           )}
         </ErrorBoundary>
-      </Background>
+      </Container>
     )
   )
 }

@@ -10,12 +10,17 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "postinstall": "husky install && pnpm build:ds",
     "prepare": "husky install",
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
     "build": "pnpm -r run build",
     "dev:service": "pnpm -F @attraction/service dev",
-    "build:icons": "pnpm -F @attraction/icons build"
+    "dev:ds": "pnpm -F @attraction/design-system storybook",
+    "build:service": "pnpm -F @attraction/service build",
+    "build:icons": "pnpm -F @attraction/icons build",
+    "build:ds": "pnpm -F @attraction/design-system build",
+    "start:service": "pnpm -F @attraction/service start"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +32,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18",
     "@typescript-eslint/parser": "^7.8.0",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",

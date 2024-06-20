@@ -1,9 +1,9 @@
-import { HttpHandler } from 'msw'
-import { error, post } from '../tools'
+import { HttpHandler, HttpResponse } from 'msw'
+import { post } from '../tools'
 
 const signupHandlers: HttpHandler[] = [
-  post('/v1/auth/join/username-duplicate', () => {
-    return error('409', 409)
+  post('/v1/auth/join/username-duplicate', async () => {
+    return HttpResponse.json({ message: '성공이에요' }, { status: 200 })
   }),
 ]
 

@@ -1,4 +1,5 @@
 export { default as getUserArticleList } from './getUserArticleList'
 export { default as getUserCategories } from './getUserCategories'
 export { default as getUserArticle } from './getUserArticle'
-export { default as putUserArticle } from './putUserArticle'
+export { default as trackingUserArticleScroll } from './trackingUserArticleScroll'
+export { default as fetchUserArticleBookmark } from './fetchUserArticleBookmark'

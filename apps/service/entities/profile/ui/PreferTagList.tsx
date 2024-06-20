@@ -10,7 +10,7 @@ export default function PreferTagList<T>({
   renderItem,
 }: PreferTagListProps<T>) {
   return (
-    <ul className="flex flex-wrap gap-2">
+    <ul className="flex flex-wrap items-end gap-2">
       {categories.map((category) => renderItem(category))}
     </ul>
   )

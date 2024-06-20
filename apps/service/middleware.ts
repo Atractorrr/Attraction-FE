@@ -1,43 +1,37 @@
 import { cookies } from 'next/headers'
 import { NextResponse, NextRequest } from 'next/server'
-import { PRIVATE_PATH, PUBLIC_PATH } from '@/entities/auth'
+import { PUBLIC_PATH } from '@/entities/auth'
 
 export function middleware(request: NextRequest) {
-  const cookieStore = cookies()
-  const isLoggedIn = cookieStore.has('accessToken')
-  const isNotRegistered = cookieStore.has('notRegistered')
-  const requestHeaders = new Headers(request.headers)
   const { pathname } = request.nextUrl
+  const cookieStore = cookies()
+  const isLogin = cookieStore.has('refreshToken')
+  const isNotRegistered = cookieStore.has('notRegistered')
+  const redirect = (path: string) =>
+    NextResponse.redirect(new URL(path, request.url))
 
-  requestHeaders.set('x-pathname', request.nextUrl.pathname)
-
-  if (PRIVATE_PATH.some((path) => pathname.startsWith(path)) && !isLoggedIn) {
-    return NextResponse.redirect(new URL('/', request.url))
+  if (!isLogin) {
+    return NextResponse.next()
   }
+
+  const isPublicPath = PUBLIC_PATH.some((path) => pathname.startsWith(path))
 
   if (
-    PUBLIC_PATH.some((path) => pathname.startsWith(path)) &&
-    isLoggedIn &&
-    !isNotRegistered
+    (isPublicPath && isLogin && !isNotRegistered) ||
+    (pathname.startsWith('/sign-up') && !isLogin)
   ) {
-    return NextResponse.redirect(new URL('/', request.url))
-  }
-
-  if (pathname.startsWith('/sign-up') && !isLoggedIn) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return redirect('/')
   }
 
   if (!pathname.startsWith('/sign-up') && isNotRegistered) {
-    return NextResponse.redirect(new URL('/sign-up', request.url))
+    return redirect('/sign-up')
   }
 
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  })
+  return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/((?!server|api|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: [
+    '/((?!server|mocks|api|script|images|fonts|_next/static|_next/image|.*\\.png$).*)',
+  ],
 }

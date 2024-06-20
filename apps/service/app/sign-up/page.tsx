@@ -1,5 +1,10 @@
-import { SignUpForm } from '@/widgets/sign-up-container'
+import { Metadata } from 'next'
 import { cookies } from 'next/headers'
+import { SignUpForm } from '@/widgets/sign-up-container'
+
+export const metadata: Metadata = {
+  title: '회원가입',
+}
 
 export default function SignUpPage() {
   const email = cookies().get('email')?.value

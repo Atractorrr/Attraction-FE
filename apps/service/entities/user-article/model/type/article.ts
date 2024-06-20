@@ -2,6 +2,7 @@ import { NewsletterCategory, Pagination } from '@/shared/type'
 import { Newsletter } from './newsletter'
 import { SortType } from './sortType'
 
+export type UserEmail = string | undefined
 export interface Article {
   id: number
   thumbnailUrl: string
@@ -21,12 +22,15 @@ export type UserArticlesResponse = {
 }
 
 export type UserArticleParams = {
-  userId: string | number
-  articleId: string | number
+  userEmail: UserEmail
+  articleId: number
 }
 
+export type ArticlePageType = 'default' | 'bookmark'
+
 export type UserArticleListOption = {
-  userId: string | number
+  pageType: ArticlePageType
+  userEmail: UserEmail
   page?: number
   size?: number
   sort?: SortType

@@ -1,4 +1,3 @@
-import { FieldValues, UseFormSetError } from 'react-hook-form'
 import {
   ENGLISH_LIMIT_REGEX,
   ENGLISH_REGEX,
@@ -6,7 +5,8 @@ import {
   KOREAN_ONLY_REGEX,
   NUMBER_ONLY_REGEX,
   SPECIAL_CHARACTER_REGEX,
-} from '../../constant'
+} from '@/features/user-setting'
+import { FieldValues, UseFormSetError } from 'react-hook-form'
 
 const checkInputValid = (
   nickname: string,

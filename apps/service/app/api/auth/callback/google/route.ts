@@ -17,6 +17,8 @@ export async function GET(request: Request) {
   const { url } = request
   const queryParams = new URL(url).searchParams
   const code = queryParams.get('code')
+  const defaultMaxAge = 3600
+  const refreshTokenMaxAge = defaultMaxAge * 24 * 7
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
@@ -43,9 +45,10 @@ export async function GET(request: Request) {
           Object.assign(obj, { [key]: value ?? true }),
         {},
       )
-    cookieStore.set('Refresh-Token', parsedCookies['Refresh-Token'] ?? '', {
+
+    cookieStore.set('refreshToken', parsedCookies['Refresh-Token'] ?? '', {
       path: '/',
-      maxAge: Number(parsedCookies['Max-Age'] ?? 604800),
+      maxAge: refreshTokenMaxAge,
       httpOnly: true,
     })
   }
@@ -53,19 +56,19 @@ export async function GET(request: Request) {
   if (data.accessToken.length) {
     cookieStore.set('accessToken', data.accessToken, {
       path: '/',
-      maxAge: 60 * 60,
+      maxAge: defaultMaxAge,
       httpOnly: true,
     })
     cookieStore.set('email', data.email, {
       path: '/',
-      maxAge: 60 * 60,
+      maxAge: refreshTokenMaxAge,
       httpOnly: true,
     })
 
     if (data.shouldReissueToken) {
       cookieStore.set('shouldReissueToken', 'true', {
         path: '/',
-        maxAge: 60 * 60,
+        maxAge: defaultMaxAge,
         httpOnly: true,
       })
     }
@@ -73,7 +76,7 @@ export async function GET(request: Request) {
     if (!data.hasExtraDetails) {
       cookieStore.set('notRegistered', 'true', {
         path: '/',
-        maxAge: 60 * 60,
+        maxAge: defaultMaxAge,
         httpOnly: true,
       })
     }

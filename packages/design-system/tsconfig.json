@@ -10,17 +10,14 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./*"]
-    }
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.js"],
+  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.js", "rollup.config.js"],
   "exclude": ["node_modules"]
 }

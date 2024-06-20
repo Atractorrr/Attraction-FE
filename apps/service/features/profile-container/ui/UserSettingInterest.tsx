@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Button } from '@attraction/design-system'
+import { Button } from '@attraction/design-system/dist'
 import { ExclamationCircleOutline } from '@attraction/icons'
 import { SettingForm } from '../model'
 import { useLimitCheckBtn } from '../lib'
