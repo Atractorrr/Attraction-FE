@@ -1,9 +1,9 @@
 import { checkInputValid } from '@/features/user-setting/lib'
 import { useDebounce } from '@/shared/lib'
+import { WarnTxt } from '@/shared/ui'
 import { useMutation } from '@tanstack/react-query'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { WarnTxt } from '@/shared/ui'
 import { postDuplicateName } from '../api'
 import { SignUpFormType } from '../model'
 
@@ -76,7 +76,7 @@ export default function UserInfoNicknameInput() {
         </div>
       )}
       {watchIsNickNameChecked && (
-        <p className="mt-3 px-1 text-green-400 dark:text-green-300">
+        <p className="mt-3 px-1 text-green-500 dark:text-green-300">
           멋진 닉네임이에요! 👍
         </p>
       )}

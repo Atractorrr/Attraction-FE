@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import { useFormContext } from 'react-hook-form'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Button } from '@attraction/design-system/dist'
 import { ExclamationCircleOutline } from '@attraction/icons'
-import { SettingForm } from '../model'
-import { useLimitCheckBtn } from '../lib'
+import { useEffect, useRef, useState } from 'react'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -13,6 +10,10 @@ interface UserPreferTagType {
   >
   disabledTag: boolean
   preferTagList: (keyof typeof NEWSLETTER_CATEGORY)[]
+}
+interface UserSettingInterestType {
+  setModalValue: React.Dispatch<React.SetStateAction<unknown>>
+  initialValue: (keyof typeof NEWSLETTER_CATEGORY)[]
 }
 
 function UserInterestTag({
@@ -23,10 +24,6 @@ function UserInterestTag({
 }: UserPreferTagType) {
   const checkboxRef = useRef<HTMLInputElement>(null)
   const [isActive, setIsActive] = useState(preferTagList.includes(categoryKey))
-  const {
-    clearErrors,
-    formState: { errors },
-  } = useFormContext<SettingForm>()
   const checkboxChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
       setPreferTagList((pre) => [...pre, categoryKey])
@@ -35,11 +32,6 @@ function UserInterestTag({
         pre.filter((category) => category !== categoryKey),
       )
     }
-
-    if (errors.interest?.message) {
-      clearErrors('interest')
-    }
-
     setIsActive((pre) => !pre)
   }
 
@@ -68,27 +60,37 @@ function UserInterestTag({
   )
 }
 
-export default function UserSettingInterest() {
-  const {
-    setValue,
-    formState: { errors },
-    getValues,
-    setError,
-  } = useFormContext<SettingForm>()
-  const [preferTagList, setPreferTagList] = useState<
-    (keyof typeof NEWSLETTER_CATEGORY)[]
-  >(getValues('interest') ?? [])
-  const { alertActive, disabledTag } = useLimitCheckBtn(preferTagList.length)
+export default function UserSettingInterest({
+  setModalValue,
+  initialValue,
+}: UserSettingInterestType) {
+  const [preferTagList, setPreferTagList] =
+    useState<(keyof typeof NEWSLETTER_CATEGORY)[]>(initialValue)
+
+  const [alertActive, setAlertActive] = useState(false)
+  const [disabledTag, setDisabledTag] = useState(false)
 
   useEffect(() => {
-    if (preferTagList.length !== 0) {
-      setValue('interest', [...preferTagList])
+    if (preferTagList.length >= 4) {
+      setDisabledTag(true)
     } else {
-      setError('interest', {
-        message: '관심사는 최소 1개 이상은 선택하셔야 합니다',
-      })
+      setDisabledTag(false)
     }
-  }, [preferTagList, setError, setValue])
+
+    if (preferTagList.length === 0) {
+      setAlertActive(true)
+    } else {
+      setAlertActive(false)
+    }
+  }, [preferTagList])
+
+  useEffect(() => {
+    if (alertActive) {
+      setModalValue(undefined)
+    } else {
+      setModalValue({ interest: preferTagList })
+    }
+  }, [alertActive, preferTagList, setModalValue])
 
   return (
     <fieldset>
@@ -107,13 +109,7 @@ export default function UserSettingInterest() {
           />
         ))}
       </div>
-      {alertActive && !errors.interest?.message && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
-          <ExclamationCircleOutline />
-          관심사는 최대 4개까지 선택할 수 있어요
-        </p>
-      )}
-      {errors.interest?.message && (
+      {alertActive && (
         <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
           <ExclamationCircleOutline />
           관심사는 최소 1개 이상은 선택하셔야 합니다

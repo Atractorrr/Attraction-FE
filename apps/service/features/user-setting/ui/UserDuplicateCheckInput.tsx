@@ -1,82 +1,78 @@
+import { useDebounce } from '@/shared/lib'
 import { ExclamationCircleOutline } from '@attraction/icons'
 import { useMutation } from '@tanstack/react-query'
-import { useFormContext, useWatch } from 'react-hook-form'
-import { checkInputValid } from '../lib'
+import { useEffect, useState } from 'react'
+import { postDuplicateName } from '../api'
+import checkUserSettingInputError from '../lib/util/checkUserSettingInputError'
 
-interface UserDuplicateCheckInputType {
-  userDuplicateCheckHandler: (nickname: {
-    nickname: string
-  }) => Promise<unknown>
-  errorMsg: string | undefined
-  nickname?: string
+interface UserInfoNicknameInputType {
+  initialValue: string
+  setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-export default function UserDuplicateCheckInput({
-  userDuplicateCheckHandler,
-  errorMsg,
-  nickname,
-}: UserDuplicateCheckInputType) {
-  const { register, getValues, setValue, setError, clearErrors, control } =
-    useFormContext()
+export default function UserInfoNicknameInput({
+  initialValue,
+  setModalValue,
+}: UserInfoNicknameInputType) {
+  const [alert, setAlert] = useState('')
+  const [valid, setIsValid] = useState(false)
+  const [nickname, setNickname] = useState(initialValue)
+  const debounceDuplicateInputValue = useDebounce(nickname, 200)
+
   const { mutate } = useMutation({
-    mutationFn: userDuplicateCheckHandler,
-    onError: () => {
-      setValue('isNickNameChecked', false)
-      setError('nickname', { message: '중복된 이메일 입니다' })
+    mutationFn: postDuplicateName,
+    onError: (err) => {
+      setAlert(err.message)
     },
     onSuccess: () => {
-      setValue('isNickNameChecked', true)
-      clearErrors('nickname')
+      setAlert('')
+      setModalValue({ nickname: debounceDuplicateInputValue })
+      setIsValid(true)
     },
   })
 
-  const duplicateCheckHandler = () => {
-    if (checkInputValid(getValues('nickname'), setError)) {
-      mutate({ nickname: getValues('nickname') })
+  useEffect(() => {
+    if (
+      debounceDuplicateInputValue !== initialValue &&
+      checkUserSettingInputError(debounceDuplicateInputValue, setAlert)
+    ) {
+      mutate({ nickname: debounceDuplicateInputValue })
     }
-  }
+  }, [debounceDuplicateInputValue, initialValue, mutate])
 
-  const watchIsNickNameChecked = useWatch({
-    name: 'isNickNameChecked',
-    control,
-  })
+  useEffect(() => {
+    if (nickname.length === 0) {
+      setModalValue(undefined)
+    }
+
+    if (alert.length > 0) {
+      setModalValue(undefined)
+    }
+  }, [alert.length, nickname.length, setModalValue])
+
   return (
-    <label htmlFor="nickName" className="mb-6 block" aria-label="닉네임">
-      <p className="mb-2 text-sm">닉네임</p>
-      <div className="flex flex-col gap-2 md:flex-row">
+    <div className="mb-6 block">
+      <label htmlFor="nickName" className="mb-2 flex flex-col gap-2 text-sm">
+        닉네임
         <input
           autoComplete="off"
+          value={nickname}
           id="nickName"
           className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
-          {...register('nickname', {
-            onChange: () => {
-              setValue('isNickNameChecked', false)
-            },
-            validate: (value: string) => {
-              if (value !== nickname && !watchIsNickNameChecked) {
-                return '중복 확인을 해주세요'
-              }
-              return true
-            },
-          })}
+          onChange={(e) => {
+            setNickname(e.target.value)
+            setIsValid(false)
+          }}
         />
-        <button
-          type="button"
-          onClick={() => duplicateCheckHandler()}
-          className="rounded-lg bg-gray-50 px-5 py-3 text-sm dark:bg-gray-700">
-          중복확인
-        </button>
-      </div>
-      {errorMsg && (
+      </label>
+      {!!alert.length && (
         <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
           <ExclamationCircleOutline />
-          {errorMsg}
+          {alert}
         </p>
       )}
-      {getValues('isNickNameChecked') && (
-        <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>
-      )}
-    </label>
+      {valid && <p className="mt-2 text-green-500">멋진 닉네임이에요! 👍</p>}
+    </div>
   )
 }

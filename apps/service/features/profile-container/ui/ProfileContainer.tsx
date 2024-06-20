@@ -17,11 +17,11 @@ import {
   ShareOutline,
 } from '@attraction/icons'
 import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { fetchUserProfile } from '../api'
 import ProfileSettingModal from './ProfileSettingModal'
-import UserSettingModal from './UserSettingModal'
 
 function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
@@ -35,7 +35,6 @@ export default function ProfileContainer() {
   })
 
   // TODO: 모달 패턴 찾아보기
-  const [modal, setModal] = useState(false)
   const [backgroundModal, setBackgroundModal] = useState(false)
   const [profileModal, setProfileModal] = useState(false)
 
@@ -88,14 +87,13 @@ export default function ProfileContainer() {
                     )}
                   />
                   <div className="mt-8 flex w-full shrink-0 gap-2 md:self-end lg:mt-0 lg:w-auto">
-                    <Button
-                      className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-50 py-2 pl-3 pr-4 transition-colors hover:bg-gray-100 lg:w-auto dark:bg-gray-700 dark:hover:bg-gray-600"
-                      onClick={() => {
-                        setModal(true)
-                      }}>
+                    <Link
+                      href="/setting"
+                      title="페이지 이동: 개인 설정"
+                      className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-50 py-2 pl-3 pr-4 transition-colors hover:bg-gray-100 lg:w-auto dark:bg-gray-700 dark:hover:bg-gray-600">
                       <CogOutline className="size-5" />
                       <span>개인설정</span>
-                    </Button>
+                    </Link>
                     <Button className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-700 py-2 pl-3 pr-4 text-white transition-colors hover:bg-gray-800 lg:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
                       <ShareOutline className="size-5" />
                       <span>프로필 공유</span>
@@ -105,13 +103,6 @@ export default function ProfileContainer() {
               </div>
             </div>
           </div>
-          {modal && (
-            <UserSettingModal
-              setModal={setModal}
-              userProfile={userProfile}
-              userId={userEmail!}
-            />
-          )}
           {profileModal && (
             <ProfileSettingModal
               email={userEmail!}

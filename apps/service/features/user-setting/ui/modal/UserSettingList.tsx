@@ -1,6 +1,8 @@
-import { useState } from 'react'
+'use client'
+
 import { Button } from '@attraction/design-system/dist'
-import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../constant'
+import { useState } from 'react'
+import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../../constant'
 
 interface UserSettingListProps {
   listData: typeof USER_INFO_EXPIRATION | typeof USER_INFO_OCCUPATION
