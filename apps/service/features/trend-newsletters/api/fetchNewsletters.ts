@@ -1,4 +1,4 @@
-import { MainCategory, TrendNewsletterResponse } from '../model'
+import type { MainCategory, TrendNewsletterResponse } from '../model'
 
 export default async function fetchNewsletters(
   category: MainCategory,

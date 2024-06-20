@@ -1,12 +1,13 @@
 import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query'
 import { fetchPreferCategories } from '../../api'
-import { PreferCategoriesResponse } from '../../model'
+import type { PreferCategoriesResponse } from '../type'
+import trendNewsletterQueryKeys from '../trendNewsletterQueryKeys'
 
 export default function usePreferCategories(
   email: string | undefined,
 ): UseSuspenseQueryResult<PreferCategoriesResponse, Error> {
   return useSuspenseQuery({
-    queryKey: ['prefer-categories', email],
+    queryKey: trendNewsletterQueryKeys.preferCategories(email),
     queryFn: () => fetchPreferCategories(email ?? ''),
   })
 }
