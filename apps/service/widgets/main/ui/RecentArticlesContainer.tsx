@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
 
 import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
-import { ErrorBoundary } from 'react-error-boundary'
 import { useAuth } from '@/entities/auth'
 import RecentArticlesSkeleton from './RecentArticlesSkeleton'
 import RecentArticles from './RecentArticles'
@@ -14,8 +13,12 @@ interface RecentArticlesContainerProps {
   email: string | undefined
 }
 
+function CustomErrorGuideTxt() {
+  return <ErrorGuideTxt />
+}
+
 function LoginView({ email }: RecentArticlesContainerProps) {
-  const { data, isLoading } = useRecentArticles(email)
+  const { data, isLoading, isError } = useRecentArticles(email)
 
   return (
     <div className="flex w-full flex-col gap-y-4 p-5">
@@ -34,6 +37,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
       {data ? (
         <RecentArticles mainPageArticles={data.mainPageArticles} />
       ) : null}
+      {isError ? <CustomErrorGuideTxt /> : null}
     </div>
   )
 }
@@ -61,25 +65,15 @@ function NonLoginView() {
   )
 }
 
-function CustomErrorGuideTxt() {
-  return (
-    <div className="overflow-hidden">
-      <ErrorGuideTxt />
-    </div>
-  )
-}
-
 export default function RecentArticlesContainer() {
   const { userEmail } = useAuth()
 
   return (
     <div>
       {userEmail ? (
-        <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
-          <Container>
-            <LoginView email={userEmail} />
-          </Container>
-        </ErrorBoundary>
+        <Container>
+          <LoginView email={userEmail} />
+        </Container>
       ) : (
         <NonLoginView />
       )}

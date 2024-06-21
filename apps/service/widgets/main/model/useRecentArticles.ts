@@ -9,6 +9,7 @@ export default function useRecentArticles(
   return useQuery({
     queryKey: mainQueryKeys.recentArticles(email),
     queryFn: !email ? () => Promise.resolve(null) : () => fetchArticles(email),
-    enabled: !!email,
+    refetchOnWindowFocus: false,
+    enabled: email !== undefined,
   })
 }
