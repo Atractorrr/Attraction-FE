@@ -1,5 +1,5 @@
 const containsUnsubscribe = (text: string) => {
-  const regex = /수신거부|unsubscribe/i
+  const regex = /수신거부|unsubscribe|구독정보 변경하기/i
   return regex.test(text)
 }
 

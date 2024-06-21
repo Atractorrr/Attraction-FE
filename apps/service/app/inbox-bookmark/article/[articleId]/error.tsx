@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ErrorGuideTxt } from '@/shared/ui'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 
 interface BookmarkArticleDetailErrorProps {
   error: Error & { digest?: string }
@@ -18,8 +18,10 @@ export default function BookmarkArticleDetailError({
   }, [error])
 
   return (
-    <div className="px-5 py-32 md:min-h-dvh">
-      <ErrorGuideTxt title="유효하지 않은 아티클이에요" retryFn={reset} />
-    </div>
+    <Container>
+      <div className="px-5 py-32 md:min-h-dvh">
+        <ErrorGuideTxt title="유효하지 않은 아티클이에요" retryFn={reset} />
+      </div>
+    </Container>
   )
 }
