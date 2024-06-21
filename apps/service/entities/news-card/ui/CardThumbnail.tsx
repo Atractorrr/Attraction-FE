@@ -1,5 +1,4 @@
-import React from 'react'
-import { ImageBox } from '@/shared/ui'
+import { ThumbnailImage } from '@/shared/ui'
 
 interface CardThumbnailProps {
   imgSrc: string
@@ -18,13 +17,9 @@ export default function CardThumbnail({
 
   return (
     <div className="relative justify-end overflow-hidden rounded-lg">
-      <ImageBox
-        width="w-full"
-        height="h-[12rem] min-h-40 max-h-60"
-        rounded="rounded-lg"
-        imgSrc={imgSrc || '/images/default-16x9.jpg'}
-        alt={alt}
-      />
+      <div className="h-48 max-h-60 min-h-40 w-full shrink-0 overflow-hidden">
+        <ThumbnailImage type="article" src={imgSrc} alt={alt} />
+      </div>
       <div className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
         <span
           className="absolute inset-y-0 bg-blue-400"
