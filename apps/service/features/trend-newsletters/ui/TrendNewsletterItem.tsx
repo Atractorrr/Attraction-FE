@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import { ThumbnailImage } from '@/shared/ui'
 import { TrendNewsletter } from '../model'
 
 interface TrendNewsletterItemProps {
@@ -13,23 +13,11 @@ export default function TrendNewsletterItem({
     <Link href={`/newsletter/${newsletter.id}`}>
       <div className="flex gap-x-4">
         <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700">
-          {newsletter.newsletterThumbnailUrl ? (
-            <Image
-              src={newsletter.newsletterThumbnailUrl}
-              alt={newsletter.name}
-              width={300}
-              height={300}
-              className="size-full object-cover"
-            />
-          ) : (
-            <Image
-              src="/images/default-1x1.jpg"
-              alt="no image"
-              width={300}
-              height={300}
-              className="size-full"
-            />
-          )}
+          <ThumbnailImage
+            src={newsletter.newsletterThumbnailUrl}
+            alt={`뉴스레터 이름 : ${newsletter.name}`}
+            type="profile"
+          />
         </div>
         <div className="flex flex-col gap-y-1">
           <p className="whitespace-nowrap text-base font-semibold">

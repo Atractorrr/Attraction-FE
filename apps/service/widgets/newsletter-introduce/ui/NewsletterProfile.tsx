@@ -1,5 +1,4 @@
-import { Container } from '@/shared/ui'
-import Image from 'next/image'
+import { Container, ThumbnailImage } from '@/shared/ui'
 import { HouseOutline } from '@attraction/icons'
 import NewsletterSubscribeButton from './NewsletterSubscribeButton'
 import { fetchNewsletterProfile } from '../api'
@@ -19,16 +18,11 @@ export default async function NewsletterProfile({
         <div className="flex w-full flex-col gap-y-4 p-5 md:gap-y-2">
           <div className="flex gap-x-6">
             <div className="h-[150px] w-[180px] shrink-0 overflow-hidden rounded-md bg-gray-100 md:h-40 dark:bg-gray-700">
-              <Image
-                className="size-full object-cover"
-                src={
-                  data.thumbnailUrl.length
-                    ? data.thumbnailUrl
-                    : '/images/default-16x9.jpg'
-                }
-                width={500}
-                height={500}
-                alt={data.name ?? 'no thumbnail'}
+              <ThumbnailImage
+                src={data.thumbnailUrl}
+                alt={`뉴스레터 이름 : ${data.name}`}
+                type="profile"
+                logoType="text"
               />
             </div>
             <div className="flex flex-col gap-y-3">
