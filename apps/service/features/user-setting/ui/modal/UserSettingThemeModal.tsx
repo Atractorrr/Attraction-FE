@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { Theme, useTheme } from '@/entities/theme'
+import { THEME_LIST, Theme, useTheme } from '@/entities/theme'
 import { Button } from '@attraction/design-system'
 import { CheckOutline } from '@attraction/icons'
 import { useState } from 'react'
@@ -34,7 +34,7 @@ export default function UserSettingThemeModal({
                 className={`size-full rounded-md font-bold ${activeKey === listDataKey ? 'visible' : 'invisible'} peer text-white dark:text-gray-700`}
               />
             </label>
-            {listDataKey}
+            {THEME_LIST[listDataKey]}
           </Button>
         )
       })}
