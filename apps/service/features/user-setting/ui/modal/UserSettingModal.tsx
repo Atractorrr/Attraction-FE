@@ -48,7 +48,7 @@ export default function UserSettingModal({
             <Button
               className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
               onClick={() => setActiveModal(false)}>
-              Cancel
+              취소
             </Button>
           </DrawerClose>
         </DrawerFooter>

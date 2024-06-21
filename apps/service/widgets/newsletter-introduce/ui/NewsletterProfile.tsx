@@ -25,7 +25,7 @@ export default async function NewsletterProfile({
                 logoType="text"
               />
             </div>
-            <div className="flex flex-col gap-y-3">
+            <div className="flex flex-col gap-y-3 break-keep">
               <h3 className="text-2xl font-bold">{data.name}</h3>
               <div className="flex flex-col gap-3 text-gray-500 md:flex-row dark:text-gray-400">
                 <p>{data.uploadDays}</p>
@@ -34,7 +34,8 @@ export default async function NewsletterProfile({
                   className="flex gap-x-1 text-blue-400"
                   target="_blank"
                   rel="noopener noreferrer">
-                  <HouseOutline className="size-5" /> 공식 홈페이지
+                  <HouseOutline className="size-5" />
+                  <span>공식 홈페이지</span>
                 </a>
               </div>
               <p className="hidden break-keep text-gray-500 md:block dark:text-gray-400">
