@@ -1,6 +1,6 @@
 import { DiscoverRelatedNewsletterResponse } from '../model'
 
-export default async function fetchDiscoverArticles(
+export default async function fetchDiscoverRelatedNewsletters(
   keyword: string,
   page: number,
   size: number = 20,
