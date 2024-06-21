@@ -5,19 +5,19 @@ function NewsletterIntroduceProfileSkeleton() {
   return (
     <Container>
       <div className="flex w-full gap-x-6 p-5">
-        <div className="h-[208px] w-60 shrink-0 rounded-md bg-gray-100 dark:bg-gray-800" />
+        <div className="h-[208px] w-48 shrink-0 rounded-md bg-gray-100 dark:bg-gray-800" />
         <div className="w-full">
           <div className="flex w-full flex-col gap-y-2">
-            <div className="h-5 w-full max-w-[480px] rounded-md bg-gray-100 dark:bg-gray-800" />
+            <div className="h-5 w-full max-w-[48%] rounded-md bg-gray-100 dark:bg-gray-800" />
             <div className="flex w-full gap-x-2">
-              <div className="h-5 w-full max-w-24 rounded-md bg-gray-100 dark:bg-gray-800" />
-              <div className="h-5 w-full max-w-16 rounded-md bg-gray-100 dark:bg-gray-800" />
+              <div className="h-5 w-full max-w-[10%] rounded-md bg-gray-100 dark:bg-gray-800" />
+              <div className="h-5 w-full max-w-[12%] rounded-md bg-gray-100 dark:bg-gray-800" />
             </div>
           </div>
           <div className="mt-7 flex w-full flex-col gap-y-2">
-            <div className="h-5 w-full max-w-[480px] rounded-md bg-gray-100 dark:bg-gray-800" />
-            <div className="h-5 w-full max-w-[480px] rounded-md bg-gray-100 dark:bg-gray-800" />
-            <div className="h-5 w-full max-w-screen-xs rounded-md bg-gray-100 dark:bg-gray-800" />
+            <div className="h-5 w-full max-w-[80%] rounded-md bg-gray-100 dark:bg-gray-800" />
+            <div className="h-5 w-full max-w-[52%] rounded-md bg-gray-100 dark:bg-gray-800" />
+            <div className="h-5 w-full max-w-[60%] rounded-md bg-gray-100 dark:bg-gray-800" />
           </div>
         </div>
       </div>
@@ -28,12 +28,12 @@ function NewsletterIntroduceProfileSkeleton() {
 function NewsletterPreviousArticleItemSkeleton() {
   return (
     <div className="flex w-full gap-x-5">
-      <div className="h-36 w-full max-w-[208px] rounded-md bg-gray-100 dark:bg-gray-800" />
+      <div className="h-auto w-full max-w-[32%] rounded-md bg-gray-100 pb-[20%] dark:bg-gray-600" />
       <div className="flex w-full flex-col gap-y-3">
-        <div className="h-5 w-full max-w-[516px] rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="h-5 w-full max-w-[662px] rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="h-5 w-full max-w-[662px] rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="h-5 w-full max-w-[315px] rounded-md bg-gray-100 dark:bg-gray-800" />
+        <div className="h-5 w-full max-w-[64%] rounded-md bg-gray-100 dark:bg-gray-600" />
+        <div className="h-5 w-full max-w-full rounded-md bg-gray-100 dark:bg-gray-600" />
+        <div className="h-5 w-full max-w-[86%] rounded-md bg-gray-100 dark:bg-gray-600" />
+        <div className="h-5 w-full max-w-[36%] rounded-md bg-gray-100 dark:bg-gray-600" />
       </div>
     </div>
   )
@@ -57,11 +57,11 @@ function NewsletterPreviousArticlesSkeleton() {
 function RelatedNewsletterItemSkeleton() {
   return (
     <div className="flex w-full gap-x-3">
-      <div className="size-16 shrink-0 rounded-md bg-gray-100 dark:bg-gray-800" />
+      <div className="size-16 shrink-0 rounded-xl bg-gray-100 dark:bg-gray-600" />
       <div className="flex w-full flex-col gap-y-2">
-        <div className="h-4 w-full max-w-24 rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="h-4 w-full max-w-[236px] rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="h-4 w-full max-w-[164px] rounded-md bg-gray-100 dark:bg-gray-800" />
+        <div className="h-4 w-full max-w-[48%] rounded-md bg-gray-100 dark:bg-gray-600" />
+        <div className="h-4 w-full max-w-full rounded-md bg-gray-100 dark:bg-gray-600" />
+        <div className="h-4 w-full max-w-[68%] rounded-md bg-gray-100 dark:bg-gray-600" />
       </div>
     </div>
   )

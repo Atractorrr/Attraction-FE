@@ -3,11 +3,19 @@ import { getTimeFromNow } from '@/shared/lib'
 import { ThumbnailImage } from '@/shared/ui'
 import { NewsletterPreviousArticleData } from '../model'
 
+interface NewsletterPreviousArticleItemProps
+  extends NewsletterPreviousArticleData {
+  newsletterId: string
+}
+
 export default function NewsletterPreviousArticleItem({
+  newsletterId,
   ...props
-}: NewsletterPreviousArticleData) {
+}: NewsletterPreviousArticleItemProps) {
   return (
-    <Link href={props.contentUrl} className="flex w-full gap-x-5">
+    <Link
+      href={`/newsletter/${newsletterId}/article/${props.id}`}
+      className="flex w-full gap-x-5">
       <div className="relative flex size-full h-[120px] w-[180px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
         <ThumbnailImage
           src={props.thumbnailUrl}
