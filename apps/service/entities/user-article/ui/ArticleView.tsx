@@ -5,18 +5,33 @@ import { useEffect, useRef, useState } from 'react'
 import { Badge } from '@attraction/design-system/dist'
 import { ErrorGuideTxt, ThumbnailImage } from '@/shared/ui'
 import { censoringAnchorTags, getTimeFromNow } from '@/shared/lib'
-import { Article } from '../model'
 import BookmarkBtn from './BookmarkBtn'
 import OfflineDownloadBtn from './OfflineDownloadBtn'
 
 interface ArticleViewProps {
-  data: Article
+  id: number
+  title: string
+  contentUrl: string
+  newsletterId: string | number
+  newsletterThumbnailUrl: string
+  newsletterName: string
+  receivedAt: string
+  readingTime: number
   censored?: boolean
+  setError?: (status: boolean) => void
+  articleType: 'user' | 'prev'
 }
 
-export default function ArticleView({ data, censored }: ArticleViewProps) {
+export default function ArticleView({
+  censored,
+  setError,
+  articleType,
+  ...data
+}: ArticleViewProps) {
+  const [isIframeError, setIframeError] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
-  const [isIframeNotFound, setIframeNotFound] = useState(false)
+
+  useEffect(() => setError?.(isIframeError), [setError, isIframeError])
 
   useEffect(() => {
     const iframe = iframeRef.current
@@ -29,10 +44,11 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
         if (!iframeDoc) return
 
         if (iframeDoc.title.includes('404')) {
-          setIframeNotFound(true)
+          setIframeError(true)
           return
         }
         iframe.style.display = 'block'
+        iframe.classList.add('peer')
 
         if (censored) censoringAnchorTags(iframeDoc)
 
@@ -41,7 +57,7 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err)
-        setIframeNotFound(true)
+        setIframeError(true)
       }
     }
     iframe?.addEventListener('load', handleIframe)
@@ -61,18 +77,18 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
         <div className="flex flex-col flex-wrap justify-between gap-x-5 gap-y-7 md:flex-row md:items-end">
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href={`/newsletter/${data.newsletter.id}`}
-              title={`뉴스레터 상세 보기: ${data.newsletter.name}`}
+              href={`/newsletter/${data.newsletterId}`}
+              title={`뉴스레터 상세 보기: ${data.newsletterName}`}
               className="flex items-center justify-center">
               <span className="mr-2 block size-8 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700">
                 <ThumbnailImage
-                  src={data.newsletter.thumbnailUrl}
-                  alt={`뉴스레터 썸네일 이미지: ${data.newsletter.name}`}
+                  src={data.newsletterThumbnailUrl}
+                  alt={`뉴스레터 썸네일 이미지: ${data.newsletterName}`}
                   type="profile"
                 />
               </span>
               <span className="max-w-[calc(100%-2.5rem)] break-keep font-medium">
-                {data.newsletter.name}
+                {data.newsletterName}
               </span>
             </Link>
             <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
@@ -82,25 +98,30 @@ export default function ArticleView({ data, censored }: ArticleViewProps) {
               </Badge>
             </p>
           </div>
-          <div className="scrollbar-hidden flex max-w-full grow items-center gap-2 overflow-x-auto md:justify-end">
-            <BookmarkBtn articleId={data.id} />
-            <OfflineDownloadBtn />
-          </div>
+          {articleType === 'user' && (
+            <div className="scrollbar-hidden flex max-w-full grow items-center gap-2 overflow-x-auto md:justify-end">
+              <BookmarkBtn articleId={data.id} />
+              <OfflineDownloadBtn />
+            </div>
+          )}
         </div>
       </div>
       <div className="min-h-full w-full overflow-hidden md:rounded-lg">
-        {!isIframeNotFound &&
+        {!isIframeError &&
         !!data.contentUrl &&
         /\/[^\\/]+\.html$/g.test(data.contentUrl) ? (
-          <iframe
-            ref={(node) => {
-              iframeRef.current = node
-            }}
-            src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
-            className="hidden size-full min-h-full"
-            title={data.title}
-            onError={() => setIframeNotFound(true)}
-          />
+          <>
+            <iframe
+              ref={(node) => {
+                iframeRef.current = node
+              }}
+              src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
+              className="hidden size-full min-h-full"
+              title={data.title}
+              onError={() => setIframeError(true)}
+            />
+            <div className="min-h-dvh bg-gray-100 peer-[]:hidden md:rounded-lg dark:bg-gray-600" />
+          </>
         ) : (
           <div className="px-5">
             <ErrorGuideTxt />

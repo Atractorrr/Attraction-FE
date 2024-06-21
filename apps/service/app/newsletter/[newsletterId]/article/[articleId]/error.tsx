@@ -3,15 +3,15 @@
 import { useEffect } from 'react'
 import { Container, ErrorGuideTxt } from '@/shared/ui'
 
-interface ArticleDetailErrorProps {
+interface PrevArticleDetailErrorProps {
   error: Error & { digest?: string }
   reset: () => void
 }
 
-export default function ArticleDetailError({
+export default function PrevArticleDetailError({
   error,
   reset,
-}: ArticleDetailErrorProps) {
+}: PrevArticleDetailErrorProps) {
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.error(error)
