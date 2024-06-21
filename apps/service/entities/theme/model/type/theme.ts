@@ -1,3 +1,5 @@
-export type Theme = 'system' | 'light' | 'dark'
+import { THEME_LIST } from '../../constant'
 
-export type RealTheme = 'light' | 'dark'
+export type Theme = keyof typeof THEME_LIST
+
+export type RealTheme = Exclude<Theme, 'system'>

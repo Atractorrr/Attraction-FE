@@ -24,7 +24,7 @@ export default function UserSettingItem({
       className={`flex ${setActiveModal ? 'cursor-pointer' : 'cursor-default'}  items-center justify-between`}
       onClick={() => setActiveModal!(true)}>
       <div className="flex flex-col gap-2">
-        <p className=" font-medium">{title}</p>
+        <p className="font-medium">{title}</p>
         {bottomSubTitle && <p className="size-sm text-gray-500">{subTitle}</p>}
         {!bottomSubTitle && (
           <p className="size-sm block text-gray-500 xs:hidden">{subTitle}</p>

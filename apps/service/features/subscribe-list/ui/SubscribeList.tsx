@@ -27,7 +27,7 @@ export default async function SubscribeList() {
                 <Link
                   href={`/newsletter/${newsletter.id}`}
                   className="flex items-center justify-start gap-3 overflow-hidden rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <div className="size-8">
+                  <div className="size-8 overflow-hidden rounded-full">
                     <ThumbnailImage
                       src={newsletter.thumbnailUrl}
                       alt="썸네일 이미지"

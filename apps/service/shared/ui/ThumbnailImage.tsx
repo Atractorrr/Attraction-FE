@@ -23,7 +23,7 @@ export default function ThumbnailImage({
 }: ThumbnailImageProps) {
   const [isError, setError] = useState(false)
 
-  if (!isError) {
+  if (!isError && src) {
     return (
       <Image
         src={src}
@@ -35,6 +35,7 @@ export default function ThumbnailImage({
       />
     )
   }
+
   return (
     <p className="relative flex size-full items-center justify-center bg-gray-200 dark:bg-gray-700">
       {(!logoType && logoType === 'icon') ||

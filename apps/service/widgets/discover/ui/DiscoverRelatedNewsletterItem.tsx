@@ -15,7 +15,9 @@ export default function DiscoverRelatedNewsletterItem({
         />
       </div>
       <div className="flex flex-col gap-y-0.5">
-        <p className="w-[200px] truncate font-bold">{props.name}</p>
+        <p className="w-[100px] truncate font-bold sm:w-[200px]">
+          {props.name}
+        </p>
         <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
           {props.description}
         </p>
