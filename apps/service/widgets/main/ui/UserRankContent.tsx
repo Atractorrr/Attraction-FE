@@ -1,5 +1,5 @@
+import { ThumbnailImage } from '@/shared/ui'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import Image from 'next/image'
 import { getUserRanking } from '../api'
 import UserRankMedal from './UserRankMedal'
 
@@ -23,13 +23,11 @@ export default function UserRankContent({
             key={user.nickname}
             className="peer flex w-full gap-3 peer-[]:mt-3">
             <UserRankMedal rank={i} />
-            <div className="size-10 shrink-0 rounded-full border border-gray-100 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
-              <Image
-                width={40}
-                height={40}
-                src={user?.profileImg || '/images/default-1x1.jpg'}
-                className="rounded-full"
-                alt="프로필사진"
+            <div className="size-10 shrink-0 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
+              <ThumbnailImage
+                src={user?.profileImg}
+                alt="사진: 프로필 사진"
+                type="profile"
               />
             </div>
             <div className="w-full max-w-[calc(100%-3rem-40px)]">

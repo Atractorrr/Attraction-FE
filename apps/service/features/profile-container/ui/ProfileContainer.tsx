@@ -44,9 +44,7 @@ export default function ProfileContainer() {
         <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
           <div className="relative flex w-full flex-col">
             <div className="group relative md:px-5 md:pt-5">
-              <ProfileBackground
-                imgSrc={userProfile.backgroundImg || '/images/default-4x1.jpg'}
-              />
+              <ProfileBackground imgSrc={userProfile.backgroundImg} />
               <Button
                 type="button"
                 className="invisible absolute right-2 top-8 flex h-fit items-center gap-2 rounded-lg bg-black/60 px-3 py-2 text-white opacity-0 transition-all group-hover:visible group-hover:right-8 group-hover:opacity-100"
@@ -60,9 +58,7 @@ export default function ProfileContainer() {
             <div className="flex size-full flex-col pl-5 md:flex-row md:pl-12">
               <div className="relative size-20 md:size-auto">
                 <div className="relative size-40 shrink-0 -translate-y-1/2 rounded-full bg-white p-2 dark:bg-gray-800">
-                  <ProfileImage
-                    imaSrc={userProfile.profileImg || '/images/default-1x1.jpg'}
-                  />
+                  <ProfileImage imgSrc={userProfile.profileImg} />
                   <div className="absolute left-0 top-0 size-full p-2">
                     <button
                       type="button"
