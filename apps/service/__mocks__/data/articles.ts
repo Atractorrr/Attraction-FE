@@ -119,23 +119,6 @@ export const articles: Article[] = [
     },
   },
   {
-    id: 7,
-    thumbnailUrl: getThumbnailUrl('health'),
-    contentUrl: '/test/test.html',
-    title: '건강한 생활을 위한 실천 가능한 팁',
-    category: 'HEALTH_MEDICINE',
-    receivedAt: getDate(1),
-    readPercentage: 0,
-    readingTime: 5,
-    newsletter: {
-      id: 1,
-      name: '뉴닉',
-      category: 'CURRENT_AFFAIRS_SOCIETY',
-      thumbnailUrl:
-        'https://app.heybunny.io/_next/image?url=https%3A%2F%2Fassets.heybunny.io%2Fnewsletter%2Fweb%2Fnewneek.png&w=3840&q=75',
-    },
-  },
-  {
     id: 8,
     thumbnailUrl: getThumbnailUrl('investment'),
     contentUrl: '/test/test.html',

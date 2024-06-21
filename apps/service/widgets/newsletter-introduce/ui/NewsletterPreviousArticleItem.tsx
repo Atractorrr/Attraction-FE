@@ -1,24 +1,26 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { getTimeFromNow } from '@/shared/lib'
+import { ThumbnailImage } from '@/shared/ui'
 import { NewsletterPreviousArticleData } from '../model'
 
+interface NewsletterPreviousArticleItemProps
+  extends NewsletterPreviousArticleData {
+  newsletterId: string
+}
+
 export default function NewsletterPreviousArticleItem({
+  newsletterId,
   ...props
-}: NewsletterPreviousArticleData) {
+}: NewsletterPreviousArticleItemProps) {
   return (
-    <Link href={props.contentUrl} className="flex w-full gap-x-5">
+    <Link
+      href={`/newsletter/${newsletterId}/article/${props.id}`}
+      className="flex w-full gap-x-5">
       <div className="relative flex size-full h-[120px] w-[180px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
-        <Image
-          className="size-full object-cover transition-all hover:scale-110"
-          src={
-            props.thumbnailUrl.length
-              ? props.thumbnailUrl
-              : '/images/default-16x9.jpg'
-          }
-          width={500}
-          height={500}
-          alt={props.title ?? 'no thumbnail'}
+        <ThumbnailImage
+          src={props.thumbnailUrl}
+          alt={`아티클 제목 : ${props.title}`}
+          type="article"
         />
         <div className="absolute bottom-2 right-2 rounded-md bg-black/60 p-1 text-xs text-white">
           {props.readingTime > 1 ? `약 ${props.readingTime}분` : `1분 미만`}

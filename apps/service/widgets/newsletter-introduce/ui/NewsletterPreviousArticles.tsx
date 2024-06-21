@@ -29,6 +29,7 @@ export default async function NewsletterPreviousArticles({
               {data.map((newsletter) => (
                 <NewsletterPreviousArticleItem
                   key={newsletter.id}
+                  newsletterId={newsletterId}
                   {...newsletter}
                 />
               ))}
