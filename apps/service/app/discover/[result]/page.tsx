@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: '검색 결과',
 }
 
+export const revalidate = 3600
+
 export default function DiscoverResultPage({
   params,
 }: {
