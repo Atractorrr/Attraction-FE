@@ -41,7 +41,7 @@ export default function ThumbnailImage({
       (!logoType && type === 'profile') ? (
         <MainLogoSVG className="block h-auto w-1/3 text-gray-100 dark:text-gray-600" />
       ) : (
-        <MainTextLogoSVG className="block h-auto w-1/3 text-gray-100 dark:text-gray-600" />
+        <MainTextLogoSVG className="block h-auto w-1/3 max-w-48 text-gray-100 dark:text-gray-600" />
       )}
       <span className="blind">대체 이미지: {alt}</span>
     </p>

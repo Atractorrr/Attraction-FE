@@ -1,19 +1,13 @@
-import Image from 'next/image'
-import React from 'react'
+import { ThumbnailImage } from '@/shared/ui'
 
 interface ProfileImageProps {
-  imaSrc: string
+  imgSrc: string
 }
 
-export default function ProfileImage({ imaSrc }: ProfileImageProps) {
+export default function ProfileImage({ imgSrc }: ProfileImageProps) {
   return (
-    <div className="relative size-full rounded-full bg-gray-100 p-2 dark:bg-gray-700">
-      <Image
-        src={imaSrc}
-        alt="프로필 사진"
-        fill
-        className="rounded-full object-cover"
-      />
+    <div className="relative size-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+      <ThumbnailImage src={imgSrc} alt="썸네일 이미지" type="profile" />
     </div>
   )
 }

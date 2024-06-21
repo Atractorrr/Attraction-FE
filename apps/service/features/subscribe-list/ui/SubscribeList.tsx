@@ -1,12 +1,11 @@
 'use server'
 
-import React from 'react'
+import { Container, GuideTxt, ThumbnailImage, Title } from '@/shared/ui'
+import { DocumentListOutline } from '@attraction/icons'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
-import { DocumentListOutline } from '@attraction/icons'
-import { Container, GuideTxt, ImageBox, Title } from '@/shared/ui'
-import { SubscribeItem } from '../model'
 import { fetchSubscribeList } from '../api'
+import { SubscribeItem } from '../model'
 
 export default async function SubscribeList() {
   const email = cookies().get('email')?.value as string
@@ -27,14 +26,14 @@ export default async function SubscribeList() {
               <li key={newsletter.id} className="peer peer-[]:mt-1">
                 <Link
                   href={`/newsletter/${newsletter.id}`}
-                  className="flex items-center justify-start gap-3 rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <ImageBox
-                    width="w-8"
-                    height="h-8"
-                    imgSrc={newsletter.thumbnailUrl}
-                    alt={`뉴스레터 썸네일 이미지: ${newsletter.title}`}
-                    rounded="rounded-full"
-                  />
+                  className="flex items-center justify-start gap-3 overflow-hidden rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <div className="size-8">
+                    <ThumbnailImage
+                      src={newsletter.thumbnailUrl}
+                      alt="썸네일 이미지"
+                      type="profile"
+                    />
+                  </div>
                   <span className="w-[calc(100%-4rem)] truncate font-medium">
                     {newsletter.title}
                   </span>
