@@ -10,7 +10,7 @@ import {
   NewspaperEmoji,
   TableTennisEmoji,
   PaintingEmoji,
-  HospitalEmoji,
+  PurseEmoji,
 } from '@attraction/icons'
 import React, { SVGProps } from 'react'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
@@ -30,7 +30,7 @@ const CATEGORIES_WITH_SVG = new Map<NewsletterCategoryName, SVGIcon>([
   [NEWSLETTER_CATEGORY.CURRENT_AFFAIRS_SOCIETY, NewspaperEmoji],
   [NEWSLETTER_CATEGORY.HOBBY_SELF_DEVELOPMENT, TableTennisEmoji],
   [NEWSLETTER_CATEGORY.CULTURE_ART, PaintingEmoji],
-  [NEWSLETTER_CATEGORY.HEALTH_MEDICINE, HospitalEmoji],
+  [NEWSLETTER_CATEGORY.ECONOMY, PurseEmoji],
 ])
 
 export default CATEGORIES_WITH_SVG
