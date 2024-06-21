@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { fetchDiscoverArticles } from '../api'
 import discoverQueryKeys from './discoverQueryKeys'
 import { DiscoverArticle } from './type'
-import { fetchDiscoverArticles } from '../api'
 
-export default function useInfiniteDiscoverResult(keyword: string) {
+export default function useInfiniteDiscoverArticles(keyword: string) {
   return useInfiniteQuery({
-    queryKey: discoverQueryKeys.discoverResult(keyword),
+    queryKey: discoverQueryKeys.discoverArticles(keyword),
     queryFn: ({ pageParam }) => fetchDiscoverArticles(keyword, pageParam),
     initialPageParam: 0,
     select: ({ pages, pageParams }) => ({

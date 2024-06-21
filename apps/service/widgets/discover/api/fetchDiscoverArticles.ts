@@ -1,9 +1,9 @@
-import { DiscoverArticleResponse } from '../model'
+import type { DiscoverArticleResponse } from '../model'
 
 export default async function fetchDiscoverArticles(
   keyword: string,
   page: number,
-  size: number = 20,
+  size: number = 10,
 ): Promise<DiscoverArticleResponse> {
   const apiURL = new URL(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/article`,

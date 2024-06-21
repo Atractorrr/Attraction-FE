@@ -3,10 +3,24 @@
 import { Container, ErrorGuideTxt, GuideTxt, LoadingSpinner } from '@/shared/ui'
 import { useInfiniteScroll } from '@/shared/lib'
 import DiscoverArticleItem from './DiscoverArticleItem'
-import useInfiniteDiscoverResult from '../model/useInfiniteDiscoverResult'
+import { useInfiniteDiscoverArticles } from '../model'
+import { DiscoverArticleItemSkeleton } from './DiscoverResultSkeleton'
 
 interface DiscoverArticlesProps {
   keyword: string
+}
+
+function DiscoverArticlesLoading() {
+  return (
+    <div className="flex w-full flex-col gap-y-2">
+      <div className="h-5 w-full max-w-[240px] rounded-md bg-gray-100 dark:bg-gray-600" />
+      <div className="mt-6 flex w-full flex-col gap-y-5">
+        {Array.from({ length: 4 }, (_, idx) => (
+          <DiscoverArticleItemSkeleton key={idx} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function DiscoverArticles({ keyword }: DiscoverArticlesProps) {
@@ -17,7 +31,7 @@ export default function DiscoverArticles({ keyword }: DiscoverArticlesProps) {
     fetchNextPage,
     isFetchingNextPage,
     isError,
-  } = useInfiniteDiscoverResult(keyword)
+  } = useInfiniteDiscoverArticles(keyword)
   const scrollRef = useInfiniteScroll(() => {
     if (hasNextPage) fetchNextPage()
   })
@@ -25,13 +39,12 @@ export default function DiscoverArticles({ keyword }: DiscoverArticlesProps) {
   return (
     <Container>
       <div className="w-full p-5">
-        <p>
-          <strong>{`"${keyword}"`}</strong>에 대한 검색 결과에요
-        </p>
-        {isLoading && (
-          <div className="flex min-h-full items-center justify-center pb-40 pt-32">
-            <LoadingSpinner />
-          </div>
+        {isLoading ? (
+          <DiscoverArticlesLoading />
+        ) : (
+          <p>
+            <strong>{`"${keyword}"`}</strong>에 대한 검색 결과에요
+          </p>
         )}
         {data &&
           (data.pages.length !== 0 ? (
@@ -43,7 +56,7 @@ export default function DiscoverArticles({ keyword }: DiscoverArticlesProps) {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col justify-center pb-40 pt-32">
+            <div className="flex flex-col justify-center pb-60 pt-52">
               <GuideTxt
                 title="검색 결과가 없어요"
                 sub="다른 키워드로 검색해보세요"

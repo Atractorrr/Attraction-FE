@@ -1,9 +1,9 @@
-import { DiscoverRelatedNewsletterResponse } from '../model'
+import type { DiscoverRelatedNewsletterResponse } from '../model'
 
 export default async function fetchDiscoverRelatedNewsletters(
   keyword: string,
   page: number,
-  size: number = 20,
+  size: number = 5,
 ): Promise<DiscoverRelatedNewsletterResponse> {
   const apiURL = new URL(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/newsletter`,

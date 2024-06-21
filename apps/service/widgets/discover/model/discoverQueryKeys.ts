@@ -1,5 +1,6 @@
 const discoverQueryKeys = {
-  discoverResult: (params: string) => ['discover-result', params],
+  discoverArticles: (params: string) => ['discover-articles', params],
+  relatedNewsletters: (params: string) => ['related-newsletters', params],
 }
 
 export default discoverQueryKeys

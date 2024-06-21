@@ -14,7 +14,7 @@ export default function DiscoverRelatedNewsletterItem({
           type="profile"
         />
       </div>
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-0.5">
         <p className="w-[200px] truncate font-bold">{props.name}</p>
         <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
           {props.description}
