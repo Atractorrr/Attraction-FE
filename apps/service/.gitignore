@@ -45,3 +45,12 @@ workbox-*.js.map
 swe-worker-*.js
 fallback-*.js
 
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Sentry Config File
+.env.sentry-build-plugin
