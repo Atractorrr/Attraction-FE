@@ -64,7 +64,7 @@ function AlertDialogFooter({
   return (
     <div
       className={cn(
-        'ds-flex ds-items-center ds-justify-center ds-space-x-2 sm:ds-justify-end',
+        'ds-flex ds-items-center ds-justify-end ds-space-x-2',
         className,
       )}
       {...props}
@@ -108,7 +108,7 @@ const AlertDialogAction = React.forwardRef<
   <AlertDialogPrimitive.Action
     ref={ref}
     className={cn(
-      'ds-flex ds-h-10 ds-grow ds-items-center ds-justify-center ds-rounded-lg ds-bg-gray-700 ds-px-5 ds-py-2 ds-text-gray-50 ds-transition-colors hover:ds-bg-gray-800 sm:ds-grow-0 dark:ds-bg-gray-50 dark:ds-text-gray-700 dark:hover:ds-bg-gray-100',
+      'ds-flex ds-h-10 ds-items-center ds-justify-center ds-rounded-lg ds-bg-gray-700 ds-px-5 ds-py-2 ds-text-gray-50 ds-transition-colors hover:ds-bg-gray-800 dark:ds-bg-gray-50 dark:ds-text-gray-700 dark:hover:ds-bg-gray-100',
       className,
     )}
     {...props}
