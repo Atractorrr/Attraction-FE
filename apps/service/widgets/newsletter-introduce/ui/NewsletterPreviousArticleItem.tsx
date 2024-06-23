@@ -26,7 +26,7 @@ export default function NewsletterPreviousArticleItem({
           {props.readingTime > 1 ? `약 ${props.readingTime}분` : `1분 미만`}
         </div>
       </div>
-      <div className="flex max-w-[890px] flex-col gap-y-3 overflow-hidden text-ellipsis">
+      <div className="flex max-w-[890px] flex-col gap-y-2 overflow-hidden text-ellipsis">
         <p className="w-full truncate font-medium">{props.title}</p>
         <p className="line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
           {props.contentSummary}

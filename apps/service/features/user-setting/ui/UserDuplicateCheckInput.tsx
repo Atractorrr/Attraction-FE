@@ -58,7 +58,7 @@ export default function UserInfoNicknameInput({
           autoComplete="off"
           value={nickname}
           id="nickName"
-          className="grow rounded-lg border border-gray-100 px-3 py-2 outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
+          className="grow rounded-lg border border-gray-100 px-3 py-2 text-base outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
           placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
           onChange={(e) => {
             setNickname(e.target.value)

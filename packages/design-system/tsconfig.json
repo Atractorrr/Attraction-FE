@@ -18,6 +18,6 @@
       }
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.js", "rollup.config.js"],
+  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.js"],
   "exclude": ["node_modules"]
 }
