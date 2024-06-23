@@ -17,7 +17,7 @@ const AlertDialogOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Overlay
     className={cn(
-      'ds- ds-fixed ds-inset-0 ds-z-50 ds-bg-black/80 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0',
+      'ds- ds-fixed ds-inset-0 ds-z-50 ds-bg-black/30 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 dark:ds-bg-white/20',
       className,
     )}
     {...props}
@@ -35,7 +35,7 @@ const AlertDialogContent = React.forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn(
-        'ds-fixed ds-left-[50%] ds-top-[50%] ds-z-50 ds-grid ds-w-full ds-max-w-lg ds-translate-x-[-50%] ds-translate-y-[-50%] ds-gap-4 ds-border ds-border-gray-200 ds-bg-white ds-p-6 ds-shadow-lg ds-duration-200 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[state=closed]:ds-slide-out-to-left-1/2 data-[state=closed]:ds-slide-out-to-top-[48%] data-[state=open]:ds-slide-in-from-left-1/2 data-[state=open]:ds-slide-in-from-top-[48%] sm:ds-rounded-lg dark:ds-border-gray-800 dark:ds-bg-gray-950',
+        'ds-fixed ds-left-[50%] ds-top-[50%] ds-z-50 ds-grid ds-w-full ds-min-w-60 ds-max-w-[calc(100vw-2.5rem)] ds-translate-x-[-50%] ds-translate-y-[-50%] ds-gap-6 ds-rounded-2xl ds-border ds-border-gray-100 ds-bg-white ds-p-5 ds-shadow-lg ds-duration-200 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[state=closed]:ds-slide-out-to-left-1/2 data-[state=closed]:ds-slide-out-to-top-[48%] data-[state=open]:ds-slide-in-from-left-1/2 data-[state=open]:ds-slide-in-from-top-[48%] sm:ds-max-w-md dark:ds-border-gray-800 dark:ds-bg-gray-800',
         className,
       )}
       {...props}
@@ -50,10 +50,7 @@ function AlertDialogHeader({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        'ds-flex ds-flex-col ds-space-y-2 ds-text-center sm:ds-text-left',
-        className,
-      )}
+      className={cn('ds-flex ds-flex-col ds-space-y-2 ds-text-left', className)}
       {...props}
     />
   )
@@ -67,7 +64,7 @@ function AlertDialogFooter({
   return (
     <div
       className={cn(
-        'ds-flex ds-flex-col-reverse sm:ds-flex-row sm:ds-justify-end sm:ds-space-x-2',
+        'ds-flex ds-items-center ds-justify-center ds-space-x-2 sm:ds-justify-end',
         className,
       )}
       {...props}
@@ -82,7 +79,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Title
     ref={ref}
-    className={cn('ds-text-lg ds-font-semibold', className)}
+    className={cn('ds-break-keep ds-text-lg ds-font-bold', className)}
     {...props}
   />
 ))
@@ -95,7 +92,7 @@ const AlertDialogDescription = React.forwardRef<
   <AlertDialogPrimitive.Description
     ref={ref}
     className={cn(
-      'ds-text-sm ds-text-gray-500 dark:ds-text-gray-400',
+      'ds-break-keep ds-text-gray-500 dark:ds-text-gray-400',
       className,
     )}
     {...props}
@@ -108,7 +105,14 @@ const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Action ref={ref} className={cn(className)} {...props} />
+  <AlertDialogPrimitive.Action
+    ref={ref}
+    className={cn(
+      'ds-flex ds-h-10 ds-grow ds-items-center ds-justify-center ds-rounded-lg ds-bg-gray-700 ds-px-5 ds-py-2 ds-text-gray-50 ds-transition-colors hover:ds-bg-gray-800 sm:ds-grow-0 dark:ds-bg-gray-50 dark:ds-text-gray-700 dark:hover:ds-bg-gray-100',
+      className,
+    )}
+    {...props}
+  />
 ))
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName
 
@@ -118,7 +122,10 @@ const AlertDialogCancel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Cancel
     ref={ref}
-    className={cn('ds-mt-2 sm:ds-mt-0', className)}
+    className={cn(
+      'ds-flex ds-h-10 ds-items-center ds-justify-center ds-rounded-lg ds-bg-gray-50 ds-px-5 ds-py-2 ds-transition-colors hover:ds-bg-gray-100 dark:ds-bg-gray-700 dark:hover:ds-bg-gray-600',
+      className,
+    )}
     {...props}
   />
 ))
