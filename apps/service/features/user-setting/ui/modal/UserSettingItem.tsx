@@ -20,24 +20,30 @@ export default function UserSettingItem({
   icon,
 }: UserSettingItemType) {
   return (
-    <div
-      className={`flex ${setActiveModal ? 'cursor-pointer' : 'cursor-default'}  items-center justify-between`}
+    <button
+      type="button"
+      disabled={!setActiveModal}
+      className="flex w-full items-center justify-between"
       onClick={() => setActiveModal!(true)}>
       <div className="flex flex-col gap-2">
-        <p className="font-medium">{title}</p>
+        <p className="text-start font-medium">{title}</p>
         {bottomSubTitle && <p className="size-sm text-gray-500">{subTitle}</p>}
         {!bottomSubTitle && (
-          <p className="size-sm block text-gray-500 xs:hidden">{subTitle}</p>
+          <p className="size-sm block text-start text-gray-500 sm:hidden">
+            {subTitle}
+          </p>
         )}
       </div>
       <div className="flex items-center gap-4">
         {!bottomSubTitle && (
-          <p className="size-sm hidden text-gray-500 xs:block">{subTitle}</p>
+          <p className="size-sm hidden text-start text-gray-500 sm:block">
+            {subTitle}
+          </p>
         )}
         {icon === 'chevron' && (
           <ChevronRightOutline className="size-5 shrink-0" />
         )}
       </div>
-    </div>
+    </button>
   )
 }
