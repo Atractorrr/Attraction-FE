@@ -16,7 +16,7 @@ import {
   ArrowLeftStartOnRectangleOutline,
 } from '@attraction/icons'
 import { useAuth } from '../model'
-import { logout } from '../lib'
+import LogoutConfirmTrigger from './LogoutConfirmTrigger'
 
 export default function AuthButton() {
   const router = useRouter()
@@ -46,10 +46,17 @@ export default function AuthButton() {
           <span className="ml-2">개인설정</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem title="로그아웃" onClick={logout}>
-          <ArrowLeftStartOnRectangleOutline className="text-lg text-red-400 dark:text-red-300" />
-          <span className="ml-2 text-red-400 dark:text-red-300">로그아웃</span>
-        </DropdownMenuItem>
+        <LogoutConfirmTrigger>
+          <button
+            type="button"
+            className="flex w-full items-center justify-start rounded px-3 py-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
+            title="로그아웃">
+            <ArrowLeftStartOnRectangleOutline className="text-lg text-red-400 dark:text-red-300" />
+            <span className="ml-2 text-red-400 dark:text-red-300">
+              로그아웃
+            </span>
+          </button>
+        </LogoutConfirmTrigger>
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (

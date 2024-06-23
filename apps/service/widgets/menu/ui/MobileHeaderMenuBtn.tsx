@@ -10,7 +10,7 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from '@attraction/design-system/dist'
-import { logout } from '@/entities/auth'
+import { LogoutConfirmTrigger } from '@/entities/auth'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import { SIDE_MENU } from '../constant'
 
@@ -42,14 +42,15 @@ export default function MobileHeaderMenuBtn() {
             ))}
             <li className="m-4 h-px w-[calc(100%-2rem)] bg-gray-100 dark:bg-gray-700" />
             <li>
-              <button
-                type="button"
-                title="로그아웃"
-                className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-red-400 transition-colors hover:bg-red-50 active:bg-red-50 dark:text-red-300 dark:hover:bg-red-800 dark:active:bg-red-800"
-                onClick={logout}>
-                <ArrowLeftStartOnRectangleOutline className="text-2xl" />
-                <span className="whitespace-nowrap text-lg">로그아웃</span>
-              </button>
+              <LogoutConfirmTrigger>
+                <button
+                  type="button"
+                  title="로그아웃"
+                  className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-red-400 transition-colors hover:bg-red-50 active:bg-red-50 dark:text-red-300 dark:hover:bg-red-800 dark:active:bg-red-800">
+                  <ArrowLeftStartOnRectangleOutline className="text-2xl" />
+                  <span className="whitespace-nowrap text-lg">로그아웃</span>
+                </button>
+              </LogoutConfirmTrigger>
             </li>
           </ul>
         </div>
