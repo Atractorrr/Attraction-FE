@@ -110,6 +110,10 @@ const nextConfig = {
         source: '/html/:path*',
         destination: `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/:path*`,
       },
+      {
+        source: '/thumbnail/:path*',
+        destination: `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/:path*`,
+      },
     ]
   },
   images: {
