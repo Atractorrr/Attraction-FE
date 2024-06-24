@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import {
   Button,
   DropdownMenu,
@@ -21,6 +22,7 @@ import LogoutConfirmTrigger from './LogoutConfirmTrigger'
 export default function AuthButton() {
   const router = useRouter()
   const { isLogin } = useAuth()
+  const [isConfirmOpen, setConfirmOpen] = useState(false)
 
   return isLogin ? (
     <DropdownMenu>
@@ -46,7 +48,9 @@ export default function AuthButton() {
           <span className="ml-2">개인설정</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <LogoutConfirmTrigger>
+        <LogoutConfirmTrigger
+          isOpen={isConfirmOpen}
+          onOpenChange={setConfirmOpen}>
           <button
             type="button"
             className="flex w-full items-center justify-start rounded px-3 py-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"

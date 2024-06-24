@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import {
   ArrowLeftStartOnRectangleOutline,
   BarsOutline,
@@ -15,6 +16,8 @@ import MobileHeaderBtn from './MobileHeaderBtn'
 import { SIDE_MENU } from '../constant'
 
 export default function MobileHeaderMenuBtn() {
+  const [isConfirmOpen, setConfirmOpen] = useState(false)
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -42,7 +45,9 @@ export default function MobileHeaderMenuBtn() {
             ))}
             <li className="m-4 h-px w-[calc(100%-2rem)] bg-gray-100 dark:bg-gray-700" />
             <li>
-              <LogoutConfirmTrigger>
+              <LogoutConfirmTrigger
+                isOpen={isConfirmOpen}
+                onOpenChange={setConfirmOpen}>
                 <button
                   type="button"
                   title="로그아웃"
