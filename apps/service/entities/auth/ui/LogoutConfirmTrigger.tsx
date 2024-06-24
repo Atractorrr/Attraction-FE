@@ -15,8 +15,8 @@ import {
 import { logout } from '../lib'
 
 interface LogoutConfirmTriggerProps extends PropsWithChildren {
-  isOpen: boolean
-  onOpenChange: (status: boolean) => void
+  isOpen?: boolean
+  onOpenChange?: (status: boolean) => void
 }
 
 export default function LogoutConfirmTrigger({
@@ -25,7 +25,7 @@ export default function LogoutConfirmTrigger({
   onOpenChange,
 }: LogoutConfirmTriggerProps) {
   return (
-    <AlertDialog isOpen={isOpen} onOpenChange={onOpenChange}>
+    <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
