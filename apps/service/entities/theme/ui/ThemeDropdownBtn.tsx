@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@attraction/design-system/dist'
 import { MoonStarOutline, SunOutline } from '@attraction/icons'
-import { Theme, useTheme } from '@/entities/theme'
+import { Theme, useTheme } from '../model'
 
 const themeBtns: Array<[Theme, string]> = [
   ['system', '시스템 테마'],
