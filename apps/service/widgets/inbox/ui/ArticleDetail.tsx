@@ -21,6 +21,10 @@ export default function ArticleDetail({
 }: ArticleDetailProps) {
   const [isError, setError] = useState(false)
   const setIframeError = useCallback((status: boolean) => setError(status), [])
+
+  const [isLoad, setLoad] = useState(false)
+  const setIframeLoad = useCallback((status: boolean) => setLoad(status), [])
+
   const {
     data,
     isLoading,
@@ -33,7 +37,7 @@ export default function ArticleDetail({
       {isLoading && <ArticleViewSkeleton />}
       {data && (
         <>
-          {pageType !== 'bookmark' && !isError && (
+          {pageType !== 'bookmark' && isLoad && !isError && (
             <ScrollTracker
               articleId={articleId}
               initProgress={data.readPercentage}
@@ -49,6 +53,7 @@ export default function ArticleDetail({
             receivedAt={data.receivedAt}
             readingTime={data.readingTime}
             setError={setIframeError}
+            setLoad={setIframeLoad}
             articleType="user"
             censored
           />

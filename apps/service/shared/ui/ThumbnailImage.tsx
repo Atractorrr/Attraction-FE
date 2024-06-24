@@ -30,7 +30,7 @@ export default function ThumbnailImage({
         alt={alt}
         width={width ?? type === 'profile' ? 300 : 720}
         height={height ?? type === 'profile' ? 300 : 480}
-        className="block size-full object-cover"
+        className="block size-full bg-gray-50 object-cover dark:bg-gray-700"
         onError={() => setError(true)}
       />
     )

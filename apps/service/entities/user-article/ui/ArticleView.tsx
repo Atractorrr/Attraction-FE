@@ -19,54 +19,72 @@ interface ArticleViewProps {
   readingTime: number
   censored?: boolean
   setError?: (status: boolean) => void
+  setLoad?: (status: boolean) => void
   articleType: 'user' | 'prev'
 }
 
 export default function ArticleView({
   censored,
   setError,
+  setLoad,
   articleType,
   ...data
 }: ArticleViewProps) {
   const [isIframeError, setIframeError] = useState(false)
-  const iframeRef = useRef<HTMLIFrameElement | null>(null)
-
   useEffect(() => setError?.(isIframeError), [setError, isIframeError])
+
+  const [isIframeLoad, setIframeLoad] = useState(false)
+  useEffect(() => setLoad?.(isIframeLoad), [setLoad, isIframeLoad])
+
+  const iframeRef = useRef<HTMLIFrameElement | null>(null)
+  const iframeLoadHandler = () => {
+    try {
+      const iframe = iframeRef.current
+      if (iframe === null) return
+
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+      if (!iframeDoc) return
+
+      if (iframeDoc.title.includes('404')) {
+        setIframeError(true)
+        return
+      }
+      iframe.style.display = 'block'
+      iframe.classList.add('peer')
+
+      if (censored) censoringAnchorTags(iframeDoc)
+
+      const iframeBody = iframeDoc.body
+      iframe.style.margin = '0px auto'
+      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
+      window.scrollTo(0, 0)
+      setIframeLoad(true)
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err)
+      setIframeError(true)
+      setIframeLoad(false)
+    }
+  }
 
   useEffect(() => {
     const iframe = iframeRef.current
-    const handleIframe = () => {
-      try {
-        if (iframe === null) return
+    const iframeResizeHandler = () => {
+      if (iframe === null) return
 
-        const iframeDoc =
-          iframe.contentDocument || iframe.contentWindow?.document
-        if (!iframeDoc) return
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+      if (!iframeDoc) return
 
-        if (iframeDoc.title.includes('404')) {
-          setIframeError(true)
-          return
-        }
-        iframe.style.display = 'block'
-        iframe.classList.add('peer')
-
-        if (censored) censoringAnchorTags(iframeDoc)
-
-        const iframeBody = iframeDoc.body
-        iframe.style.height = `${iframeBody.scrollHeight + 10}px`
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error(err)
-        setIframeError(true)
-      }
+      const iframeBody = iframeDoc.body
+      iframe.style.margin = '0px auto'
+      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
     }
-    iframe?.addEventListener('load', handleIframe)
-    window.addEventListener('resize', handleIframe)
+
+    window.addEventListener('resize', iframeResizeHandler)
     return () => {
-      iframe?.removeEventListener('load', handleIframe)
-      window.removeEventListener('resize', handleIframe)
+      window.removeEventListener('resize', iframeResizeHandler)
     }
-  }, [censored])
+  }, [])
 
   return (
     <div className="h-auto min-h-dvh w-full pt-8 md:px-5 md:pb-12 md:pt-5">
@@ -101,7 +119,7 @@ export default function ArticleView({
           {articleType === 'user' && (
             <div className="scrollbar-hidden flex max-w-full grow items-center gap-2 overflow-x-auto md:justify-end">
               <BookmarkBtn articleId={data.id} />
-              <OfflineDownloadBtn />
+              {isIframeLoad && <OfflineDownloadBtn />}
             </div>
           )}
         </div>
@@ -116,8 +134,9 @@ export default function ArticleView({
                 iframeRef.current = node
               }}
               src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
-              className="hidden size-full min-h-full"
+              className="hidden size-full min-h-full bg-white"
               title={data.title}
+              onLoad={iframeLoadHandler}
               onError={() => setIframeError(true)}
             />
             <div className="min-h-dvh bg-gray-100 peer-[]:hidden md:rounded-lg dark:bg-gray-600" />

@@ -54,12 +54,9 @@ export default function CardItem({ type, ...data }: CardItemProps) {
             type === 'list' ? 'hidden' : 'block'
           } mr-2 block size-7 overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`}>
           <ThumbnailImage
-            src={data.newsletterThumbnailUrl || '/images/default-1x1.jpg'}
+            src={data.newsletterThumbnailUrl}
             alt={`뉴스레터 썸네일 이미지: ${data.newsletterName}`}
             type="profile"
-            // className="size-full object-cover"
-            // width={300}
-            // height={300}
           />
         </Link>
         <p
