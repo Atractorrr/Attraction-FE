@@ -35,7 +35,7 @@ function LoginView({ email }: RecentArticlesContainerProps) {
       </div>
       {isLoading ? <RecentArticlesSkeleton /> : null}
       {data ? (
-        <RecentArticles mainPageArticles={data.mainPageArticles} />
+        <RecentArticles mainPageArticles={data.data.mainPageArticles} />
       ) : null}
       {isError ? <CustomErrorGuideTxt /> : null}
     </div>

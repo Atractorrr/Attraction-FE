@@ -26,7 +26,11 @@ export default function ThumbnailImage({
   if (!isError && !!src) {
     return (
       <Image
-        src={src}
+        src={
+          src.includes('http')
+            ? src
+            : `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}${src}`
+        }
         alt={alt}
         width={width ?? type === 'profile' ? 300 : 720}
         height={height ?? type === 'profile' ? 300 : 480}
