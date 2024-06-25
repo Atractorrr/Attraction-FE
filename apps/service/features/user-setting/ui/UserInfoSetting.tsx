@@ -8,15 +8,14 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { useState } from 'react'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
-import UserDuplicateCheckInput from './UserDuplicateCheckInput'
-import UserSettingExpiration from './modal/UserSettingExpiration'
-import UserSettingInterest from './modal/UserSettingInterest'
+import useModal from '../lib/hook/useModal'
+import UserSettingExpirationDateModal from './modal/UserSettingExpirationDateModal'
+import UserSettingInterestModal from './modal/UserSettingInterestModal'
 import UserSettingItem from './modal/UserSettingItem'
-import UserSettingList from './modal/UserSettingList'
-import UserSettingModal from './modal/UserSettingModal'
+import UserSettingJobModal from './modal/UserSettingJobModal'
+import UserSettingNicknameModal from './modal/UserSettingNicknameModal'
 
 interface UserInfoSettingType {
   email: string
@@ -33,11 +32,7 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
 export default function UserInfoSetting({
   email: userEmail,
 }: UserInfoSettingType) {
-  const [activeNicknameModal, setActiveNicknameModal] = useState(false)
-  const [activeUserJobModal, setActiveUserJobModal] = useState(false)
-  const [activeUserInterestModal, setActiveUserInterestModal] = useState(false)
-  const [activeUserExpirationModal, setActiveUserExpirationModal] =
-    useState(false)
+  const { openModal, closeModal } = useModal()
 
   const queryClient = useQueryClient()
 
@@ -51,17 +46,13 @@ export default function UserInfoSetting({
       type,
       email,
     }: {
-      value: any
+      value: unknown
       type: 'interest' | 'nickname' | 'occupation' | 'expiration'
       email: string
     }) => {
       return postUserSettingInfo(value, type, email)
     },
     onSuccess: () => {
-      setActiveNicknameModal(false)
-      setActiveUserJobModal(false)
-      setActiveUserInterestModal(false)
-      setActiveUserExpirationModal(false)
       queryClient.invalidateQueries({ queryKey: ['profile', userEmail] })
     },
   })
@@ -73,7 +64,17 @@ export default function UserInfoSetting({
         <UserSettingItem
           title="닉네임 변경"
           subTitle={userProfile?.nickname}
-          setActiveModal={setActiveNicknameModal}
+          openModalHandler={() => {
+            openModal(UserSettingNicknameModal, {
+              onSubmit: async (value) => {
+                if (value) {
+                  mutate({ value, type: 'nickname', email: userEmail })
+                  closeModal(UserSettingNicknameModal)
+                }
+              },
+              initialValue: userProfile.nickname,
+            })
+          }}
           icon="chevron"
         />
         <UserSettingItem
@@ -81,21 +82,51 @@ export default function UserInfoSetting({
           subTitle={userProfile?.interest
             .map((el) => NEWSLETTER_CATEGORY[el])
             .join(', ')}
-          setActiveModal={setActiveUserInterestModal}
+          openModalHandler={() => {
+            openModal(UserSettingInterestModal, {
+              onSubmit: async (value) => {
+                if (value) {
+                  mutate({ value, type: 'interest', email: userEmail })
+                  closeModal(UserSettingInterestModal)
+                }
+              },
+              initialValue: userProfile!.interest,
+            })
+          }}
           icon="chevron"
         />
         <UserSettingItem
           title="산업분야 변경"
           subTitle={USER_INFO_OCCUPATION.get(userProfile!.occupation)}
-          setActiveModal={setActiveUserJobModal}
+          openModalHandler={() => {
+            openModal(UserSettingJobModal, {
+              onSubmit: async (value) => {
+                if (value) {
+                  mutate({ value, type: 'occupation', email: userEmail })
+                  closeModal(UserSettingJobModal)
+                }
+              },
+              initialValue: userProfile.occupation,
+            })
+          }}
           icon="chevron"
         />
         <UserSettingItem
           title="개인정보 수집 유효기간 변경"
           subTitle={` 오늘부터 ${userProfile?.userExpirationDate} 까지 활동이 없을 경우 계정이 자동으로
             탈퇴돼요`}
+          openModalHandler={() => {
+            openModal(UserSettingExpirationDateModal, {
+              onSubmit: async (value) => {
+                if (value) {
+                  mutate({ value, type: 'expiration', email: userEmail })
+                  closeModal(UserSettingExpirationDateModal)
+                }
+              },
+              initialValue: userProfile!.userExpiration.toString(),
+            })
+          }}
           bottomSubTitle
-          setActiveModal={setActiveUserExpirationModal}
           icon="chevron"
         />
         <UserSettingItem
@@ -103,71 +134,6 @@ export default function UserInfoSetting({
           subTitle={userProfile?.agreeAt}
           icon="none"
         />
-
-        {activeNicknameModal && (
-          <UserSettingModal
-            title="닉네임 변경"
-            postUserSetting={(value) => {
-              mutate({ value, type: 'nickname', email: userEmail })
-            }}
-            setActiveModal={setActiveNicknameModal}
-            renderItem={(setPostValue) => (
-              <UserDuplicateCheckInput
-                setModalValue={setPostValue}
-                initialValue={userProfile.nickname}
-              />
-            )}
-          />
-        )}
-        {activeUserJobModal && (
-          <UserSettingModal
-            title="산업분야 변경"
-            postUserSetting={(value) => {
-              mutate({ value, type: 'occupation', email: userEmail })
-            }}
-            setActiveModal={setActiveUserJobModal}
-            renderItem={(setPostValue) => (
-              <UserSettingList
-                listData={USER_INFO_OCCUPATION}
-                wrap
-                btnClickHandler={(keyItem) => {
-                  setPostValue({ occupation: keyItem })
-                }}
-                initialItem={userProfile.occupation}
-              />
-            )}
-          />
-        )}
-        {activeUserInterestModal && (
-          <UserSettingModal
-            title="관심사 변경"
-            postUserSetting={(value) => {
-              mutate({ value, type: 'interest', email: userEmail })
-            }}
-            setActiveModal={setActiveUserInterestModal}
-            renderItem={(setPostValue) => (
-              <UserSettingInterest
-                setModalValue={setPostValue}
-                initialValue={userProfile!.interest}
-              />
-            )}
-          />
-        )}
-        {activeUserExpirationModal && (
-          <UserSettingModal
-            title="개인정보 수집 유효기간 변경"
-            postUserSetting={(value) => {
-              mutate({ value, type: 'expiration', email: userEmail })
-            }}
-            setActiveModal={setActiveUserExpirationModal}
-            renderItem={(setPostValue) => (
-              <UserSettingExpiration
-                setModalValue={setPostValue}
-                initialValue={userProfile!.userExpiration.toString()}
-              />
-            )}
-          />
-        )}
       </Container>
     )
   )

@@ -7,6 +7,7 @@ import {
   UserInfoWithdraw,
 } from '@/features/user-setting'
 import { LoadingSpinner } from '@/shared/ui'
+import Modals from '@/features/user-setting/ui/modal/Modals'
 
 export const metadata: Metadata = {
   title: '개인설정',
@@ -23,6 +24,7 @@ export default function SettingPage() {
       <UserInfoGeneral />
       {/* <UserInfoAlert /> */}
       <UserInfoWithdraw />
+      <Modals />
     </div>
   )
 }
