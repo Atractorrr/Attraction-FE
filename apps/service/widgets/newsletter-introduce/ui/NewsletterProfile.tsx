@@ -1,5 +1,6 @@
 import { Container, ThumbnailImage } from '@/shared/ui'
 import { HouseOutline } from '@attraction/icons'
+import Link from 'next/link'
 import NewsletterSubscribeButton from './NewsletterSubscribeButton'
 import { fetchNewsletterProfile } from '../api'
 
@@ -37,14 +38,14 @@ export default async function NewsletterProfile({
               <h3 className="text-2xl font-bold">{data.name}</h3>
               <div className="flex flex-col gap-3 text-gray-500 md:flex-row dark:text-gray-400">
                 <p>{data.uploadDays}</p>
-                <a
-                  href={data.subscribeLink}
+                <Link
+                  href={data.mainLink}
                   className="flex gap-1 text-blue-400"
                   target="_blank"
                   rel="noopener noreferrer">
                   <HouseOutline className="size-5" />
                   <span>공식 홈페이지</span>
-                </a>
+                </Link>
               </div>
               <p className="hidden break-keep text-gray-500 md:block dark:text-gray-400">
                 {data.description}

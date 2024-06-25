@@ -10,6 +10,8 @@ interface PrevArticleDetailPageProps {
   }
 }
 
+export const revalidate = 1800
+
 export const metadata: Metadata = {
   title: '지난 아티클',
 }
