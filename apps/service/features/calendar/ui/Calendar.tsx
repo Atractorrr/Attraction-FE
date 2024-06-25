@@ -1,12 +1,12 @@
 'use client'
 
+import { useTheme } from '@/entities/theme'
+import { Container, ErrorGuideTxt } from '@/shared/ui'
 import dynamic from 'next/dynamic'
 import React from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
-import { ErrorBoundary } from 'react-error-boundary'
-import { Container, ErrorGuideTxt } from '@/shared/ui'
-import { useTheme } from '@/entities/theme'
 import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
 import { CalendarElement } from '../model'
 
@@ -17,8 +17,6 @@ interface CalendarProps {
 const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
   ssr: false,
 })
-
-// const theme = typeof window !== 'undefined' ? localStorage.getItem('theme') : ''
 
 function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
