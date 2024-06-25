@@ -2,15 +2,17 @@ import { useDebounce } from '@/shared/lib'
 import { ExclamationCircleOutline } from '@attraction/icons'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
-import { postDuplicateName } from '../api'
-import checkUserSettingInputError from '../lib/util/checkUserSettingInputError'
+import { postDuplicateName } from '../../api'
+import checkUserSettingInputError from '../../lib/util/checkUserSettingInputError'
+import { ModalComponentPropType } from '../../model/type'
+import UserSettingModal from './UserSettingModal'
 
 interface UserInfoNicknameInputType {
   initialValue: string
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-export default function UserInfoNicknameInput({
+function UserInfoNicknameInput({
   initialValue,
   setModalValue,
 }: UserInfoNicknameInputType) {
@@ -74,5 +76,31 @@ export default function UserInfoNicknameInput({
       )}
       {valid && <p className="mt-2 text-green-500">멋진 닉네임이에요! 👍</p>}
     </div>
+  )
+}
+
+export default function UserSettingNicknameModal({
+  onSubmit,
+  onClose,
+  initialValue,
+}: ModalComponentPropType) {
+  return (
+    <UserSettingModal
+      title="닉네임 변경"
+      postUserSetting={(value: unknown) => {
+        onSubmit(value)
+      }}
+      closeHandler={() => {
+        if (onClose) {
+          onClose()
+        }
+      }}
+      renderItem={(setPostValue) => (
+        <UserInfoNicknameInput
+          setModalValue={setPostValue}
+          initialValue={initialValue as string}
+        />
+      )}
+    />
   )
 }

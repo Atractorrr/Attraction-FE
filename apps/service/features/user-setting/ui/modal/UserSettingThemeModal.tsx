@@ -3,14 +3,14 @@ import { THEME_LIST, Theme, useTheme } from '@/entities/theme'
 import { Button } from '@attraction/design-system'
 import { CheckOutline } from '@attraction/icons'
 import { useState } from 'react'
+import { ModalComponentPropType } from '../../model/type'
+import UserSettingModal from './UserSettingModal'
 
 interface UserSettingThemeModalType {
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-export default function UserSettingThemeModal({
-  setModalValue,
-}: UserSettingThemeModalType) {
+function UserSettingTheme({ setModalValue }: UserSettingThemeModalType) {
   const listDataKeys: Theme[] = ['system', 'light', 'dark']
   const { currentTheme } = useTheme()
   const [activeKey, setActiveKey] = useState(currentTheme)
@@ -39,5 +39,27 @@ export default function UserSettingThemeModal({
         )
       })}
     </div>
+  )
+}
+
+export default function UserSettingThemeModal({
+  onSubmit,
+  onClose,
+}: ModalComponentPropType) {
+  return (
+    <UserSettingModal
+      title="개인정보 수집 유효기간 변경"
+      postUserSetting={(value: unknown) => {
+        onSubmit(value)
+      }}
+      closeHandler={() => {
+        if (onClose) {
+          onClose()
+        }
+      }}
+      renderItem={(setPostValue) => (
+        <UserSettingTheme setModalValue={setPostValue} />
+      )}
+    />
   )
 }

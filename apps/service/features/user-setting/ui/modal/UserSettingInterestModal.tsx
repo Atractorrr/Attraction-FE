@@ -2,6 +2,8 @@ import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Button } from '@attraction/design-system/dist'
 import { ExclamationCircleOutline } from '@attraction/icons'
 import { useEffect, useRef, useState } from 'react'
+import { ModalComponentPropType } from '../../model/type'
+import UserSettingModal from './UserSettingModal'
 
 interface UserPreferTagType {
   categoryKey: keyof typeof NEWSLETTER_CATEGORY
@@ -60,7 +62,7 @@ function UserInterestTag({
   )
 }
 
-export default function UserSettingInterest({
+function UserSettingInterest({
   setModalValue,
   initialValue,
 }: UserSettingInterestType) {
@@ -116,5 +118,31 @@ export default function UserSettingInterest({
         </p>
       )}
     </fieldset>
+  )
+}
+
+export default function UserSettingInterestModal({
+  onSubmit,
+  onClose,
+  initialValue,
+}: ModalComponentPropType) {
+  return (
+    <UserSettingModal
+      title="관심사 변경"
+      postUserSetting={(value: unknown) => {
+        onSubmit(value)
+      }}
+      closeHandler={() => {
+        if (onClose) {
+          onClose()
+        }
+      }}
+      renderItem={(setPostValue) => (
+        <UserSettingInterest
+          setModalValue={setPostValue}
+          initialValue={initialValue as (keyof typeof NEWSLETTER_CATEGORY)[]}
+        />
+      )}
+    />
   )
 }

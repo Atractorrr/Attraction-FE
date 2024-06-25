@@ -2,14 +2,18 @@
 
 import { Theme, useTheme } from '@/entities/theme'
 import { Container } from '@/shared/ui'
-import { useState } from 'react'
+import useModal from '../lib/hook/useModal'
 import UserSettingItem from './modal/UserSettingItem'
-import UserSettingModal from './modal/UserSettingModal'
 import UserSettingThemeModal from './modal/UserSettingThemeModal'
 
 export default function UserInfoGeneral() {
-  const [activeThemeModal, setActiveThemeModal] = useState(false)
-  const { setTheme } = useTheme()
+  const { openModal, closeModal } = useModal()
+  const { currentTheme, setTheme } = useTheme()
+  const getThemeText = (currentThemeValue: Theme) => {
+    if (currentThemeValue === 'dark') return '다크 테마'
+    if (currentThemeValue === 'light') return '라이트 테마'
+    return '시스템 테마'
+  }
 
   return (
     <Container className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl p-6">
@@ -21,23 +25,19 @@ export default function UserInfoGeneral() {
       /> */}
       <UserSettingItem
         title="화면 테마 설정"
-        subTitle="라이트 테마"
+        subTitle={getThemeText(currentTheme)}
         icon="chevron"
-        setActiveModal={setActiveThemeModal}
+        openModalHandler={() => {
+          openModal(UserSettingThemeModal, {
+            onSubmit: (value) => {
+              if (value) {
+                setTheme(value as Theme)
+                closeModal(UserSettingThemeModal)
+              }
+            },
+          })
+        }}
       />
-      {activeThemeModal && (
-        <UserSettingModal
-          title="화면 테마 설정"
-          postUserSetting={(value) => {
-            setTheme(value as Theme)
-            setActiveThemeModal(false)
-          }}
-          setActiveModal={setActiveThemeModal}
-          renderItem={(setPostValue) => (
-            <UserSettingThemeModal setModalValue={setPostValue} />
-          )}
-        />
-      )}
     </Container>
   )
 }

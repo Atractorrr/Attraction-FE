@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-key */
 
-import { PropsWithChildren, ReactElement, cloneElement } from 'react'
 import { AuthProvider, DefaultAuthState } from '@/entities/auth'
-import { ThemeProvider } from '@/entities/theme'
-import { QueryProvider, DeviceProvider } from '@/shared/lib'
 import { PWAProvider } from '@/entities/pwa'
+import { ThemeProvider } from '@/entities/theme'
+import { ModalProvider } from '@/features/user-setting/model'
+import { DeviceProvider, QueryProvider } from '@/shared/lib'
+import { PropsWithChildren, ReactElement, cloneElement } from 'react'
 
 interface MultiProviderProps {
   providers: ReactElement[]
@@ -35,6 +36,7 @@ export default function Provider({
         <QueryProvider />,
         <ThemeProvider />,
         <DeviceProvider />,
+        <ModalProvider />,
       ]}>
       {children}
     </MultiProvider>
