@@ -9,25 +9,34 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
   AlertDialogDescription,
+  AlertDialogTrigger,
 } from '@attraction/design-system'
 import { logout } from '../lib'
 
-interface LogoutConfirmTriggerProps extends PropsWithChildren {
-  isOpen?: boolean
+interface LogoutConfirmProps extends PropsWithChildren {
+  open?: boolean
   onOpenChange?: (status: boolean) => void
 }
 
-export default function LogoutConfirmTrigger({
+export default function LogoutConfirm({
   children,
-  isOpen,
+  open,
   onOpenChange,
-}: LogoutConfirmTriggerProps) {
+}: LogoutConfirmProps) {
   return (
-    <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
-      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
+      {!!children && (
+        <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+      )}
+      <AlertDialogContent
+        onEscapeKeyDown={() => {
+          if (children) {
+            setTimeout(() => {
+              document.body.style.pointerEvents = ''
+            }, 500)
+          }
+        }}>
         <AlertDialogHeader>
           <AlertDialogTitle>로그아웃 하시겠어요?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -35,7 +44,9 @@ export default function LogoutConfirmTrigger({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>취소</AlertDialogCancel>
+          <AlertDialogCancel onClick={() => onOpenChange?.(false)}>
+            취소
+          </AlertDialogCancel>
           <AlertDialogAction onClick={logout}>확인</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
