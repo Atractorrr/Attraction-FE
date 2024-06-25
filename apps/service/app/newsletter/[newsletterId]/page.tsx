@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: '뉴스레터 소개',
 }
 
+export const revalidate = 1800
+
 export default function NewsletterPage({
   params,
 }: {
