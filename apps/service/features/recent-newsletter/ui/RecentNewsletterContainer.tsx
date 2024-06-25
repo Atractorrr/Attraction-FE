@@ -1,16 +1,21 @@
-'use server'
+'use client'
 
-import Link from 'next/link'
-import { cookies } from 'next/headers'
-import { ClockOutline } from '@attraction/icons'
+import { useAuth } from '@/entities/auth'
 import { NewsCard } from '@/entities/news-card'
-import { Container, GuideTxt, Title } from '@/shared/ui'
 import { getTimeFromNow } from '@/shared/lib'
+import { Container, GuideTxt, Title } from '@/shared/ui'
+import { ClockOutline } from '@attraction/icons'
+import { skipToken, useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 import { fetchNewsletterList } from '../api'
 
-export default async function RecentNewsletterContainer() {
-  const email = cookies().get('email')?.value as string
-  const { data } = await fetchNewsletterList(email)
+export default function RecentNewsletterContainer() {
+  const { userEmail } = useAuth()
+
+  const { data: UserRecentNewsLetterResponse } = useQuery({
+    queryKey: ['user', userEmail],
+    queryFn: userEmail ? () => fetchNewsletterList(userEmail) : skipToken,
+  })
 
   return (
     <Container className="h-full overflow-hidden">
@@ -19,7 +24,7 @@ export default async function RecentNewsletterContainer() {
           icon={<ClockOutline className="text-2xl" />}
           text="최근 읽은 아티클"
         />
-        {data.mypageArticles.length !== 0 ? (
+        {UserRecentNewsLetterResponse?.data.mypageArticles.length !== 0 ? (
           <Link
             href="/inbox"
             className="text-sm font-medium text-gray-500 hover:text-blue-400 dark:hover:text-blue-300">
@@ -29,40 +34,42 @@ export default async function RecentNewsletterContainer() {
           ''
         )}
       </div>
-      {data.mypageArticles.length !== 0 ? (
+      {UserRecentNewsLetterResponse?.data.mypageArticles.length !== 0 ? (
         <div className="relative w-full">
           <div
             className=" overflow-x-auto
         before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-5 before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-5 after:bg-gradient-to-l after:from-white after:to-transparent dark:before:from-gray-800 dark:after:from-gray-800
         ">
             <div className="flex min-w-fit items-start justify-start gap-4 px-8 py-4">
-              {data.mypageArticles.map((article) => (
-                <Link href={`/inbox/article/${article.id}`} key={article.id}>
-                  <NewsCard key={article.id}>
-                    <NewsCard.Thumbnail
-                      imgSrc={article.thumbnailUrl}
-                      readPercentage={article.readPercentage}
-                      readingTime={article.readingTime}
-                      alt={`아티클 썸네일 이미지: ${article.title}`}
-                    />
-                    <NewsCard.Content>
-                      <div className="size-8 overflow-hidden rounded-full border-gray-100 dark:border-gray-700">
-                        <NewsCard.Profile
-                          src={article.newsletter.thumbnailUrl}
-                          alt={`뉴스레터 프로필 이미지: ${article.newsletter.name}`}
-                        />
-                      </div>
-                      <div className="w-[calc(100%-2.5rem)]">
-                        <NewsCard.Title type="main" content={article.title} />
-                        <NewsCard.Title
-                          type="sub"
-                          content={`${article.newsletter.name} · ${getTimeFromNow(article.receivedAt)}`}
-                        />
-                      </div>
-                    </NewsCard.Content>
-                  </NewsCard>
-                </Link>
-              ))}
+              {UserRecentNewsLetterResponse?.data.mypageArticles.map(
+                (article) => (
+                  <Link href={`/inbox/article/${article.id}`} key={article.id}>
+                    <NewsCard key={article.id}>
+                      <NewsCard.Thumbnail
+                        imgSrc={article.thumbnailUrl}
+                        readPercentage={article.readPercentage}
+                        readingTime={article.readingTime}
+                        alt={`아티클 썸네일 이미지: ${article.title}`}
+                      />
+                      <NewsCard.Content>
+                        <div className="size-8 overflow-hidden rounded-full border-gray-100 dark:border-gray-700">
+                          <NewsCard.Profile
+                            src={article.newsletter.thumbnailUrl}
+                            alt={`뉴스레터 프로필 이미지: ${article.newsletter.name}`}
+                          />
+                        </div>
+                        <div className="w-[calc(100%-2.5rem)]">
+                          <NewsCard.Title type="main" content={article.title} />
+                          <NewsCard.Title
+                            type="sub"
+                            content={`${article.newsletter.name} · ${getTimeFromNow(article.receivedAt)}`}
+                          />
+                        </div>
+                      </NewsCard.Content>
+                    </NewsCard>
+                  </Link>
+                ),
+              )}
             </div>
           </div>
         </div>
