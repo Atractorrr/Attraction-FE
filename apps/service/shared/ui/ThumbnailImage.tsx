@@ -9,7 +9,7 @@ interface ThumbnailImageProps {
   alt: string
   width?: number
   height?: number
-  type: 'article' | 'profile'
+  type?: 'article' | 'profile'
   logoType?: 'text' | 'icon'
 }
 
@@ -18,19 +18,19 @@ export default function ThumbnailImage({
   alt,
   width,
   height,
-  type,
+  type = 'article',
   logoType,
 }: ThumbnailImageProps) {
   const [isError, setError] = useState(false)
 
-  if (!isError && src) {
+  if (!isError && !!src) {
     return (
       <Image
         src={src}
         alt={alt}
         width={width ?? type === 'profile' ? 300 : 720}
         height={height ?? type === 'profile' ? 300 : 480}
-        className="block size-full object-cover"
+        className="block size-full bg-gray-50 object-cover dark:bg-gray-700"
         onError={() => setError(true)}
       />
     )
@@ -38,8 +38,7 @@ export default function ThumbnailImage({
 
   return (
     <p className="relative flex size-full items-center justify-center bg-gray-200 dark:bg-gray-700">
-      {(!logoType && logoType === 'icon') ||
-      (!logoType && type === 'profile') ? (
+      {logoType === 'icon' || (!logoType && type === 'profile') ? (
         <MainLogoSVG className="block h-auto w-1/3 text-gray-100 dark:text-gray-600" />
       ) : (
         <MainTextLogoSVG className="block h-auto w-1/3 max-w-48 text-gray-100 dark:text-gray-600" />

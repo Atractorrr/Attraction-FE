@@ -55,7 +55,7 @@ function UserInfoExpirationDate({
     </div>
   )
 }
-export default function UserInfoExpirationDateModal({
+export default function UserSettingExpirationDateModal({
   onSubmit,
   onClose,
   initialValue,

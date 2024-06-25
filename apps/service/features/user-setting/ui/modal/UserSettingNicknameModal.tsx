@@ -79,7 +79,7 @@ function UserInfoNicknameInput({
   )
 }
 
-export default function NicknameModal({
+export default function UserSettingNicknameModal({
   onSubmit,
   onClose,
   initialValue,

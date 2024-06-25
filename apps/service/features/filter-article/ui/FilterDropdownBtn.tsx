@@ -19,8 +19,8 @@ type FilterDropdownProps = CategoryDropdownProps & {
 }
 
 const sortTypeBtns: Array<[SortType, string]> = [
-  ['receivedAt,asc', '최신순'],
-  ['receivedAt,desc', '오래된순'],
+  ['receivedAt,desc', '최신순'],
+  ['receivedAt,asc', '오래된순'],
 ]
 
 export default function FilterDropdownBtn({

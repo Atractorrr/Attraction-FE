@@ -3,7 +3,7 @@
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
 import { ChevronLeftOutline } from '@attraction/icons'
 import { AuthButton, useAuth } from '@/entities/auth'
-import { ThemeDropdownBtn } from '@/features/set-theme'
+import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
 import { useTitle } from '../lib'
 import MobileHeaderBtn from './MobileHeaderBtn'

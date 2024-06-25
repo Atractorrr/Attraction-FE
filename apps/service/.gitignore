@@ -43,7 +43,9 @@ sw.js.map
 workbox-*.js
 workbox-*.js.map
 swe-worker-*.js
+swe-worker-*.js.map
 fallback-*.js
+fallback-*.js.map
 
 
 # Sentry Config File

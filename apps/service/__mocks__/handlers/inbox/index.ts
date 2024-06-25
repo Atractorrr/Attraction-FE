@@ -31,9 +31,9 @@ const sorted: Record<
   (a: Article | BookmarkArticle, b: Article | BookmarkArticle) => number
 > = {
   'receivedAt,desc': (a, b) =>
-    new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
-  'receivedAt,asc': (a, b) =>
     new Date(b.receivedAt).getTime() - new Date(a.receivedAt).getTime(),
+  'receivedAt,asc': (a, b) =>
+    new Date(a.receivedAt).getTime() - new Date(b.receivedAt).getTime(),
 }
 
 const inboxHandlers: HttpHandler[] = [
@@ -42,7 +42,7 @@ const inboxHandlers: HttpHandler[] = [
     const searchParams = getParams(request.url)
     const page = Number(searchParams.get('page') ?? 0)
     const size = Number(searchParams.get('size') ?? 20)
-    const sort = searchParams.get('sort') ?? 'receivedAt,asc'
+    const sort = searchParams.get('sort') ?? 'receivedAt,desc'
     const query = searchParams.get('q')
     const category = searchParams.get('category')
     const isInvalidRequest = !userEmail || [page, size].some(Number.isNaN)
@@ -59,9 +59,9 @@ const inboxHandlers: HttpHandler[] = [
       page > 0
         ? bookmarkArticle
             .map((article, i) => ({ ...article, id: page * size + i + 1 }))
-            .sort(sorted[sort as SortType] ?? sorted['receivedAt,asc'])
+            .sort(sorted[sort as SortType] ?? sorted['receivedAt,desc'])
         : [...bookmarkArticle].sort(
-            sorted[sort as SortType] ?? sorted['receivedAt,asc'],
+            sorted[sort as SortType] ?? sorted['receivedAt,desc'],
           )
     const searchedArticles = query
       ? sortedArticles.filter((article) => article.title.includes(query))
@@ -93,7 +93,7 @@ const inboxHandlers: HttpHandler[] = [
     const searchParams = getParams(request.url)
     const page = Number(searchParams.get('page') ?? 0)
     const size = Number(searchParams.get('size') ?? 20)
-    const sort = searchParams.get('sort') ?? 'receivedAt,asc'
+    const sort = searchParams.get('sort') ?? 'receivedAt,desc'
     const isRead = searchParams.get('isHideRead') === 'true'
     const query = searchParams.get('q')
     const category = searchParams.get('category')
@@ -107,9 +107,9 @@ const inboxHandlers: HttpHandler[] = [
       page > 0
         ? articles
             .map((article, i) => ({ ...article, id: page * size + i + 1 }))
-            .sort(sorted[sort as SortType] ?? sorted['receivedAt,asc'])
+            .sort(sorted[sort as SortType] ?? sorted['receivedAt,desc'])
         : [...articles].sort(
-            sorted[sort as SortType] ?? sorted['receivedAt,asc'],
+            sorted[sort as SortType] ?? sorted['receivedAt,desc'],
           )
     const readArticles = isRead
       ? sortedArticles.filter((article) => article.readPercentage === 0)
