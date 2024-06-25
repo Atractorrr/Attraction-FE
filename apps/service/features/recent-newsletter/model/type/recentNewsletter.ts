@@ -1,14 +1,21 @@
-export interface RecentNewsletter {
+interface RecentNewsletter {
   id: number
-  image: {
-    thumbnail: string
-    profile: string
-  }
-  info: {
-    title: string
+  title: string
+  thumbnailUrl: string
+  readingTime: number
+  receivedAt: string
+  readPercentage: number
+  newsletter: {
+    id: number
     name: string
-    date: string
-    readingTime: number
-    readPercentage: number
+    thumbnailUrl: string
+  }
+}
+
+export interface RecentNewsletterResponse {
+  status: string
+  message: string
+  data: {
+    mypageArticles: RecentNewsletter[]
   }
 }

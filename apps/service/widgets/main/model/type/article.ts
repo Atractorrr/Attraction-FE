@@ -1,14 +1,19 @@
 export interface RecentArticle {
   id: number
-  newsletterThumbnailUrl: string
-  newsletterTitle: string
-  articleThumbnailUrl: string
   title: string
-  date: Date
+  thumbnailUrl: string
   readingTime: number
+  receivedAt: string
   readPercentage: number
+  newsletter: {
+    id: number
+    name: string
+    thumbnailUrl: string
+  }
 }
 
 export interface RecentArticleResponse {
-  mainPageArticles: RecentArticle[]
+  data: {
+    mainPageArticles: RecentArticle[]
+  }
 }

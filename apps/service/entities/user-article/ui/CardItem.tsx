@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { getTimeFromNow } from '@/shared/lib'
 import { ThumbnailImage } from '@/shared/ui'
 import { ViewType } from '../model'
-import { daysAgo } from '../lib'
 import ToBeDeletedTxt from './ToBeDeletedTxt'
 
 interface CardItemProps {
@@ -19,6 +18,8 @@ interface CardItemProps {
 }
 
 export default function CardItem({ type, ...data }: CardItemProps) {
+  const receivedAt = getTimeFromNow(data.receivedAt)
+
   return (
     <div className={`${type === 'list' ? 'flex' : 'block'} h-auto w-full`}>
       <Link
@@ -35,14 +36,14 @@ export default function CardItem({ type, ...data }: CardItemProps) {
           type="article"
         />
         {!!data.readPercentage && data.readPercentage > 0 && (
-          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
+          <span className="absolute inset-x-0 bottom-0 h-1 bg-gray-100 dark:bg-gray-300">
             <span
               className="absolute inset-x-0 h-1 bg-blue-400"
               style={{ width: `${data.readPercentage}%` }}
             />
           </span>
         )}
-        <span className="absolute bottom-2 right-2 rounded bg-black/60 p-1 text-xs text-white">
+        <span className="absolute bottom-2 right-2 rounded bg-black/60 px-1.5 py-1 text-xs text-white">
           {data.readingTime > 0 ? `약 ${data.readingTime}분` : '1분 미만'}
         </span>
       </Link>
@@ -70,9 +71,9 @@ export default function CardItem({ type, ...data }: CardItemProps) {
             {data.articleTitle}
           </Link>
           <span className="block break-keep text-sm text-gray-500 dark:text-gray-400">
-            {data.newsletterName} &middot; {getTimeFromNow(data.receivedAt)}
+            {data.newsletterName} &middot; {receivedAt}
           </span>
-          {daysAgo(data.receivedAt) === 7 && <ToBeDeletedTxt />}
+          {receivedAt.includes('7') && <ToBeDeletedTxt />}
         </p>
       </div>
     </div>

@@ -20,13 +20,13 @@ export default function CardThumbnail({
       <div className="h-48 max-h-60 min-h-40 w-full shrink-0 overflow-hidden">
         <ThumbnailImage type="article" src={imgSrc} alt={alt} />
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-1 bg-gray-200">
+      <div className="absolute inset-x-0 bottom-0 h-1 bg-gray-100 dark:bg-gray-300">
         <span
           className="absolute inset-y-0 bg-blue-400"
           style={{ width: `${readPercentage}%` }}
         />
       </div>
-      <div className="absolute bottom-2 right-2 w-fit self-end rounded-md bg-black/60 p-1 text-xs text-white ">
+      <div className="absolute bottom-2 right-2 w-fit self-end rounded-md bg-black/60 px-1.5 py-1 text-xs text-white ">
         약 {readingTime}분
       </div>
     </div>
