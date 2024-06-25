@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 
 import { AuthProvider, DefaultAuthState } from '@/entities/auth'
+import { ChannelTalkProvider } from '@/entities/channelTalk'
 import { PWAProvider } from '@/entities/pwa'
 import { ThemeProvider } from '@/entities/theme'
 import { ModalProvider } from '@/features/user-setting/model'
@@ -31,6 +32,7 @@ export default function Provider({
   return (
     <MultiProvider
       providers={[
+        <ChannelTalkProvider />,
         <PWAProvider />,
         <AuthProvider {...props} />,
         <QueryProvider />,
