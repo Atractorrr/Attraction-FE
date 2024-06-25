@@ -1,15 +1,18 @@
-'use server'
+'use client'
 
+import { useAuth } from '@/entities/auth'
 import { Container, GuideTxt, ThumbnailImage, Title } from '@/shared/ui'
 import { DocumentListOutline } from '@attraction/icons'
-import { cookies } from 'next/headers'
+import { skipToken, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { fetchSubscribeList } from '../api'
-import { SubscribeItem } from '../model'
 
-export default async function SubscribeList() {
-  const email = cookies().get('email')?.value as string
-  const subscribeList: SubscribeItem[] = await fetchSubscribeList(email)
+export default function SubscribeList() {
+  const { userEmail } = useAuth()
+  const { data: subscribeList } = useQuery({
+    queryKey: ['userSubscribe', userEmail],
+    queryFn: userEmail ? () => fetchSubscribeList(userEmail) : skipToken,
+  })
 
   return (
     <Container className="h-full xl:h-auto xl:min-h-full">
@@ -20,9 +23,9 @@ export default async function SubscribeList() {
             text="구독한 뉴스레터"
           />
         </div>
-        {subscribeList.length !== 0 ? (
+        {subscribeList?.length !== 0 ? (
           <ul className="flex flex-col justify-start overflow-y-auto px-3 xl:h-[calc(100%-64px)] xl:max-h-64">
-            {subscribeList.map((newsletter) => (
+            {subscribeList?.map((newsletter) => (
               <li key={newsletter.id} className="peer peer-[]:mt-1">
                 <Link
                   href={`/newsletter/${newsletter.id}`}
