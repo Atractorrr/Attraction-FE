@@ -13,7 +13,7 @@ import React, { ReactNode, useState } from 'react'
 
 type UserSettingModalType = {
   postUserSetting: (value: unknown) => void
-  setActiveModal: React.Dispatch<React.SetStateAction<boolean>>
+  closeHandler?: () => void
   renderItem: (
     setPostValue: React.Dispatch<React.SetStateAction<unknown | undefined>>,
   ) => ReactNode
@@ -23,7 +23,7 @@ type UserSettingModalType = {
 export default function UserSettingModal({
   postUserSetting,
   renderItem,
-  setActiveModal,
+  closeHandler,
   title,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
@@ -47,7 +47,9 @@ export default function UserSettingModal({
           <DrawerClose asChild>
             <Button
               className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
-              onClick={() => setActiveModal(false)}>
+              onClick={() => {
+                closeHandler!()
+              }}>
               취소
             </Button>
           </DrawerClose>
@@ -60,7 +62,7 @@ export default function UserSettingModal({
         role="presentation"
         className="absolute -z-10 block size-full bg-gray-400 opacity-70"
         onClick={() => {
-          setActiveModal(false)
+          closeHandler!()
         }}
       />
       <div className="h-fit w-[95%] rounded-xl bg-white p-6 sm:w-2/3 md:w-[30rem] dark:bg-gray-800">
@@ -70,7 +72,9 @@ export default function UserSettingModal({
           <div className="flex gap-2">
             <Button
               className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
-              onClick={() => setActiveModal(false)}>
+              onClick={() => {
+                closeHandler!()
+              }}>
               취소
             </Button>
             <Button

@@ -4,13 +4,15 @@ import { Button } from '@attraction/design-system/dist'
 import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
 import { useState } from 'react'
 import { USER_INFO_EXPIRATION } from '../../constant'
+import { ModalComponentPropType } from '../../model/type'
+import UserSettingModal from './UserSettingModal'
 
 interface UserInfoExpirationDateType {
   initialValue: string
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-export default function UserInfoExpirationDate({
+function UserInfoExpirationDate({
   initialValue,
   setModalValue,
 }: UserInfoExpirationDateType) {
@@ -51,5 +53,30 @@ export default function UserInfoExpirationDate({
         ''
       )}
     </div>
+  )
+}
+export default function UserInfoExpirationDateModal({
+  onSubmit,
+  onClose,
+  initialValue,
+}: ModalComponentPropType) {
+  return (
+    <UserSettingModal
+      title="개인정보 수집 유효기간 변경"
+      postUserSetting={(value: unknown) => {
+        onSubmit(value)
+      }}
+      closeHandler={() => {
+        if (onClose) {
+          onClose()
+        }
+      }}
+      renderItem={(setPostValue) => (
+        <UserInfoExpirationDate
+          setModalValue={setPostValue}
+          initialValue={initialValue as string}
+        />
+      )}
+    />
   )
 }
