@@ -32,7 +32,12 @@ export default function UserSettingWithdrawModal({
     <Drawer
       open={activeModal}
       onOpenChange={(open) => {
-        return !open ? onClose?.() : undefined
+        if (!open) {
+          setActiveModal(false)
+          setTimeout(() => {
+            onClose?.()
+          }, 300)
+        }
       }}>
       <DrawerContent>
         <DrawerHeader className="text-left">
@@ -40,10 +45,10 @@ export default function UserSettingWithdrawModal({
         </DrawerHeader>
         <DrawerFooter className="flex !flex-row-reverse items-center justify-center pt-2">
           <Button
-            title="변경하기"
+            title="확인"
             className="w-2/3 grow whitespace-nowrap rounded-lg bg-blue-50 px-6 py-3 text-blue-400 transition-colors hover:bg-blue-100 xs:text-lg md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
             onClick={() => onSubmit(null)}>
-            변경
+            확인
           </Button>
           <DrawerClose asChild>
             <Button

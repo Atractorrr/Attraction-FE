@@ -33,7 +33,12 @@ export default function UserSettingModal({
     <Drawer
       open={activeModal}
       onOpenChange={(open) => {
-        return !open ? closeHandler?.() : undefined
+        if (!open) {
+          setActiveModal(false)
+          setTimeout(() => {
+            closeHandler?.()
+          }, 300)
+        }
       }}>
       <DrawerContent>
         <DrawerHeader className="text-left">

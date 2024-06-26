@@ -26,11 +26,11 @@ export default function UserInfoWithdraw() {
   const { mutate } = useMutation({
     mutationFn: (email: string) => deleteUserInfo(email),
     onSuccess: async () => {
-      await fetch(`${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`, {
-        method: 'DELETE',
-      })
-      router.refresh()
+      await fetch(`${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`)
       router.push('/')
+      setTimeout(() => {
+        window.location.reload()
+      }, 300)
     },
   })
   return (
