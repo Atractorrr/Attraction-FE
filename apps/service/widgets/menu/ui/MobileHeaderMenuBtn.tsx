@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
 import {
   ArrowLeftStartOnRectangleOutline,
   BarsOutline,
@@ -11,13 +10,11 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from '@attraction/design-system/dist'
-import { LogoutConfirmTrigger } from '@/entities/auth'
+import { LogoutConfirm } from '@/entities/auth'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import { SIDE_MENU } from '../constant'
 
 export default function MobileHeaderMenuBtn() {
-  const [isConfirmOpen, setConfirmOpen] = useState(false)
-
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -45,9 +42,7 @@ export default function MobileHeaderMenuBtn() {
             ))}
             <li className="m-4 h-px w-[calc(100%-2rem)] bg-gray-100 dark:bg-gray-700" />
             <li>
-              <LogoutConfirmTrigger
-                isOpen={isConfirmOpen}
-                onOpenChange={setConfirmOpen}>
+              <LogoutConfirm>
                 <button
                   type="button"
                   title="로그아웃"
@@ -55,7 +50,7 @@ export default function MobileHeaderMenuBtn() {
                   <ArrowLeftStartOnRectangleOutline className="text-2xl" />
                   <span className="whitespace-nowrap text-lg">로그아웃</span>
                 </button>
-              </LogoutConfirmTrigger>
+              </LogoutConfirm>
             </li>
           </ul>
         </div>

@@ -127,13 +127,13 @@ export default function ArticleView({
       <div className="min-h-full w-full overflow-hidden md:rounded-lg">
         {!isIframeError &&
         !!data.contentUrl &&
-        /\/[^\\/]+\.html$/g.test(data.contentUrl) ? (
+        /.html$/g.test(data.contentUrl) ? (
           <>
             <iframe
               ref={(node) => {
                 iframeRef.current = node
               }}
-              src={`/html/article${data.contentUrl.match(/\/[^\\/]+\.html$/g)![0]}`}
+              src={`/html${data.contentUrl}`}
               className="hidden size-full min-h-full bg-white"
               title={data.title}
               onLoad={iframeLoadHandler}
