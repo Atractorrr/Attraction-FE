@@ -3,7 +3,7 @@
 import { Button } from '@attraction/design-system/dist'
 import { useState } from 'react'
 import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../../constant'
-import { ModalComponentPropType } from '../../model/type'
+import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
 interface UserSettingListProps {
@@ -24,13 +24,21 @@ function UserSettingList({
 
   return (
     <div
-      className={`${wrap ? 'flex flex-wrap gap-4 *:rounded-full' : 'mb-2 grid grid-cols-2 gap-2 *:w-full *:rounded-lg md:flex'}`}>
+      className={
+        wrap
+          ? 'flex flex-wrap gap-x-3 gap-y-4 *:rounded-full'
+          : 'mb-2 grid grid-cols-2 gap-2 *:w-full *:rounded-lg md:flex'
+      }>
       {listDataKeys.map((listDataKey) => {
         return (
           <Button
             type="button"
             key={listDataKey}
-            className={`rounded-lg ${activeKey === listDataKey ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700' : 'bg-gray-50 dark:bg-gray-700'} px-6 py-2 `}
+            className={`rounded-full px-6 py-2 transition-colors ${
+              activeKey === listDataKey
+                ? 'bg-gray-700 text-gray-50 dark:bg-gray-50  dark:text-gray-700'
+                : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
+            }`}
             onClick={() => {
               btnClickHandler.call(null, listDataKey)
               setActiveKey(listDataKey)

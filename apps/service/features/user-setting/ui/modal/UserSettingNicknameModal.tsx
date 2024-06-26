@@ -1,10 +1,10 @@
-import { useDebounce } from '@/shared/lib'
-import { ExclamationCircleOutline } from '@attraction/icons'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import { useDebounce } from '@/shared/lib'
+import { WarnTxt } from '@/shared/ui'
 import { postDuplicateName } from '../../api'
-import checkUserSettingInputError from '../../lib/util/checkUserSettingInputError'
-import { ModalComponentPropType } from '../../model/type'
+import { checkUserSettingInputError } from '../../lib'
+import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
 interface UserInfoNicknameInputType {
@@ -54,27 +54,26 @@ function UserInfoNicknameInput({
 
   return (
     <div className="mb-6 block">
-      <label htmlFor="nickName" className="mb-2 flex flex-col gap-2 text-sm">
+      <label htmlFor="nickName" className="mb-2 block px-1 text-sm">
         닉네임
-        <input
-          autoComplete="off"
-          value={nickname}
-          id="nickName"
-          className="grow rounded-lg border border-gray-100 px-3 py-2 text-base outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700"
-          placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
-          onChange={(e) => {
-            setNickname(e.target.value)
-            setIsValid(false)
-          }}
-        />
       </label>
-      {!!alert.length && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-400">
-          <ExclamationCircleOutline />
-          {alert}
+      <input
+        autoComplete="off"
+        value={nickname}
+        id="nickName"
+        className="block h-12 w-full rounded-lg border border-gray-100 px-3 py-2 text-base outline-none transition-colors focus:border-blue-400 dark:border-gray-700 dark:bg-gray-700 dark:focus:bg-gray-800"
+        placeholder="서비스에서 사용할 닉네임을 입력해 주세요"
+        onChange={(e) => {
+          setNickname(e.target.value)
+          setIsValid(false)
+        }}
+      />
+      {!!alert.length && <WarnTxt content={alert} color="red" />}
+      {valid && (
+        <p className="mt-3 px-1 text-green-500 dark:text-green-300">
+          멋진 닉네임이에요! 👍
         </p>
       )}
-      {valid && <p className="mt-2 text-green-500">멋진 닉네임이에요! 👍</p>}
     </div>
   )
 }

@@ -1,9 +1,12 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { THEME_LIST, Theme, useTheme } from '@/entities/theme'
-import { Button } from '@attraction/design-system'
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+'use client'
+
+import { useEffect, useState } from 'react'
 import { CheckOutline } from '@attraction/icons'
-import { useState } from 'react'
-import { ModalComponentPropType } from '../../model/type'
+import { THEME_LIST, Theme, useTheme } from '@/entities/theme'
+import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
 interface UserSettingThemeModalType {
@@ -11,31 +14,41 @@ interface UserSettingThemeModalType {
 }
 
 function UserSettingTheme({ setModalValue }: UserSettingThemeModalType) {
-  const listDataKeys: Theme[] = ['system', 'light', 'dark']
   const { currentTheme } = useTheme()
-  const [activeKey, setActiveKey] = useState(currentTheme)
+  const [activeTheme, setActiveTheme] = useState<Theme>('system')
+
+  useEffect(() => setActiveTheme(currentTheme), [currentTheme])
+  useEffect(() => setModalValue(activeTheme), [activeTheme, setModalValue])
 
   return (
     <div className="mb-5 block">
-      {listDataKeys.map((listDataKey) => {
+      {THEME_LIST.map(([theme, themeLabel]) => {
         return (
-          <Button
-            type="button"
-            key={listDataKey}
-            className="mb-5 flex gap-4"
-            onClick={() => {
-              setModalValue(listDataKey)
-              setActiveKey(listDataKey)
-            }}>
-            <label
-              htmlFor={listDataKey}
-              className={` flex size-5 cursor-pointer items-center justify-center rounded-full p-1  ${activeKey === listDataKey ? 'bg-gray-700 dark:bg-gray-100' : 'border-2 border-gray-100 dark:border-gray-600'} focus:border-none`}>
-              <CheckOutline
-                className={`size-full rounded-md font-bold ${activeKey === listDataKey ? 'visible' : 'invisible'} peer text-white dark:text-gray-700`}
+          <p key={theme} className="peer flex items-center gap-4 peer-[]:mt-4">
+            <span className="relative size-6">
+              <input
+                type="radio"
+                name={theme}
+                value={theme}
+                className={`size-full cursor-pointer appearance-none rounded-full border-2 transition-colors disabled:cursor-auto ${
+                  activeTheme === theme
+                    ? 'border-gray-700 bg-gray-700 dark:border-gray-50 dark:bg-gray-50'
+                    : 'border-gray-100 dark:border-gray-600'
+                }`}
+                checked={activeTheme === theme}
+                onChange={() => setActiveTheme(theme)}
               />
+              {activeTheme === theme && (
+                <CheckOutline className="absolute inset-0 m-auto size-4 rounded-md font-bold text-white dark:text-gray-700" />
+              )}
+            </span>
+            <label
+              htmlFor={theme}
+              className="cursor-pointer whitespace-nowrap text-lg"
+              onClick={() => setActiveTheme(theme)}>
+              {themeLabel}
             </label>
-            {THEME_LIST[listDataKey]}
-          </Button>
+          </p>
         )
       })}
     </div>
@@ -48,7 +61,7 @@ export default function UserSettingThemeModal({
 }: ModalComponentPropType) {
   return (
     <UserSettingModal
-      title="개인정보 수집 유효기간 변경"
+      title="테마 변경"
       postUserSetting={(value: unknown) => {
         onSubmit(value)
       }}
