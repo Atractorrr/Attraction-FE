@@ -15,9 +15,12 @@ import {
   MemberOutline,
   ArrowLeftStartOnRectangleOutline,
 } from '@attraction/icons'
+import { ThumbnailImage } from '@/shared/ui'
 import LogoutConfirm from './LogoutConfirm'
+import { useAuth } from '../model'
 
 export default function ProfileDropdown() {
+  const { userProfileImgURL, userNickname } = useAuth()
   const [isDropdownOpen, setDropdownOpen] = useState(false)
   const [isConfirmOpen, setConfirmOpen] = useState(false)
 
@@ -29,7 +32,15 @@ export default function ProfileDropdown() {
             // TODO: 프로필 사진 삽입
             type="button"
             className="flex size-12 items-center justify-center overflow-hidden rounded-lg border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800">
-            <MemberOutline className="text-xl text-gray-500 dark:text-gray-400" />
+            {userProfileImgURL ? (
+              <ThumbnailImage
+                src={userProfileImgURL}
+                alt={`유저 프로필 이미지: ${userNickname}`}
+                type="profile"
+              />
+            ) : (
+              <MemberOutline className="text-xl text-gray-500 dark:text-gray-400" />
+            )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48">

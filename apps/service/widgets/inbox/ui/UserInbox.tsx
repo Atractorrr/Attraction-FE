@@ -125,7 +125,7 @@ export default function UserInbox({ isArticleView, pageType }: InboxProps) {
             <div
               className={
                 isArticleView
-                  ? 'h-[54vh] min-h-80 overflow-y-auto px-5 pb-6 pt-4'
+                  ? 'h-[54vh] min-h-80 overflow-y-auto overscroll-none px-5 pb-6 pt-4'
                   : undefined
               }>
               {isLoading && (

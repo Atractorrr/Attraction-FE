@@ -14,15 +14,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useAuth } from '@/entities/auth'
 import { postSignUpForm } from '../api'
 import { checkSignUpFormErr } from '../lib'
 import { useSignUpFunnel } from '../lib/hook'
 
-interface SignUpPropsType {
-  email: string | undefined
-}
-
-export default function SignUp({ email }: SignUpPropsType) {
+export default function SignUp() {
+  const { userEmail } = useAuth()
   const router = useRouter()
 
   const signUpFieldArr = useMemo(
@@ -50,7 +48,7 @@ export default function SignUp({ email }: SignUpPropsType) {
   )
   const formMethod = useForm<SignUpFormType>({
     defaultValues: {
-      email,
+      email: userEmail!,
       nickname: '',
       isNickNameChecked: false,
       interest: [],
@@ -100,7 +98,7 @@ export default function SignUp({ email }: SignUpPropsType) {
   const onSubmit = async (data: SignUpFormType) => {
     if (activeIndex === signUpFieldArr.length - 1) {
       mutate({
-        email: email as string,
+        email: userEmail as string,
         nickname: data.nickname,
         interest: data.interest,
         birthDate: data.birthDate,

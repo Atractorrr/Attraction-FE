@@ -1,3 +1,4 @@
+import { WithAuth } from '@/entities/auth'
 import {
   UserInfoGeneral,
   UserInfoSetting,
@@ -14,14 +15,16 @@ export const metadata: Metadata = {
 
 export default function SettingPage() {
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-6">
-      <Suspense fallback={<LoadingSpinner />}>
-        <UserInfoSetting />
-      </Suspense>
-      <UserInfoGeneral />
-      {/* <UserInfoAlert /> */}
-      <UserInfoWithdraw />
-      <Modals />
-    </div>
+    <WithAuth>
+      <div className="flex w-full flex-col items-center justify-center gap-6">
+        <Suspense fallback={<LoadingSpinner />}>
+          <UserInfoSetting />
+        </Suspense>
+        <UserInfoGeneral />
+        {/* <UserInfoAlert /> */}
+        <UserInfoWithdraw />
+        <Modals />
+      </div>
+    </WithAuth>
   )
 }
