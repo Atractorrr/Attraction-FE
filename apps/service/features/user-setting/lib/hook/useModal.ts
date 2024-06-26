@@ -1,6 +1,5 @@
 import { useContext } from 'react'
-import { ModalDispatchContext } from '../../model'
-import { ModalComponentPropType } from '../../model/type'
+import { ModalDispatchContext, ModalComponentPropType } from '../../model'
 
 const useModal = () => {
   const { open, close } = useContext(ModalDispatchContext)

@@ -59,82 +59,86 @@ export default function UserInfoSetting({
 
   return (
     userProfile && (
-      <Container className="flex w-full max-w-[600px] flex-col gap-7 rounded-2xl p-6">
-        <p className="text-lg font-bold">계정</p>
-        <UserSettingItem
-          title="닉네임 변경"
-          subTitle={userProfile?.nickname}
-          openModalHandler={() => {
-            openModal(UserSettingNicknameModal, {
-              onSubmit: async (value) => {
-                if (value) {
-                  mutate({ value, type: 'nickname', email: userEmail })
-                  closeModal(UserSettingNicknameModal)
-                }
-              },
-              initialValue: userProfile.nickname,
-            })
-          }}
-          icon="chevron"
-        />
-        <UserSettingItem
-          title="관심사 변경"
-          subTitle={userProfile?.interest
-            .map((el) => NEWSLETTER_CATEGORY[el])
-            .join(', ')}
-          openModalHandler={() => {
-            openModal(UserSettingInterestModal, {
-              onSubmit: async (value) => {
-                if (value) {
-                  mutate({ value, type: 'interest', email: userEmail })
-                  closeModal(UserSettingInterestModal)
-                }
-              },
-              initialValue: userProfile!.interest,
-            })
-          }}
-          icon="chevron"
-        />
-        <UserSettingItem
-          title="산업분야 변경"
-          subTitle={USER_INFO_OCCUPATION.get(userProfile!.occupation)}
-          openModalHandler={() => {
-            openModal(UserSettingJobModal, {
-              onSubmit: async (value) => {
-                if (value) {
-                  mutate({ value, type: 'occupation', email: userEmail })
-                  closeModal(UserSettingJobModal)
-                }
-              },
-              initialValue: userProfile.occupation,
-            })
-          }}
-          icon="chevron"
-        />
-        <UserSettingItem
-          title="개인정보 수집 유효기간 변경"
-          subTitle={` 오늘부터 ${userProfile?.userExpirationDate} 까지 활동이 없을 경우 계정이 자동으로
-            탈퇴돼요`}
-          openModalHandler={() => {
-            openModal(UserSettingExpirationDateModal, {
-              onSubmit: async (value) => {
-                if (value) {
-                  mutate({ value, type: 'expiration', email: userEmail })
-                  closeModal(UserSettingExpirationDateModal)
-                }
-              },
-              initialValue: userProfile!.userExpiration.toString(),
-            })
-          }}
-          bottomSubTitle
-          icon="chevron"
-        />
-        <UserSettingItem
-          title="약관 및 개인정보 처리 동의"
-          subTitle={userProfile?.agreeAt}
-          icon="none"
-        />
-      </Container>
+      <div className="mx-auto w-full md:max-w-xl">
+        <Container>
+          <div className="mx-auto flex max-w-xl flex-col gap-3 p-2 md:max-w-none md:p-3">
+            <h3 className="px-3 pt-2 text-lg font-bold">계정</h3>
+            <UserSettingItem
+              title="닉네임 변경"
+              subTitle={userProfile?.nickname}
+              openModalHandler={() => {
+                openModal(UserSettingNicknameModal, {
+                  onSubmit: async (value) => {
+                    if (value) {
+                      mutate({ value, type: 'nickname', email: userEmail })
+                      closeModal(UserSettingNicknameModal)
+                    }
+                  },
+                  initialValue: userProfile.nickname,
+                })
+              }}
+              icon="chevron"
+            />
+            <UserSettingItem
+              title="관심사 변경"
+              subTitle={userProfile?.interest
+                .map((el) => NEWSLETTER_CATEGORY[el])
+                .join(', ')}
+              openModalHandler={() => {
+                openModal(UserSettingInterestModal, {
+                  onSubmit: async (value) => {
+                    if (value) {
+                      mutate({ value, type: 'interest', email: userEmail })
+                      closeModal(UserSettingInterestModal)
+                    }
+                  },
+                  initialValue: userProfile!.interest,
+                })
+              }}
+              icon="chevron"
+            />
+            <UserSettingItem
+              title="산업분야 변경"
+              subTitle={USER_INFO_OCCUPATION.get(userProfile!.occupation)}
+              openModalHandler={() => {
+                openModal(UserSettingJobModal, {
+                  onSubmit: async (value) => {
+                    if (value) {
+                      mutate({ value, type: 'occupation', email: userEmail })
+                      closeModal(UserSettingJobModal)
+                    }
+                  },
+                  initialValue: userProfile.occupation,
+                })
+              }}
+              icon="chevron"
+            />
+            <UserSettingItem
+              title="개인정보 수집 유효기간 변경"
+              subTitle={` 오늘부터 ${userProfile?.userExpirationDate} 까지 활동이 없을 경우 계정이 자동으로
+                탈퇴돼요`}
+              openModalHandler={() => {
+                openModal(UserSettingExpirationDateModal, {
+                  onSubmit: async (value) => {
+                    if (value) {
+                      mutate({ value, type: 'expiration', email: userEmail })
+                      closeModal(UserSettingExpirationDateModal)
+                    }
+                  },
+                  initialValue: userProfile!.userExpiration.toString(),
+                })
+              }}
+              bottomSubTitle
+              icon="chevron"
+            />
+            <UserSettingItem
+              title="약관 및 개인정보 처리 동의"
+              subTitle={userProfile?.agreeAt}
+              icon="none"
+            />
+          </div>
+        </Container>
+      </div>
     )
   )
 }

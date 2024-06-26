@@ -1,1 +1,2 @@
-export { default as THEME_LIST } from './theme-list'
+export { default as THEME_LIST } from './themeList'
+export { default as THEME_NAME } from './themeName'

@@ -9,13 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@attraction/design-system/dist'
 import { MoonStarOutline, SunOutline } from '@attraction/icons'
-import { Theme, useTheme } from '../model'
-
-const themeBtns: Array<[Theme, string]> = [
-  ['system', '시스템 테마'],
-  ['light', '밝은 테마'],
-  ['dark', '어두운 테마'],
-]
+import { useTheme } from '../model'
+import { THEME_LIST } from '../constant'
 
 export default function ThemeDropdownBtn() {
   const { currentTheme, realTheme, setTheme } = useTheme()
@@ -31,7 +26,7 @@ export default function ThemeDropdownBtn() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
         <DropdownMenuRadioGroup value={currentTheme}>
-          {themeBtns.map(([theme, label]) => (
+          {THEME_LIST.map(([theme, label]) => (
             <DropdownMenuRadioItem
               key={theme}
               value={theme}

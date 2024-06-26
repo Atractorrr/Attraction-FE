@@ -17,24 +17,34 @@ export default function UserSettingItem({
   bottomSubTitle = false,
   icon,
 }: UserSettingItemType) {
+  const Component = !openModalHandler ? 'div' : 'button'
+
   return (
-    <button
+    <Component
       type="button"
-      disabled={!openModalHandler}
-      className="flex w-full items-center justify-between"
-      onClick={() => openModalHandler!()}>
-      <div className="flex flex-col gap-2">
-        <p className="text-start font-medium">{title}</p>
-        {bottomSubTitle && <p className="size-sm text-gray-500">{subTitle}</p>}
+      title={title}
+      className={`flex w-full items-center justify-between gap-5 rounded-lg p-3 transition-colors ${
+        !openModalHandler
+          ? ''
+          : 'hover:bg-gray-50 active:bg-gray-50 dark:hover:bg-gray-700 dark:active:bg-gray-700'
+      }`}
+      onClick={() => openModalHandler?.()}>
+      <div className="flex flex-col gap-2 gap-y-1">
+        <p className="text-left font-medium">{title}</p>
+        {bottomSubTitle && (
+          <p className="break-keep text-left text-gray-500 dark:text-gray-400">
+            {subTitle}
+          </p>
+        )}
         {!bottomSubTitle && (
-          <p className="size-sm block text-start text-gray-500 sm:hidden">
+          <p className="block break-keep text-left text-gray-500 sm:hidden dark:text-gray-400">
             {subTitle}
           </p>
         )}
       </div>
       <div className="flex items-center gap-4">
         {!bottomSubTitle && (
-          <p className="size-sm hidden text-start text-gray-500 sm:block">
+          <p className="hidden break-keep text-left text-gray-500 sm:block dark:text-gray-400">
             {subTitle}
           </p>
         )}
@@ -42,6 +52,6 @@ export default function UserSettingItem({
           <ChevronRightOutline className="size-5 shrink-0" />
         )}
       </div>
-    </button>
+    </Component>
   )
 }

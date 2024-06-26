@@ -1,21 +1,22 @@
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { Button } from '@attraction/design-system/dist'
-import { ExclamationCircleOutline } from '@attraction/icons'
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 import { useEffect, useRef, useState } from 'react'
-import { ModalComponentPropType } from '../../model/type'
+import { NewsletterCategory } from '@/shared/type'
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import { WarnTxt } from '@/shared/ui'
+import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
 interface UserPreferTagType {
-  categoryKey: keyof typeof NEWSLETTER_CATEGORY
-  setPreferTagList: React.Dispatch<
-    React.SetStateAction<(keyof typeof NEWSLETTER_CATEGORY)[]>
-  >
+  categoryKey: NewsletterCategory
+  setPreferTagList: React.Dispatch<React.SetStateAction<NewsletterCategory[]>>
   disabledTag: boolean
-  preferTagList: (keyof typeof NEWSLETTER_CATEGORY)[]
+  preferTagList: NewsletterCategory[]
 }
 interface UserSettingInterestType {
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
-  initialValue: (keyof typeof NEWSLETTER_CATEGORY)[]
+  initialValue: NewsletterCategory[]
 }
 
 function UserInterestTag({
@@ -38,26 +39,30 @@ function UserInterestTag({
   }
 
   return (
-    <div
-      className={`relative ${disabledTag && !isActive ? 'opacity-40' : 'opacity-100'}`}>
+    <div className="relative">
       <input
         type="checkbox"
+        value={categoryKey}
         checked={isActive}
-        className="absolute right-3 top-3"
+        className="peer absolute right-3 top-3"
         ref={checkboxRef}
         hidden
         onChange={checkboxChangeHandler}
         disabled={disabledTag && !isActive}
       />
-      <Button
-        type="button"
-        className={`rounded-full ${isActive ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700' : 'bg-gray-50 dark:bg-gray-700'} px-6 py-2 `}
-        disabled={disabledTag && !isActive}
+      <label
+        htmlFor={categoryKey}
+        title={`카테고리 선택: ${NEWSLETTER_CATEGORY[categoryKey]}`}
+        className={`block cursor-pointer rounded-full px-6 py-2 transition-colors peer-disabled:cursor-auto peer-disabled:!bg-gray-50 peer-disabled:!text-gray-400 dark:peer-disabled:!bg-gray-700 dark:peer-disabled:!text-gray-500 ${
+          isActive
+            ? 'bg-gray-700 text-white dark:bg-gray-50  dark:text-gray-700'
+            : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
+        }`}
         onClick={() => {
           checkboxRef.current?.click()
         }}>
         <span className="mt-3">{NEWSLETTER_CATEGORY[categoryKey]}</span>
-      </Button>
+      </label>
     </div>
   )
 }
@@ -67,7 +72,7 @@ function UserSettingInterest({
   initialValue,
 }: UserSettingInterestType) {
   const [preferTagList, setPreferTagList] =
-    useState<(keyof typeof NEWSLETTER_CATEGORY)[]>(initialValue)
+    useState<NewsletterCategory[]>(initialValue)
 
   const [alertActive, setAlertActive] = useState(false)
   const [disabledTag, setDisabledTag] = useState(false)
@@ -96,26 +101,30 @@ function UserSettingInterest({
 
   return (
     <fieldset>
-      <div className="flex gap-1">
-        <legend className="mb-4 inline text-sm font-medium">관심사</legend>
-        <span className="text-sm text-gray-500">{preferTagList.length}/4</span>
+      <div className="mb-4 flex gap-1 px-1">
+        <legend className="inline text-sm font-medium">관심사</legend>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          {preferTagList.length}/4
+        </span>
       </div>
-      <div className=" flex flex-wrap gap-4">
+      <div className=" flex flex-wrap gap-x-2 gap-y-3">
         {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
           <UserInterestTag
             key={categoryKey}
             preferTagList={preferTagList}
             disabledTag={disabledTag}
-            categoryKey={categoryKey as keyof typeof NEWSLETTER_CATEGORY}
+            categoryKey={categoryKey as NewsletterCategory}
             setPreferTagList={setPreferTagList}
           />
         ))}
       </div>
       {alertActive && (
-        <p className="mt-2 flex items-center gap-1 text-sm text-red-500">
-          <ExclamationCircleOutline />
-          관심사는 최소 1개 이상은 선택하셔야 합니다
-        </p>
+        <div className="mt-5">
+          <WarnTxt
+            content="관심사는 최소 1개 이상은 선택하셔야 합니다"
+            color="red"
+          />
+        </div>
       )}
     </fieldset>
   )
@@ -140,7 +149,7 @@ export default function UserSettingInterestModal({
       renderItem={(setPostValue) => (
         <UserSettingInterest
           setModalValue={setPostValue}
-          initialValue={initialValue as (keyof typeof NEWSLETTER_CATEGORY)[]}
+          initialValue={initialValue as NewsletterCategory[]}
         />
       )}
     />
