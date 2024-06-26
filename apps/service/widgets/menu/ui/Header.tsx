@@ -2,7 +2,7 @@
 
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
 import { ChevronLeftOutline } from '@attraction/icons'
-import { AuthButton, useAuth } from '@/entities/auth'
+import { AuthButton, ShouldReissueTokenGuide, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
 import { useTitle } from '../lib'
@@ -13,7 +13,7 @@ export default function Header() {
   const segments = useSelectedLayoutSegments()
   const router = useRouter()
   const { isMobileView } = useCheckDevice()
-  const { isLogin } = useAuth()
+  const { isLogin, shouldReissueToken } = useAuth()
   const title = useTitle()
 
   if (isMobileView && segments.length > 1) {
@@ -38,19 +38,24 @@ export default function Header() {
     )
   }
   return (
-    <header
-      className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-        isLogin && segments.some((s) => s === 'mypage') ? 'hidden md:block' : ''
-      }`}>
-      <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
-        <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
-          {title}
-        </h3>
-        <div className="flex items-center justify-end gap-2">
-          <ThemeDropdownBtn />
-          <AuthButton />
+    <>
+      {shouldReissueToken && <ShouldReissueTokenGuide />}
+      <header
+        className={`pb-6 pt-12 md:mb-6 md:py-0 ${
+          isLogin && segments.some((s) => s === 'mypage')
+            ? 'hidden md:block'
+            : ''
+        }`}>
+        <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
+          <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
+            {title}
+          </h3>
+          <div className="flex items-center justify-end gap-2">
+            <ThemeDropdownBtn />
+            <AuthButton />
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   )
 }
