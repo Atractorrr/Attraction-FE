@@ -1,14 +1,15 @@
 'use client'
 
+import { useAuth } from '@/entities/auth'
 import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Container } from '@/shared/ui'
 import {
+  skipToken,
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { useAuth } from '@/entities/auth'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
 import useModal from '../lib/hook/useModal'
@@ -28,13 +29,13 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
 
 export default function UserInfoSetting() {
   const { openModal, closeModal } = useModal()
-
-  const queryClient = useQueryClient()
   const { userEmail } = useAuth()
 
+  const queryClient = useQueryClient()
+
   const { data: userProfile } = useSuspenseQuery({
-    queryKey: ['profile', userEmail!],
-    queryFn: () => fetchUserProfile(userEmail!),
+    queryKey: ['profile', userEmail],
+    queryFn: userEmail ? () => fetchUserProfile(userEmail) : skipToken,
   })
   const { mutate } = useMutation({
     mutationFn: ({
@@ -54,7 +55,8 @@ export default function UserInfoSetting() {
   })
 
   return (
-    userProfile && (
+    userProfile &&
+    userEmail && (
       <div className="mx-auto w-full md:max-w-xl">
         <Container>
           <div className="mx-auto flex max-w-xl flex-col gap-3 p-2 md:max-w-none md:p-3">

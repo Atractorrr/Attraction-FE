@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import { useEffect, useState } from 'react'
-import { CheckOutline } from '@attraction/icons'
 import { WarnTxt } from '@/shared/ui'
+import { CheckOutline } from '@attraction/icons'
+import { useState } from 'react'
 import { USER_INFO_EXPIRATION } from '../../constant'
 import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
@@ -19,11 +19,6 @@ function UserInfoExpirationDate({
 }: UserInfoExpirationDateType) {
   const [activeKey, setActiveKey] = useState(initialValue)
   const listDataKeys = Array.from(USER_INFO_EXPIRATION.keys())
-
-  useEffect(
-    () => setModalValue({ userExpiration: Number(activeKey) }),
-    [activeKey, setModalValue],
-  )
 
   return (
     <div className="mb-5 block">
@@ -53,7 +48,10 @@ function UserInfoExpirationDate({
             <label
               htmlFor={listDataKey}
               className="cursor-pointer whitespace-nowrap text-lg"
-              onClick={() => setActiveKey(listDataKey)}>
+              onClick={() => {
+                setModalValue({ userExpiration: Number(listDataKey) })
+                setActiveKey(listDataKey)
+              }}>
               {USER_INFO_EXPIRATION.get(listDataKey)}
             </label>
           </p>

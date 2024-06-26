@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-import { useEffect, useRef, useState } from 'react'
-import { NewsletterCategory } from '@/shared/type'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import { NewsletterCategory } from '@/shared/type'
 import { WarnTxt } from '@/shared/ui'
+import { useEffect, useRef, useState } from 'react'
 import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
@@ -94,10 +94,14 @@ function UserSettingInterest({
   useEffect(() => {
     if (alertActive) {
       setModalValue(undefined)
-    } else {
+    }
+    if (
+      !initialValue.every((el) => preferTagList.includes(el)) &&
+      initialValue.length !== preferTagList.length
+    ) {
       setModalValue({ interest: preferTagList })
     }
-  }, [alertActive, preferTagList, setModalValue])
+  }, [alertActive, initialValue, preferTagList, setModalValue])
 
   return (
     <fieldset>

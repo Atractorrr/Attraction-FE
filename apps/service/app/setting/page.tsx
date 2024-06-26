@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import { Suspense } from 'react'
+import { WithAuth } from '@/entities/auth'
 import {
   UserInfoGeneral,
   UserInfoSetting,
   UserInfoWithdraw,
 } from '@/features/user-setting'
-import { LoadingSpinner } from '@/shared/ui'
 import Modals from '@/features/user-setting/ui/modal/Modals'
-import { WithAuth } from '@/entities/auth'
+import { LoadingSpinner } from '@/shared/ui'
+import { Metadata } from 'next'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: '개인설정',

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@attraction/design-system/dist'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../../constant'
 import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
@@ -9,18 +9,24 @@ import UserSettingModal from './UserSettingModal'
 interface UserSettingListProps {
   listData: typeof USER_INFO_EXPIRATION | typeof USER_INFO_OCCUPATION
   wrap: boolean
-  btnClickHandler: (keyItem: string) => void
+  setPostValue: React.Dispatch<React.SetStateAction<unknown>>
   initialItem?: string
 }
 
 function UserSettingList({
   initialItem,
-  btnClickHandler,
+  setPostValue,
   wrap,
   listData,
 }: UserSettingListProps) {
   const [activeKey, setActiveKey] = useState(initialItem)
   const listDataKeys = Array.from(listData.keys())
+
+  useEffect(() => {
+    if (activeKey === initialItem) {
+      setPostValue(undefined)
+    }
+  }, [activeKey, setPostValue, initialItem])
 
   return (
     <div
@@ -40,7 +46,8 @@ function UserSettingList({
                 : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
             }`}
             onClick={() => {
-              btnClickHandler.call(null, listDataKey)
+              setPostValue({ occupation: listDataKey })
+
               setActiveKey(listDataKey)
             }}>
             {listData.get(listDataKey)}
@@ -71,9 +78,7 @@ export default function UserSettingJobModal({
         <UserSettingList
           listData={USER_INFO_OCCUPATION}
           wrap
-          btnClickHandler={(keyItem) => {
-            setPostValue({ occupation: keyItem })
-          }}
+          setPostValue={setPostValue}
           initialItem={initialValue as string}
         />
       )}

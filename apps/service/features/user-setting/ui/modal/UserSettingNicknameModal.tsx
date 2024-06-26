@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
 import { useDebounce } from '@/shared/lib'
 import { WarnTxt } from '@/shared/ui'
+import { useMutation } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import { postDuplicateName } from '../../api'
 import { checkUserSettingInputError } from '../../lib'
 import { ModalComponentPropType } from '../../model'
@@ -50,7 +50,17 @@ function UserInfoNicknameInput({
     if (alert.length > 0) {
       setModalValue(undefined)
     }
-  }, [alert.length, nickname.length, setModalValue])
+
+    if (initialValue === debounceDuplicateInputValue) {
+      setModalValue(undefined)
+    }
+  }, [
+    alert.length,
+    debounceDuplicateInputValue,
+    initialValue,
+    nickname.length,
+    setModalValue,
+  ])
 
   return (
     <div className="mb-6 block">

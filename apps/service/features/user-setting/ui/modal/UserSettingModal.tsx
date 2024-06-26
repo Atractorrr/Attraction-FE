@@ -1,3 +1,4 @@
+import { useCheckDevice } from '@/shared/lib'
 import {
   Button,
   Drawer,
@@ -8,7 +9,6 @@ import {
   DrawerTitle,
 } from '@attraction/design-system'
 import React, { ReactNode, useState } from 'react'
-import { useCheckDevice } from '@/shared/lib'
 
 type UserSettingModalType = {
   postUserSetting: (value: unknown) => void
@@ -27,11 +27,19 @@ export default function UserSettingModal({
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
   const { isMobileView } = useCheckDevice()
+  const [activeModal, setActiveModal] = useState(true)
 
   return isMobileView ? (
     <Drawer
-      open
-      onOpenChange={(open) => (!open ? closeHandler?.() : undefined)}>
+      open={activeModal}
+      onOpenChange={(open) => {
+        if (!open) {
+          setActiveModal(false)
+          setTimeout(() => {
+            closeHandler?.()
+          }, 300)
+        }
+      }}>
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle className="mb-8">{title}</DrawerTitle>
@@ -50,7 +58,12 @@ export default function UserSettingModal({
             <Button
               title="취소하기"
               className="w-1/3 whitespace-nowrap rounded-lg bg-gray-50 px-6 py-3 xs:text-lg md:px-10 dark:bg-gray-700"
-              onClick={() => closeHandler?.()}>
+              onClick={() => {
+                setActiveModal(false)
+                setTimeout(() => {
+                  closeHandler?.()
+                }, 300)
+              }}>
               취소
             </Button>
           </DrawerClose>
