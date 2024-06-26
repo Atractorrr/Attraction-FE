@@ -15,11 +15,13 @@ export default function useRestrictAccessMessage() {
     if (!accessType) return
     if (accessType === 'register') {
       toast.error('회원가입을 마저 진행해주세요')
-      router.replace(pathname)
+    }
+    if (accessType === 'logout') {
+      toast.success('로그아웃에 성공했어요!')
     }
     if (accessType === 'login') {
       toast.info('이미 로그인을 마치셨어요')
-      router.replace(pathname)
     }
+    router.replace(pathname)
   }, [accessType, router, pathname])
 }
