@@ -4,6 +4,7 @@ import { AuthProvider, DefaultAuthState } from '@/entities/auth'
 import { ChannelTalkProvider } from '@/entities/channelTalk'
 import { PWAProvider } from '@/entities/pwa'
 import { ThemeProvider } from '@/entities/theme'
+import ToastUIProvider from '@/entities/toastUI/ui/ToastUIProvider'
 import { ModalProvider } from '@/features/user-setting/model'
 import { DeviceProvider, QueryProvider } from '@/shared/lib'
 import { PropsWithChildren, ReactElement, cloneElement } from 'react'
@@ -39,6 +40,7 @@ export default function Provider({
         <ThemeProvider />,
         <DeviceProvider />,
         <ModalProvider />,
+        <ToastUIProvider />,
       ]}>
       {children}
     </MultiProvider>

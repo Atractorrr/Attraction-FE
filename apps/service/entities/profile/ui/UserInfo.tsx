@@ -2,7 +2,7 @@
 
 import { copy } from '@/shared/lib'
 import { DocumentDuplicateOutline } from '@attraction/icons'
-import React from 'react'
+import { toast } from 'react-toastify'
 
 interface UserInfoProps {
   nickname: string
@@ -19,8 +19,12 @@ export default function UserInfo({ nickname, userEmail }: UserInfoProps) {
         className="mt-2 flex items-center justify-start gap-1 break-keep text-base text-gray-500 dark:text-gray-400"
         onClick={async () => {
           const { status } = await copy(userEmail)
-          // eslint-disable-next-line no-console
-          console.log(status ? '이메일 복사 성공' : '이메일 복사 실패')
+
+          if (status) {
+            toast.success('이메일 복사 성공')
+          } else {
+            toast.error('이메일 복사 실패')
+          }
         }}>
         <span>{userEmail}</span>
         <DocumentDuplicateOutline className="text-lg" />

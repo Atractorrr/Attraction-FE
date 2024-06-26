@@ -20,6 +20,7 @@ import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { toast } from 'react-toastify'
 import { fetchUserProfile } from '../api'
 import ProfileSettingModal from './ProfileSettingModal'
 
@@ -90,7 +91,11 @@ export default function ProfileContainer() {
                       <CogOutline className="size-5" />
                       <span>개인설정</span>
                     </Link>
-                    <Button className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-700 py-2 pl-3 pr-4 text-white transition-colors hover:bg-gray-800 lg:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100">
+                    <Button
+                      className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-700 py-2 pl-3 pr-4 text-white transition-colors hover:bg-gray-800 lg:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100"
+                      onClick={() => {
+                        toast.info('아직 준비 중 입니다.')
+                      }}>
                       <ShareOutline className="size-5" />
                       <span>프로필 공유</span>
                     </Button>
