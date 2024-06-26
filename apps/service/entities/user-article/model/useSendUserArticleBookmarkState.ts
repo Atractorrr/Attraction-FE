@@ -10,24 +10,25 @@ import userArticleQueryKeys from './userArticleQueryKeys'
 export default function useSendUserArticleBookmarkState({
   articleId,
   onMutate,
-  checkBookmark,
+  isBookmark,
 }: Omit<UserArticleParams, 'userEmail'> & {
   onMutate?: () => void
-  checkBookmark: boolean
+  isBookmark: boolean
 }) {
   const { userEmail } = useAuth()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: userArticleQueryKeys.addUserArticleBookmark({
+    mutationKey: userArticleQueryKeys.sendUserArticleBookmarkState({
       userEmail,
       articleId,
+      isBookmark,
     }),
     mutationFn: () =>
       fetchUserArticleBookmark({
         userEmail,
         articleId,
-        type: checkBookmark ? 'cancel' : 'add',
+        type: isBookmark ? 'cancel' : 'add',
       }),
     onMutate,
     onSuccess: () => {
@@ -43,11 +44,13 @@ export default function useSendUserArticleBookmarkState({
           pageType: 'bookmark',
         }),
       })
-      if (checkBookmark) {
-        toast.info('북마크가 삭제되었어요')
+      if (isBookmark) {
+        toast.success('북마크가 삭제되었어요')
       } else {
-        toast.info('북마크가 추가되었어요')
+        toast.success('북마크가 추가되었어요')
       }
     },
+    onError: () =>
+      toast.error(`북마크 ${isBookmark ? '삭제' : '추가'}에 실패했어요`),
   })
 }

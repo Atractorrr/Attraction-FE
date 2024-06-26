@@ -31,16 +31,9 @@ const userArticleQueryKeys = {
     'check-bookmark',
     params,
   ],
-  addUserArticleBookmark: (params: UserArticleParams) => [
-    ...userArticleQueryKeys.all,
-    'add-bookmark',
-    params,
-  ],
-  cancelUserArticleBookmark: (params: UserArticleParams) => [
-    ...userArticleQueryKeys.all,
-    'cancel-bookmark',
-    params,
-  ],
+  sendUserArticleBookmarkState: (
+    params: UserArticleParams & { isBookmark: boolean },
+  ) => [...userArticleQueryKeys.all, params],
   userCategories: (params: { userEmail: UserEmail }) => [
     ...userArticleQueryKeys.all,
     'categories',
