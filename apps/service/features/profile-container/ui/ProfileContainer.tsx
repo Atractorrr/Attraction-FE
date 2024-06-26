@@ -92,10 +92,9 @@ export default function ProfileContainer() {
                       <span>개인설정</span>
                     </Link>
                     <Button
+                      title="프로필 공유"
                       className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gray-700 py-2 pl-3 pr-4 text-white transition-colors hover:bg-gray-800 lg:w-auto dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100"
-                      onClick={() => {
-                        toast.info('아직 준비 중 입니다.')
-                      }}>
+                      onClick={() => toast.info('서비스 준비 중이에요')}>
                       <ShareOutline className="size-5" />
                       <span>프로필 공유</span>
                     </Button>
