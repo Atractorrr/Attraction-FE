@@ -1,10 +1,11 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import { Button } from '@attraction/design-system/dist'
-import { CheckOutline, ExclamationCircleOutline } from '@attraction/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { CheckOutline } from '@attraction/icons'
+import { WarnTxt } from '@/shared/ui'
 import { USER_INFO_EXPIRATION } from '../../constant'
-import { ModalComponentPropType } from '../../model/type'
+import { ModalComponentPropType } from '../../model'
 import UserSettingModal from './UserSettingModal'
 
 interface UserInfoExpirationDateType {
@@ -19,36 +20,53 @@ function UserInfoExpirationDate({
   const [activeKey, setActiveKey] = useState(initialValue)
   const listDataKeys = Array.from(USER_INFO_EXPIRATION.keys())
 
+  useEffect(
+    () => setModalValue({ userExpiration: Number(activeKey) }),
+    [activeKey, setModalValue],
+  )
+
   return (
     <div className="mb-5 block">
-      <p className="mb-6">개인정보 수집 유효기간</p>
+      <p className="mb-6 px-1">개인정보 수집 유효기간</p>
       {listDataKeys.map((listDataKey) => {
         return (
-          <Button
-            type="button"
+          <p
             key={listDataKey}
-            className="mb-5 flex gap-4"
-            onClick={() => {
-              setModalValue({ userExpiration: Number(listDataKey) })
-              setActiveKey(listDataKey)
-            }}>
+            className="peer flex items-center gap-4 peer-[]:mt-4">
+            <span className="relative size-6">
+              <input
+                type="radio"
+                name={listDataKey}
+                value={listDataKey}
+                className={`size-full cursor-pointer appearance-none rounded-full border-2 transition-colors disabled:cursor-auto ${
+                  activeKey === listDataKey
+                    ? 'border-gray-700 bg-gray-700 dark:border-gray-50 dark:bg-gray-50'
+                    : 'border-gray-100 dark:border-gray-600'
+                }`}
+                checked={activeKey === listDataKey}
+                onChange={() => setActiveKey(listDataKey)}
+              />
+              {activeKey === listDataKey && (
+                <CheckOutline className="absolute inset-0 m-auto size-4 rounded-md font-bold text-white dark:text-gray-700" />
+              )}
+            </span>
             <label
               htmlFor={listDataKey}
-              className={` flex size-5 cursor-pointer items-center justify-center rounded-full p-1  ${activeKey === listDataKey ? 'bg-gray-700 dark:bg-gray-100' : 'border-2 border-gray-100 dark:border-gray-600'} focus:border-none`}>
-              <CheckOutline
-                className={`size-full rounded-md font-bold ${activeKey === listDataKey ? 'visible' : 'invisible'} peer text-white dark:text-gray-700`}
-              />
+              className="cursor-pointer whitespace-nowrap text-lg"
+              onClick={() => setActiveKey(listDataKey)}>
+              {USER_INFO_EXPIRATION.get(listDataKey)}
             </label>
-            {USER_INFO_EXPIRATION.get(listDataKey)}
-          </Button>
+          </p>
         )
       })}
       {USER_INFO_EXPIRATION.get(activeKey) !== '평생' ? (
-        <p className="mt-4 flex items-center gap-1 text-sm text-blue-400">
-          <ExclamationCircleOutline />
-          {USER_INFO_EXPIRATION.get(activeKey)} 동안 서비스를 이용하지 않을 시
-          자동으로 회원이 탈퇴돼요
-        </p>
+        <div className="mt-5">
+          <WarnTxt
+            content={`${USER_INFO_EXPIRATION.get(activeKey)} 동안 서비스를 이용하지 않을 시 자동으로 회원이 탈퇴돼요`}
+            color="blue"
+            type="info"
+          />
+        </div>
       ) : (
         ''
       )}

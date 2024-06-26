@@ -17,7 +17,7 @@ export default function BookmarkBtn({ articleId }: BookmarkBtnProps) {
   })
   const [isBookmark, setBookmark] = useState(false)
 
-  const { mutate: add } = useSendUserArticleBookmarkState({
+  const { mutate: sendArticleBookmarkState } = useSendUserArticleBookmarkState({
     checkBookmark: data as boolean,
     articleId,
     onMutate: () => (isBookmark ? setBookmark(false) : setBookmark(true)),
@@ -31,7 +31,7 @@ export default function BookmarkBtn({ articleId }: BookmarkBtnProps) {
       title={isBookmark ? '북마크 해제' : '북마크'}
       disabled={isLoading || isError}
       className="inline-flex h-9 items-center justify-center gap-2 rounded-full bg-gray-50 pl-4 pr-5 transition-colors hover:bg-gray-100 disabled:!bg-gray-50 disabled:text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:disabled:!bg-gray-700 dark:disabled:text-gray-400"
-      onClick={() => add()}>
+      onClick={() => sendArticleBookmarkState()}>
       <BookmarkOutline className="xs:text-lg" />
       <span className="whitespace-nowrap text-sm xs:text-base">
         {isBookmark ? '북마크 해제' : '북마크'}
