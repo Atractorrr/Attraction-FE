@@ -1,92 +1,71 @@
 import { cookies, headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { SESSION_ID } from '@/entities/auth'
 
 interface GoogleOAuthResponse {
   email: string
   hasExtraDetails: boolean
   shouldReissueToken: boolean
-  accessToken: string
 }
 
 export async function GET(request: Request) {
-  const requestHeaders = new Headers(headers())
-  requestHeaders.set('Content-Type', 'application/json')
-  requestHeaders.set('Accept', '*/*')
+  try {
+    const requestHeaders = new Headers(headers())
+    requestHeaders.set('Content-Type', 'application/json')
+    requestHeaders.set('Accept', '*/*')
 
-  const cookieStore = cookies()
-  const { url } = request
-  const queryParams = new URL(url).searchParams
-  const code = queryParams.get('code')
-  const defaultMaxAge = 3600
-  const refreshTokenMaxAge = defaultMaxAge * 24 * 7
+    const { url } = request
+    const queryParams = new URL(url).searchParams
+    const code = queryParams.get('code')
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
-    {
-      method: 'POST',
-      headers: requestHeaders,
-      body: JSON.stringify({
-        provider: 'google',
-        code,
-      }),
-    },
-  )
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
+      {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify({
+          provider: 'google',
+          code,
+        }),
+      },
+    )
 
-  const data: GoogleOAuthResponse = await response.json()
+    if (!response.ok) {
+      const cookieStore = cookies()
+      cookieStore.delete(SESSION_ID)
 
-  const responseCookies = response.headers.get('set-cookie')
-
-  if (responseCookies) {
-    const parsedCookies = responseCookies
-      .split(';')
-      .map((s) => s.trim().split('='))
-      .reduce(
-        (obj: { [key: string]: string }, [key, value]) =>
-          Object.assign(obj, { [key]: value ?? true }),
-        {},
+      return NextResponse.redirect(
+        new URL(
+          `${process.env.NEXT_PUBLIC_FE_URL}/?failedLogin=true`,
+          request.url,
+        ),
       )
-
-    cookieStore.set('refreshToken', parsedCookies['Refresh-Token'] ?? '', {
-      path: '/',
-      maxAge: refreshTokenMaxAge,
-      httpOnly: true,
-    })
-  }
-
-  if (data.accessToken.length) {
-    cookieStore.set('accessToken', data.accessToken, {
-      path: '/',
-      maxAge: defaultMaxAge,
-      httpOnly: true,
-    })
-    cookieStore.set('email', data.email, {
-      path: '/',
-      maxAge: refreshTokenMaxAge,
-      httpOnly: true,
-    })
-
-    if (data.shouldReissueToken) {
-      cookieStore.set('shouldReissueToken', 'true', {
-        path: '/',
-        maxAge: defaultMaxAge,
-        httpOnly: true,
-      })
     }
 
-    if (!data.hasExtraDetails) {
-      cookieStore.set('notRegistered', 'true', {
-        path: '/',
-        maxAge: defaultMaxAge,
-        httpOnly: true,
-      })
-    }
-  }
+    const data: GoogleOAuthResponse = await response.json()
 
-  return data.hasExtraDetails
-    ? NextResponse.redirect(
-        new URL(`${process.env.NEXT_PUBLIC_FE_URL}`, request.url),
-      )
-    : NextResponse.redirect(
-        new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
-      )
+    return data.hasExtraDetails
+      ? NextResponse.redirect(
+          new URL(process.env.NEXT_PUBLIC_FE_URL!, request.url),
+          {
+            headers: response.headers,
+          },
+        )
+      : NextResponse.redirect(
+          new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
+          {
+            headers: response.headers,
+          },
+        )
+  } catch (err) {
+    const cookieStore = cookies()
+    cookieStore.delete(SESSION_ID)
+
+    return NextResponse.redirect(
+      new URL(
+        `${process.env.NEXT_PUBLIC_FE_URL}/?failedLogin=true`,
+        request.url,
+      ),
+    )
+  }
 }

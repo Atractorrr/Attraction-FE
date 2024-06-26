@@ -16,7 +16,7 @@ export default function UserRankContent({
   })
 
   return (
-    <div className="size-full h-full overflow-y-auto pr-5 lg:h-[400px]">
+    <div className="size-full h-full overflow-y-auto overscroll-none pr-5 lg:h-[400px]">
       {userRankingArr?.map((user, i) => {
         return (
           <div

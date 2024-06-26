@@ -1,8 +1,8 @@
 export interface DefaultAuthState {
-  accessToken?: string
-  refreshToken?: string
-  userEmail?: string
-  isNotRegistered: boolean
   isLogin: boolean
-  shouldReissueToken: boolean
+  userEmail?: string
+  userNickname?: string
+  userProfileImgURL?: string
+  hasExtraDetails?: boolean
+  shouldReissueToken?: boolean
 }

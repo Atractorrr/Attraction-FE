@@ -18,9 +18,9 @@ export default function BookmarkBtn({ articleId }: BookmarkBtnProps) {
   const [isBookmark, setBookmark] = useState(false)
 
   const { mutate: sendArticleBookmarkState } = useSendUserArticleBookmarkState({
-    checkBookmark: data as boolean,
+    isBookmark,
     articleId,
-    onMutate: () => (isBookmark ? setBookmark(false) : setBookmark(true)),
+    onMutate: () => setBookmark((prev) => !prev),
   })
 
   useEffect(() => setBookmark(!!data), [data])

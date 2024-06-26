@@ -16,14 +16,14 @@ export default function UserInfo({ nickname, userEmail }: UserInfoProps) {
       <button
         type="button"
         title={`이메일 복사: ${userEmail}`}
-        className="mt-2 flex items-center justify-start gap-1 break-keep text-base text-gray-500 dark:text-gray-400"
+        className="mt-2 flex items-center justify-start gap-1 whitespace-nowrap break-keep text-base text-gray-500 dark:text-gray-400"
         onClick={async () => {
           const { status } = await copy(userEmail)
 
           if (status) {
-            toast.success('이메일 복사 성공')
+            toast.success('이메일이 복사되었어요')
           } else {
-            toast.error('이메일 복사 실패')
+            toast.error('이메일 복사에 실패했어요')
           }
         }}>
         <span>{userEmail}</span>

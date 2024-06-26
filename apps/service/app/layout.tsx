@@ -6,7 +6,7 @@ import './globals.css'
 import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
-import { useToken } from '@/entities/auth'
+import { FailedLoginAlert, useSession } from '@/entities/auth'
 import Provider from './provider'
 import Widget from './widget'
 
@@ -45,16 +45,18 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  const { ...props } = await useToken()
+  const authProps = await useSession()
+
   return (
     <html lang="ko">
       <body
-        className="relative min-h-dvh min-w-[280px] bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100"
+        className="relative min-h-dvh min-w-[280px] break-keep bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100"
         suppressHydrationWarning>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/script/theme.js" />
-        <Provider {...props}>
+        <Provider {...authProps}>
           <Widget>{children}</Widget>
+          <FailedLoginAlert />
         </Provider>
       </body>
     </html>
