@@ -11,17 +11,19 @@ export default async function useSession(): Promise<DefaultAuthState> {
   const isLogin = !!sessionId
 
   if (isLogin) {
-    const { data } = await getUserSession()
+    try {
+      const { data } = await getUserSession()
 
-    // headers.forEach((header) => {})
-
-    return {
-      isLogin,
-      userEmail: data.email,
-      userNickname: data.nickname,
-      userProfileImgURL: data.profileImg,
-      hasExtraDetails: data.hasExtraDetails,
-      shouldReissueToken: data.shouldReissueToken,
+      return {
+        isLogin,
+        userEmail: data.email,
+        userNickname: data.nickname,
+        userProfileImgURL: data.profileImg,
+        hasExtraDetails: data.hasExtraDetails,
+        shouldReissueToken: data.shouldReissueToken,
+      }
+    } catch (err) {
+      return { isLogin: false }
     }
   }
 
