@@ -1,10 +1,11 @@
 'use client'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '@/entities/auth'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import { fetchUserArticleBookmark } from '../api'
 import type { UserArticleParams } from './type'
 import userArticleQueryKeys from './userArticleQueryKeys'
-import { fetchUserArticleBookmark } from '../api'
 
 export default function useCancelUserArticleBookmark({
   articleId,
@@ -34,6 +35,8 @@ export default function useCancelUserArticleBookmark({
           pageType: 'bookmark',
         }),
       })
+
+      toast.info('북마크가 해제되었어요.')
     },
   })
 }

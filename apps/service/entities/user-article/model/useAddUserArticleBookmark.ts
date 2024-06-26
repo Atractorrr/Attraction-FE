@@ -1,10 +1,11 @@
 'use client'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '@/entities/auth'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import { fetchUserArticleBookmark } from '../api'
 import type { UserArticleParams } from './type'
 import userArticleQueryKeys from './userArticleQueryKeys'
-import { fetchUserArticleBookmark } from '../api'
 
 export default function useAddUserArticleBookmark({
   articleId,
@@ -34,6 +35,8 @@ export default function useAddUserArticleBookmark({
           pageType: 'bookmark',
         }),
       })
+
+      toast.success('북마크가 추가되었어요')
     },
   })
 }
