@@ -8,6 +8,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query'
+import { useAuth } from '@/entities/auth'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
 import useModal from '../lib/hook/useModal'
@@ -17,10 +18,6 @@ import UserSettingItem from './modal/UserSettingItem'
 import UserSettingJobModal from './modal/UserSettingJobModal'
 import UserSettingNicknameModal from './modal/UserSettingNicknameModal'
 
-interface UserInfoSettingType {
-  email: string
-}
-
 const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}`,
@@ -29,16 +26,15 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   return user
 }
 
-export default function UserInfoSetting({
-  email: userEmail,
-}: UserInfoSettingType) {
+export default function UserInfoSetting() {
   const { openModal, closeModal } = useModal()
 
   const queryClient = useQueryClient()
+  const { userEmail } = useAuth()
 
   const { data: userProfile } = useSuspenseQuery({
-    queryKey: ['profile', userEmail],
-    queryFn: () => fetchUserProfile(userEmail),
+    queryKey: ['profile', userEmail!],
+    queryFn: () => fetchUserProfile(userEmail!),
   })
   const { mutate } = useMutation({
     mutationFn: ({
@@ -53,7 +49,7 @@ export default function UserInfoSetting({
       return postUserSettingInfo(value, type, email)
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['profile', userEmail] })
+      queryClient.invalidateQueries({ queryKey: ['profile', userEmail!] })
     },
   })
 
@@ -70,7 +66,7 @@ export default function UserInfoSetting({
                 openModal(UserSettingNicknameModal, {
                   onSubmit: async (value) => {
                     if (value) {
-                      mutate({ value, type: 'nickname', email: userEmail })
+                      mutate({ value, type: 'nickname', email: userEmail! })
                       closeModal(UserSettingNicknameModal)
                     }
                   },
@@ -88,7 +84,7 @@ export default function UserInfoSetting({
                 openModal(UserSettingInterestModal, {
                   onSubmit: async (value) => {
                     if (value) {
-                      mutate({ value, type: 'interest', email: userEmail })
+                      mutate({ value, type: 'interest', email: userEmail! })
                       closeModal(UserSettingInterestModal)
                     }
                   },
@@ -104,7 +100,7 @@ export default function UserInfoSetting({
                 openModal(UserSettingJobModal, {
                   onSubmit: async (value) => {
                     if (value) {
-                      mutate({ value, type: 'occupation', email: userEmail })
+                      mutate({ value, type: 'occupation', email: userEmail! })
                       closeModal(UserSettingJobModal)
                     }
                   },
@@ -121,7 +117,7 @@ export default function UserInfoSetting({
                 openModal(UserSettingExpirationDateModal, {
                   onSubmit: async (value) => {
                     if (value) {
-                      mutate({ value, type: 'expiration', email: userEmail })
+                      mutate({ value, type: 'expiration', email: userEmail! })
                       closeModal(UserSettingExpirationDateModal)
                     }
                   },
