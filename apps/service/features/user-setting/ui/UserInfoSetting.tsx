@@ -1,9 +1,11 @@
 'use client'
 
+import { useAuth } from '@/entities/auth'
 import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Container } from '@/shared/ui'
 import {
+  skipToken,
   useMutation,
   useQueryClient,
   useSuspenseQuery,
@@ -17,10 +19,6 @@ import UserSettingItem from './modal/UserSettingItem'
 import UserSettingJobModal from './modal/UserSettingJobModal'
 import UserSettingNicknameModal from './modal/UserSettingNicknameModal'
 
-interface UserInfoSettingType {
-  email: string
-}
-
 const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}`,
@@ -29,16 +27,15 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
   return user
 }
 
-export default function UserInfoSetting({
-  email: userEmail,
-}: UserInfoSettingType) {
+export default function UserInfoSetting() {
   const { openModal, closeModal } = useModal()
+  const { userEmail } = useAuth()
 
   const queryClient = useQueryClient()
 
   const { data: userProfile } = useSuspenseQuery({
     queryKey: ['profile', userEmail],
-    queryFn: () => fetchUserProfile(userEmail),
+    queryFn: userEmail ? () => fetchUserProfile(userEmail) : skipToken,
   })
   const { mutate } = useMutation({
     mutationFn: ({
@@ -58,7 +55,8 @@ export default function UserInfoSetting({
   })
 
   return (
-    userProfile && (
+    userProfile &&
+    userEmail && (
       <div className="mx-auto w-full md:max-w-xl">
         <Container>
           <div className="mx-auto flex max-w-xl flex-col gap-3 p-2 md:max-w-none md:p-3">
