@@ -40,17 +40,25 @@ export async function GET(request: Request) {
 
     const data: GoogleOAuthResponse = await response.json()
 
-    cookies().set(
-      SESSION_ID,
-      response.headers
-        .getSetCookie()
-        .find((cookie) => cookie.startsWith(SESSION_ID))
-        ?.split('=')?.[1] ?? 'null',
-      {
-        httpOnly: true,
-        path: '/',
-      },
-    )
+    const responseCookies = response.headers.get('Set-Cookie')
+
+    if (!responseCookies) {
+      throw new Error('쿠키가 존재하지 않아요')
+    }
+
+    const parsedCookies = responseCookies
+      .split(';')
+      .map((s) => s.trim().split('='))
+      .reduce(
+        (obj: { [key: string]: string }, [key, value]) =>
+          Object.assign(obj, { [key]: value ?? true }),
+        {},
+      )
+
+    cookies().set(SESSION_ID, parsedCookies[SESSION_ID] ?? 'null', {
+      httpOnly: true,
+      path: '/',
+    })
 
     return NextResponse.redirect(
       data.hasExtraDetails
