@@ -12,7 +12,7 @@ export default async function getUserSession(): Promise<{
     {
       headers: {
         'Content-Type': 'application/json',
-        Cookie: `${SESSION_ID}=${cookies().get(SESSION_ID)}`,
+        Cookie: `${SESSION_ID}=${cookies().get(SESSION_ID)?.value}`,
       },
       credentials: 'include',
       cache: 'no-store',
