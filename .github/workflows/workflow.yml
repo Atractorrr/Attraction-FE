@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run commands
+      - name: Run ${{ matrix.command }}
         run: pnpm ${{ matrix.command }}
         env:
           MOCK_URL: ${{ secrets.MOCK_URL }}
