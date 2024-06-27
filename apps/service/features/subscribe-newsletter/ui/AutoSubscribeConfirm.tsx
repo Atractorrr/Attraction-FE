@@ -44,8 +44,7 @@ export default function AutoSubscribeConfirm({
             새로운 뉴스레터를 만날 준비가 되셨나요?
           </DialogDescription>
         </DialogHeader>
-        <div
-          className={`px-1 pb-3 pt-4 ${isAgreePersonalInfoCollection || isAgreeAdInfoReception ? 'min-h-20' : ''}`}>
+        <div className="px-1 pb-3 pt-4">
           {isAgreePersonalInfoCollection && (
             <p>
               <Checkbox
