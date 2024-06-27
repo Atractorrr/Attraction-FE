@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 'use client'
 
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
@@ -6,12 +8,14 @@ import useEmblaCarousel from 'embla-carousel-react'
 import './embla.css'
 import EmblaBlur from './EmblaBlur'
 import EmblaButton from './EmblaButton'
+import { EmblaDotButton, useDotButton } from './EmblaDotButton'
 
 interface CarouselProps {
   slides: ReactNode[]
   options?: EmblaOptionsType
   showBlur?: boolean
   showButton?: boolean
+  showDots?: boolean
   slideSpacing?: string
 }
 
@@ -19,6 +23,7 @@ export default function EmblaCarousel({
   slides,
   options,
   showBlur = false,
+  showDots = false,
   showButton = false,
   slideSpacing = '1.0',
 }: CarouselProps) {
@@ -29,6 +34,8 @@ export default function EmblaCarousel({
   const [showRightButton, setShowRightButton] = useState(
     !showBlur && showButton,
   )
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi)
 
   useEffect(() => {
     if (emblaApi) {
@@ -67,7 +74,6 @@ export default function EmblaCarousel({
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((slide: ReactNode, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
             <div key={idx} className="embla__slide">
               {slide}
             </div>
@@ -86,6 +92,19 @@ export default function EmblaCarousel({
           onClick={scrollNext}
         />
       </div>
+      {showDots ? (
+        <div className="embla__dots">
+          {scrollSnaps.map((_, idx) => (
+            <EmblaDotButton
+              key={idx}
+              onClick={() => onDotButtonClick(idx)}
+              className={'embla__dot'.concat(
+                idx === selectedIndex ? ' embla__dot--selected' : '',
+              )}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }
