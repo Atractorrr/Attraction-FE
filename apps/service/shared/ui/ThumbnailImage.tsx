@@ -27,7 +27,9 @@ export default function ThumbnailImage({
     return (
       <Image
         src={
-          src.startsWith('https:') || src.startsWith('http:')
+          src.startsWith('https:') ||
+          src.startsWith('http:') ||
+          src.startsWith('blob:http')
             ? src
             : `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}${src}`
         }

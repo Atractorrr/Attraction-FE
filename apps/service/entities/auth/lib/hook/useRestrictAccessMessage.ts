@@ -3,7 +3,7 @@
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
-import { ACCESS_PARAMS_KEY } from '../../constant'
+import { ACCESS_PARAMS_KEY, ACCESS_MESSAGE } from '../../constant'
 
 export default function useRestrictAccessMessage() {
   const pathname = usePathname()
@@ -12,16 +12,11 @@ export default function useRestrictAccessMessage() {
   const accessType = params.get(ACCESS_PARAMS_KEY)
 
   useEffect(() => {
-    if (!accessType) return
-    if (accessType === 'register') {
-      toast.error('회원가입을 마저 진행해주세요')
+    if (accessType) {
+      const { type, message } = ACCESS_MESSAGE[accessType]
+
+      toast?.[type]?.(message)
+      router.replace(pathname)
     }
-    if (accessType === 'logout') {
-      toast.success('로그아웃에 성공했어요!')
-    }
-    if (accessType === 'login') {
-      toast.info('이미 로그인을 마치셨어요')
-    }
-    router.replace(pathname)
   }, [accessType, router, pathname])
 }
