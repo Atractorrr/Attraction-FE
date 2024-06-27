@@ -20,7 +20,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'ds- ds-fixed ds-inset-0 ds-z-50 ds-bg-black/80 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0',
+      'ds- ds-fixed ds-inset-0 ds-z-50 ds-bg-black/30 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 dark:ds-bg-white/20',
       className,
     )}
     {...props}
@@ -37,13 +37,13 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'ds-fixed ds-left-[50%] ds-top-[50%] ds-z-50 ds-grid ds-w-full ds-max-w-lg ds-translate-x-[-50%] ds-translate-y-[-50%] ds-gap-4 ds-border ds-border-gray-200 ds-bg-white ds-p-6 ds-shadow-lg ds-duration-200 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[state=closed]:ds-slide-out-to-left-1/2 data-[state=closed]:ds-slide-out-to-top-[48%] data-[state=open]:ds-slide-in-from-left-1/2 data-[state=open]:ds-slide-in-from-top-[48%] sm:ds-rounded-lg dark:ds-border-gray-800 dark:ds-bg-gray-950',
+        'ds-fixed ds-left-[50%] ds-top-[50%] ds-z-50 ds-grid ds-w-full ds-max-w-[100vw-2.5rem] ds-translate-x-[-50%] ds-translate-y-[-50%] ds-gap-4 ds-rounded-xl ds-border ds-border-gray-100 ds-bg-white ds-p-6 ds-shadow-lg ds-duration-200 data-[state=open]:ds-animate-in data-[state=closed]:ds-animate-out data-[state=closed]:ds-fade-out-0 data-[state=open]:ds-fade-in-0 data-[state=closed]:ds-zoom-out-95 data-[state=open]:ds-zoom-in-95 data-[state=closed]:ds-slide-out-to-left-1/2 data-[state=closed]:ds-slide-out-to-top-[48%] data-[state=open]:ds-slide-in-from-left-1/2 data-[state=open]:ds-slide-in-from-top-[48%] sm:ds-max-w-lg dark:ds-border-gray-800 dark:ds-bg-gray-800',
         className,
       )}
       {...props}>
       {children}
-      <DialogPrimitive.Close className="ds-absolute ds-right-4 ds-top-4 ds-rounded-sm ds-opacity-70 ds-ring-offset-white ds-transition-opacity hover:ds-opacity-100 focus:ds-outline-none focus:ds-ring-2 focus:ds-ring-gray-950 focus:ds-ring-offset-2 disabled:ds-pointer-events-none data-[state=open]:ds-bg-gray-100 data-[state=open]:ds-text-gray-500 dark:ds-ring-offset-gray-950 dark:focus:ds-ring-gray-300 dark:data-[state=open]:ds-bg-gray-800 dark:data-[state=open]:ds-text-gray-400">
-        <X className="ds-h-4 ds-w-4" />
+      <DialogPrimitive.Close className="ds-absolute -ds-right-3 -ds-top-3 ds-inline-flex ds-size-9 ds-items-center ds-justify-center ds-rounded-full ds-border ds-border-gray-100 ds-bg-white ds-transition-colors hover:ds-bg-gray-50 dark:ds-border-gray-700 dark:ds-bg-gray-800 dark:hover:ds-bg-gray-700">
+        <X className="ds-size-5 ds-text-gray-700 dark:ds-text-gray-50" />
         <span className="ds-sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
@@ -57,10 +57,7 @@ function DialogHeader({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        'ds-flex ds-flex-col ds-space-y-1.5 ds-text-center sm:ds-text-left',
-        className,
-      )}
+      className={cn('ds-flex ds-flex-col ds-space-y-2 ds-text-left', className)}
       {...props}
     />
   )
@@ -90,7 +87,7 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      'ds-text-lg ds-font-semibold ds-leading-none ds-tracking-tight',
+      'ds-text-lg ds-font-bold ds-leading-none ds-tracking-tight',
       className,
     )}
     {...props}
@@ -105,7 +102,7 @@ const DialogDescription = React.forwardRef<
   <DialogPrimitive.Description
     ref={ref}
     className={cn(
-      'ds-text-sm ds-text-gray-500 dark:ds-text-gray-400',
+      'ds-break-keep ds-text-sm ds-text-gray-500 dark:ds-text-gray-400',
       className,
     )}
     {...props}
