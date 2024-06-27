@@ -47,7 +47,7 @@ export default function SignInCarousel() {
 
   return (
     <section className="h-full overflow-x-auto">
-      <Carousel options={options} slides={carouselSlides} />
+      <Carousel options={options} slides={carouselSlides} showDots />
     </section>
   )
 }
