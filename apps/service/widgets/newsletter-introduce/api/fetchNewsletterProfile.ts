@@ -1,7 +1,7 @@
 import { NewsletterProfileResponse } from '../model/type'
 
 export default async function fetchNewsletterProfile(
-  newsletterId: string,
+  newsletterId: number,
 ): Promise<NewsletterProfileResponse> {
   const apiURL = new URL(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/newsletters/${newsletterId}`,

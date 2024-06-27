@@ -1,7 +1,7 @@
 import { NewsletterPreviousArticlesResponse } from '../model'
 
 export default async function fetchNewsletterPreviousArticles(
-  newsletterId: string,
+  newsletterId: number,
   size: number = 5,
 ): Promise<NewsletterPreviousArticlesResponse> {
   const apiURL = new URL(

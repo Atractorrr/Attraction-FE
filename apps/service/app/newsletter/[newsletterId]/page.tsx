@@ -7,10 +7,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 1800
 
-export default function NewsletterPage({
-  params,
-}: {
+interface NewsletterPageProps {
   params: { newsletterId: string }
-}) {
-  return <NewsletterIntroduce newsletterId={params.newsletterId} />
+}
+
+export default function NewsletterPage({ params }: NewsletterPageProps) {
+  const newsletterId = Number(params.newsletterId)
+
+  if (Number.isNaN(newsletterId)) {
+    throw new Error('잘못된 접근이에요')
+  }
+
+  return <NewsletterIntroduce newsletterId={newsletterId} />
 }

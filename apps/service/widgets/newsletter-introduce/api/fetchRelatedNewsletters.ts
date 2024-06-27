@@ -1,7 +1,7 @@
 import { RelatedNewslettersResponse } from '../model'
 
 export default async function fetchRelatedNewsletters(
-  newsletterId: string,
+  newsletterId: number,
   size: number = 5,
 ): Promise<RelatedNewslettersResponse> {
   const apiURL = new URL(
