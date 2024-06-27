@@ -142,19 +142,19 @@
   align-items: center;
   transition: all 0.3s;
   content: '';
-  background-color: #dde0e3;
+  background-color: #c2c7cc;
 }
 
 .dark .embla__dot:after {
-  background-color: #c2c7cc;
+  background-color: #6f7a86;
 }
 
 .embla__dot--selected:after {
   width: 2.5rem;
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
-  background-color: #3c4249;
+  background-color: #535c65;
 }
 
 .dark .embla__dot--selected:after {
-  background-color: #f4f6f8;
+  background-color: #c2c7cc;
 }
