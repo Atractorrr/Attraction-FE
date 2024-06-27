@@ -5,7 +5,7 @@ import { NewsletterPreviousArticleData } from '../model'
 
 interface NewsletterPreviousArticleItemProps
   extends NewsletterPreviousArticleData {
-  newsletterId: string
+  newsletterId: number
 }
 
 export default function NewsletterPreviousArticleItem({

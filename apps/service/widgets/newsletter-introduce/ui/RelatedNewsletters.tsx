@@ -3,7 +3,7 @@ import RelatedNewsletterItem from './RelatedNewsletterItem'
 import { fetchRelatedNewsletters } from '../api'
 
 interface RelatedNewsletterProps {
-  newsletterId: string
+  newsletterId: number
 }
 
 export default async function RelatedNewsletters({

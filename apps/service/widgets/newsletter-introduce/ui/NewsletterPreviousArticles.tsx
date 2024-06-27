@@ -4,7 +4,7 @@ import NewsletterPreviousArticleItem from './NewsletterPreviousArticleItem'
 import { fetchNewsletterPreviousArticles } from '../api'
 
 interface NewsletterPreviousArticlesProps {
-  newsletterId: string
+  newsletterId: number
 }
 
 export default async function NewsletterPreviousArticles({

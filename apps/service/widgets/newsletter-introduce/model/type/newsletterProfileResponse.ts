@@ -14,4 +14,7 @@ export interface NewsletterProfileData {
   mainLink: string
   subscribeLink: string
   thumbnailUrl: string
+  isAutoSubscribeEnabled: boolean
+  isAgreePersonalInfoCollection: boolean
+  isAgreeAdInfoReception: boolean
 }

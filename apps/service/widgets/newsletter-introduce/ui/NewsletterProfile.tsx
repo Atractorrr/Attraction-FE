@@ -1,11 +1,11 @@
 import { Container, ThumbnailImage } from '@/shared/ui'
 import { HouseOutline } from '@attraction/icons'
 import Link from 'next/link'
-import NewsletterSubscribeButton from './NewsletterSubscribeButton'
+import { SubscribeButton } from '@/features/subscribe-newsletter'
 import { fetchNewsletterProfile } from '../api'
 
 interface NewsletterProfileProps {
-  newsletterId: string
+  newsletterId: number
 }
 
 export default async function NewsletterProfile({
@@ -28,9 +28,15 @@ export default async function NewsletterProfile({
                 />
               </div>
               <div className="hidden md:block">
-                <NewsletterSubscribeButton
+                <SubscribeButton
                   newsletterId={newsletterId}
+                  newsletterName={data.name}
                   subscribeLink={data.subscribeLink}
+                  isAutoSubscribeEnabled={data.isAutoSubscribeEnabled}
+                  isAgreePersonalInfoCollection={
+                    data.isAgreePersonalInfoCollection
+                  }
+                  isAgreeAdInfoReception={data.isAgreeAdInfoReception}
                 />
               </div>
             </div>
@@ -56,9 +62,14 @@ export default async function NewsletterProfile({
             {data.description}
           </p>
           <div className="md:hidden">
-            <NewsletterSubscribeButton
+            <SubscribeButton
+              className="mt-3"
               newsletterId={newsletterId}
+              newsletterName={data.name}
               subscribeLink={data.subscribeLink}
+              isAutoSubscribeEnabled={data.isAutoSubscribeEnabled}
+              isAgreePersonalInfoCollection={data.isAgreePersonalInfoCollection}
+              isAgreeAdInfoReception={data.isAgreeAdInfoReception}
             />
           </div>
         </div>

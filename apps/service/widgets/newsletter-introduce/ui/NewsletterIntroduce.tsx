@@ -3,7 +3,7 @@ import NewsletterProfile from './NewsletterProfile'
 import RelatedNewsletters from './RelatedNewsletters'
 
 interface NewsletterIntroduceProps {
-  newsletterId: string
+  newsletterId: number
 }
 
 export default function NewsletterIntroduce({

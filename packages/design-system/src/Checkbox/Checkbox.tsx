@@ -11,7 +11,7 @@ const Checkbox = React.forwardRef<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > & {
-    label?: string
+    label?: string | React.ReactNode
     color?: 'default' | 'red' | 'blue' | 'green' | 'yellow'
   }
 >(
@@ -25,7 +25,7 @@ const Checkbox = React.forwardRef<
         ? ({
             htmlFor: id,
             className: cn(
-              'ds-inline-flex ds-items-center ds-justify-start',
+              'ds-inline-flex ds-items-start ds-justify-start',
               className,
               disabled ? 'ds-cursor-auto' : 'ds-cursor-pointer',
             ),
