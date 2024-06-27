@@ -4,12 +4,7 @@ import { useAuth } from '@/entities/auth'
 import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { Container } from '@/shared/ui'
-import {
-  skipToken,
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
 import useModal from '../lib/hook/useModal'
@@ -33,10 +28,12 @@ export default function UserInfoSetting() {
 
   const queryClient = useQueryClient()
 
-  const { data: userProfile } = useSuspenseQuery({
+  // TODO: Susepense 있을 때 랑 그냥 query 썻을때 쿠키에 헤더가 실리고 안실린다.
+  const { data: userProfile } = useQuery({
     queryKey: ['profile', userEmail],
-    queryFn: userEmail ? () => fetchUserProfile(userEmail) : skipToken,
+    queryFn: () => fetchUserProfile(userEmail as string),
   })
+
   const { mutate } = useMutation({
     mutationFn: ({
       value,

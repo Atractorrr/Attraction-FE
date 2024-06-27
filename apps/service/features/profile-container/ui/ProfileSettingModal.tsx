@@ -38,8 +38,12 @@ export default function ProfileSettingModal({
   type,
 }: ProfileSettingModalType) {
   const queryClient = useQueryClient()
-  const { deleteImgUrl, getS3ImgUrl, fileUploadHandler, fileInfo } =
-    useImgUpload()
+  const userProfileData = queryClient.getQueryData<UserProfile>([
+    'profile',
+    email,
+  ])
+
+  const { getS3ImgUrl, fileUploadHandler, fileInfo } = useImgUpload()
   const { mutate } = useMutation({
     mutationFn: postImgUrl,
     onMutate: async (postImgArg) => {
@@ -85,6 +89,10 @@ export default function ProfileSettingModal({
     }
     setModal(false)
   }
+
+  const deleteImgHandler = async () => {
+    mutate({ fileImgSrc: '', email, type })
+  }
   useEffect(() => {
     const height = window.scrollY
 
@@ -128,15 +136,20 @@ export default function ProfileSettingModal({
           <p className="basis-2/3 overflow-hidden">{fileInfo?.name}</p>
         </div>
         <div className="flex h-fit w-full justify-between border-t border-t-gray-100 pt-4 dark:border-t-gray-700">
-          <Button
-            className="rounded-lg bg-red-50 px-5 py-2 text-red-400 transition-colors hover:bg-red-100 md:px-10 dark:bg-red-400 dark:text-red-50 dark:hover:bg-red-500"
-            onClick={() => {
-              deleteImgUrl()
-              setModal(false)
-            }}>
-            삭제
-          </Button>
-          <div className="flex gap-2">
+          {(type === 'profile' && userProfileData?.profileImg === '') ||
+          (type === 'background' && userProfileData?.backgroundImg === '') ? (
+            ''
+          ) : (
+            <Button
+              className="rounded-lg bg-red-50 px-5 py-2 text-red-400 transition-colors hover:bg-red-100 md:px-10 dark:bg-red-400 dark:text-red-50 dark:hover:bg-red-500"
+              onClick={() => {
+                deleteImgHandler()
+                setModal(false)
+              }}>
+              삭제
+            </Button>
+          )}
+          <div className="flex w-full justify-end gap-2">
             <Button
               className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
               onClick={() => setModal(false)}>
