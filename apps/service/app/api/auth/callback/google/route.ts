@@ -40,18 +40,13 @@ export async function GET(request: Request) {
 
     const data: GoogleOAuthResponse = await response.json()
 
-    if (data.hasExtraDetails) {
-      return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-success`,
-        {
-          headers: response.headers,
-        },
-      )
-    }
+    cookies().set(SESSION_ID, response.headers.getSetCookie().join('; '))
 
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, {
-      headers: response.headers,
-    })
+    return NextResponse.redirect(
+      data.hasExtraDetails
+        ? `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-success`
+        : `${process.env.NEXT_PUBLIC_FE_URL}/sign-up`,
+    )
   } catch {
     cookies().delete(SESSION_ID)
 
