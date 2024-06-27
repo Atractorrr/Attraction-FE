@@ -1,10 +1,13 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
+import { useModal } from '@/features/user-setting/lib'
+import Modals from '@/features/user-setting/ui/modal/Modals'
 import { WarnTxt } from '@/shared/ui'
 import { Checkbox } from '@attraction/design-system/dist'
+import { useEffect } from 'react'
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
 import { SignUpFormType } from '../model'
+import UserAgreementModal from './modal/UserAgreementModal'
 
 export default function UserAgreement() {
   const {
@@ -20,6 +23,7 @@ export default function UserAgreement() {
     name: 'policies',
   })
   const policesValue = useWatch({ control, name: 'policies' })
+  const { openModal, closeModal } = useModal()
 
   const handleSelectAll = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
@@ -88,11 +92,20 @@ export default function UserAgreement() {
                 {...register(`policies.${i}.value`)}
               />
             </div>
-            <a
-              href="/"
+            <button
+              type="button"
+              onClick={() => {
+                openModal(UserAgreementModal, {
+                  onSubmit: () => {
+                    closeModal(UserAgreementModal)
+                  },
+                  initialValue:
+                    item.type === 'mandatory1' ? 'service' : 'privacy',
+                })
+              }}
               className="ml-2 whitespace-nowrap text-sm text-gray-500 underline dark:text-gray-400">
               전문보기
-            </a>
+            </button>
           </div>
         )
       })}
@@ -105,6 +118,7 @@ export default function UserAgreement() {
           />
         </div>
       )}
+      <Modals />
     </fieldset>
   )
 }
