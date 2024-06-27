@@ -31,14 +31,10 @@ export async function GET(request: Request) {
     )
 
     if (!response.ok) {
-      const cookieStore = cookies()
-      cookieStore.delete(SESSION_ID)
+      cookies().delete(SESSION_ID)
 
       return NextResponse.redirect(
-        new URL(
-          `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
-          request.url,
-        ),
+        `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
       )
     }
 
@@ -46,31 +42,21 @@ export async function GET(request: Request) {
 
     if (data.hasExtraDetails) {
       return NextResponse.redirect(
-        new URL(
-          `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-success`,
-          request.url,
-        ),
+        `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-success`,
         {
           headers: response.headers,
         },
       )
     }
 
-    return NextResponse.redirect(
-      new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
-      {
-        headers: response.headers,
-      },
-    )
-  } catch (err) {
-    const cookieStore = cookies()
-    cookieStore.delete(SESSION_ID)
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, {
+      headers: response.headers,
+    })
+  } catch {
+    cookies().delete(SESSION_ID)
 
     return NextResponse.redirect(
-      new URL(
-        `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
-        request.url,
-      ),
+      `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
     )
   }
 }
