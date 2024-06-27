@@ -44,7 +44,7 @@ function GoogleLogoSVG({ className }: GoogleLogoSVGProps) {
 export default function GoogleOAuthButton() {
   return (
     <Link
-      href={GOOGLE_OAUTH_URL.href}
+      href={GOOGLE_OAUTH_URL}
       className="flex h-14 items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-700">
       <GoogleLogoSVG className="size-7" />
       <span className="mx-auto block whitespace-nowrap text-center xs:text-lg">
