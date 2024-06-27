@@ -17,7 +17,7 @@ export default function UserSubscribeButton({
       <DefaultButton
         title={`구독취소: ${buttonProps.newsletterName}`}
         disabled={isLoading || isError}
-        onClick={() => toast.info('서비스 준비 중 이에요')}>
+        onClick={() => toast.info('서비스 준비 중이에요')}>
         구독취소
       </DefaultButton>
     )
