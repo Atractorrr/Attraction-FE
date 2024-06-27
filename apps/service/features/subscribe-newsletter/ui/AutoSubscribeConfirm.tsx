@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogFooter,
   Checkbox,
+  DialogDescription,
 } from '@attraction/design-system'
 import Link from 'next/link'
 import { SubscribeButtonProps, useSubscribeNewsletter } from '../model'
@@ -39,8 +40,14 @@ export default function AutoSubscribeConfirm({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>뉴스레터 구독하기</DialogTitle>
+          {!isAgreePersonalInfoCollection && !isAgreeAdInfoReception && (
+            <DialogDescription>
+              새로운 뉴스레터를 만날 준비가 되셨나요?
+            </DialogDescription>
+          )}
         </DialogHeader>
-        <div className="min-h-40 px-1 pb-3 pt-4">
+        <div
+          className={`px-1 pb-3 pt-4 ${isAgreePersonalInfoCollection || isAgreeAdInfoReception ? 'min-h-20' : ''}`}>
           {isAgreeAdInfoReception && (
             <p>
               <Checkbox
