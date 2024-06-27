@@ -94,14 +94,10 @@ function UserSettingInterest({
   useEffect(() => {
     if (alertActive) {
       setModalValue(undefined)
-    }
-    if (
-      !initialValue.every((el) => preferTagList.includes(el)) &&
-      initialValue.length !== preferTagList.length
-    ) {
+    } else {
       setModalValue({ interest: preferTagList })
     }
-  }, [alertActive, initialValue, preferTagList, setModalValue])
+  }, [alertActive, preferTagList, setModalValue])
 
   return (
     <fieldset>
