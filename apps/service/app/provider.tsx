@@ -28,14 +28,14 @@ function MultiProvider({
 
 export default function Provider({
   children,
-  ...props
+  ...authProps
 }: PropsWithChildren<DefaultAuthState>) {
   return (
     <MultiProvider
       providers={[
         <ChannelTalkProvider />,
         <PWAProvider />,
-        <AuthProvider {...props} />,
+        <AuthProvider {...authProps} />,
         <QueryProvider />,
         <ThemeProvider />,
         <DeviceProvider />,

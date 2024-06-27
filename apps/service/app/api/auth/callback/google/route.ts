@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { SESSION_ID } from '@/entities/auth'
+import { ACCESS_PARAMS_KEY, SESSION_ID } from '@/entities/auth'
 
 interface GoogleOAuthResponse {
   email: string
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
       return NextResponse.redirect(
         new URL(
-          `${process.env.NEXT_PUBLIC_FE_URL}/?failedLogin=true`,
+          `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
           request.url,
         ),
       )
@@ -44,26 +44,31 @@ export async function GET(request: Request) {
 
     const data: GoogleOAuthResponse = await response.json()
 
-    return data.hasExtraDetails
-      ? NextResponse.redirect(
-          new URL(process.env.NEXT_PUBLIC_FE_URL!, request.url),
-          {
-            headers: response.headers,
-          },
-        )
-      : NextResponse.redirect(
-          new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
-          {
-            headers: response.headers,
-          },
-        )
+    if (data.hasExtraDetails) {
+      return NextResponse.redirect(
+        new URL(
+          `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-success`,
+          request.url,
+        ),
+        {
+          headers: response.headers,
+        },
+      )
+    }
+
+    return NextResponse.redirect(
+      new URL(`${process.env.NEXT_PUBLIC_FE_URL}/sign-up`, request.url),
+      {
+        headers: response.headers,
+      },
+    )
   } catch (err) {
     const cookieStore = cookies()
     cookieStore.delete(SESSION_ID)
 
     return NextResponse.redirect(
       new URL(
-        `${process.env.NEXT_PUBLIC_FE_URL}/?failedLogin=true`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-failed`,
         request.url,
       ),
     )
