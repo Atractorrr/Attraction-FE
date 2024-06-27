@@ -40,15 +40,13 @@ export default function AutoSubscribeConfirm({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>뉴스레터 구독하기</DialogTitle>
-          {!isAgreePersonalInfoCollection && !isAgreeAdInfoReception && (
-            <DialogDescription>
-              새로운 뉴스레터를 만날 준비가 되셨나요?
-            </DialogDescription>
-          )}
+          <DialogDescription>
+            새로운 뉴스레터를 만날 준비가 되셨나요?
+          </DialogDescription>
         </DialogHeader>
         <div
           className={`px-1 pb-3 pt-4 ${isAgreePersonalInfoCollection || isAgreeAdInfoReception ? 'min-h-20' : ''}`}>
-          {isAgreeAdInfoReception && (
+          {isAgreePersonalInfoCollection && (
             <p>
               <Checkbox
                 label={
