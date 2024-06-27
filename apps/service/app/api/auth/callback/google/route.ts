@@ -40,7 +40,17 @@ export async function GET(request: Request) {
 
     const data: GoogleOAuthResponse = await response.json()
 
-    cookies().set(SESSION_ID, response.headers.getSetCookie().join('; '))
+    cookies().set(
+      SESSION_ID,
+      response.headers
+        .getSetCookie()
+        .find((cookie) => cookie.startsWith(SESSION_ID))
+        ?.split('=')?.[1] ?? 'null',
+      {
+        httpOnly: true,
+        path: '/',
+      },
+    )
 
     return NextResponse.redirect(
       data.hasExtraDetails
