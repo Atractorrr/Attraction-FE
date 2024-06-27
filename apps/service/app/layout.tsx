@@ -6,7 +6,7 @@ import './globals.css'
 import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
-import { FailedLoginAlert, useSession } from '@/entities/auth'
+import { useSession } from '@/entities/auth'
 import Provider from './provider'
 import Widget from './widget'
 
@@ -56,7 +56,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <script src="/script/theme.js" />
         <Provider {...authProps}>
           <Widget>{children}</Widget>
-          <FailedLoginAlert />
         </Provider>
       </body>
     </html>

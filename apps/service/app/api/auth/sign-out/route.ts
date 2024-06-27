@@ -10,6 +10,6 @@ export async function GET() {
   cookies().delete(SESSION_ID)
 
   return NextResponse.redirect(
-    `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=logout`,
+    `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=logout-success`,
   )
 }
