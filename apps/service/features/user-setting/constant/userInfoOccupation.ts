@@ -8,7 +8,7 @@ export const USER_INFO_OCCUPATION = new Map([
   ['SERVICE', '서비스'],
   ['LABOR', '생산/무직'],
   ['TECH', '기능직'],
-  ['PRIMARY', '농/축광/수산업'],
+  ['PRIMARY', '농/축/광/수산업'],
   ['STUDENT', '학생'],
   ['UNEMPLOY', '무직'],
   ['RETIREE', '퇴직자'],

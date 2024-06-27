@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuth } from '@/entities/auth'
 import {
   SignUpFormType,
   UserAgreement,
@@ -14,10 +15,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useAuth } from '@/entities/auth'
 import { postSignUpForm } from '../api'
-import { checkSignUpFormErr } from '../lib'
-import { useSignUpFunnel } from '../lib/hook'
+import { checkSignUpFormErr, useSignUpFunnel } from '../lib'
 
 export default function SignUp() {
   const { userEmail } = useAuth()

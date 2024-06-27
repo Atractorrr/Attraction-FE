@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
-import { CheckOutline } from '@attraction/icons'
-import { Button } from '@attraction/design-system/dist'
 import { USER_INFO_OCCUPATION } from '@/features/user-setting'
 import { WarnTxt } from '@/shared/ui'
+import { Button } from '@attraction/design-system/dist'
+import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { SignUpFormType } from '../model'
 
 export default function UserJobField() {
@@ -47,11 +46,6 @@ export default function UserJobField() {
                 setOccupationFormValue(listDataKey)
                 setActiveKey(listDataKey)
               }}>
-              <label
-                htmlFor={listDataKey}
-                className={`  flex size-6 cursor-pointer items-center justify-center rounded-full p-1  ${activeKey === listDataKey ? 'inline bg-white dark:bg-gray-600' : 'hidden border-2 border-gray-700 dark:border-gray-100'} focus:border-none`}>
-                <CheckOutline className="peer size-full rounded-md font-bold text-gray-700 dark:text-white" />
-              </label>
               {USER_INFO_OCCUPATION.get(listDataKey)}
             </Button>
           )
