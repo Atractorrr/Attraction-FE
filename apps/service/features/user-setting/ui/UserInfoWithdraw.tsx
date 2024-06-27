@@ -1,9 +1,8 @@
 'use client'
 
-import { useAuth } from '@/entities/auth'
+import { logout, useAuth } from '@/entities/auth'
 import { Container } from '@/shared/ui'
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { useModal } from '../lib'
 import UserSettingItem from './modal/UserSettingItem'
 import UserSettingWithdrawModal from './modal/UserSettingWithdrawModal'
@@ -22,16 +21,9 @@ const deleteUserInfo = (userEmail: string) => {
 export default function UserInfoWithdraw() {
   const { openModal } = useModal()
   const { userEmail } = useAuth()
-  const router = useRouter()
   const { mutate } = useMutation({
     mutationFn: (email: string) => deleteUserInfo(email),
-    onSuccess: async () => {
-      await fetch(`${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`)
-      router.push('/')
-      setTimeout(() => {
-        window.location.reload()
-      }, 300)
-    },
+    onSuccess: logout,
   })
   return (
     <div className="mx-auto w-full md:max-w-xl">
