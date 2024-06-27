@@ -75,7 +75,7 @@ function DrawerFooter({
   return (
     <div
       className={cn(
-        'ds-mt-auto ds-flex ds-flex-col ds-gap-2 ds-p-5',
+        'ds-mt-auto ds-flex ds-items-center ds-justify-center ds-gap-2 ds-p-5',
         className,
       )}
       {...props}
