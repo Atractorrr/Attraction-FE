@@ -1,8 +1,9 @@
 'use server'
 
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { DefaultAuthState } from './type'
-import { SESSION_ID } from '../constant'
+import { ACCESS_PARAMS_KEY, SESSION_ID } from '../constant'
 import { getUserSession } from '../api'
 
 export default async function useSession(): Promise<DefaultAuthState> {
@@ -11,13 +12,13 @@ export default async function useSession(): Promise<DefaultAuthState> {
   const isLogin = !!sessionId
 
   if (!isLogin) {
-    return { isLogin }
+    return { isLogin: false }
   }
 
   try {
     const { data } = await getUserSession()
     return {
-      isLogin,
+      isLogin: true,
       userEmail: data.email,
       userNickname: data.nickname,
       userProfileImgURL: data.profileImg,
@@ -25,7 +26,8 @@ export default async function useSession(): Promise<DefaultAuthState> {
       shouldReissueToken: data.shouldReissueToken,
     }
   } catch {
-    await fetch(`${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`)
-    return { isLogin: false }
+    return redirect(
+      `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out?${ACCESS_PARAMS_KEY}=session-failed`,
+    )
   }
 }

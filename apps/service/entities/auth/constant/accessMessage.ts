@@ -21,6 +21,10 @@ const ACCESS_MESSAGE: {
     message: '로그인에 실패했어요',
     type: 'error',
   },
+  'session-failed': {
+    message: '로그인이 만료되었어요',
+    type: 'error',
+  },
 }
 
 export default ACCESS_MESSAGE
