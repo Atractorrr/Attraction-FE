@@ -13,6 +13,7 @@ export default async function getUserSession(): Promise<{
     {
       headers: header,
       cache: 'no-store',
+      next: { revalidate: 0 },
     },
   )
 

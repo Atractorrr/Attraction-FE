@@ -10,22 +10,22 @@ export default async function useSession(): Promise<DefaultAuthState> {
   const sessionId = cookieStore.get(SESSION_ID)?.value
   const isLogin = !!sessionId
 
-  if (isLogin) {
-    try {
-      const { data } = await getUserSession()
-
-      return {
-        isLogin,
-        userEmail: data.email,
-        userNickname: data.nickname,
-        userProfileImgURL: data.profileImg,
-        hasExtraDetails: data.hasExtraDetails,
-        shouldReissueToken: data.shouldReissueToken,
-      }
-    } catch (err) {
-      return { isLogin: false }
-    }
+  if (!isLogin) {
+    return { isLogin }
   }
 
-  return { isLogin }
+  try {
+    const { data } = await getUserSession()
+    return {
+      isLogin,
+      userEmail: data.email,
+      userNickname: data.nickname,
+      userProfileImgURL: data.profileImg,
+      hasExtraDetails: data.hasExtraDetails,
+      shouldReissueToken: data.shouldReissueToken,
+    }
+  } catch {
+    await fetch(`${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`)
+    return { isLogin: false }
+  }
 }
