@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { X } from 'lucide-react'
+import { XOutline } from '@attraction/icons'
 import { cn } from '../utils'
 
 const Dialog = DialogPrimitive.Root
@@ -43,7 +43,7 @@ const DialogContent = React.forwardRef<
       {...props}>
       {children}
       <DialogPrimitive.Close className="ds-absolute -ds-right-3 -ds-top-3 ds-inline-flex ds-size-9 ds-items-center ds-justify-center ds-rounded-full ds-border ds-border-gray-100 ds-bg-white ds-transition-colors hover:ds-bg-gray-50 dark:ds-border-gray-700 dark:ds-bg-gray-800 dark:hover:ds-bg-gray-700">
-        <X className="ds-size-5 ds-text-gray-700 dark:ds-text-gray-50" />
+        <XOutline className="ds-size-5 ds-text-gray-700 dark:ds-text-gray-50" />
         <span className="ds-sr-only">닫기</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
