@@ -45,7 +45,7 @@ export default function InduceLoginConfirm({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => onOpenChange?.(false)}>
+          <AlertDialogCancel title="취소" onClick={() => onOpenChange?.(false)}>
             취소
           </AlertDialogCancel>
           <AlertDialogAction asChild>

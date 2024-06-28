@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -28,10 +27,10 @@ export default function ProfileDropdown() {
     <>
       <DropdownMenu open={isDropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger asChild>
-          <Button
-            // TODO: 프로필 사진 삽입
+          <button
             type="button"
-            className="flex size-12 items-center justify-center overflow-hidden rounded-lg border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800">
+            className="flex size-12 items-center justify-center overflow-hidden rounded-lg border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800"
+            title={isDropdownOpen ? '메뉴 닫기' : '메뉴 열기'}>
             {userProfileImgURL ? (
               <ThumbnailImage
                 src={userProfileImgURL}
@@ -41,7 +40,7 @@ export default function ProfileDropdown() {
             ) : (
               <MemberOutline className="text-xl text-gray-500 dark:text-gray-400" />
             )}
-          </Button>
+          </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48">
           <DropdownMenuItem asChild>
