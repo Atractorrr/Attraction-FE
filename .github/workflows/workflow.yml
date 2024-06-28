@@ -56,7 +56,14 @@ jobs:
         with:
           status: ${{ steps.check.outputs.status }}
           author_name: Github Action Bot
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          fields: job,repo,message,commit,author,action,pullRequest,workflow,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_REPO} :: ${process.env.AS_WORKFLOW} - QA1\n(${process.env.AS_PULL_REQUEST}) by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+              }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
