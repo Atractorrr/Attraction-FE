@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -37,8 +37,9 @@ jobs:
         env:
           MOCK_URL: ${{ secrets.MOCK_URL }}
           GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
-          NEXT_PUBLIC_OAUTH_URL: ${{ secrets.NEXT_PUBLIC_OAUTH_URL }}
+          NEXT_PUBLIC_FE_URL: ${{ secrets.NEXT_PUBLIC_FE_URL }}
           NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+          NEXT_PUBLIC_OAUTH_URL: ${{ secrets.NEXT_PUBLIC_OAUTH_URL }}
           NEXT_PUBLIC_S3_BUCKET_URL: ${{ secrets.NEXT_PUBLIC_S3_BUCKET_URL }}
 
   notification:
@@ -53,7 +54,7 @@ jobs:
       - name: action-slack
         uses: 8398a7/action-slack@v3
         with:
-          job_name: Build
+          job_name: build
           status: ${{ steps.check.outputs.status }}
           author_name: Github Action Bot
           fields: job,repo,message,commit,author,action,pullRequest,workflow,took
