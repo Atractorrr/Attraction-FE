@@ -54,7 +54,7 @@ jobs:
       - name: action-slack
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ steps.check.outputs.status }}
+          status: custom
           author_name: Github Action Bot
           fields: job,repo,message,commit,author,action,pullRequest,workflow,took
           custom_payload: |
