@@ -17,6 +17,7 @@ import { SubscribeButtonProps, useSubscribeNewsletter } from '../model'
 export default function AutoSubscribeConfirm({
   children,
   newsletterId,
+  newsletterName,
   subscribeLink,
   isAgreePersonalInfoCollection,
   isAgreeAdInfoReception,
@@ -24,7 +25,7 @@ export default function AutoSubscribeConfirm({
   const [isOpen, setOpen] = useState(false)
   const [checkPrivacy, setPrivacy] = useState(false)
   const [checkMarketing, setMarketing] = useState(false)
-  const { mutate } = useSubscribeNewsletter({
+  const { mutate: subscribe } = useSubscribeNewsletter({
     newsletterId,
     onSuccess: () => setOpen(false),
   })
@@ -40,15 +41,12 @@ export default function AutoSubscribeConfirm({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>뉴스레터 구독하기</DialogTitle>
-          {!isAgreePersonalInfoCollection && !isAgreeAdInfoReception && (
-            <DialogDescription>
-              새로운 뉴스레터를 만날 준비가 되셨나요?
-            </DialogDescription>
-          )}
+          <DialogDescription>
+            새로운 뉴스레터를 만날 준비가 되셨나요?
+          </DialogDescription>
         </DialogHeader>
-        <div
-          className={`px-1 pb-3 pt-4 ${isAgreePersonalInfoCollection || isAgreeAdInfoReception ? 'min-h-20' : ''}`}>
-          {isAgreeAdInfoReception && (
+        <div className="px-1 pb-3 pt-4">
+          {isAgreePersonalInfoCollection && (
             <p>
               <Checkbox
                 label={
@@ -57,6 +55,7 @@ export default function AutoSubscribeConfirm({
                     <Link
                       href={subscribeLink}
                       target="_blank"
+                      title={`새창이동: 개인정보 수집 및 이용 약관 (${newsletterName})`}
                       className="underline">
                       개인정보 수집 및 이용
                     </Link>
@@ -76,6 +75,7 @@ export default function AutoSubscribeConfirm({
                     <Link
                       href={subscribeLink}
                       target="_blank"
+                      title={`새창이동: 광고성 정보 수신 약관 (${newsletterName})`}
                       className="underline">
                       광고성 정보 수신
                     </Link>
@@ -98,7 +98,8 @@ export default function AutoSubscribeConfirm({
           <button
             type="button"
             className="block h-12 grow rounded-lg bg-gray-700 p-2 text-center font-medium text-gray-50 transition-colors hover:bg-gray-800 disabled:!bg-gray-50 disabled:!text-gray-400 dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100 dark:disabled:!bg-gray-700 dark:disabled:!text-gray-500"
-            onClick={() => mutate()}
+            title={`구독하기: ${newsletterName}`}
+            onClick={() => subscribe()}
             disabled={!(checkPrivacy && checkMarketing)}>
             구독하기
           </button>

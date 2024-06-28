@@ -10,16 +10,20 @@ import {
   DialogFooter,
   DialogDescription,
 } from '@attraction/design-system'
+import { useAuth } from '@/entities/auth'
+import { copy } from '@/shared/lib'
 import { WarnTxt } from '@/shared/ui'
 import { SubscribeButtonProps, useSubscribeNewsletter } from '../model'
 
 export default function ManualSubscribeConfirm({
   children,
+  newsletterName,
   newsletterId,
   subscribeLink,
 }: PropsWithChildren & SubscribeButtonProps) {
+  const { userEmail } = useAuth()
   const [isOpen, setOpen] = useState(false)
-  const { mutate } = useSubscribeNewsletter({
+  const { mutate: subscribe } = useSubscribeNewsletter({
     newsletterId,
     onSuccess: () => setOpen(false),
   })
@@ -33,9 +37,7 @@ export default function ManualSubscribeConfirm({
             <DialogTitle>뉴스레터 구독하러 가기</DialogTitle>
             <DialogDescription>
               해당 뉴스레터는 직접 구독해야하는{' '}
-              <span className="whitespace-nowrap">
-                뉴스레터에요 <span className="align-top text-lg">😢</span>
-              </span>
+              <span className="whitespace-nowrap">뉴스레터에요 😢</span>
             </DialogDescription>
           </div>
           <p className="!mt-4 pb-1">
@@ -56,10 +58,12 @@ export default function ManualSubscribeConfirm({
           </button>
           <button
             type="button"
-            className="block h-12 grow rounded-lg bg-gray-700 p-2 text-center font-medium text-gray-50 transition-colors hover:bg-gray-800 disabled:!bg-gray-50 disabled:!text-gray-400 dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100 dark:disabled:!bg-gray-700 dark:disabled:!text-gray-500"
-            onClick={() => {
+            className="block h-12 grow whitespace-nowrap rounded-lg bg-gray-700 p-2 text-center font-medium text-gray-50 transition-colors hover:bg-gray-800 disabled:!bg-gray-50 disabled:!text-gray-400 dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100 dark:disabled:!bg-gray-700 dark:disabled:!text-gray-500"
+            title={`구독하러 가기: ${newsletterName}`}
+            onClick={async () => {
+              await copy(userEmail ?? '이메일을 가져오는데 실패했어요 ㅠ')
               window.open(subscribeLink)
-              mutate()
+              subscribe()
             }}>
             구독하러 가기
           </button>

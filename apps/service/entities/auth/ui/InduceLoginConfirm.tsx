@@ -41,11 +41,11 @@ export default function InduceLoginConfirm({
         <AlertDialogHeader>
           <AlertDialogTitle>로그인이 필요한 서비스에요</AlertDialogTitle>
           <AlertDialogDescription>
-            로그인 하러 가시겠어요?
+            어트랙션과 함께 즐거운 뉴스레터 라이프를 즐겨보세요!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => onOpenChange?.(false)}>
+          <AlertDialogCancel title="취소" onClick={() => onOpenChange?.(false)}>
             취소
           </AlertDialogCancel>
           <AlertDialogAction asChild>

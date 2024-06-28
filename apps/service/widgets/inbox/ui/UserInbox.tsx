@@ -169,7 +169,7 @@ export default function UserInbox({ isArticleView, pageType }: InboxProps) {
                   </>
                 ))}
               {isError && (
-                <div className="flex min-h-full items-center justify-center px-2 pb-40 pt-32">
+                <div className="flex min-h-full items-center justify-center px-2 pb-24 pt-20">
                   <ErrorGuideTxt
                     title="아티클을 가져오는데 실패했어요"
                     sub="새로고침 후 다시 시도 부탁드려요"

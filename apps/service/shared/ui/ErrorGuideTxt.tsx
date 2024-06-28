@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { RefreshOutline } from '@attraction/icons'
 import { Button } from '@attraction/design-system'
 import GuideTxt from './GuideTxt'
@@ -17,8 +16,6 @@ export default function ErrorGuideTxt({
   sub = '동일한 현상이 계속될 경우 문의 부탁드려요',
   retryFn,
 }: ErrorGuideTxtProps) {
-  const router = useRouter()
-
   return (
     <div className="flex items-center justify-center pb-24 pt-20">
       <div>
@@ -37,7 +34,7 @@ export default function ErrorGuideTxt({
             type="button"
             className="flex items-center justify-center gap-x-2 rounded-md bg-gray-50 py-2 pl-4 pr-5 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
             title="다시시도하기"
-            onClick={retryFn !== undefined ? retryFn : router.refresh}>
+            onClick={() => retryFn?.() ?? window.location.reload()}>
             <RefreshOutline className="text-xl" />
             <span>다시시도</span>
           </Button>

@@ -55,7 +55,7 @@ export default function ArticleView({
       if (censored) censoringAnchorTags(iframeDoc)
 
       const iframeBody = iframeDoc.body
-      iframe.style.margin = '0px auto'
+      iframeBody.style.margin = '0px auto'
       iframe.style.height = `${iframeBody.scrollHeight + 10}px`
       window.scrollTo(0, 0)
       setIframeLoad(true)

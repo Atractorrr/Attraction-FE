@@ -141,6 +141,7 @@ export default function ProfileSettingModal({
             ''
           ) : (
             <Button
+              title="기존 이미지 삭제"
               className="rounded-lg bg-red-50 px-5 py-2 text-red-400 transition-colors hover:bg-red-100 md:px-10 dark:bg-red-400 dark:text-red-50 dark:hover:bg-red-500"
               onClick={() => {
                 deleteImgHandler()
@@ -151,11 +152,13 @@ export default function ProfileSettingModal({
           )}
           <div className="flex w-full justify-end gap-2">
             <Button
-              className="rounded-lg bg-gray-50 px-5 py-2 md:px-10 dark:bg-gray-700"
+              title="취소하기"
+              className="rounded-lg bg-gray-50 px-5 py-2 transition-colors hover:bg-gray-100 md:px-10 dark:bg-gray-700 dark:hover:bg-gray-600"
               onClick={() => setModal(false)}>
               취소
             </Button>
             <Button
+              title="저장하기"
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
               onClick={storeS3ImgHandler}>
               저장

@@ -1,17 +1,14 @@
-const containsUnsubscribe = (text: string) => {
-  const regex = /수신거부|unsubscribe|구독정보 변경하기/i
-  return regex.test(text)
-}
+import { toast } from 'react-toastify'
+import { UNSUBSCRIBE_REGEX } from '@/shared/constant'
 
 export default function censoringAnchorTags(document: Document) {
   const anchorEls = document.querySelectorAll('a')
   anchorEls.forEach((anchorEl) => {
     const targetTxt = anchorEl.textContent ?? ''
-    if (containsUnsubscribe(targetTxt)) {
+    if (UNSUBSCRIBE_REGEX.test(targetTxt)) {
       anchorEl.removeAttribute('href')
       anchorEl.addEventListener('click', (e) => {
-        // eslint-disable-next-line no-alert
-        alert('잘못된 접근입니다') // TODO: 커스텀 alert or toast ui 사용
+        toast.error('보안상의 이유로 접근할 수 없어요')
         e.preventDefault()
       })
     }
