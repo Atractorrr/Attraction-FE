@@ -16,11 +16,10 @@ interface RecentArticlesProps {
 export default function RecentArticles({
   mainPageArticles,
 }: RecentArticlesProps) {
-  const articleList = mainPageArticles.length
-    ? mainPageArticles.map((articleProps) => (
-        <RecentArticleItem key={articleProps.id} {...articleProps} />
-      ))
-    : []
+  const articleList =
+    mainPageArticles.map((articleProps) => (
+      <RecentArticleItem key={articleProps.id} {...articleProps} />
+    )) ?? []
 
   return (
     <div>
