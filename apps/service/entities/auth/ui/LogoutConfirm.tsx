@@ -44,10 +44,12 @@ export default function LogoutConfirm({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => onOpenChange?.(false)}>
+          <AlertDialogCancel title="취소" onClick={() => onOpenChange?.(false)}>
             취소
           </AlertDialogCancel>
-          <AlertDialogAction onClick={logout}>확인</AlertDialogAction>
+          <AlertDialogAction title="로그아웃" onClick={logout}>
+            확인
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
