@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,11 +36,9 @@ jobs:
         run: pnpm ${{ matrix.command }}
         env:
           MOCK_URL: ${{ secrets.MOCK_URL }}
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET }}
           NEXT_PUBLIC_FE_URL: ${{ secrets.NEXT_PUBLIC_FE_URL }}
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           NEXT_PUBLIC_OAUTH_URL: ${{ secrets.NEXT_PUBLIC_OAUTH_URL }}
           NEXT_PUBLIC_S3_BUCKET_URL: ${{ secrets.NEXT_PUBLIC_S3_BUCKET_URL }}
 
@@ -51,12 +50,14 @@ jobs:
     steps:
       - uses: martialonline/workflow-status@v3
         id: check
+
       - name: action-slack
         uses: 8398a7/action-slack@v3
         with:
+          job_name: build
           status: ${{ steps.check.outputs.status }}
           author_name: Github Action Bot
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          fields: repo,message,commit,author,action,pullRequest,workflow
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
