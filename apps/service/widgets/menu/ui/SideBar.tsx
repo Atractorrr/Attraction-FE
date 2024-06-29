@@ -52,9 +52,9 @@ export default function SideBar() {
                 <ChevronDoubleLeftOutline />
               </button>
             </div>
-            <Menu />
+            <Menu handleMenuClick={() => setOpen(false)} />
           </div>
-          <Footer />
+          <Footer handleMenuClick={() => setOpen(false)} />
         </div>
       </div>
       {isOpen && (
@@ -75,7 +75,7 @@ export default function SideBar() {
             <ChevronDoubleRightOutline />
           </button>
         </div>
-        <Menu mini />
+        <Menu mini handleMenuClick={() => setOpen(false)} />
       </div>
     </div>
   )

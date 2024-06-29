@@ -1,15 +1,17 @@
 'use client'
 
 import Link from 'next/link'
+import { MouseEventHandler } from 'react'
 import { useSelectedLayoutSegments, usePathname } from 'next/navigation'
 import { useAuth } from '@/entities/auth'
 import { SIDE_MENU } from '../constant'
 
 interface MenuProps {
   mini?: boolean
+  handleMenuClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export default function Menu({ mini: isMiniSize }: MenuProps) {
+export default function Menu({ mini: isMiniSize, handleMenuClick }: MenuProps) {
   const { isLogin } = useAuth()
   const pathname = usePathname()
   const segments = useSelectedLayoutSegments()
@@ -43,7 +45,8 @@ export default function Menu({ mini: isMiniSize }: MenuProps) {
                     ? 'bg-gray-50 dark:bg-gray-700'
                     : ''
                 }`}
-                title={`페이지 이동: ${name}`}>
+                title={`페이지 이동: ${name}`}
+                onClick={handleMenuClick}>
                 <Icon />
                 <span
                   className={
