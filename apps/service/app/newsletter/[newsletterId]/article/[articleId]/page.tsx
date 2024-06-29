@@ -12,8 +12,21 @@ interface PrevArticleDetailPageProps {
 
 export const revalidate = 300
 
-export const metadata: Metadata = {
-  title: '지난 아티클',
+export async function generateMetadata({
+  params,
+}: PrevArticleDetailPageProps): Promise<Metadata> {
+  const newsletterId = Number(params.newsletterId)
+  const articleId = Number(params.articleId)
+
+  if ([newsletterId, articleId].some(Number.isNaN)) {
+    throw new Error('유효하지 않은 요청이에요')
+  }
+
+  const { data } = await getPrevArticle({ newsletterId, articleId })
+
+  return {
+    title: `[${data?.newsletter?.name ?? ''}] ${data?.title ?? ''}`,
+  }
 }
 
 export default async function PrevArticleDetailPage({
