@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { Header } from '@/widgets/menu'
 import { Container, ErrorGuideTxt } from '@/shared/ui'
 
 export default function Error({
@@ -16,10 +17,13 @@ export default function Error({
   }, [error])
 
   return (
-    <Container>
-      <div className="p-5">
-        <ErrorGuideTxt retryFn={reset} />
-      </div>
-    </Container>
+    <>
+      <Header title="" />
+      <Container>
+        <div className="p-5">
+          <ErrorGuideTxt retryFn={reset} />
+        </div>
+      </Container>
+    </>
   )
 }

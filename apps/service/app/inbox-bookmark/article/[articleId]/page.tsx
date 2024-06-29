@@ -1,5 +1,3 @@
-'use client'
-
 import { ArticleDetail } from '@/widgets/inbox'
 
 interface ArticleDetailPageProps {
