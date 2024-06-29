@@ -1,8 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { ReactNode } from 'react'
-import { ChevronLeftOutline } from '@attraction/icons'
+import { ChevronLeftOutline, MemberOutline } from '@attraction/icons'
 import { AuthButton, ShouldReissueTokenGuide, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
@@ -39,7 +40,16 @@ export default function Header({
                 {title || '어트랙션'}
               </h3>
             </div>
-            {isLogin && <MobileHeaderMenuBtn />}
+            {isLogin ? (
+              <MobileHeaderMenuBtn />
+            ) : (
+              <Link
+                href="/sign-in"
+                title="로그인 하러가기"
+                className="relative flex size-10 items-center justify-center rounded-lg text-xl transition-colors active:bg-gray-50 dark:active:bg-gray-700">
+                <MemberOutline />
+              </Link>
+            )}
           </div>
         </div>
       </header>

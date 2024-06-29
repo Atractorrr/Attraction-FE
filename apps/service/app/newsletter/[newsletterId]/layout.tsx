@@ -14,7 +14,7 @@ export default function NewsletterIntroduceLayout({
     <>
       <Header
         title={isArticleView ? '지난 아티클' : '뉴스레터 소개'}
-        mobileFixed={isArticleView}
+        mobileFixed
       />
       {children}
     </>
