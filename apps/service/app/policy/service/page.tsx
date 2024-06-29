@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Header } from '@/widgets/menu'
 import { Container, ServicePolicy } from '@/shared/ui'
 
 export const metadata: Metadata = {
@@ -7,8 +8,11 @@ export const metadata: Metadata = {
 
 export default function ServicePolicyPage() {
   return (
-    <Container className="px-5 pb-20 pt-10">
-      <ServicePolicy />
-    </Container>
+    <>
+      <Header title="이용약관" mobileFixed />
+      <Container className="px-5 pb-20 pt-10">
+        <ServicePolicy />
+      </Container>
+    </>
   )
 }

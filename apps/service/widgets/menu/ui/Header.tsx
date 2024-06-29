@@ -1,22 +1,30 @@
 'use client'
 
-import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { ReactNode } from 'react'
 import { ChevronLeftOutline } from '@attraction/icons'
 import { AuthButton, ShouldReissueTokenGuide, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
-import { useTitle } from '../lib'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import MobileHeaderMenuBtn from './MobileHeaderMenuBtn'
 
-export default function Header() {
-  const segments = useSelectedLayoutSegments()
+interface HeaderProps {
+  title: string | ReactNode
+  mobileFixed?: boolean
+  mobileDisabled?: boolean
+}
+
+export default function Header({
+  title,
+  mobileFixed: isMobileFixed,
+  mobileDisabled: isMobileDisabled,
+}: HeaderProps) {
   const router = useRouter()
   const { isMobileView } = useCheckDevice()
   const { isLogin, shouldReissueToken } = useAuth()
-  const title = useTitle()
 
-  if (isMobileView && segments.length > 1) {
+  if (isMobileView && isMobileFixed) {
     return (
       <header className="mt-[60px]">
         <div className="fixed inset-x-0 top-0 z-50 h-[60px] border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -28,7 +36,7 @@ export default function Header() {
                 onClick={router.back}
               />
               <h3 className="w-[calc(100%-3.5rem)] truncate text-lg font-medium">
-                {title}
+                {title || '어트랙션'}
               </h3>
             </div>
             {isLogin && <MobileHeaderMenuBtn />}
@@ -37,18 +45,17 @@ export default function Header() {
       </header>
     )
   }
+
   return (
     <>
       {shouldReissueToken && <ShouldReissueTokenGuide />}
       <header
         className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-          isLogin && segments.some((s) => s === 'mypage')
-            ? 'hidden md:block'
-            : ''
+          isLogin && isMobileDisabled ? 'hidden md:block' : ''
         }`}>
         <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
           <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
-            {title}
+            {title || '어트랙션'}
           </h3>
           <div className="flex items-center justify-end gap-2">
             <ThemeDropdownBtn />

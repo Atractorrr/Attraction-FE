@@ -1,16 +1,23 @@
-import { Metadata } from 'next'
+'use client'
+
+import { useSelectedLayoutSegments } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 import { UserInboxLayout } from '@/widgets/inbox'
 import { WithAuth } from '@/entities/auth'
-
-export const metadata: Metadata = {
-  title: '뉴스레터 보관함',
-}
+import { Header } from '@/widgets/menu'
 
 export default function InboxLayout({ children }: PropsWithChildren) {
+  const segments = useSelectedLayoutSegments()
+  const isArticleView = segments.some((segment) => segment === 'article')
+
   return (
-    <WithAuth>
-      <UserInboxLayout pageType="default">{children}</UserInboxLayout>
-    </WithAuth>
+    <>
+      <Header title="뉴스레터 보관함" mobileFixed={isArticleView} />
+      <WithAuth>
+        <UserInboxLayout pageType="default" isArticleView={isArticleView}>
+          {children}
+        </UserInboxLayout>
+      </WithAuth>
+    </>
   )
 }

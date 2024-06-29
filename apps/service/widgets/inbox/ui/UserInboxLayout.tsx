@@ -1,6 +1,3 @@
-'use client'
-
-import { useSelectedLayoutSegments } from 'next/navigation'
 import { PropsWithChildren, createElement } from 'react'
 import { ArticlePageType } from '@/entities/user-article'
 import { Container } from '@/shared/ui'
@@ -8,15 +5,14 @@ import UserInbox from './UserInbox'
 
 interface UserInboxLayoutProps {
   pageType: ArticlePageType
+  isArticleView: boolean
 }
 
 export default function UserInboxLayout({
   children,
   pageType,
+  isArticleView,
 }: PropsWithChildren<UserInboxLayoutProps>) {
-  const segments = useSelectedLayoutSegments()
-  const isArticleView = segments.some((segment) => segment === 'article')
-
   return (
     <div
       className={
