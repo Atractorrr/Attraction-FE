@@ -5,7 +5,7 @@ import { DiscoverArticle } from '../model'
 
 export default function DiscoverArticleItem({ ...props }: DiscoverArticle) {
   return (
-    <Link href={props.contentUrl} className="flex w-full gap-x-5">
+    <Link href="/" className="flex w-full gap-x-5">
       <div className="relative flex size-full h-[120px] w-[180px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
         <ThumbnailImage
           src={props.thumbnailUrl}
