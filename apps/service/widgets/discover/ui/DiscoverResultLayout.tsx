@@ -14,7 +14,7 @@ export default function DiscoverResultLayout({
       <div className="mb-12 flex w-full justify-center px-4 pt-20 md:pt-0 lg:px-0">
         <DiscoverInput />
       </div>
-      <div className="flex w-full flex-col justify-center gap-6 md:flex-row">
+      <div className="flex w-full flex-col justify-center gap-6 lg:flex-row">
         <div className="w-full lg:w-[calc(100%-366px)]">
           <DiscoverArticles keyword={keyword} />
         </div>
