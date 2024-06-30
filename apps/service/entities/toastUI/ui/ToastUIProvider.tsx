@@ -24,7 +24,7 @@ export default function ToastUIProvider({ children }: PropsWithChildren) {
         //   } relative flex p-1 h-30 rounded-md justify-between overflow-hidden cursor-pointer`
         // }
         // bodyClassName={() => 'flex text-sm font-white p-3 items-center'}
-        position="top-right"
+        position="top-center"
         autoClose={3000}
       />
     </>

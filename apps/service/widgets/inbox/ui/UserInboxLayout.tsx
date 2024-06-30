@@ -20,8 +20,8 @@ export default function UserInboxLayout({
           ? 'relative mx-auto flex max-w-7xl items-start justify-center gap-6'
           : undefined
       }>
-      <UserInbox isArticleView={isArticleView} pageType={pageType} />
       {createElement(isArticleView ? Container : 'div', undefined, children)}
+      <UserInbox isArticleView={isArticleView} pageType={pageType} />
     </div>
   )
 }
