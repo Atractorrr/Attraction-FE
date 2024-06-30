@@ -15,7 +15,7 @@ export default function AuthProvider({
   useEffect(() => {
     if (!authProps.isLogin) return
     if (!authProps.hasExtraDetails && !pathname.startsWith('/sign-up')) {
-      redirect(`/sign-up?${ACCESS_PARAMS_KEY}=register`)
+      redirect(`/sign-up?${ACCESS_PARAMS_KEY}=register-proceed`)
     }
     if (authProps.hasExtraDetails && pathname.startsWith('/sign-up')) {
       redirect(`/?${ACCESS_PARAMS_KEY}=register-already`)
