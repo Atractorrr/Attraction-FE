@@ -7,10 +7,9 @@
     "packages/*"
   ],
   "description": "",
-  "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "husky install && pnpm build:ds && pnpm build:icons",
+    "postinstall": "husky install && pnpm build:icons && pnpm build:ds",
     "prepare": "husky install",
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
