@@ -71,7 +71,8 @@ export default function CardItem({ type, ...data }: CardItemProps) {
             {data.articleTitle}
           </Link>
           <span className="block break-keep text-sm text-gray-500 dark:text-gray-400">
-            {data.newsletterName} &middot; {receivedAt}
+            {data.newsletterName} &middot;{' '}
+            <span className="whitespace-nowrap">{receivedAt}</span>
           </span>
           {receivedAt.includes('7') && <ToBeDeletedTxt />}
         </p>

@@ -1,7 +1,11 @@
 const ACCESS_MESSAGE: {
   [key: string]: { message: string; type: 'success' | 'info' | 'error' }
 } = {
-  register: {
+  'register-already': {
+    message: '이미 회원가입을 마치셨어요',
+    type: 'info',
+  },
+  'register-proceed': {
     message: '회원가입을 마저 진행해주세요',
     type: 'error',
   },
@@ -9,7 +13,7 @@ const ACCESS_MESSAGE: {
     message: '로그아웃에 성공했어요!',
     type: 'success',
   },
-  login: {
+  'login-already': {
     message: '이미 로그인을 마치셨어요',
     type: 'info',
   },

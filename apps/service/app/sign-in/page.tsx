@@ -13,7 +13,7 @@ export default function SignInPage() {
 
   if (isLogin) {
     return redirect(
-      `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login`,
+      `${process.env.NEXT_PUBLIC_FE_URL}/?${ACCESS_PARAMS_KEY}=login-already`,
     )
   }
 

@@ -13,12 +13,12 @@ export default function AuthProvider({
   const pathname = usePathname()
 
   useEffect(() => {
-    if (
-      authProps.isLogin &&
-      !authProps.hasExtraDetails &&
-      !pathname.startsWith('/sign-up')
-    ) {
-      redirect(`/sign-up?${ACCESS_PARAMS_KEY}=register`)
+    if (!authProps.isLogin) return
+    if (!authProps.hasExtraDetails && !pathname.startsWith('/sign-up')) {
+      redirect(`/sign-up?${ACCESS_PARAMS_KEY}=register-proceed`)
+    }
+    if (authProps.hasExtraDetails && pathname.startsWith('/sign-up')) {
+      redirect(`/?${ACCESS_PARAMS_KEY}=register-already`)
     }
   }, [authProps.isLogin, authProps.hasExtraDetails, pathname])
 
