@@ -15,6 +15,9 @@
   input::-webkit-search-results-decoration {
     display: none;
   }
+  body.service {
+    @apply relative min-h-dvh min-w-[280px] break-keep bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-100;
+  }
   body.lock-scroll {
     @apply touch-none overflow-hidden;
   }
