@@ -4,7 +4,8 @@
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory } from '@/shared/type'
 import { WarnTxt } from '@/shared/ui'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { useUserInterestTag } from '../../lib'
 
 interface UserPreferTagType {
   categoryKey: NewsletterCategory
@@ -69,33 +70,8 @@ export default function UserSettingInterest({
   setModalValue,
   initialValue,
 }: UserSettingInterestType) {
-  const [preferTagList, setPreferTagList] =
-    useState<NewsletterCategory[]>(initialValue)
-
-  const [alertActive, setAlertActive] = useState(false)
-  const [disabledTag, setDisabledTag] = useState(false)
-
-  useEffect(() => {
-    if (preferTagList.length >= 4) {
-      setDisabledTag(true)
-    } else {
-      setDisabledTag(false)
-    }
-
-    if (preferTagList.length === 0) {
-      setAlertActive(true)
-    } else {
-      setAlertActive(false)
-    }
-  }, [preferTagList])
-
-  useEffect(() => {
-    if (alertActive) {
-      setModalValue(undefined)
-    } else {
-      setModalValue({ interest: preferTagList })
-    }
-  }, [alertActive, preferTagList, setModalValue])
+  const { preferTagList, setPreferTagList, alertActive, disabledTag } =
+    useUserInterestTag(initialValue, setModalValue)
 
   return (
     <fieldset>
