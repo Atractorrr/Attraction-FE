@@ -1,10 +1,5 @@
 import { ReactNode } from 'react'
 
-interface ModalComponentPropType {
-  onSubmit: (value: unknown) => void
-  onClose?: () => void
-  initialValue?: unknown
-}
 type CreateModalElement = (props: {
   isOpen: boolean
   close: () => void
@@ -27,7 +22,6 @@ interface ModalDispatchContextType {
 export type {
   CreateModalElement,
   ModalCloseRefType,
-  ModalComponentPropType,
   ModalDispatchContextType,
   ModalStateContextType,
 }

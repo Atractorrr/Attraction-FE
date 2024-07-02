@@ -1,6 +1,7 @@
 'use client'
 
 import { useAuth } from '@/entities/auth'
+import { useModal } from '@/entities/modal'
 import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory } from '@/shared/type'
@@ -8,7 +9,7 @@ import { Container } from '@/shared/ui'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
-import useModal from '../lib/hook/useModal'
+
 import UserInfoExpirationDate from './modal/UserSettingExpirationDateModal'
 import UserSettingInterest from './modal/UserSettingInterestModal'
 import UserSettingItem from './modal/UserSettingItem'

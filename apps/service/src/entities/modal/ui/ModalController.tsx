@@ -1,3 +1,5 @@
+'use client'
+
 import {
   forwardRef,
   useCallback,
@@ -5,7 +7,7 @@ import {
   useImperativeHandle,
   useState,
 } from 'react'
-import { CreateModalElement } from '../../model'
+import { CreateModalElement } from '../model'
 
 interface ModalPropsType {
   modalElement: CreateModalElement

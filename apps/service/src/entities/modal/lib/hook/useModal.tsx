@@ -1,10 +1,12 @@
+'use client'
+
 import { useContext, useRef } from 'react'
 import {
   CreateModalElement,
   ModalCloseRefType,
   ModalDispatchContext,
 } from '../../model'
-import ModalController from '../../ui/modal/ModalController'
+import { ModalController } from '../../ui'
 
 const useModal = () => {
   const context = useContext(ModalDispatchContext)

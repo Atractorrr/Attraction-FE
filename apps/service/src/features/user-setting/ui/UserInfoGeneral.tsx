@@ -1,8 +1,8 @@
 'use client'
 
+import { useModal } from '@/entities/modal'
 import { THEME_NAME, Theme, useTheme } from '@/entities/theme'
 import { Container } from '@/shared/ui'
-import useModal from '../lib/hook/useModal'
 import UserSettingItem from './modal/UserSettingItem'
 import UserSettingModal from './modal/UserSettingModal'
 import UserSettingTheme from './modal/UserSettingThemeModal'

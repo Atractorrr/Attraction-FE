@@ -3,7 +3,8 @@
 import { logout, useAuth } from '@/entities/auth'
 import { Container } from '@/shared/ui'
 import { useMutation } from '@tanstack/react-query'
-import { useModal } from '../lib'
+
+import { useModal } from '@/entities/modal'
 import UserSettingItem from './modal/UserSettingItem'
 import UserSettingWithdrawModal from './modal/UserSettingWithdrawModal'
 
