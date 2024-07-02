@@ -55,7 +55,6 @@ export default function ArticleDetail({
             setError={setIframeError}
             setLoad={setIframeLoad}
             articleType="user"
-            censored
           />
         </>
       )}

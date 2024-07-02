@@ -18,8 +18,13 @@ export default function ArticleError({ error }: ArticleErrorProps) {
   }, [error])
 
   return (
-    <div className="service text-base">
-      <ErrorGuideTxt title="아티클을 불러오지 못했어요" />
-    </div>
+    <body
+      className="service"
+      style={{ margin: '0px auto', padding: '0px', fontSize: '0px' }}
+      data-error="true">
+      <div className="bg-white text-base dark:bg-gray-800">
+        <ErrorGuideTxt title="아티클을 불러오지 못했어요" />
+      </div>
+    </body>
   )
 }

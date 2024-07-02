@@ -17,14 +17,12 @@ interface ArticleViewProps {
   newsletterName: string
   receivedAt: string
   readingTime: number
-  censored?: boolean
   setError?: (status: boolean) => void
   setLoad?: (status: boolean) => void
   articleType: 'user' | 'prev'
 }
 
 export default function ArticleView({
-  censored,
   setError,
   setLoad,
   articleType,
@@ -45,12 +43,16 @@ export default function ArticleView({
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
       if (!iframeDoc) return
 
+      if (iframeDoc.body.hasAttribute('data-error')) {
+        setIframeError(true)
+        return
+      }
+
       iframe.style.display = 'block'
       iframe.style.height = `${iframeDoc.body.scrollHeight}px`
 
-      if (censored) censoringAnchorTags(iframeDoc)
-
       window.scrollTo(0, 0)
+      censoringAnchorTags(iframeDoc)
       setIframeLoad(true)
     } catch {
       setIframeError(true)
@@ -121,7 +123,7 @@ export default function ArticleView({
               ref={(node) => {
                 iframeRef.current = node
               }}
-              src={`${data.contentUrl}`}
+              src={data.contentUrl}
               className="hidden size-full min-h-full overflow-hidden bg-white"
               title={data.title}
               onLoad={iframeLoadHandler}

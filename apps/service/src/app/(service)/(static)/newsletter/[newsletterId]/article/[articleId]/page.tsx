@@ -53,7 +53,6 @@ export default async function PrevArticleDetailPage({
         receivedAt={data.receivedAt}
         readingTime={data.readingTime}
         articleType="prev"
-        censored
       />
     </Container>
   )
