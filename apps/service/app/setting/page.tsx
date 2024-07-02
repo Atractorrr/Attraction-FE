@@ -1,14 +1,13 @@
-import { Metadata } from 'next'
-import { Suspense } from 'react'
-import { Header } from '@/widgets/menu'
+import { WithAuth } from '@/entities/auth'
 import {
   UserInfoGeneral,
   UserInfoSetting,
   UserInfoWithdraw,
 } from '@/features/user-setting'
-import Modals from '@/features/user-setting/ui/modal/Modals'
-import { WithAuth } from '@/entities/auth'
 import { LoadingSpinner } from '@/shared/ui'
+import { Header } from '@/widgets/menu'
+import { Metadata } from 'next'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: '개인설정',
@@ -26,7 +25,6 @@ export default function SettingPage() {
           <UserInfoGeneral />
           {/* <UserInfoAlert /> */}
           <UserInfoWithdraw />
-          <Modals />
         </div>
       </WithAuth>
     </>

@@ -4,15 +4,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { postDuplicateName } from '../../api'
 import { checkUserSettingInputError } from '../../lib'
-import { ModalComponentPropType } from '../../model'
-import UserSettingModal from './UserSettingModal'
 
 interface UserInfoNicknameInputType {
   initialValue: string
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-function UserInfoNicknameInput({
+export default function UserInfoNicknameInput({
   initialValue,
   setModalValue,
 }: UserInfoNicknameInputType) {
@@ -85,31 +83,5 @@ function UserInfoNicknameInput({
         </p>
       )}
     </div>
-  )
-}
-
-export default function UserSettingNicknameModal({
-  onSubmit,
-  onClose,
-  initialValue,
-}: ModalComponentPropType) {
-  return (
-    <UserSettingModal
-      title="닉네임 변경"
-      postUserSetting={(value: unknown) => {
-        onSubmit(value)
-      }}
-      closeHandler={() => {
-        if (onClose) {
-          onClose()
-        }
-      }}
-      renderItem={(setPostValue) => (
-        <UserInfoNicknameInput
-          setModalValue={setPostValue}
-          initialValue={initialValue as string}
-        />
-      )}
-    />
   )
 }

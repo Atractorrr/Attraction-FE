@@ -1,14 +1,32 @@
 'use client'
 
-import { Theme, useTheme, THEME_NAME } from '@/entities/theme'
+import { THEME_NAME, Theme, useTheme } from '@/entities/theme'
 import { Container } from '@/shared/ui'
 import useModal from '../lib/hook/useModal'
 import UserSettingItem from './modal/UserSettingItem'
-import UserSettingThemeModal from './modal/UserSettingThemeModal'
+import UserSettingModal from './modal/UserSettingModal'
+import UserSettingTheme from './modal/UserSettingThemeModal'
 
 export default function UserInfoGeneral() {
-  const { openModal, closeModal } = useModal()
   const { currentTheme, setTheme } = useTheme()
+  const { openModal } = useModal()
+
+  const openThemeModalHandler = () => {
+    openModal(({ isOpen, close }) => (
+      <UserSettingModal
+        isOpen={isOpen}
+        title="테마 변경"
+        submitHandler={(value: unknown) => {
+          setTheme(value as Theme)
+          close()
+        }}
+        closeHandler={close}
+        renderItem={(setPostValue) => (
+          <UserSettingTheme setModalValue={setPostValue} />
+        )}
+      />
+    ))
+  }
 
   return (
     <div className="mx-auto w-full md:max-w-xl">
@@ -24,16 +42,7 @@ export default function UserInfoGeneral() {
             title="화면 테마 설정"
             subTitle={THEME_NAME[currentTheme]}
             icon="chevron"
-            openModalHandler={() => {
-              openModal(UserSettingThemeModal, {
-                onSubmit: (value) => {
-                  if (value) {
-                    setTheme(value as Theme)
-                    closeModal(UserSettingThemeModal)
-                  }
-                },
-              })
-            }}
+            openModalHandler={openThemeModalHandler}
           />
         </div>
       </Container>

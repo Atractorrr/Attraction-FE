@@ -9,35 +9,34 @@ import {
   DrawerTitle,
 } from '@attraction/design-system'
 import React, { ReactNode, useState } from 'react'
+import { toast } from 'react-toastify'
 
 type UserSettingModalType = {
-  postUserSetting: (value: unknown) => void
-  closeHandler?: () => void
+  submitHandler: (value: unknown) => void
+  closeHandler: () => void
   renderItem: (
     setPostValue: React.Dispatch<React.SetStateAction<unknown | undefined>>,
   ) => ReactNode
   title: string
+  isOpen: boolean
 }
 
 export default function UserSettingModal({
-  postUserSetting,
+  submitHandler,
   renderItem,
   closeHandler,
   title,
+  isOpen,
 }: UserSettingModalType) {
   const [postValue, setPostValue] = useState<unknown>()
   const { isMobileView } = useCheckDevice()
-  const [activeModal, setActiveModal] = useState(true)
 
   return isMobileView ? (
     <Drawer
-      open={activeModal}
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          setActiveModal(false)
-          setTimeout(() => {
-            closeHandler?.()
-          }, 300)
+          closeHandler()
         }
       }}>
       <DrawerContent>
@@ -51,7 +50,13 @@ export default function UserSettingModal({
           <Button
             title="변경하기"
             className="w-2/3 grow whitespace-nowrap rounded-lg bg-blue-50 px-6 py-3 text-blue-400 transition-colors hover:bg-blue-100 xs:text-lg md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-            onClick={() => postUserSetting(postValue)}>
+            onClick={() => {
+              if (postValue) {
+                submitHandler(postValue)
+              } else {
+                toast.error('잘못된 값 입니다.')
+              }
+            }}>
             변경
           </Button>
           <DrawerClose asChild>
@@ -59,10 +64,7 @@ export default function UserSettingModal({
               title="취소하기"
               className="w-1/3 whitespace-nowrap rounded-lg bg-gray-50 px-6 py-3 xs:text-lg md:px-10 dark:bg-gray-700"
               onClick={() => {
-                setActiveModal(false)
-                setTimeout(() => {
-                  closeHandler?.()
-                }, 300)
+                closeHandler()
               }}>
               취소
             </Button>
@@ -85,13 +87,19 @@ export default function UserSettingModal({
             <Button
               title="취소하기"
               className="rounded-lg bg-gray-50 px-5 py-2 transition-colors hover:bg-gray-100 md:px-8 dark:bg-gray-700 dark:hover:bg-gray-600"
-              onClick={() => closeHandler?.()}>
+              onClick={closeHandler}>
               취소
             </Button>
             <Button
               title="변경하기"
               className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-8 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-              onClick={() => postUserSetting(postValue)}>
+              onClick={() => {
+                if (postValue) {
+                  submitHandler(postValue)
+                } else {
+                  toast.error('잘못된 값 입니다.')
+                }
+              }}>
               변경
             </Button>
           </div>

@@ -5,8 +5,6 @@ import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory } from '@/shared/type'
 import { WarnTxt } from '@/shared/ui'
 import { useEffect, useRef, useState } from 'react'
-import { ModalComponentPropType } from '../../model'
-import UserSettingModal from './UserSettingModal'
 
 interface UserPreferTagType {
   categoryKey: NewsletterCategory
@@ -67,7 +65,7 @@ function UserInterestTag({
   )
 }
 
-function UserSettingInterest({
+export default function UserSettingInterest({
   setModalValue,
   initialValue,
 }: UserSettingInterestType) {
@@ -127,31 +125,5 @@ function UserSettingInterest({
         </div>
       )}
     </fieldset>
-  )
-}
-
-export default function UserSettingInterestModal({
-  onSubmit,
-  onClose,
-  initialValue,
-}: ModalComponentPropType) {
-  return (
-    <UserSettingModal
-      title="관심사 변경"
-      postUserSetting={(value: unknown) => {
-        onSubmit(value)
-      }}
-      closeHandler={() => {
-        if (onClose) {
-          onClose()
-        }
-      }}
-      renderItem={(setPostValue) => (
-        <UserSettingInterest
-          setModalValue={setPostValue}
-          initialValue={initialValue as NewsletterCategory[]}
-        />
-      )}
-    />
   )
 }

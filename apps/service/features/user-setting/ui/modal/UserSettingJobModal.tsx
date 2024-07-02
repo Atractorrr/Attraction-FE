@@ -3,8 +3,6 @@
 import { Button } from '@attraction/design-system/dist'
 import React, { useEffect, useState } from 'react'
 import { USER_INFO_EXPIRATION, USER_INFO_OCCUPATION } from '../../constant'
-import { ModalComponentPropType } from '../../model'
-import UserSettingModal from './UserSettingModal'
 
 interface UserSettingListProps {
   listData: typeof USER_INFO_EXPIRATION | typeof USER_INFO_OCCUPATION
@@ -13,7 +11,7 @@ interface UserSettingListProps {
   initialItem?: string
 }
 
-function UserSettingList({
+export default function UserSettingList({
   initialItem,
   setPostValue,
   wrap,
@@ -55,33 +53,5 @@ function UserSettingList({
         )
       })}
     </div>
-  )
-}
-
-export default function UserSettingJobModal({
-  onSubmit,
-  onClose,
-  initialValue,
-}: ModalComponentPropType) {
-  return (
-    <UserSettingModal
-      title="산업분야 변경"
-      postUserSetting={(value: unknown) => {
-        onSubmit(value)
-      }}
-      closeHandler={() => {
-        if (onClose) {
-          onClose()
-        }
-      }}
-      renderItem={(setPostValue) => (
-        <UserSettingList
-          listData={USER_INFO_OCCUPATION}
-          wrap
-          setPostValue={setPostValue}
-          initialItem={initialValue as string}
-        />
-      )}
-    />
   )
 }

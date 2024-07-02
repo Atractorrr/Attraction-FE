@@ -5,15 +5,13 @@ import { WarnTxt } from '@/shared/ui'
 import { CheckOutline } from '@attraction/icons'
 import { useEffect, useState } from 'react'
 import { USER_INFO_EXPIRATION } from '../../constant'
-import { ModalComponentPropType } from '../../model'
-import UserSettingModal from './UserSettingModal'
 
 interface UserInfoExpirationDateType {
   initialValue: string
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-function UserInfoExpirationDate({
+export default function UserInfoExpirationDate({
   initialValue,
   setModalValue,
 }: UserInfoExpirationDateType) {
@@ -73,30 +71,5 @@ function UserInfoExpirationDate({
         ''
       )}
     </div>
-  )
-}
-export default function UserSettingExpirationDateModal({
-  onSubmit,
-  onClose,
-  initialValue,
-}: ModalComponentPropType) {
-  return (
-    <UserSettingModal
-      title="개인정보 수집 유효기간 변경"
-      postUserSetting={(value: unknown) => {
-        onSubmit(value)
-      }}
-      closeHandler={() => {
-        if (onClose) {
-          onClose()
-        }
-      }}
-      renderItem={(setPostValue) => (
-        <UserInfoExpirationDate
-          setModalValue={setPostValue}
-          initialValue={initialValue as string}
-        />
-      )}
-    />
   )
 }

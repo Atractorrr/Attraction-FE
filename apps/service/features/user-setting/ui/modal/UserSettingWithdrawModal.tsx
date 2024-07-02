@@ -18,25 +18,26 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@attraction/design-system'
-import { useState } from 'react'
-import { ModalComponentPropType } from '../../model'
+
+interface UserInfoWithdrawType {
+  isOpen: boolean
+  submitHandler: (value: unknown) => void
+  closeHandler: () => void
+}
 
 export default function UserSettingWithdrawModal({
-  onSubmit,
-  onClose,
-}: ModalComponentPropType) {
-  const [activeModal, setActiveModal] = useState(true)
+  isOpen,
+  submitHandler,
+  closeHandler,
+}: UserInfoWithdrawType) {
   const { isMobileView } = useCheckDevice()
 
   return isMobileView ? (
     <Drawer
-      open={activeModal}
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          setActiveModal(false)
-          setTimeout(() => {
-            onClose?.()
-          }, 300)
+          closeHandler()
         }
       }}>
       <DrawerContent>
@@ -47,19 +48,14 @@ export default function UserSettingWithdrawModal({
           <Button
             title="확인"
             className="w-2/3 grow whitespace-nowrap rounded-lg bg-blue-50 px-6 py-3 text-blue-400 transition-colors hover:bg-blue-100 xs:text-lg md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-            onClick={() => onSubmit(null)}>
+            onClick={submitHandler}>
             확인
           </Button>
           <DrawerClose asChild>
             <Button
               title="취소하기"
               className="w-1/3 whitespace-nowrap rounded-lg bg-gray-50 px-6 py-3 xs:text-lg md:px-10 dark:bg-gray-700"
-              onClick={() => {
-                setActiveModal(false)
-                setTimeout(() => {
-                  onClose?.()
-                }, 300)
-              }}>
+              onClick={closeHandler}>
               취소
             </Button>
           </DrawerClose>
@@ -67,7 +63,7 @@ export default function UserSettingWithdrawModal({
       </DrawerContent>
     </Drawer>
   ) : (
-    <AlertDialog open={activeModal}>
+    <AlertDialog open={isOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>탈퇴 하시겠어요?</AlertDialogTitle>
@@ -76,18 +72,8 @@ export default function UserSettingWithdrawModal({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel
-            onClick={() => {
-              setActiveModal(false)
-              setTimeout(() => {
-                onClose?.()
-              }, 300)
-            }}>
-            취소
-          </AlertDialogCancel>
-          <AlertDialogAction onClick={() => onSubmit(null)}>
-            확인
-          </AlertDialogAction>
+          <AlertDialogCancel onClick={closeHandler}>취소</AlertDialogCancel>
+          <AlertDialogAction onClick={submitHandler}>확인</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
