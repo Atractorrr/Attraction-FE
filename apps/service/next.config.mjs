@@ -107,8 +107,24 @@ const nextConfig = {
         destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/:path*`,
       },
       {
-        source: '/html/:path*',
-        destination: `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/:path*`,
+        source: '/admin/swagger',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/swagger`,
+      },
+      {
+        source: '/swagger-ui',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/swagger-ui`,
+      },
+      {
+        source: '/swagger-ui/:path*',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/swagger-ui/:path*`,
+      },
+      {
+        source: '/api-docs',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api-docs`,
+      },
+      {
+        source: '/api-docs/:path*',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api-docs/:path*`,
       },
     ]
   },

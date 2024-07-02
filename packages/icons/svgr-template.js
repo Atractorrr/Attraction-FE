@@ -1,14 +1,15 @@
-const template = ({ componentName, props, jsx }, { tpl }) => {
-  // eslint-disable-next-line no-param-reassign
-  props[0].name = 'props: SVGProps<SVGSVGElement>'
-
+function template({ componentName, props, jsx }, { tpl }) {
   return tpl`
-    import React, { SVGProps } from 'react'
-
-    export default function ${componentName}(${props}) {
-      return (${jsx})
-    }
-    `
+  import type { SVGProps } from 'react';
+  
+  const ${componentName} = ${props} => {
+    return (
+      ${jsx}
+    );
+  };
+    
+  export default ${componentName};
+  `
 }
 
 module.exports = template
