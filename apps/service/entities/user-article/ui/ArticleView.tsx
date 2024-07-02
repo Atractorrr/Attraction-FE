@@ -45,25 +45,15 @@ export default function ArticleView({
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
       if (!iframeDoc) return
 
-      if (iframeDoc.title.includes('404')) {
-        setIframeError(true)
-        return
-      }
       iframe.style.display = 'block'
-      iframe.classList.add('peer')
+      iframe.style.height = `${iframeDoc.body.scrollHeight}px`
 
       if (censored) censoringAnchorTags(iframeDoc)
 
-      const iframeBody = iframeDoc.body
-      iframeBody.style.margin = '0px auto'
-      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
       window.scrollTo(0, 0)
       setIframeLoad(true)
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err)
+    } catch {
       setIframeError(true)
-      setIframeLoad(false)
     }
   }
 
@@ -75,9 +65,7 @@ export default function ArticleView({
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
       if (!iframeDoc) return
 
-      const iframeBody = iframeDoc.body
-      iframe.style.margin = '0px auto'
-      iframe.style.height = `${iframeBody.scrollHeight + 10}px`
+      iframe.style.height = `${iframeDoc.body.scrollHeight}px`
     }
 
     window.addEventListener('resize', iframeResizeHandler)
@@ -133,13 +121,15 @@ export default function ArticleView({
               ref={(node) => {
                 iframeRef.current = node
               }}
-              src={`/html${data.contentUrl}`}
-              className="hidden size-full min-h-full bg-white"
+              src={`${data.contentUrl}`}
+              className="hidden size-full min-h-full overflow-hidden bg-white"
               title={data.title}
               onLoad={iframeLoadHandler}
               onError={() => setIframeError(true)}
             />
-            <div className="min-h-dvh bg-gray-100 peer-[]:hidden md:rounded-lg dark:bg-gray-600" />
+            {!isIframeLoad && (
+              <div className="min-h-dvh bg-gray-100 md:rounded-lg dark:bg-gray-600" />
+            )}
           </>
         ) : (
           <div className="px-5">

@@ -1,4 +1,4 @@
 const UNSUBSCRIBE_REGEX =
-  /수신거부|unsubscribe|구독정보 변경하기|내 이름 변경하기|그만 받을래요|변경하기/i
+  /unsub|cancel|withdraw|block|stop|해지|철회|취소|그만|중지|거부|변경/i
 
 export default UNSUBSCRIBE_REGEX
