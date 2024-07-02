@@ -2,7 +2,7 @@
   "extends": "@attraction/config/tsconfig.next.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
