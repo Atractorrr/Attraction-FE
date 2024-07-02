@@ -1,15 +1,12 @@
 'use client'
 
-import { useAuth } from '@/entities/auth'
 import { useModal } from '@/entities/modal'
-import { UserProfile } from '@/entities/profile'
 import { NEWSLETTER_CATEGORY } from '@/shared/constant'
 import { NewsletterCategory } from '@/shared/type'
 import { Container } from '@/shared/ui'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { postUserSettingInfo } from '../api'
 import { USER_INFO_OCCUPATION } from '../constant'
 
+import { useUserSetting } from '../lib'
 import UserInfoExpirationDate from './modal/UserSettingExpirationDateModal'
 import UserSettingInterest from './modal/UserSettingInterestModal'
 import UserSettingItem from './modal/UserSettingItem'
@@ -17,42 +14,9 @@ import UserSettingList from './modal/UserSettingJobModal'
 import UserSettingModal from './modal/UserSettingModal'
 import UserInfoNicknameInput from './modal/UserSettingNicknameModal'
 
-const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${userId}`,
-  ).then((res) => res.json())
-  const { user } = data
-  return user
-}
-
 export default function UserInfoSetting() {
   const { openModal } = useModal()
-  const { userEmail } = useAuth()
-
-  const queryClient = useQueryClient()
-
-  // TODO: Susepense 있을 때 랑 그냥 query 썻을때 쿠키에 헤더가 실리고 안실린다.
-  const { data: userProfile } = useQuery({
-    queryKey: ['profile', userEmail],
-    queryFn: () => fetchUserProfile(userEmail as string),
-  })
-
-  const { mutate } = useMutation({
-    mutationFn: ({
-      value,
-      type,
-      email,
-    }: {
-      value: unknown
-      type: 'interest' | 'nickname' | 'occupation' | 'expiration'
-      email: string
-    }) => {
-      return postUserSettingInfo(value, type, email)
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['profile', userEmail!] })
-    },
-  })
+  const { userProfile, mutate, userEmail } = useUserSetting()
 
   const openNicknameHandler = () => {
     openModal(({ isOpen, close }) => (
@@ -60,7 +24,7 @@ export default function UserInfoSetting() {
         isOpen={isOpen}
         title="닉네임 변경"
         submitHandler={(value: unknown) => {
-          mutate({ value, type: 'nickname', email: userEmail! })
+          mutate({ value, type: 'nickname', email: userEmail })
           close()
         }}
         closeHandler={close}
@@ -80,7 +44,7 @@ export default function UserInfoSetting() {
         isOpen={isOpen}
         title="산업분야 변경"
         submitHandler={(value: unknown) => {
-          mutate({ value, type: 'occupation', email: userEmail! })
+          mutate({ value, type: 'occupation', email: userEmail })
           close()
         }}
         closeHandler={close}
@@ -102,7 +66,7 @@ export default function UserInfoSetting() {
         isOpen={isOpen}
         title="관심사 변경"
         submitHandler={(value: unknown) => {
-          mutate({ value, type: 'interest', email: userEmail! })
+          mutate({ value, type: 'interest', email: userEmail })
           close()
         }}
         closeHandler={close}
@@ -121,7 +85,7 @@ export default function UserInfoSetting() {
         isOpen={isOpen}
         title="개인정보 수집 유효기간 변경"
         submitHandler={(value: unknown) => {
-          mutate({ value, type: 'expiration', email: userEmail! })
+          mutate({ value, type: 'expiration', email: userEmail })
           close()
         }}
         closeHandler={close}
