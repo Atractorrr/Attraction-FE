@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 
-import '@/public/fonts/fonts.css'
-import '../globals.css'
+import '@/app/style/font.css'
+import '@/app/style/index.css'
 import '@attraction/design-system/dist/index.css'
 
 import initMSW from '@/__mocks__'
 import { useSession } from '@/entities/auth'
-import Provider from '../provider'
+import Provider from './provider'
 
 if (process.env.NODE_ENV !== 'production') {
   initMSW()

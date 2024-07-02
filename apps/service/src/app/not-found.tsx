@@ -1,7 +1,7 @@
 import { Container, NotFound } from '@/shared/ui'
 
-import '@/public/fonts/fonts.css'
-import './globals.css'
+import '@/app/style/font.css'
+import '@/app/style/index.css'
 import '@attraction/design-system/dist/index.css'
 
 export default function NotFoundPage() {

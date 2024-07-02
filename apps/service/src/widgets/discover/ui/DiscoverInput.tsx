@@ -9,12 +9,10 @@ export default function DiscoverInput() {
   const router = useRouter()
 
   const handleSearch = () => {
-    if (inputRef.current) {
-      const query = inputRef.current.value
+    const query = inputRef.current?.value
 
-      if (query) {
-        router.push(`/discover?q=${query}`)
-      }
+    if (query) {
+      router.push(`/discover?q=${query}`)
     }
   }
 
