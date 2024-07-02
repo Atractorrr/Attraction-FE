@@ -1,1 +1,1 @@
-export { default as ToaToastUIProviders } from './ToastUIProvider'
+export { default as ToastUIProvider } from './ToastUIProvider'
