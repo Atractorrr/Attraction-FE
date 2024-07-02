@@ -20,6 +20,7 @@ export default async function useSession(): Promise<DefaultAuthState> {
     return {
       isLogin: true,
       userEmail: data.email,
+      userRole: data.role,
       userNickname: data.nickname,
       userProfileImgURL: data.profileImg,
       hasExtraDetails: data.hasExtraDetails,

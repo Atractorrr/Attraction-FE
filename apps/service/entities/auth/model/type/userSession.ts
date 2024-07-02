@@ -1,5 +1,8 @@
+import { UserRole } from './role'
+
 export interface UserSessionData {
   email: string
+  role: UserRole
   nickname: string
   profileImg: string
   hasExtraDetails: boolean
