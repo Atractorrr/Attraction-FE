@@ -3,17 +3,17 @@
 
 'use client'
 
-import { useEffect, useState } from 'react'
-import { CheckOutline } from '@attraction/icons'
 import { THEME_LIST, Theme, useTheme } from '@/entities/theme'
-import { ModalComponentPropType } from '../../model'
-import UserSettingModal from './UserSettingModal'
+import { CheckOutline } from '@attraction/icons'
+import { useEffect, useState } from 'react'
 
 interface UserSettingThemeModalType {
   setModalValue: React.Dispatch<React.SetStateAction<unknown>>
 }
 
-function UserSettingTheme({ setModalValue }: UserSettingThemeModalType) {
+export default function UserSettingTheme({
+  setModalValue,
+}: UserSettingThemeModalType) {
   const { currentTheme } = useTheme()
   const [activeTheme, setActiveTheme] = useState<Theme>('system')
 
@@ -52,27 +52,5 @@ function UserSettingTheme({ setModalValue }: UserSettingThemeModalType) {
         )
       })}
     </div>
-  )
-}
-
-export default function UserSettingThemeModal({
-  onSubmit,
-  onClose,
-}: ModalComponentPropType) {
-  return (
-    <UserSettingModal
-      title="테마 변경"
-      postUserSetting={(value: unknown) => {
-        onSubmit(value)
-      }}
-      closeHandler={() => {
-        if (onClose) {
-          onClose()
-        }
-      }}
-      renderItem={(setPostValue) => (
-        <UserSettingTheme setModalValue={setPostValue} />
-      )}
-    />
   )
 }

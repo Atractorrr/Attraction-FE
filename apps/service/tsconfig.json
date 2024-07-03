@@ -1,6 +1,7 @@
 {
   "extends": "@attraction/config/tsconfig.next.json",
   "compilerOptions": {
+    "jsx": "preserve",
     "paths": {
       "@/*": ["./src/*"]
     }

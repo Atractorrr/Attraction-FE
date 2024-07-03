@@ -1,7 +1,6 @@
 'use client'
 
-import { useModal } from '@/features/user-setting/lib'
-import Modals from '@/features/user-setting/ui/modal/Modals'
+import { useModal } from '@/entities/modal'
 import { WarnTxt } from '@/shared/ui'
 import { Checkbox } from '@attraction/design-system/dist'
 import { useEffect } from 'react'
@@ -23,7 +22,7 @@ export default function UserAgreement() {
     name: 'policies',
   })
   const policesValue = useWatch({ control, name: 'policies' })
-  const { openModal, closeModal } = useModal()
+  const { openModal } = useModal()
 
   const handleSelectAll = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked) {
@@ -35,6 +34,19 @@ export default function UserAgreement() {
         setValue(`policies.${i}.value`, false) // 모든 체크박스의 value를 false로
       })
     }
+  }
+
+  const openAgreementHandler = (agreeType: string) => {
+    openModal(({ isOpen, close }) => (
+      <UserAgreementModal
+        isOpen={isOpen}
+        onSubmit={() => {
+          close()
+        }}
+        onClose={close}
+        initialValue={agreeType === 'mandatory1' ? 'service' : 'privacy'}
+      />
+    ))
   }
 
   useEffect(() => {
@@ -95,13 +107,7 @@ export default function UserAgreement() {
             <button
               type="button"
               onClick={() => {
-                openModal(UserAgreementModal, {
-                  onSubmit: () => {
-                    closeModal(UserAgreementModal)
-                  },
-                  initialValue:
-                    item.type === 'mandatory1' ? 'service' : 'privacy',
-                })
+                openAgreementHandler(item.type)
               }}
               className="ml-2 whitespace-nowrap text-sm text-gray-500 underline dark:text-gray-400">
               전문보기
@@ -118,7 +124,6 @@ export default function UserAgreement() {
           />
         </div>
       )}
-      <Modals />
     </fieldset>
   )
 }

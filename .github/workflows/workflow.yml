@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         command: ['lint', 'build', 'type']

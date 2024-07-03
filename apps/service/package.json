@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm formatting && next build",
     "start": "next start",
     "type": "tsc --noEmit --diagnostics",
     "type:watch": "tsc --noEmit --incremental --watch",
-    "lint:fix": "next lint --dir . --fix",
-    "lint": "next lint --dir .",
+    "formatting": "prettier --write . --ignore-unknown",
+    "lint:fix": "pnpm formatting && next lint --dir . --fix",
+    "lint": "pnpm formatting && next lint --no-cache --dir .",
     "lint-staged": "lint-staged"
   },
   "dependencies": {

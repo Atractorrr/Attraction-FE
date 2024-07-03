@@ -1,4 +1,3 @@
-import { ModalComponentPropType } from '@/features/user-setting/model'
 import { useCheckDevice } from '@/shared/lib'
 import { PrivacyPolicy, ServicePolicy } from '@/shared/ui'
 import {
@@ -14,25 +13,28 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@attraction/design-system'
-import { useState } from 'react'
+
+interface UserAgreementModalType {
+  onSubmit: () => void
+  onClose: () => void
+  initialValue: string
+  isOpen: boolean
+}
 
 export default function UserAgreementModal({
   onSubmit,
   onClose,
+  isOpen,
   initialValue,
-}: ModalComponentPropType) {
+}: UserAgreementModalType) {
   const { isMobileView } = useCheckDevice()
-  const [activeModal, setActiveModal] = useState(true)
 
   return isMobileView ? (
     <Drawer
-      open={activeModal}
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          setActiveModal(false)
-          setTimeout(() => {
-            onClose?.()
-          }, 300)
+          onClose()
         }
       }}>
       <DrawerContent>
@@ -50,12 +52,7 @@ export default function UserAgreementModal({
           <Button
             title="확인"
             className="w-2/3 grow whitespace-nowrap rounded-lg bg-blue-50 px-6 py-3 text-blue-400 transition-colors hover:bg-blue-100 xs:text-lg md:px-10 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-            onClick={() => {
-              setActiveModal(false)
-              setTimeout(() => {
-                onSubmit(null)
-              }, 300)
-            }}>
+            onClick={onSubmit}>
             확인
           </Button>
         </DrawerFooter>
@@ -63,13 +60,10 @@ export default function UserAgreementModal({
     </Drawer>
   ) : (
     <Dialog
-      open={activeModal}
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          setActiveModal(false)
-          setTimeout(() => {
-            onClose?.()
-          }, 300)
+          onClose()
         }
       }}>
       <DialogContent className="sm:max-w-[425px]">
@@ -87,12 +81,7 @@ export default function UserAgreementModal({
           <Button
             type="button"
             className="rounded-lg bg-blue-50 px-5 py-2 text-blue-400 transition-colors hover:bg-blue-100 md:px-8 dark:bg-blue-400 dark:text-blue-50 dark:hover:bg-blue-500"
-            onClick={() => {
-              setActiveModal(false)
-              setTimeout(() => {
-                onSubmit(null)
-              }, 300)
-            }}>
+            onClick={onSubmit}>
             확인
           </Button>
         </DialogFooter>

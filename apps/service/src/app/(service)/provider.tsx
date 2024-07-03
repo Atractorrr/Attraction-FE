@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-key */
 
-import { PropsWithChildren, ReactElement, cloneElement } from 'react'
-import { ModalProvider } from '@/features/user-setting'
 import { AuthProvider, DefaultAuthState } from '@/entities/auth'
-import { ChannelTalkProvider } from '@/entities/channelTalk'
+import { ChannelTalkProvider } from '@/entities/channel-talk'
+import { ModalProvider } from '@/entities/modal'
 import { PWAProvider } from '@/entities/pwa'
 import { ThemeProvider } from '@/entities/theme'
-import { ToastUIProvider } from '@/entities/toastUI'
+import { ToastUIProvider } from '@/entities/toast-ui'
+
 import { DeviceProvider, QueryProvider } from '@/shared/lib'
+import { PropsWithChildren, ReactElement, cloneElement } from 'react'
 
 interface MultiProviderProps {
   providers: ReactElement[]

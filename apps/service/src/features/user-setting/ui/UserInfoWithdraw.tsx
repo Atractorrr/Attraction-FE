@@ -3,7 +3,8 @@
 import { logout, useAuth } from '@/entities/auth'
 import { Container } from '@/shared/ui'
 import { useMutation } from '@tanstack/react-query'
-import { useModal } from '../lib'
+
+import { useModal } from '@/entities/modal'
 import UserSettingItem from './modal/UserSettingItem'
 import UserSettingWithdrawModal from './modal/UserSettingWithdrawModal'
 
@@ -25,6 +26,19 @@ export default function UserInfoWithdraw() {
     mutationFn: (email: string) => deleteUserInfo(email),
     onSuccess: logout,
   })
+  const openWithdrawModalHandler = () => {
+    openModal(({ isOpen, close }) => (
+      <UserSettingWithdrawModal
+        isOpen={isOpen}
+        closeHandler={close}
+        submitHandler={() => {
+          if (userEmail) {
+            mutate(userEmail)
+          }
+        }}
+      />
+    ))
+  }
   return (
     <div className="mx-auto w-full md:max-w-xl">
       <Container>
@@ -32,15 +46,7 @@ export default function UserInfoWithdraw() {
           <UserSettingItem
             title="탈퇴하기"
             icon="chevron"
-            openModalHandler={() => {
-              openModal(UserSettingWithdrawModal, {
-                onSubmit: () => {
-                  if (userEmail) {
-                    mutate(userEmail)
-                  }
-                },
-              })
-            }}
+            openModalHandler={openWithdrawModalHandler}
           />
         </div>
       </Container>
