@@ -55,10 +55,19 @@ export default async function ServiceRootLayout({
       <Provider {...authProps}>{children}</Provider>
       {process.env.NODE_ENV === 'production' && (
         <>
-          <Script src="https://cdn.amplitude.com/libs/analytics-browser-2.7.4-min.js.gz" />
-          <Script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.4.1-min.js.gz" />
-          <Script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz" />
-          <Script src="/script/amplitude.js" />
+          <Script
+            src="https://cdn.amplitude.com/libs/analytics-browser-2.7.4-min.js.gz"
+            strategy="beforeInteractive"
+          />
+          <Script
+            src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.4.1-min.js.gz"
+            strategy="beforeInteractive"
+          />
+          <Script
+            src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"
+            strategy="beforeInteractive"
+          />
+          <Script src="/script/amplitude.js" strategy="afterInteractive" />
         </>
       )}
     </body>
