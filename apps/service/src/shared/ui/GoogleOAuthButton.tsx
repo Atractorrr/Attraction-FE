@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
-import { GOOGLE_OAUTH_URL } from '../constant'
+import { GOOGLE_IOS_PWA_OAUTH_URL, GOOGLE_OAUTH_URL } from '../constant'
+import { useCheckDevice } from '../lib'
 
 interface GoogleLogoSVGProps {
   className?: string
@@ -42,9 +45,11 @@ function GoogleLogoSVG({ className }: GoogleLogoSVGProps) {
 }
 
 export default function GoogleOAuthButton() {
+  const { isIOSPWA } = useCheckDevice()
+
   return (
     <Link
-      href={GOOGLE_OAUTH_URL}
+      href={isIOSPWA ? GOOGLE_IOS_PWA_OAUTH_URL : GOOGLE_OAUTH_URL}
       className="flex h-14 items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-700">
       <GoogleLogoSVG className="size-7" />
       <span className="mx-auto block whitespace-nowrap text-center xs:text-lg">

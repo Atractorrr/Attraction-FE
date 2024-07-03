@@ -7,16 +7,18 @@ import {
   useEffect,
   useState,
 } from 'react'
-import checkMobile, { checkViewport } from './checkMobile'
+import { checkIOSPWA, checkMobile, checkViewport } from './checkMobile'
 
 interface DefaultDeviceState {
   isMobileView: boolean
   isMobile: boolean
+  isIOSPWA: boolean
 }
 
 const DeviceContext = createContext<DefaultDeviceState>({
   isMobileView: false,
   isMobile: true,
+  isIOSPWA: false,
 })
 
 export const useCheckDevice = () => useContext(DeviceContext)
@@ -24,6 +26,7 @@ export const useCheckDevice = () => useContext(DeviceContext)
 export default function DeviceProvider({ children }: PropsWithChildren) {
   const [isMobile, setDevice] = useState(true)
   const [isMobileView, setView] = useState(false)
+  const [isIOSPWA, setIOSPWA] = useState(false)
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -34,6 +37,7 @@ export default function DeviceProvider({ children }: PropsWithChildren) {
     window.addEventListener('resize', resizeHandler)
     setDevice(checkMobile())
     setView(checkViewport())
+    setIOSPWA(checkIOSPWA())
 
     return () => {
       window.addEventListener('resize', resizeHandler)
@@ -42,7 +46,7 @@ export default function DeviceProvider({ children }: PropsWithChildren) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <DeviceContext.Provider value={{ isMobile, isMobileView }}>
+    <DeviceContext.Provider value={{ isMobile, isMobileView, isIOSPWA }}>
       {children}
     </DeviceContext.Provider>
   )
