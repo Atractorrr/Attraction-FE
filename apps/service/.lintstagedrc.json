@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": ["next lint --dir . --fix --no-cache"],
+  "*.{js,jsx,ts,tsx}": ["next lint --fix --no-cache --dir ."],
   "**/*": "prettier --write . --ignore-unknown"
 }
