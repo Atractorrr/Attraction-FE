@@ -9,7 +9,7 @@
     "type": "tsc --noEmit --diagnostics",
     "type:watch": "tsc --noEmit --incremental --watch",
     "lint:fix": "next lint --dir . --fix",
-    "lint": "next lint --dir .",
+    "lint": "next lint --no-cache --dir .",
     "lint-staged": "lint-staged"
   },
   "dependencies": {
