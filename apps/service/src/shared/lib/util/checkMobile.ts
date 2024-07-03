@@ -8,12 +8,13 @@ export function isIOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent)
 }
 
-export function isInStandaloneMode() {
-  return !!('standalone' in window.navigator && window.navigator.standalone)
+export function isPWA() {
+  const PWAShellPattern = /PWAShell/
+  return PWAShellPattern.test(window.navigator.userAgent)
 }
 
 export function checkIOSPWA() {
-  return isIOS() && isInStandaloneMode()
+  return isIOS() && isPWA()
 }
 
 export function checkMobile() {
