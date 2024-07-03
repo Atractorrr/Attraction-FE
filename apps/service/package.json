@@ -8,8 +8,9 @@
     "start": "next start",
     "type": "tsc --noEmit --diagnostics",
     "type:watch": "tsc --noEmit --incremental --watch",
+    "formatting": "prettier --write . --ignore-unknown",
     "lint:fix": "next lint --dir . --fix",
-    "lint": "next lint --no-cache --dir .",
+    "lint": "pnpm formatting && next lint --no-cache --dir .",
     "lint-staged": "lint-staged"
   },
   "dependencies": {
