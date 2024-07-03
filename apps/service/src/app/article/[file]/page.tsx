@@ -11,13 +11,27 @@ interface ArticlePageProps {
   params: { file: string }
 }
 
+function extractTextContent(children: any[]): string {
+  return children
+    .map((child: any) => {
+      if (child.type === 'text') {
+        return child.data
+      }
+      if (child.children) {
+        return extractTextContent(child.children)
+      }
+      return ''
+    })
+    .join('')
+}
+
 const parseOptions: HTMLReactParserOptions = {
   replace(domNode) {
     if (!(domNode instanceof Element && domNode.attribs)) return undefined
     const { name, children } = domNode
 
     if (name !== 'a') return undefined
-    const textContent = children.map((child: any) => child.data).join('')
+    const textContent = extractTextContent(children)
 
     if (!UNSUBSCRIBE_REGEX.test(textContent)) return undefined
     const props = attributesToProps(domNode.attribs)
