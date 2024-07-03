@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm formatting && next build",
     "start": "next start",
     "type": "tsc --noEmit --diagnostics",
     "type:watch": "tsc --noEmit --incremental --watch",
