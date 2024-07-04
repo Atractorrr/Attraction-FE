@@ -21,7 +21,7 @@ export default function ManualSubscribeConfirm({
   newsletterId,
   subscribeLink,
 }: PropsWithChildren & SubscribeButtonProps) {
-  const { userEmail } = useAuth()
+  const { userEmail, userNickname } = useAuth()
   const [isOpen, setOpen] = useState(false)
   const { mutate: subscribe } = useSubscribeNewsletter({
     newsletterId,
@@ -62,7 +62,11 @@ export default function ManualSubscribeConfirm({
             title={`구독하러 가기: ${newsletterName}`}
             onClick={async () => {
               await copy(userEmail ?? '이메일을 가져오는데 실패했어요 ㅠ')
-              window.open(subscribeLink)
+              window.open(
+                subscribeLink.includes('stibee')
+                  ? `${subscribeLink}?email=${userEmail ?? 'user@gmail.com'}&name=${userNickname ?? 'user'}`
+                  : subscribeLink,
+              )
               subscribe()
             }}>
             구독하러 가기
