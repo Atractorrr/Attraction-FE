@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { GOOGLE_OAUTH_URL } from '../constant'
 
@@ -44,8 +42,6 @@ function GoogleLogoSVG({ className }: GoogleLogoSVGProps) {
 }
 
 export default function GoogleOAuthButton() {
-  // const { isIOSPWA } = useCheckDevice()
-
   return (
     <Link
       href={GOOGLE_OAUTH_URL}
