@@ -1,6 +1,5 @@
 export { default as QueryProvider } from './QueryProvider'
 export { default as censoringAnchorTags } from './censoringAnchorTags'
 export { default as getTimeFromNow } from './getTimeFromNow'
-export * from './checkMobile'
 export { default as DeviceProvider, useCheckDevice } from './DeviceProvider'
 export { default as copy } from './copy'
