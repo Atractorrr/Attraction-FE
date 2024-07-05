@@ -7,6 +7,7 @@ import { ChevronLeftOutline, MemberOutline } from '@attraction/icons'
 import { AuthButton, ShouldReissueTokenGuide, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
+import { GOOGLE_OAUTH_URL } from '@/shared/constant'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import MobileHeaderMenuBtn from './MobileHeaderMenuBtn'
 
@@ -22,7 +23,7 @@ export default function Header({
   mobileDisabled: isMobileDisabled,
 }: HeaderProps) {
   const router = useRouter()
-  const { isMobileView } = useCheckDevice()
+  const { isMobileView, isVisited } = useCheckDevice()
   const { isLogin, shouldReissueToken } = useAuth()
 
   if (isMobileView && isMobileFixed) {
@@ -44,7 +45,7 @@ export default function Header({
               <MobileHeaderMenuBtn />
             ) : (
               <Link
-                href="/sign-in"
+                href={isVisited ? GOOGLE_OAUTH_URL : '/sign-in'}
                 title="로그인 하러가기"
                 className="relative flex size-10 items-center justify-center rounded-lg text-xl transition-colors active:bg-gray-50 dark:active:bg-gray-700">
                 <MemberOutline />
