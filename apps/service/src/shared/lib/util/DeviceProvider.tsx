@@ -3,23 +3,29 @@
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
 } from 'react'
+import { VISITED_KEY } from '@/shared/constant'
 import { checkIOSPWA, checkMobile, checkViewport } from './checkMobile'
 
 interface DefaultDeviceState {
   isMobileView: boolean
   isMobile: boolean
   isIOSPWA: boolean
+  isVisited: boolean
+  setVisited: () => void
 }
 
 const DeviceContext = createContext<DefaultDeviceState>({
   isMobileView: false,
   isMobile: true,
   isIOSPWA: false,
+  isVisited: false,
+  setVisited: () => {},
 })
 
 export const useCheckDevice = () => useContext(DeviceContext)
@@ -29,10 +35,20 @@ export default function DeviceProvider({ children }: PropsWithChildren) {
   const [isMobileView, setView] = useState(false)
   const [isIOSPWA, setIOSPWA] = useState(false)
 
+  const [isVisited, setVisitedState] = useState(false)
+  const setVisited = useCallback(() => {
+    setVisitedState(true)
+    window.localStorage.setItem(VISITED_KEY, 'true')
+  }, [])
+
   const deviceInfo: DefaultDeviceState = useMemo(
-    () => ({ isMobile, isMobileView, isIOSPWA }),
-    [isMobile, isMobileView, isIOSPWA],
+    () => ({ isMobile, isMobileView, isIOSPWA, isVisited, setVisited }),
+    [isMobile, isMobileView, isIOSPWA, isVisited, setVisited],
   )
+
+  useEffect(() => {
+    setVisitedState(window.localStorage.getItem(VISITED_KEY) === 'true')
+  }, [])
 
   useEffect(() => {
     const resizeHandler = () => {
