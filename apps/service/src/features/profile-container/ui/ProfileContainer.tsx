@@ -16,7 +16,7 @@ import {
   PaintOutline,
   ShareOutline,
 } from '@attraction/icons'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -30,7 +30,7 @@ function CustomErrorGuideTxt() {
 
 export default function ProfileContainer() {
   const { userEmail } = useAuth()
-  const { data: userProfile } = useQuery({
+  const { data: userProfile } = useSuspenseQuery({
     queryKey: ['profile', userEmail],
     queryFn: () => fetchUserProfile(userEmail),
   })
