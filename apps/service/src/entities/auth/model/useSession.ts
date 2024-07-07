@@ -15,8 +15,19 @@ export default async function useSession(): Promise<DefaultAuthState> {
     return { isLogin: false }
   }
 
+  const logoutURL = `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`
+
   try {
-    const { data } = await getUserSession()
+    const { data, response } = await getUserSession()
+
+    if (response.status === 401) {
+      return redirect(`${logoutURL}?${ACCESS_PARAMS_KEY}=session-failed`)
+    }
+
+    if (!response.ok) {
+      throw new Error('로그인에 실패했어요')
+    }
+
     return {
       isLogin: true,
       userEmail: data.email,
@@ -27,8 +38,6 @@ export default async function useSession(): Promise<DefaultAuthState> {
       shouldReissueToken: data.shouldReissueToken,
     }
   } catch {
-    return redirect(
-      `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out?${ACCESS_PARAMS_KEY}=session-failed`,
-    )
+    return redirect(`${logoutURL}?${ACCESS_PARAMS_KEY}=login-failed`)
   }
 }
