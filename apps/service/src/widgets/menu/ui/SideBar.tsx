@@ -39,7 +39,7 @@ export default function SideBar() {
   return (
     <aside>
       <div
-        className={`fixed inset-y-0 z-40 ${isOpen ? '-left-72 inline-block opacity-0' : 'hidden'} ${debouncedOpen ? '!left-0 opacity-100' : ''} h-full max-h-dvh overflow-y-auto bg-white transition-all delay-100 duration-300 2xl:inline-block dark:bg-gray-800`}
+        className={`fixed inset-y-0 z-40 ${isOpen ? '-left-72 inline-block opacity-0' : 'hidden'} ${debouncedOpen ? '!left-0 opacity-100' : ''} h-full max-h-dvh overflow-y-auto bg-white transition-[left,opacity] delay-100 duration-300 2xl:inline-block dark:bg-gray-800`}
         ref={(node) => {
           sideBarAreaRef.current = node
         }}>
