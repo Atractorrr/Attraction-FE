@@ -1,4 +1,4 @@
-# 어트랙션 &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+# Attraction &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 뉴스레터 종합 관리/추천서비스 [어트랙션](https://attraction.run)의 공식 프론트엔드 레포지토리에요.
 
