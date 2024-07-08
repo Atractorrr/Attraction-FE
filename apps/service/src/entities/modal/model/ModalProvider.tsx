@@ -20,6 +20,7 @@ export default function ModalProvider({ children }: PropsWithChildren) {
   }
 
   const dispatch = useMemo(() => ({ open, close }), [])
+
   return (
     <ModalDispatchContext.Provider value={dispatch}>
       {children}

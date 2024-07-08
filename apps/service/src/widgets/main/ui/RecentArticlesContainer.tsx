@@ -5,6 +5,8 @@ import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
 
 import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
 import { useAuth } from '@/entities/auth'
+import { useCheckDevice } from '@/shared/lib'
+import { GOOGLE_OAUTH_URL } from '@/shared/constant'
 import RecentArticlesSkeleton from './RecentArticlesSkeleton'
 import RecentArticles from './RecentArticles'
 import { useRecentArticles } from '../model'
@@ -43,6 +45,8 @@ function LoginView({ email }: RecentArticlesContainerProps) {
 }
 
 function NonLoginView() {
+  const { isVisited } = useCheckDevice()
+
   return (
     <div className="px-5 md:px-0">
       <div
@@ -55,7 +59,7 @@ function NonLoginView() {
           <p>어트랙션에서 쉽고 간편하게</p>
         </div>
         <Link
-          href="/sign-in"
+          href={isVisited ? GOOGLE_OAUTH_URL : '/sign-in'}
           className="flex w-fit items-center justify-between gap-x-4 rounded-lg bg-green-500 px-4 py-2 text-white">
           <p>로그인 하러갈래요!</p>
           <ChevronRightOutline className="size-5" />

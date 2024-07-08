@@ -3,22 +3,29 @@
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
+import { VISITED_KEY } from '@/shared/constant'
 import { checkIOSPWA, checkMobile, checkViewport } from './checkMobile'
 
 interface DefaultDeviceState {
   isMobileView: boolean
   isMobile: boolean
   isIOSPWA: boolean
+  isVisited: boolean
+  setVisited: () => void
 }
 
 const DeviceContext = createContext<DefaultDeviceState>({
   isMobileView: false,
   isMobile: true,
   isIOSPWA: false,
+  isVisited: false,
+  setVisited: () => {},
 })
 
 export const useCheckDevice = () => useContext(DeviceContext)
@@ -28,25 +35,40 @@ export default function DeviceProvider({ children }: PropsWithChildren) {
   const [isMobileView, setView] = useState(false)
   const [isIOSPWA, setIOSPWA] = useState(false)
 
+  const [isVisited, setVisitedState] = useState(false)
+  const setVisited = useCallback(() => {
+    setVisitedState(true)
+    window.localStorage.setItem(VISITED_KEY, 'true')
+  }, [])
+
+  const deviceInfo: DefaultDeviceState = useMemo(
+    () => ({ isMobile, isMobileView, isIOSPWA, isVisited, setVisited }),
+    [isMobile, isMobileView, isIOSPWA, isVisited, setVisited],
+  )
+
+  useEffect(() => {
+    setVisitedState(window.localStorage.getItem(VISITED_KEY) === 'true')
+  }, [])
+
   useEffect(() => {
     const resizeHandler = () => {
       setDevice(checkMobile())
       setView(checkViewport())
+      setIOSPWA(checkIOSPWA())
     }
 
-    window.addEventListener('resize', resizeHandler)
     setDevice(checkMobile())
     setView(checkViewport())
     setIOSPWA(checkIOSPWA())
 
+    window.addEventListener('resize', resizeHandler)
     return () => {
       window.addEventListener('resize', resizeHandler)
     }
   }, [])
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <DeviceContext.Provider value={{ isMobile, isMobileView, isIOSPWA }}>
+    <DeviceContext.Provider value={deviceInfo}>
       {children}
     </DeviceContext.Provider>
   )

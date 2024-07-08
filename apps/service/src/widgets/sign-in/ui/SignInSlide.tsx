@@ -3,31 +3,40 @@ import { ReactNode } from 'react'
 
 interface SignInSlideProps {
   index: number
+  title: string
   description: ReactNode
 }
 
-export default function SignInSlide({ index, description }: SignInSlideProps) {
+export default function SignInSlide({
+  index,
+  title,
+  description,
+}: SignInSlideProps) {
   return (
-    <div className="relative flex min-h-[calc(100dvh-340px-2.5rem)] w-[calc(100vw-2.75rem)] flex-col justify-center p-6 pb-8 sm:min-h-[calc(100dvh-428px-2.5rem)] sm:p-8 md:h-60 md:min-h-0 md:flex-row-reverse md:items-start md:justify-between lg:w-[calc(100vw-8.5rem)] xl:block xl:h-full xl:w-[calc(100vw-8.5rem-480px)] xl:max-w-[758px] xl:px-10 xl:py-20">
+    <div className="flex size-full flex-col items-center justify-between">
+      <div className="w-full px-5 pb-5 pt-16 text-center">
+        <h1 className="mb-4 whitespace-nowrap text-2xl font-bold">{title}</h1>
+        <p className="break-keep text-gray-500 dark:text-gray-400">
+          {description}
+        </p>
+      </div>
       <Image
-        className="mx-auto mb-6 block h-auto w-full grow object-contain sm:w-80 md:absolute md:bottom-0 md:right-0 md:mb-0 md:w-80 md:grow-0 xl:static xl:mx-auto xl:mb-10 xl:w-4/5 xl:min-w-72 dark:hidden"
-        src={`/images/introduce-${index}-light.png`}
-        width={900}
-        height={600}
+        className="block h-auto w-full object-contain dark:hidden"
+        src={`/images/service-introduce-${index}-light.png`}
+        width={800}
+        height={800}
         alt={`어트랙션 소개 이미지 ${index}`}
         priority
       />
       <Image
-        className="mx-auto mb-6 hidden h-auto w-full grow object-contain sm:w-80 md:absolute md:bottom-0 md:right-0 md:mb-0 md:w-80 md:grow-0 xl:static xl:mx-auto xl:mb-10 xl:w-4/5 xl:min-w-72 dark:block"
-        src={`/images/introduce-${index}-dark.png`}
-        width={900}
-        height={600}
+        className="hidden h-auto w-full object-contain dark:block"
+        src={`/images/service-introduce-${index}-dark.png`}
+        width={800}
+        height={800}
         alt={`어트랙션 소개 이미지 ${index}`}
         priority
       />
-      <p className="w-full break-keep pb-12 text-center font-medium sm:text-lg sm:leading-8 md:pb-0 md:text-left md:text-xl xl:text-center xl:leading-10">
-        {description}
-      </p>
+      <div className="mx-auto h-px w-[calc(100%-3.5rem)] bg-gray-100 md:w-[calc(100%-4.5rem)] dark:bg-gray-700" />
     </div>
   )
 }

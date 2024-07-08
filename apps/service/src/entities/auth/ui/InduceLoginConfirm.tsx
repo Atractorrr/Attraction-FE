@@ -14,6 +14,7 @@ import {
   AlertDialogTrigger,
 } from '@attraction/design-system'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
+import { useCheckDevice } from '@/shared/lib'
 
 interface InduceLoginConfirmProps extends PropsWithChildren {
   open?: boolean
@@ -25,6 +26,8 @@ export default function InduceLoginConfirm({
   open,
   onOpenChange,
 }: InduceLoginConfirmProps) {
+  const { isVisited } = useCheckDevice()
+
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       {!!children && (
@@ -49,7 +52,9 @@ export default function InduceLoginConfirm({
             취소
           </AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Link href={GOOGLE_OAUTH_URL} title="로그인 하러가기">
+            <Link
+              href={isVisited ? GOOGLE_OAUTH_URL : '/sign-in'}
+              title="로그인 하러가기">
               <span className="hidden whitespace-nowrap xs:inline">
                 로그인 하러가기
               </span>

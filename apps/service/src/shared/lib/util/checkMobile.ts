@@ -5,12 +5,11 @@ export function checkViewport() {
 }
 
 export function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent)
+  return /iPad|iPhone|iPod/i.test(window.navigator.userAgent)
 }
 
 export function isPWA() {
-  const PWAShellPattern = /PWAShell/
-  return PWAShellPattern.test(window.navigator.userAgent)
+  return /PWAShell/i.test(window.navigator.userAgent)
 }
 
 export function checkIOSPWA() {
@@ -20,7 +19,7 @@ export function checkIOSPWA() {
 export function checkMobile() {
   return (
     /Mobile|Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
-    ) && navigator.maxTouchPoints > 0
+      window.navigator.userAgent,
+    ) && window.navigator.maxTouchPoints > 0
   )
 }
