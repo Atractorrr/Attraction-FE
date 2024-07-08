@@ -6,5 +6,6 @@ dayjs.extend(relativeTime)
 dayjs.locale('ko')
 
 export default function getTimeFromNow(date: string | Date) {
-  return dayjs(date).fromNow()
+  const now = dayjs().format('YYYY-MM-DD')
+  return dayjs(date).from(now)
 }
