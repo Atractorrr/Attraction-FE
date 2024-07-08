@@ -107,7 +107,7 @@ export default function SignUp() {
   return (
     <FormProvider {...formMethod}>
       <form
-        className="flex h-auto min-h-dvh w-full max-w-[540px] flex-col justify-between bg-white pt-12 sm:pt-20 lg:min-h-[calc(100dvh-6rem)] lg:rounded-3xl dark:bg-gray-800"
+        className="flex h-auto min-h-dvh w-full max-w-[540px] flex-col justify-between bg-white pt-12 shadow-gray-700/10 sm:pt-20 lg:min-h-[calc(100dvh-6rem)] lg:rounded-3xl lg:shadow-xl dark:bg-gray-800 dark:shadow-none"
         onSubmit={formMethod.handleSubmit(onSubmit)}>
         {signUpFieldArr[activeIndex].activeComponent}
         <div className="mt-4 flex flex-col-reverse gap-3 p-5 xs:flex-row sm:p-10">
