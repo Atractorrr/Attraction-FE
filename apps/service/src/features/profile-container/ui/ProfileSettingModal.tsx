@@ -1,8 +1,8 @@
 import { UserProfile } from '@/entities/profile'
 import { Button } from '@attraction/design-system/dist'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import React, { useEffect } from 'react'
-import { useImgUpload } from '../lib'
+import { useImgUpload, useOptimisticPostImgUrl } from '../lib'
 
 interface ProfileSettingModalType {
   setModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,26 +11,6 @@ interface ProfileSettingModalType {
 }
 
 // TODO: 추후에 S3 적용할 수 있다 지금은 리팩토링 하지말고 놔두기
-
-const postImgUrl = async ({
-  fileImgSrc,
-  email,
-  type,
-}: {
-  fileImgSrc: string
-  email: string
-  type: 'profile' | 'background'
-}) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/${email}/${type === 'profile' ? 'profile' : 'background'}`,
-    {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fileImgSrc }),
-    },
-  )
-  return data
-}
 
 export default function ProfileSettingModal({
   setModal,
@@ -42,44 +22,8 @@ export default function ProfileSettingModal({
     'profile',
     email,
   ])
-
   const { getS3ImgUrl, fileUploadHandler, fileInfo } = useImgUpload()
-  const { mutate } = useMutation({
-    mutationFn: postImgUrl,
-    onMutate: async (postImgArg) => {
-      await queryClient.cancelQueries({ queryKey: ['profile', email] })
-      const previousData = queryClient.getQueryData<UserProfile>([
-        'profile',
-        email,
-      ])
-
-      fetch('/api/s3-upload', {
-        body: JSON.stringify({
-          deleteS3ImgUrl: `${type === 'profile' ? previousData?.profileImg : previousData?.backgroundImg}`,
-        }),
-        method: 'DELETE',
-      })
-
-      queryClient.setQueryData<UserProfile>(['profile', email], (old) => {
-        if (old) {
-          const imgUrl =
-            type === 'profile'
-              ? { profileImg: postImgArg.fileImgSrc }
-              : { backgroundImg: postImgArg.fileImgSrc }
-          return { ...old, ...imgUrl }
-        }
-        return old
-      })
-
-      return { previousData }
-    },
-    onError: (err, postImgArg, context) => {
-      queryClient.setQueryData(['profile', email], context?.previousData)
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['profile', email] })
-    },
-  })
+  const { mutate } = useOptimisticPostImgUrl(email, type)
 
   const storeS3ImgHandler = async () => {
     const response = await getS3ImgUrl()
