@@ -14,9 +14,10 @@ export default function ServiceIntroduceView({ children }: PropsWithChildren) {
     return (
       <section
         id="introduce"
-        className="mx-auto flex h-auto min-h-dvh w-full max-w-[540px] flex-col justify-between bg-white shadow-gray-700/10 md:min-h-[calc(100dvh-6rem)] md:rounded-3xl md:shadow-xl dark:bg-gray-800 dark:shadow-none">
+        className="mx-auto flex h-auto min-h-dvh w-full max-w-[540px] flex-col justify-between bg-white dark:bg-gray-800">
+        <div />
         <SignInCarousel />
-        <div className="flex flex-col items-center justify-center gap-5 px-5 py-8 md:px-8 md:py-12">
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-8 md:p-8 md:pb-12">
           <button
             type="button"
             className="flex h-12 w-full items-center justify-center rounded-lg bg-gray-700 font-medium text-gray-50 transition-colors hover:bg-gray-600 md:h-14 md:text-lg dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100"

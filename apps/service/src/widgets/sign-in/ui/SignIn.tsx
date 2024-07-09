@@ -7,7 +7,7 @@ export default function SignIn() {
     <ServiceIntroduceView>
       <section
         id="sign-in"
-        className="mx-auto flex h-dvh min-h-fit w-full max-w-[540px] flex-col justify-between bg-white p-5 shadow-gray-700/10 md:h-[calc(100dvh-6rem)] md:rounded-3xl md:p-8 md:shadow-xl dark:bg-gray-800 dark:shadow-none">
+        className="mx-auto flex h-dvh min-h-fit w-full max-w-[540px] flex-col justify-between bg-white p-5 md:p-8 dark:bg-gray-800">
         <div className="py-12">
           <h1 className="mb-5 flex items-center justify-start sm:mb-8">
             <Link href="/" title="메인페이지로 이동">
