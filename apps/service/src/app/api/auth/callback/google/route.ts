@@ -56,8 +56,10 @@ export async function GET(request: Request) {
       )
 
     cookies().set(SESSION_ID, parsedCookies[SESSION_ID] ?? 'null', {
-      httpOnly: true,
       path: '/',
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: true,
     })
 
     return NextResponse.redirect(

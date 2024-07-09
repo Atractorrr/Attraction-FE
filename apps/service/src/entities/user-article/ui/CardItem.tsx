@@ -47,7 +47,8 @@ export default function CardItem({ type, ...data }: CardItemProps) {
           {data.readingTime > 0 ? `약 ${data.readingTime}분` : '1분 미만'}
         </span>
       </Link>
-      <div className="flex items-start justify-start py-1">
+      <div
+        className={`flex items-start justify-start py-1 ${type === 'list' ? 'w-[calc(75%-0.75rem)] max-w-[calc(100%-7.75rem)]' : ''}`}>
         <Link
           href={`/newsletter/${data.newsletterId}`}
           title={`뉴스레터 상세 보기: ${data.newsletterName}`}

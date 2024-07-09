@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         command: ['lint', 'build', 'type']
@@ -37,6 +37,7 @@ jobs:
         env:
           MOCK_URL: ${{ secrets.MOCK_URL }}
           GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+          GOOGLE_IOS_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_IOS_CLIENT_ID }}
           NEXT_PUBLIC_FE_URL: ${{ secrets.NEXT_PUBLIC_FE_URL }}
           NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           NEXT_PUBLIC_OAUTH_URL: ${{ secrets.NEXT_PUBLIC_OAUTH_URL }}

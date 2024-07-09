@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /*.html$
+Disallow: /*.webp$
+Disallow: /newsletter/*/article
+Disallow: /inbox
+Disallow: /inbox-bookmark
+Disallow: /mypage
+Disallow: /setting
+Disallow: /sign-up
+Disallow: /article
+Disallow: /server
+Disallow: /api
+Disallow: /api-docs
+Disallow: /swagger-ui
