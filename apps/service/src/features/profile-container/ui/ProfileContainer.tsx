@@ -64,7 +64,7 @@ export default function ProfileContainer() {
                     <button
                       type="button"
                       onClick={() => setProfileModal(true)}
-                      className="flex size-full flex-col items-center justify-center gap-2 rounded-full bg-black text-white opacity-0 transition-opacity hover:opacity-60">
+                      className="flex size-full flex-col items-center justify-center gap-2 rounded-full bg-black/60 text-white opacity-0 transition-opacity hover:opacity-100">
                       <CameraOutline className="size-9" />
                       이미지 변경
                     </button>

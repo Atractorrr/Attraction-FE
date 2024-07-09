@@ -22,7 +22,7 @@ export default function ProfileSettingModal({
     'profile',
     email,
   ])
-  const { getS3ImgUrl, fileUploadHandler, fileInfo } = useImgUpload()
+  const { getS3ImgUrl, fileUploadHandler } = useImgUpload()
   const { mutate } = useOptimisticPostImgUrl(email, type)
 
   const storeS3ImgHandler = async () => {
@@ -38,18 +38,9 @@ export default function ProfileSettingModal({
     mutate({ fileImgSrc: '', email, type })
   }
   useEffect(() => {
-    const height = window.scrollY
-
-    document.body.style.cssText = `
-      position: fixed;
-      top: -${height}px;
-      overflow-y: scroll;
-      width: 100%;
-    `
+    document.body.classList.add('lock-scroll')
     return () => {
-      const scrollY = document.body.style.top
-      document.body.style.cssText = ''
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
+      document.body.classList.remove('lock-scroll')
     }
   }, [])
   return (
@@ -63,21 +54,15 @@ export default function ProfileSettingModal({
       />
       <div className="h-fit w-[95%] rounded-xl bg-white p-6 sm:w-2/3 md:w-[30rem] dark:bg-gray-800">
         <p className="mb-8 text-xl font-bold">프로필 이미지 변경</p>
-        <p className="mb-2 cursor-default text-sm">이미지 업로드</p>
-        <div className=" mb-16 flex w-full items-center justify-center gap-2 rounded-xl border border-gray-100 px-2 py-4  dark:border-gray-700">
-          <label
-            htmlFor="file-upload"
-            className="cursor-pointer rounded-3xl bg-gray-50 px-4 py-1 dark:bg-gray-700">
-            파일 선택하기
-            <input
-              id="file-upload"
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={fileUploadHandler}
-            />
-          </label>
-          <p className="basis-2/3 overflow-hidden">{fileInfo?.name}</p>
+        <p className="mb-2 cursor-default px-1 text-sm">이미지 업로드</p>
+        <div className="mb-12 h-auto w-full">
+          <input
+            id="file-upload"
+            type="file"
+            className="block h-12 w-full cursor-pointer rounded-lg border border-gray-100 bg-white p-2 text-base leading-7 transition-colors file:mr-2 file:cursor-pointer file:rounded-full file:border-none file:bg-gray-50 file:px-3 file:py-1 file:text-sm file:font-normal file:text-gray-700 file:outline-none file:transition-colors dark:border-gray-700 dark:bg-gray-800 file:dark:bg-gray-700 file:dark:text-gray-50"
+            accept="image/*"
+            onChange={fileUploadHandler}
+          />
         </div>
         <div className="flex h-fit w-full justify-between border-t border-t-gray-100 pt-4 dark:border-t-gray-700">
           {(type === 'profile' && userProfileData?.profileImg === '') ||
