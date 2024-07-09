@@ -132,7 +132,7 @@ const nextConfig = {
     return [
       {
         source: '/oauth/google',
-        destination: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_OAUTH_URL}&response_type=code&scope=email profile openid https://mail.google.com/ https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.labels https://www.googleapis.com/auth/gmail.settings.basic&access_type=offline`,
+        destination: `https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_OAUTH_URL}&response_type=code&scope=email profile openid https://mail.google.com/%20https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.labels%20https://www.googleapis.com/auth/gmail.settings.basic%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&prompt=select_account`,
         permanent: true,
       },
       {
