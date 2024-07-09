@@ -2,8 +2,8 @@
 
 import { useTheme } from '@/entities/theme'
 import { Container, ErrorGuideTxt } from '@/shared/ui'
-import dynamic from 'next/dynamic'
 import React from 'react'
+import ActivityCalendar from 'react-activity-calendar'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
@@ -14,10 +14,6 @@ interface CalendarProps {
   calendarData: (CalendarElement & { level: number })[]
 }
 
-const ActivityCalendarNoSSR = dynamic(() => import('react-activity-calendar'), {
-  ssr: false,
-})
-
 function CustomErrorGuideTxt() {
   return <ErrorGuideTxt />
 }
@@ -27,7 +23,7 @@ export default function Calendar({ calendarData }: CalendarProps) {
   return (
     <Container className="flex h-full justify-center p-5 pt-7">
       <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
-        <ActivityCalendarNoSSR
+        <ActivityCalendar
           data={calendarData}
           labels={CALENDAR_LABELS}
           colorScheme={realTheme}

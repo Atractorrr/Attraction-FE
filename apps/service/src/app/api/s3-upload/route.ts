@@ -28,7 +28,7 @@ async function uploadFileToS3(file: Buffer, fileName: string, type: string) {
   const command = new PutObjectCommand(params)
   await s3Client.send(command)
 
-  const s3ImgUrl = `https://${process.env.S3_IMAGE_UPLOAD_BUCKET_NAME}.s3.${process.env.S3_IMAGE_UPLOAD_REGION}.amazonaws.com/${fileName}`
+  const s3ImgUrl = `https://dd24o8b6pqyp3.cloudfront.net/${fileName}`
 
   return s3ImgUrl
 }
@@ -55,12 +55,11 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   const data = (await request.json()) as { deleteS3ImgUrl: string }
 
-  const pattern = /(?<=amazonaws\.com\/)[^/]+$/
-
+  const pattern = /https:\/\/dd24o8b6pqyp3\.cloudfront\.net\/(.+?)$/
   const match = data.deleteS3ImgUrl.match(pattern)
 
-  if (match) {
-    const fileName = match[0]
+  if (match && match[1]) {
+    const fileName = match[1]
     const bucketParams = {
       Bucket: process.env.S3_IMAGE_UPLOAD_BUCKET_NAME,
       Key: `${fileName}`,
