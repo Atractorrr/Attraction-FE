@@ -18,9 +18,9 @@ export default async function useSession(): Promise<DefaultAuthState> {
   const logoutURL = `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`
 
   try {
-    const { data, response } = await getUserSession()
+    const { data, response, isExpired } = await getUserSession()
 
-    if (response.status === 401) {
+    if (isExpired) {
       return redirect(`${logoutURL}?${ACCESS_PARAMS_KEY}=session-failed`)
     }
 

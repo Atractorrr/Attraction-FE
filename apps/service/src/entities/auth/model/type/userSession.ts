@@ -11,6 +11,7 @@ export interface UserSessionData {
 
 export interface UserSessionResponse {
   status: string
+  errorCode?: number
   message: string
   data: UserSessionData
 }
