@@ -58,7 +58,7 @@ export async function GET(request: Request) {
     cookies().set(SESSION_ID, parsedCookies[SESSION_ID] ?? 'null', {
       path: '/',
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'lax',
       secure: true,
     })
 
