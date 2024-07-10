@@ -33,7 +33,7 @@ export default function UserInfoBirthInput() {
           required: '생년월일을 입력해 주세요',
           pattern: {
             value: BIRTH_REGEX,
-            message: '생년월일 형식은 YYYYMMDD 입니다.',
+            message: '생년월일 형식을 확인해주세요 예) 20240503',
           },
         })}
       />

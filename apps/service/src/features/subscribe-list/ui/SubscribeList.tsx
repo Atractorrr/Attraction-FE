@@ -59,7 +59,7 @@ export default function SubscribeList() {
           ) : (
             <div className="pb-32 pt-20">
               <GuideTxt
-                title="구독한 뉴스레터가 없습니다"
+                title="구독한 뉴스레터가 없어요"
                 sub="지금 뉴스레터를 구독해보세요"
               />
             </div>

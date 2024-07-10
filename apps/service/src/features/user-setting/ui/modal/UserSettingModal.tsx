@@ -54,7 +54,7 @@ export default function UserSettingModal({
               if (postValue) {
                 submitHandler(postValue)
               } else {
-                toast.error('잘못된 값 입니다.')
+                toast.error('잘못된 값이에요')
               }
             }}>
             변경
@@ -97,7 +97,7 @@ export default function UserSettingModal({
                 if (postValue) {
                   submitHandler(postValue)
                 } else {
-                  toast.error('잘못된 값 입니다.')
+                  toast.error('잘못된 값이에요')
                 }
               }}>
               변경

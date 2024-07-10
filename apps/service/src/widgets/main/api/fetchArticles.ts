@@ -9,7 +9,7 @@ export default async function fetchArticles(
   const res = await fetch(apiURL.href)
 
   if (!res.ok) {
-    throw new Error('최근 받은 뉴스레터를 불러오는데 실패했습니다.')
+    throw new Error('최근 받은 뉴스레터를 불러오는데 실패했어요')
   }
 
   return res.json()

@@ -12,7 +12,7 @@ export default function HotKeywords() {
             width={240}
             height={240}
             src="/images/construction.png"
-            alt="추후 구현 예정입니다"
+            alt="서비스 준비 중 이미지"
           />
           <div className="mt-7">
             <GuideTxt

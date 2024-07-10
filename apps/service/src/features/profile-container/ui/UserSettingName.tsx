@@ -30,7 +30,7 @@ export default function UserSettingName({ nickname }: UserSettingNameType) {
 
   const duplicateErrorHandler = useCallback(() => {
     setValue('isNicknameChecked', false)
-    setError('nickname', { message: '중복된 이메일 입니다.' })
+    setError('nickname', { message: '중복된 이름이에요' })
   }, [setError, setValue])
 
   const { mutate } = useCheckDuplicate({
@@ -76,7 +76,7 @@ export default function UserSettingName({ nickname }: UserSettingNameType) {
         </p>
       )}
       {getValues('isNicknameChecked') && (
-        <p className="mt-2 text-green-500">사용가능한 닉네임 입니다</p>
+        <p className="mt-2 text-green-500">멋진 닉네임이에요!</p>
       )}
     </fieldset>
   )

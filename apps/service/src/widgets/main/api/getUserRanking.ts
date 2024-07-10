@@ -10,7 +10,7 @@ const getUserRanking = async (
   const data = await res.json()
 
   if (!res.ok) {
-    throw new Error('잘못된 데이터 입니다.')
+    throw new Error('잘못된 데이터에요')
   }
 
   if (Object.prototype.hasOwnProperty.call(data, 'userArticleRank')) {

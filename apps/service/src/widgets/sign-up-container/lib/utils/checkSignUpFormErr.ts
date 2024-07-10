@@ -17,7 +17,7 @@ export const checkSignUpFormErr = (
   }
   if (type === 'interest' && getValues('interest').length === 0) {
     setError('interest', {
-      message: '최소 1개 이상 카테고리를 선택해야 합니다.',
+      message: '최소 1개 이상 카테고리를 선택해주세요',
     })
   }
 }

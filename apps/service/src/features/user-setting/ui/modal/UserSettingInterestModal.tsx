@@ -94,10 +94,7 @@ export default function UserSettingInterest({
       </div>
       {alertActive && (
         <div className="mt-5">
-          <WarnTxt
-            content="관심사는 최소 1개 이상은 선택하셔야 합니다"
-            color="red"
-          />
+          <WarnTxt content="최소 1개 이상은 선택해주세요" color="red" />
         </div>
       )}
     </fieldset>

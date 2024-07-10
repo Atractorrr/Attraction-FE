@@ -47,7 +47,7 @@ export default function ProfileSettingModal({
     <div className="fixed left-0 top-0 z-50 flex size-full min-h-screen items-center justify-center">
       <div
         role="presentation"
-        className="absolute -z-10 block size-full bg-gray-400 opacity-70"
+        className="absolute -z-10 block size-full bg-black/30 dark:bg-white/20"
         onClick={() => {
           setModal(false)
         }}
