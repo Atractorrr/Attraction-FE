@@ -273,6 +273,9 @@ importers:
       '@storybook/test':
         specifier: ^8.1.6
         version: 8.1.6
+      chromatic:
+        specifier: ^11.5.5
+        version: 11.5.5
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.4.5)
@@ -4174,8 +4177,8 @@ packages:
   chroma-js@2.4.2:
     resolution: {integrity: sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==}
 
-  chromatic@11.5.3:
-    resolution: {integrity: sha512-EtDDXA4OdhsjE0IuLr5AZvOX+ZYXgqdRPtdTAQrM3nImjlteQ5biBmdEEEcdAXDTPU881rEUaUIy2owecB0wYg==}
+  chromatic@11.5.5:
+    resolution: {integrity: sha512-YS0GJwegF0vpMbwZE68/xJlI4SlUGMqI78V2ATAF19YwTHaq8jGP1CPQGKUSlgWUhzPtyu3ELy6Dvv/owYljAg==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -9187,7 +9190,7 @@ snapshots:
 
   '@chromatic-com/storybook@1.5.0(react@18.3.1)':
     dependencies:
-      chromatic: 11.5.3
+      chromatic: 11.5.5
       filesize: 10.1.2
       jsonfile: 6.1.0
       react-confetti: 6.1.0(react@18.3.1)
@@ -12941,7 +12944,7 @@ snapshots:
 
   chroma-js@2.4.2: {}
 
-  chromatic@11.5.3: {}
+  chromatic@11.5.5: {}
 
   chrome-trace-event@1.0.4: {}
 
