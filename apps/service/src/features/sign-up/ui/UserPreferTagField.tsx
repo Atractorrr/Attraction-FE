@@ -112,7 +112,7 @@ export default function UserPreferTagField() {
         </div>
       </div>
       <div className="relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent sm:px-5 dark:before:from-gray-800 dark:after:from-gray-800">
-        <div className="max-h-[calc(100dvh-360px)] min-h-64 overflow-y-auto p-5 sm:max-h-[calc(100dvh-450px)] lg:max-h-[calc(100dvh-540px)]">
+        <div className="max-h-[calc(100dvh-360px)] min-h-64 overflow-y-auto p-5 sm:max-h-[calc(100dvh-450px)]">
           <div className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
             {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
               <UserPreferTag
