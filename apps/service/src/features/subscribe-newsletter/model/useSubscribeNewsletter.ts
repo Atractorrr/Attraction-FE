@@ -9,6 +9,7 @@ import subscribeNewsletterKeys from './subscribeNewsletterKeys'
 
 export default function useSubscribeNewsletter({
   newsletterId,
+  type = 'subscribe',
   onMutate,
   onSuccess,
 }: Omit<SubscribeNewsletterParams, 'userEmail'> & {
@@ -22,13 +23,16 @@ export default function useSubscribeNewsletter({
     mutationKey: subscribeNewsletterKeys.subscribeNewsletter({
       userEmail,
       newsletterId,
+      type,
     }),
-    mutationFn: () => subscribeNewsletter({ userEmail, newsletterId }),
+    mutationFn: () => subscribeNewsletter({ userEmail, newsletterId, type }),
     throwOnError: !userEmail,
     onMutate,
     onSuccess: () => {
       onSuccess?.()
-      toast.success('뉴스레터 구독에 성공했어요!')
+      toast.success(
+        `뉴스레터 구독${type === 'unsubscribe' ? '취소' : ''}에 성공했어요!`,
+      )
       queryClient.invalidateQueries({
         queryKey: subscribeNewsletterKeys.checkSubscribeState({
           userEmail,
@@ -37,7 +41,9 @@ export default function useSubscribeNewsletter({
       })
     },
     onError: () => {
-      toast.error('뉴스레터 구독에 실패했어요')
+      toast.error(
+        `뉴스레터 구독${type === 'unsubscribe' ? '취소' : ''}에 실패했어요`,
+      )
     },
   })
 }

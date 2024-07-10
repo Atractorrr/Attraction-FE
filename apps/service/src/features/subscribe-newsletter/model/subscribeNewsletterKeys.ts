@@ -7,9 +7,9 @@ const subscribeNewsletterKeys = {
     'check-subscribe-state',
     params,
   ],
-  subscribeNewsletter: (params: SubscribeNewsletterParams) => [
+  subscribeNewsletter: ({ type, ...params }: SubscribeNewsletterParams) => [
     ...subscribeNewsletterKeys.all,
-    'subscribe-newsletter',
+    type ?? 'subscribe',
     params,
   ],
 }

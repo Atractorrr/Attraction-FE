@@ -10,21 +10,18 @@ import {
   DialogFooter,
   DialogDescription,
 } from '@attraction/design-system'
-import { useAuth } from '@/entities/auth'
-import { copy } from '@/shared/lib'
 import { WarnTxt } from '@/shared/ui'
 import { SubscribeButtonProps, useSubscribeNewsletter } from '../model'
 
-export default function ManualSubscribeConfirm({
+export default function UnsubscribeConfirm({
   children,
   newsletterName,
   newsletterId,
-  subscribeLink,
 }: PropsWithChildren<SubscribeButtonProps>) {
-  const { userEmail, userNickname } = useAuth()
   const [isOpen, setOpen] = useState(false)
-  const { mutate: subscribe } = useSubscribeNewsletter({
+  const { mutate: unsubscribe } = useSubscribeNewsletter({
     newsletterId,
+    type: 'unsubscribe',
     onSuccess: () => setOpen(false),
   })
 
@@ -34,17 +31,16 @@ export default function ManualSubscribeConfirm({
       <DialogContent>
         <DialogHeader>
           <div className="space-y-3 p-1">
-            <DialogTitle>뉴스레터 구독하러 가기</DialogTitle>
+            <DialogTitle>뉴스레터 구독 중단하기</DialogTitle>
             <DialogDescription>
-              해당 뉴스레터는 직접 구독해야하는{' '}
-              <span className="whitespace-nowrap">뉴스레터에요 😢</span>
+              어트랙션 서비스 내에서 더 이상 해당 뉴스레터의 아티클을 받지
+              않아요
             </DialogDescription>
           </div>
           <p className="!mt-4 pb-1">
             <WarnTxt
-              content="구독하러 가기 버튼을 누르면 자동으로 이메일을 복사해드려요!"
-              type="info"
-              color="blue"
+              content="이메일 구독 취소는 현재 개발 중이에요"
+              color="red"
             />
           </p>
         </DialogHeader>
@@ -59,17 +55,9 @@ export default function ManualSubscribeConfirm({
           <button
             type="button"
             className="block h-12 grow whitespace-nowrap rounded-lg bg-gray-700 p-2 text-center font-medium text-gray-50 transition-colors hover:bg-gray-800 disabled:!bg-gray-50 disabled:!text-gray-400 dark:bg-gray-50 dark:text-gray-700 dark:hover:bg-gray-100 dark:disabled:!bg-gray-700 dark:disabled:!text-gray-500"
-            title={`구독하러 가기: ${newsletterName}`}
-            onClick={async () => {
-              await copy(userEmail ?? '이메일을 가져오는데 실패했어요 ㅠ')
-              window.open(
-                subscribeLink.includes('stibee')
-                  ? `${subscribeLink}?email=${userEmail ?? 'user@gmail.com'}&name=${userNickname ?? 'user'}`
-                  : subscribeLink,
-              )
-              subscribe()
-            }}>
-            구독하러 가기
+            title={`구독 중단하기: ${newsletterName}`}
+            onClick={() => unsubscribe()}>
+            구독 중단하기
           </button>
         </DialogFooter>
       </DialogContent>
