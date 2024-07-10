@@ -24,7 +24,7 @@ export default function DiscoverArticleItem({ ...props }: DiscoverArticle) {
           {props.contentSummary}
         </p>
         <div className="flex text-sm text-gray-500 dark:text-gray-400">
-          <p>{props.newsletterName}</p>
+          <p>{props.newsletter.name}</p>
           <p className="before:mx-1 before:content-['·']">
             {getTimeFromNow(props.receivedAt)}
           </p>

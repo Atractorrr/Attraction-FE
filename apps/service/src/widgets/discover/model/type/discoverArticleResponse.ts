@@ -7,7 +7,6 @@ export interface DiscoverArticle {
   readingTime: number
   receivedAt: string
   contentSummary: string
-  newsletterName: string
   newsletter: {
     id: number
     name: string
