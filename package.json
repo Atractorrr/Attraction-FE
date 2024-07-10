@@ -14,6 +14,7 @@
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
     "build": "pnpm -r run build",
+    "build-storybook": "pnpm -F @attraction/design-system build-storybook",
     "dev:service": "pnpm -F @attraction/service dev",
     "dev:ds": "pnpm -F @attraction/design-system storybook",
     "build:service": "pnpm -F @attraction/service build",
