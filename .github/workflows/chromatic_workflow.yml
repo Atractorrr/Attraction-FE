@@ -3,7 +3,7 @@ name: attraction_chromatic_workflow
 on: push
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
