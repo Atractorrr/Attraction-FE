@@ -15,7 +15,7 @@ const meta: Meta<typeof Dialog> = {
   component: Dialog,
   tags: ['autodocs'],
   parameters: {
-    componentSubtitle: 'Attraction에서 사용되는 토스트 컴포넌트입니다.',
+    componentSubtitle: 'Attraction에서 사용되는 알림창 컴포넌트입니다.',
   },
 }
 
