@@ -21,12 +21,13 @@ export default function AutoSubscribeConfirm({
   subscribeLink,
   isAgreePersonalInfoCollection,
   isAgreeAdInfoReception,
-}: PropsWithChildren & SubscribeButtonProps) {
+}: PropsWithChildren<SubscribeButtonProps>) {
   const [isOpen, setOpen] = useState(false)
   const [checkPrivacy, setPrivacy] = useState(false)
   const [checkMarketing, setMarketing] = useState(false)
   const { mutate: subscribe } = useSubscribeNewsletter({
     newsletterId,
+    type: 'subscribe',
     onSuccess: () => setOpen(false),
   })
 
