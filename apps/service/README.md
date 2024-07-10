@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/Atractorrr/Attraction-FE/assets/53262430/48768c80-721c-449f-8697-b66b1dafeea3)
 
-## Getting Started
+# @attraction/service &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-First, run the development server:
+어트랙션의 핵심 기능인 뉴스레터 종합 관리/추천 서비스를 제공하는 시스템이에요.
+뉴스레터를 구독 &middot; 관리하는데 필요한 기능들을 제공하며, 사용자들이 편하게 뉴스레터 아티클을 읽도록 도와줘요.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Flowchart
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![image](https://github.com/Atractorrr/Attraction-FE/assets/53262430/8c7c41b3-4079-4618-ba7b-749f144a19e8)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> 현재 개발중인 기능도 존재해요. 추후 업데이트로 모두 지원할 예정이니 조금만 기다려주세요 :)
 
-## Learn More
+### 홈
 
-To learn more about Next.js, take a look at the following resources:
+각 뉴스레터를 카테고리별로 추천해주고, 어트랙션을 사용하는 유저들의 랭킹을 볼 수 있어요.
+로그인시에는 사용자가 최근에 받은 아티클들과, 사용자가 선호하는 뉴스레터 카테고리를 반영하여 뉴스레터를 추천해줘요.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 뉴스레터 보관함
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+사용자가 구독하고 있는 뉴스레터의 아티클들을 볼 수 있어요. 뉴스레터는 **최대 7일간** 저장되니 빠르게 읽어주세요.
+보관함에서는 검색 &middot; 필터를 통해서 원하는 뉴스레터를 찾아낼 수 있고, 읽은 아티클도 숨길 수 있어요
 
-## Deploy on Vercel
+또, 두가지 뷰 모드(갤러리형, 리스트형)를 지원해요. 원하는 뷰 모드를 선택하여 아티클들을 즐겨보세요!
+아티클을 클릭하면 상세 페이지로 이동하여 아티클을 읽을 수 있어요. 해당 페이지에서는 북마크 버튼을 통해 아티클을 **북마크한 아티클**탭에 저장할 수 있어요.
+추후에는 **오프라인 저장** 기능을 지원 할 예정이에요.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 뉴스레터 소개
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+뉴스레터에 대한 설명과 최근 아티클, 그리고 구독하기 기능을 지원해요.
+**구독하기** 버튼을 통해서 해당 뉴스레터를 **원터치 구독** 할 수 있어요.
+아쉽게도 모든 뉴스레터가 구독 가능한 것은 아니에요. 원터치 구독이 불가능한 뉴스레터의 경우 해당 뉴스레터를 구독하는 페이지로 이동시켜드려요.
+
+해당 페이지에서는 해당 뉴스레터에 대한 연관 뉴스레터 정보도 받아볼 수 있어요.
+
+### 뉴스레터 탐색
+
+해당 페이지에서는 뉴스레터와 아티클을 검색하고 결과를 받아볼 수 있어요. 메인 페이지와 동일하게 뉴스레터 추천을 받아볼 수 있어요.
+추후에는 **인기 검색어** 기능을 지원 할 예정이에요.
+
+### 북마크한 아티클
+
+사용자가 북마크한 아티클들을 볼 수 있어요. 북마크한 아티클은 **최대 7일간** 저장되니 빠르게 읽어주세요.
+
+### 마이페이지
+
+유저 프로필과 배경 이미지를 설정할 수 있고, 유저가 구독하고있는 뉴스레터 &middot; 최근 읽은 아티클들을 확인할 수 있어요.
+아티클을 읽은 날짜를 확인하는 히트맵 기능을 지원하고 있고, 추후 **통계 기능**과 **프로필 공유** 기능을 추가 할 예정이에요.
+
+### 개인 설정
+
+닉네임, 관심사, 산업분야, 개인정보 수집 유효기간, 화면 테마, 회원 탈퇴 기능을 제공해요.
+
+## Contributer
+
+<a href="https://github.com/Atractorrr/Attraction-FE/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Atractorrr/Attraction-FE" />
+</a>
+
+## Contribution
+
+> [!IMPORTANT]
+>
+> 현재 본 저장소에서는 어트랙션 외부자의 기여를 받고 있지 않아요.
+>
+> 제안해주실 내용이 있는 경우 [Issue를 등록](https://github.com/Atractorrr/Attraction-FE/issues) 해주시거나, [<support@attraction.run>](mailto:support@attraction.run)로 연락 바랍니다.
