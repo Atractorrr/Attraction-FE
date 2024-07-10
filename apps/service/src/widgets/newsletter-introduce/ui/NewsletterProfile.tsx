@@ -19,10 +19,10 @@ export default async function NewsletterProfile({
         <div className="flex w-full flex-col gap-4 p-5 md:gap-2">
           <div className="flex w-full flex-col gap-6 sm:flex-row">
             <div className="flex flex-col gap-2">
-              <div className="h-[240px] w-full shrink-0 overflow-hidden rounded-md bg-gray-100 sm:h-[160px] sm:w-[180px] dark:bg-gray-700">
+              <div className="h-[240px] w-full shrink-0 overflow-hidden rounded-md border border-gray-100 bg-gray-50 sm:h-[160px] sm:w-[180px] dark:border-gray-700 dark:bg-gray-700">
                 <ThumbnailImage
                   src={data.thumbnailUrl}
-                  alt={`뉴스레터 이름 : ${data.name}`}
+                  alt={`뉴스레터 프로필 이미지 : ${data.name}`}
                   type="profile"
                   logoType="text"
                 />

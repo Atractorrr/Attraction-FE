@@ -39,13 +39,15 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
           />
         </div>
         <div className="flex flex-col">
-          <h2 className="grow break-keep font-medium">{props.title}</h2>
-          <div className="flex text-sm text-gray-500 dark:text-gray-400">
-            <p>{props.newsletter.name}</p>
-            <p className="before:mx-1 before:content-['·']">
+          <p className="line-clamp-2 grow break-keep font-medium">
+            {props.title}
+          </p>
+          <p className="flex text-sm text-gray-500 dark:text-gray-400">
+            <span>{props.newsletter.name}</span>
+            <span className="before:mx-1 before:content-['·']">
               {getTimeFromNow(props.receivedAt)}
-            </p>
-          </div>
+            </span>
+          </p>
         </div>
       </div>
     </Link>
