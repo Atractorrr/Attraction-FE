@@ -1,21 +1,21 @@
-# Workflow name
-name: 'Chromatic Deployment'
+name: attraction_chromatic_workflow
 
-# Event for the workflow
 on: push
 
-# List of jobs
 jobs:
   test:
-    # Operating System
     runs-on: ubuntu-latest
-    # Job steps
     steps:
-      - uses: actions/checkout@v1
-      - run: pnpm
-        #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@v1
-        # Options required for Chromatic's GitHub Action
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
         with:
-          #👇 Chromatic projectToken, see https://storybook.js.org/tutorials/intro-to-storybook/react/ko/deploy/ to obtain it
+          version: 8
+          run_install: false
+
+      - name: Deploy Chromatic
+        uses: chromaui/action@v1
+        with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
