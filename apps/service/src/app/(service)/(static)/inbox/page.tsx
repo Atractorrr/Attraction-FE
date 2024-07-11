@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '뉴스레터 보관함',
+  title: '아티클 보관함',
 }
 
 export default function InboxPage() {

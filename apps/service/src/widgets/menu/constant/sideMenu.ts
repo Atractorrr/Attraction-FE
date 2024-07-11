@@ -26,7 +26,7 @@ const SIDE_MENU: Readonly<SideMenu[]> = Object.freeze([
     needLogin: false,
   },
   {
-    name: '뉴스레터 보관함',
+    name: '아티클 보관함',
     shortName: '보관함',
     href: '/inbox',
     segment: 'inbox',

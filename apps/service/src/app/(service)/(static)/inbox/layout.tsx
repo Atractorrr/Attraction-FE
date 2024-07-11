@@ -12,7 +12,7 @@ export default function InboxLayout({ children }: PropsWithChildren) {
 
   return (
     <>
-      <Header title="뉴스레터 보관함" mobileFixed={isArticleView} />
+      <Header title="아티클 보관함" mobileFixed={isArticleView} />
       <WithAuth>
         <UserInboxLayout pageType="default" isArticleView={isArticleView}>
           {children}
