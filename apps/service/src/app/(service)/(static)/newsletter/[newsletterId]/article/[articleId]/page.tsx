@@ -26,6 +26,8 @@ export async function generateMetadata({
 
   return {
     title: `[${data?.newsletter?.name ?? ''}] ${data?.title ?? ''}`,
+    description: data?.contentSummary,
+    openGraph: { images: data?.thumbnailUrl },
   }
 }
 

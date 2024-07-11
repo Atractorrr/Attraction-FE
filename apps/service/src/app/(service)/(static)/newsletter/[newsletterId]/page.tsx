@@ -22,6 +22,8 @@ export async function generateMetadata({
 
   return {
     title: `[${data?.name ?? ''}] 뉴스레터 소개`,
+    description: data?.description,
+    openGraph: { images: data?.thumbnailUrl },
   }
 }
 
