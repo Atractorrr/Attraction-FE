@@ -1,7 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { RealTheme, Theme } from './type'
+import { THEME_NAME } from '../constant'
 
 function getCurrentTheme(): Theme {
   if (typeof window === 'undefined') {
@@ -40,10 +42,16 @@ export default function useThemeSetting() {
     setLightTheme()
   }, [currentTheme])
 
-  const setTheme = useCallback((theme: Theme) => {
-    setCurrentTheme(theme)
-    localStorage.setItem('theme', theme)
-  }, [])
+  const setTheme = useCallback(
+    (theme: Theme) => {
+      setCurrentTheme(theme)
+      localStorage.setItem('theme', theme)
+      if (theme !== currentTheme) {
+        toast.success(`테마가 변경되었어요 (${THEME_NAME[theme]})`)
+      }
+    },
+    [currentTheme],
+  )
 
   return { currentTheme, realTheme, setTheme }
 }
