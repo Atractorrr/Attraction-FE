@@ -69,7 +69,7 @@ export default function FilterDropdownBtn({
           title="아티클 필터 초기화"
           onClick={() => {
             setCategory(undefined)
-            setSortType('receivedAt,asc')
+            setSortType('receivedAt,desc')
           }}>
           <RefreshOutline className="text-lg" />
           <span className="ml-2 whitespace-nowrap">초기화</span>
