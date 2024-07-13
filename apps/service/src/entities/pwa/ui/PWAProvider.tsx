@@ -8,5 +8,5 @@ export default function PWAProvider({ children }: PropsWithChildren) {
     registerServiceWorker()
   })
 
-  return <div>{children}</div>
+  return children
 }
