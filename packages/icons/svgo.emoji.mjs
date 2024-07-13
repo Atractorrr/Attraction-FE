@@ -9,7 +9,8 @@ export default {
       params: {
         attributes: [
           {
-            fill: 'currentColor',
+            width: '1em',
+            height: '1em',
             'aria-hidden': 'true',
             'data-slot': 'icon',
           },
