@@ -10,13 +10,19 @@
   "scripts": {
     "lint": "eslint .",
     "lint-staged": "lint-staged",
-    "build": "pnpm svg && tsup",
-    "svg": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgr:emoji && pnpm svgr:outline && pnpm generate",
-    "generate": "ts-node ./scripts/generateExports.ts && eslint --fix .",
+    "build": "pnpm renew && tsup",
+    "generate": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgo:solid && pnpm svgr:emoji && pnpm svgr:outline && pnpm svgr:solid && pnpm generate",
+    "renew": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgo:solid && pnpm update:emoji && pnpm update:outline && pnpm update:solid && pnpm export",
+    "export": "eslint --fix . && ts-node ./scripts/generateExports.ts",
     "svgo:emoji": "svgo -f ./src/emoji/svg --config=svgo.emoji.mjs",
     "svgo:outline": "svgo -f ./src/outline/svg --config=svgo.outline.mjs",
+    "svgo:solid": "svgo -f ./src/solid/svg --config=svgo.solid.mjs",
     "svgr:emoji": "svgr --no-index --template ./svgr-template.js --no-prettier --icon --typescript --out-dir src/emoji/react src/emoji/svg",
-    "svgr:outline": "svgr --no-index --template ./svgr-template.js --no-prettier --icon --typescript --out-dir src/outline/react src/outline/svg"
+    "svgr:outline": "svgr --no-index --template ./svgr-template.js --no-prettier --icon --typescript --out-dir src/outline/react src/outline/svg",
+    "svgr:solid": "svgr --no-index --template ./svgr-template.js --no-prettier --icon --typescript --out-dir src/solid/react src/solid/svg",
+    "update:emoji": "pnpm svgr:emoji --ignore-existing",
+    "update:outline": "pnpm svgr:outline --ignore-existing",
+    "update:solid": "pnpm svgr:solid --ignore-existing"
   },
   "keywords": [],
   "author": "",

@@ -8,6 +8,7 @@ const path = require('path')
 const directories = [
   { dir: 'emoji', subDir: 'react' },
   { dir: 'outline', subDir: 'react' },
+  { dir: 'solid', subDir: 'react' },
 ]
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
