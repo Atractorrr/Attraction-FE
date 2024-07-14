@@ -18,13 +18,13 @@ export default async function useSession(): Promise<DefaultAuthState> {
   const logoutURL = `${process.env.NEXT_PUBLIC_FE_URL}/api/auth/sign-out`
 
   try {
-    const { data, response, isExpired } = await getUserSession()
+    const { data, isError, isExpired } = await getUserSession()
 
     if (isExpired) {
       return redirect(`${logoutURL}?${ACCESS_PARAMS_KEY}=session-failed`)
     }
 
-    if (!response.ok) {
+    if (isError) {
       throw new Error('로그인에 실패했어요')
     }
 
