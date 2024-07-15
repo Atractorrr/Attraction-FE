@@ -14,10 +14,10 @@ export default function DiscoverRelatedNewsletterItem({
           type="profile"
         />
       </div>
-      <p className="w-[calc(100%-5rem)]">
-        <span className="mb-0.5 block w-full truncate font-bold">
+      <p className="block w-[calc(100%-5rem)]">
+        <strong className="mb-0.5 block w-full truncate font-bold">
           {props.name}
-        </span>
+        </strong>
         <span className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
           {props.description}
         </span>
