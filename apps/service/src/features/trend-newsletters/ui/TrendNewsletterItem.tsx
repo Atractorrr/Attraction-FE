@@ -11,7 +11,7 @@ export default function TrendNewsletterItem({
 }: TrendNewsletterItemProps) {
   return (
     <Link href={`/newsletter/${newsletter.id}`}>
-      <div className="flex gap-x-4">
+      <div className="flex gap-4">
         <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700">
           <ThumbnailImage
             src={newsletter.newsletterThumbnailUrl}
@@ -19,11 +19,11 @@ export default function TrendNewsletterItem({
             type="profile"
           />
         </div>
-        <div className="flex flex-col gap-y-1">
-          <p className="whitespace-nowrap text-base font-semibold">
+        <div className="block w-[calc(100%-5rem)]">
+          <p className="mb-1 block w-full truncate font-bold">
             {newsletter.name}
           </p>
-          <p className="line-clamp-2 text-sm font-normal text-gray-500">
+          <p className="line-clamp-2 break-keep text-sm text-gray-500 dark:text-gray-400">
             {newsletter.description}
           </p>
         </div>
