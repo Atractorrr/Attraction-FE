@@ -2,15 +2,15 @@
 
 'use client'
 
-import { XOutline } from '@attraction/icons'
-import { PropsWithChildren } from 'react'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import {
+  XOutline,
   CheckCircleSolid,
   ExclamationCircleSolid,
   InformationCircleSolid,
-} from '@attraction/icons/src'
+} from '@attraction/icons'
+import { PropsWithChildren } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const toastIcon = {
   success: (
