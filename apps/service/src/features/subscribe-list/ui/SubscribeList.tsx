@@ -45,7 +45,7 @@ export default function SubscribeList() {
                     <div className="size-8 overflow-hidden rounded-full">
                       <ThumbnailImage
                         src={newsletter.thumbnailUrl}
-                        alt="썸네일 이미지"
+                        alt={`뉴스레터 썸네일 이미지: ${newsletter.title}`}
                         type="profile"
                       />
                     </div>

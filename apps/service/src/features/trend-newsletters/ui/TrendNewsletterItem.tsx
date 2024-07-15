@@ -15,7 +15,7 @@ export default function TrendNewsletterItem({
         <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700">
           <ThumbnailImage
             src={newsletter.newsletterThumbnailUrl}
-            alt={`뉴스레터 이름 : ${newsletter.name}`}
+            alt={`뉴스레터 썸네일 이미지: ${newsletter.name}`}
             type="profile"
           />
         </div>

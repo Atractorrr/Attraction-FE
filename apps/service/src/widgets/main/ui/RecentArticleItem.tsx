@@ -16,11 +16,10 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
           type="article"
         />
         <div className="absolute bottom-2 right-2 rounded-md bg-black/60 p-1 text-xs text-white">
-          {props.readingTime > 1 ? `약 ${props.readingTime}분` : `1분 미만`}
+          {props.readingTime > 1 ? `약 ${props.readingTime}분` : '1분 미만'}
         </div>
         {props.readPercentage > 0 && (
           <div className="absolute inset-x-0 bottom-0 mt-4 h-1 overflow-hidden bg-gray-100">
-            {/* // TODO: cva 적용하여 리팩토링 */}
             <span
               className="absolute inset-0 h-full bg-blue-400"
               style={{ width: `${props.readPercentage}%` }}
@@ -42,9 +41,9 @@ export default function RecentArticleItem({ ...props }: RecentArticle) {
           <p className="line-clamp-2 grow break-keep font-medium">
             {props.title}
           </p>
-          <p className="flex text-sm text-gray-500 dark:text-gray-400">
-            <span>{props.newsletter.name}</span>
-            <span className="before:mx-1 before:content-['·']">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            <span className="mr-1">{props.newsletter.name} ·</span>
+            <span className="whitespace-nowrap">
               {getTimeFromNow(props.receivedAt)}
             </span>
           </p>

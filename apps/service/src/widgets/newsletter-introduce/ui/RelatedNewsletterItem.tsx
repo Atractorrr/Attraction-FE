@@ -4,22 +4,22 @@ import { RelatedNewsletter } from '../model'
 
 export default function RelatedNewsletterItem({ ...props }: RelatedNewsletter) {
   return (
-    <Link className="flex gap-x-4" href={`/newsletter/${props.id}`}>
+    <Link className="flex gap-4" href={`/newsletter/${props.id}`}>
       <div className="size-16 shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-100 dark:border-gray-700 dark:bg-gray-700">
         <ThumbnailImage
           src={props.thumbnailUrl}
-          alt={`썸네일 이미지 : ${props.name}`}
+          alt={`연관 뉴스레터 썸네일 이미지: ${props.name}`}
           type="profile"
         />
       </div>
-      <div className="flex flex-col gap-y-0.5">
-        <p className="w-[100px] truncate font-bold sm:w-[200px]">
+      <p className="w-[calc(100%-5rem)]">
+        <span className="mb-0.5 block w-full truncate font-bold">
           {props.name}
-        </p>
-        <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
+        </span>
+        <span className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
           {props.description}
-        </p>
-      </div>
+        </span>
+      </p>
     </Link>
   )
 }
