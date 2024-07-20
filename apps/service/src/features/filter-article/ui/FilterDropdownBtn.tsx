@@ -1,5 +1,4 @@
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,6 +11,7 @@ import {
 import { AdjustmentHorizontalOutline, RefreshOutline } from '@attraction/icons'
 import { SortType } from '@/entities/user-article'
 import CategoryDropdown, { CategoryDropdownProps } from './CategoryDropdown'
+import FilterButton from './FilterButton'
 
 type FilterDropdownProps = CategoryDropdownProps & {
   sortType: SortType
@@ -32,18 +32,12 @@ export default function FilterDropdownBtn({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          className={`flex items-center justify-center gap-2 rounded-lg px-3 py-2  text-lg transition-colors xs:text-xl ${
-            selectedCategory
-              ? 'bg-gray-700 text-gray-50 dark:bg-gray-50 dark:text-gray-700'
-              : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600'
-          }`}
-          title="필터 설정">
-          <AdjustmentHorizontalOutline />
+        <FilterButton active={!!selectedCategory} title="필터 설정">
+          <AdjustmentHorizontalOutline className="text-lg xs:text-xl" />
           <span className="whitespace-nowrap pr-1 text-sm xs:text-base">
             필터
           </span>
-        </Button>
+        </FilterButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-52">
         <DropdownMenuLabel>카테고리</DropdownMenuLabel>
