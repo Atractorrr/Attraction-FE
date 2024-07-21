@@ -1,4 +1,6 @@
 export { default as HideReadToggleBtn } from './HideReadToggleBtn'
-export { default as ViewTypeTabMenu } from './ViewTypeTabMenu'
 export { default as SearchBar } from './SearchBar'
-export { default as FilterDropdownBtn } from './FilterDropdownBtn'
+export { default as SortButton } from './SortButton'
+export { default as ResetButton } from './ResetButton'
+export { default as CategoryButton } from './CategoryButton'
+export { default as ViewTypeButton } from './ViewTypeButton'

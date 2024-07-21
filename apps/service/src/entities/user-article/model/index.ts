@@ -4,4 +4,4 @@ export { default as useCheckUserArticleBookmarkQuery } from './useCheckUserArtic
 export { default as useInfiniteUserArticlesQuery } from './useInfiniteUserArticlesQuery'
 export { default as useTrackingUserArticleScroll } from './useTrackingUserArticleScroll'
 export { default as useUserArticleQuery } from './useUserArticleQuery'
-export { default as useUserCategoriesQuery } from './useUserCategoriesQuery'
+export * from './useUserCategoriesQuery'
