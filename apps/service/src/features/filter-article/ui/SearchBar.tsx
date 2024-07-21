@@ -18,7 +18,7 @@ export default function SearchBar({ setValue }: SearchBarProps) {
     <div className="relative block">
       <MagnifyingGlassOutline className="absolute inset-y-0 left-2 my-auto ml-0.5 inline-flex size-4 items-center justify-center text-base text-gray-500 xs:size-5 dark:text-gray-400" />
       <input
-        className="block h-9 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white xs:h-10 xs:px-10 xs:text-base dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
+        className="block h-10 w-full rounded-lg border border-gray-100 bg-gray-50 px-8 py-1 text-sm outline-none transition-colors placeholder:text-gray-500 focus:border-blue-400 focus:bg-white xs:px-10 xs:text-base dark:border-gray-700 dark:bg-gray-700 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
         placeholder="검색어를 입력해 주세요"
         type="search"
         autoComplete="off"

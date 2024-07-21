@@ -17,7 +17,7 @@ export default function HideReadToggleBtn({
       active={isRead}
       title={`읽은 아티클 ${isRead ? '보기' : '숨김'}`}
       onClick={toggleHideFn}>
-      <CheckOutline />
+      <CheckOutline className="text-base" />
       <span className="whitespace-nowrap pr-1 text-sm xs:text-base">
         읽은 아티클 숨김
       </span>
