@@ -9,7 +9,7 @@
   "description": "",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "husky install && pnpm build:icons && pnpm build:ds",
+    "postinstall": "husky install && pnpm build:icons && pnpm build:ds && prettier --write . --ignore-unknown",
     "prepare": "husky install",
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
