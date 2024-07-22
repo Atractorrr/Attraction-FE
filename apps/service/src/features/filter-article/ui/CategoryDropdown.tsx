@@ -37,11 +37,10 @@ export default function CategoryDropdown({
             <WarnTxt content="카테고리를 불러오지 못했어요" color="red" />
           </div>
         )}
-        {data && (
-          <>
-            {data.length === 0 && (
-              <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
-            )}
+        {data &&
+          (data.length <= 0 ? (
+            <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
+          ) : (
             <DropdownMenuRadioGroup value={selectedCategory ?? 'all'}>
               <DropdownMenuRadioItem
                 value="all"
@@ -59,8 +58,7 @@ export default function CategoryDropdown({
                 </DropdownMenuRadioItem>
               ))}
             </DropdownMenuRadioGroup>
-          </>
-        )}
+          ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )
