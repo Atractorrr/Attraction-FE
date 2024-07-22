@@ -1,21 +1,20 @@
 'use client'
 
 import React, {
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  LegacyRef,
+  type ButtonHTMLAttributes,
+  type DetailedHTMLProps,
   forwardRef,
 } from 'react'
 
 const FilterButton = forwardRef<
-  HTMLInputElement,
+  HTMLButtonElement,
   DetailedHTMLProps<
-    InputHTMLAttributes<HTMLButtonElement>,
+    ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > & { active?: boolean }
 >(({ type, className, active: isActive = false, onClick, ...props }, ref) => (
   <button
-    ref={ref as LegacyRef<HTMLButtonElement> | undefined}
+    ref={ref}
     type="button"
     className={`flex h-10 items-center justify-center gap-2 rounded-lg px-3 py-2 transition-colors ${
       isActive
