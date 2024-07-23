@@ -1,4 +1,5 @@
-import { Article, ArticlePageType, ViewType } from '../model'
+import type { ViewType } from '@/shared/type'
+import type { Article, ArticlePageType } from '../model'
 import CardItem from './CardItem'
 
 interface ArticleListProps {

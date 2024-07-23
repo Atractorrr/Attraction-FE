@@ -1,7 +1,7 @@
 import Link from 'next/link'
+import type { ViewType } from '@/shared/type'
 import { getTimeFromNow } from '@/shared/lib'
 import { ThumbnailImage } from '@/shared/ui'
-import { ViewType } from '../model'
 import ToBeDeletedTxt from './ToBeDeletedTxt'
 
 interface CardItemProps {

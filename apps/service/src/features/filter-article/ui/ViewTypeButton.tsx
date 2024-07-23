@@ -1,7 +1,7 @@
 'use client'
 
 import { BarsLeftOutline, GridOutline } from '@attraction/icons'
-import type { ViewType } from '@/entities/user-article'
+import type { ViewType } from '@/shared/type'
 
 interface ViewTypeButtonProps {
   viewType: ViewType
