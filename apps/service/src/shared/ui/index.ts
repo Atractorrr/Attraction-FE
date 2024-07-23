@@ -1,7 +1,6 @@
 export * from './carousel'
 export * from './policy'
 export { default as Title } from './Title'
-export { default as ImageBox } from './ImageBox'
 export { default as ContentContainer } from './ContentContainer'
 export { default as ContentTitle } from './ContentTitle'
 export { default as GoogleOAuthButton } from './GoogleOAuthButton'
