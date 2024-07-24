@@ -17,7 +17,7 @@ export default function ErrorGuideTxt({
   retryFn,
 }: ErrorGuideTxtProps) {
   return (
-    <div className="flex items-center justify-center pb-24 pt-20">
+    <div className="flex items-center justify-center pb-24 pt-16">
       <div>
         <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-gray-50 dark:bg-gray-700">
           <Image

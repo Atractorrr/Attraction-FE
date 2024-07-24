@@ -30,7 +30,7 @@ export default function UserRank() {
       <div className="min-h-[540px] w-full p-5">
         <div className="mb-4 flex w-full items-center justify-between">
           <Title
-            icon={<TrophyOutline className="size-5" />}
+            icon={<TrophyOutline className="size-6" />}
             text={`${new Date().getMonth() + 1}월 랭킹`}
           />
         </div>

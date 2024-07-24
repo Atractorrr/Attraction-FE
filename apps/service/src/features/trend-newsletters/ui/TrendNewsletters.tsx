@@ -31,7 +31,7 @@ export default function TrendNewsletters() {
       <div className="flex w-full flex-col gap-y-4 p-5">
         <div className="w-full">
           <Title
-            icon={<GraphOutline className="size-5" />}
+            icon={<GraphOutline className="size-6" />}
             text="트렌디한 뉴스레터"
           />
         </div>
