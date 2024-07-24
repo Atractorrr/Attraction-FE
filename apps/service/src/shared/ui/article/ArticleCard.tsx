@@ -30,7 +30,7 @@ const ArticleCardContext = createContext<ArticleCardState>({
   type: 'gallery',
   href: '',
   title: '',
-  hasAvatar: true,
+  hasAvatar: false,
   setHasAvatar: () => {},
 })
 
@@ -156,7 +156,7 @@ function ArticleCard({
   title,
   className,
 }: PropsWithChildren<ArticleCardProps>) {
-  const [hasAvatar, setHasAvatar] = useState(true)
+  const [hasAvatar, setHasAvatar] = useState(false)
   const href =
     to === 'previous'
       ? `/newsletter/${newsletterId}/article/${id}`
