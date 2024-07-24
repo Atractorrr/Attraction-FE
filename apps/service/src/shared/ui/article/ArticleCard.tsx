@@ -92,21 +92,24 @@ function Thumbnail({
   const { href, type, title } = useContext(ArticleCardContext)
 
   return (
-    <Link
-      href={href}
-      title={`아티클 보기: ${title}`}
-      className={`group relative block overflow-hidden rounded-lg border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700 ${
+    <div
+      className={`relative block h-fit overflow-hidden rounded-lg border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700 ${
         type === 'list'
-          ? 'mr-3 h-[8vw] max-h-24 min-h-20 w-1/4 min-w-28'
-          : 'mb-2 h-[56vw] max-h-60 min-h-40 w-full sm:h-[16vw] sm:max-h-48'
+          ? 'mr-3 min-h-20 w-1/4 min-w-28 pb-[15%]'
+          : 'mb-2 w-full pb-[60%]'
       }`}>
-      <ThumbnailImage
-        src={url}
-        alt={`아티클 썸네일 이미지: ${title}`}
-        type="article"
-      />
-      {children}
-    </Link>
+      <Link
+        href={href}
+        title={`아티클 보기: ${title}`}
+        className="absolute inset-0">
+        <ThumbnailImage
+          src={url}
+          alt={`아티클 썸네일 이미지: ${title}`}
+          type="article"
+        />
+        {children}
+      </Link>
+    </div>
   )
 }
 
@@ -115,6 +118,7 @@ interface ArticleCardProps {
   to?: 'inbox' | 'bookmark'
   id: number
   title: string
+  className?: string
 }
 
 function ArticleCard({
@@ -123,6 +127,7 @@ function ArticleCard({
   type = 'gallery',
   id,
   title,
+  className,
 }: PropsWithChildren<ArticleCardProps>) {
   const href = `/inbox${to === 'bookmark' ? '-bookmark' : ''}/article/${id}`
   const articleCardContext = useMemo(
@@ -132,7 +137,8 @@ function ArticleCard({
 
   return (
     <ArticleCardContext.Provider value={articleCardContext}>
-      <div className={`${type === 'list' ? 'flex' : 'block'} h-auto w-full`}>
+      <div
+        className={`${type === 'list' ? 'flex' : 'block'} h-auto ${className ?? 'w-full'}`}>
         {children}
       </div>
     </ArticleCardContext.Provider>
