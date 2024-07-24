@@ -1,7 +1,7 @@
 import { NewsletterCategory } from '@/shared/type'
 
 export interface Newsletter {
-  id: string | number
+  id: number
   name: string
   description: string
   uploadDays: string

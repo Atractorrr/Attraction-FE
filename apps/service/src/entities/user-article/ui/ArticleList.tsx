@@ -1,6 +1,8 @@
 import type { ViewType } from '@/shared/type'
+import { ArticleCard } from '@/shared/ui'
+import { getTimeFromNow } from '@/shared/lib'
 import type { Article, ArticlePageType } from '../model'
-import CardItem from './CardItem'
+import ToBeDeletedTxt from './ToBeDeletedTxt'
 
 interface ArticleListProps {
   data: Article[]
@@ -25,20 +27,32 @@ export default function ArticleList({
       }`}>
       {data.map((article) => (
         <li key={article.id}>
-          <CardItem
+          <ArticleCard
+            id={article.id}
+            title={article.title}
             type={viewType}
-            articleUrl={`/inbox${pageType === 'bookmark' ? '-bookmark' : ''}/article/${article.id}`}
-            articleTitle={article.title}
-            articleThumbnailUrl={article.thumbnailUrl}
-            readPercentage={
-              pageType === 'bookmark' ? undefined : article.readPercentage
-            }
-            readingTime={article.readingTime}
-            newsletterId={article.newsletter.id}
-            newsletterName={article.newsletter.name}
-            newsletterThumbnailUrl={article.newsletter.thumbnailUrl}
-            receivedAt={article.receivedAt}
-          />
+            to={pageType === 'bookmark' ? 'bookmark' : 'inbox'}>
+            <ArticleCard.Thumbnail url={article.thumbnailUrl}>
+              <ArticleCard.Progress readPercentage={article.readPercentage} />
+              <ArticleCard.ReadingTimeBadge readingTime={article.readingTime} />
+            </ArticleCard.Thumbnail>
+            <ArticleCard.InfoGroup>
+              <ArticleCard.NewsletterAvatar
+                id={article.newsletter.id}
+                url={article.newsletter.thumbnailUrl}
+                name={article.newsletter.name}
+              />
+              <ArticleCard.DescriptionGroup>
+                <ArticleCard.Description
+                  name={article.newsletter.name}
+                  receivedAt={article.receivedAt}
+                />
+                {getTimeFromNow(article.receivedAt).includes('7') && (
+                  <ToBeDeletedTxt />
+                )}
+              </ArticleCard.DescriptionGroup>
+            </ArticleCard.InfoGroup>
+          </ArticleCard>
         </li>
       ))}
     </ul>
