@@ -43,7 +43,7 @@ export default function DiscoverRelatedNewsletters({
         )}
         {data &&
           (data.pages.length !== 0 ? (
-            <div className="overflow-y-scroll lg:max-h-[480px]">
+            <div className="overflow-y-scroll overscroll-none lg:max-h-[480px]">
               {data.pages.map((newsletter) => (
                 <div key={newsletter.id} className="mt-4">
                   <DiscoverRelatedNewsletterItem {...newsletter} />

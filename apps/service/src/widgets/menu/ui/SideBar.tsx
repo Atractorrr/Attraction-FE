@@ -39,7 +39,7 @@ export default function SideBar() {
   return (
     <aside>
       <div
-        className={`fixed inset-y-0 z-40 ${isOpen ? '-left-72 inline-block opacity-0' : 'hidden'} ${debouncedOpen ? '!left-0 opacity-100' : ''} h-full max-h-dvh overflow-y-auto bg-white transition-[left,opacity] delay-100 duration-300 2xl:inline-block dark:bg-gray-800`}
+        className={`fixed inset-y-0 z-40 ${isOpen ? '-left-72 inline-block opacity-0' : 'hidden'} ${debouncedOpen ? '!left-0 opacity-100' : ''} h-full max-h-dvh overflow-y-auto overscroll-none bg-white transition-[left,opacity] delay-100 duration-300 2xl:inline-block dark:bg-gray-800`}
         ref={(node) => {
           sideBarAreaRef.current = node
         }}>
@@ -66,7 +66,7 @@ export default function SideBar() {
           className={`fixed inset-0 z-30 ${debouncedOpen ? 'opacity-100' : 'opacity-0'} bg-black/30 transition-opacity 2xl:hidden dark:bg-white/20`}
         />
       )}
-      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto border-t border-gray-100 bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:border-gray-700 dark:bg-gray-800">
+      <div className="fixed inset-x-0 bottom-0 z-30 h-auto max-h-dvh overflow-y-auto overscroll-none border-t border-gray-100 bg-white px-3 py-2 md:inset-y-0 md:left-0 md:h-full md:w-20 md:border-0 md:px-2 md:pb-12 md:pt-6 dark:border-gray-700 dark:bg-gray-800">
         {!isMobileView && (
           <button
             type="button"

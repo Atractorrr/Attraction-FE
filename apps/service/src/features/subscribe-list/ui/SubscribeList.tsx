@@ -36,7 +36,7 @@ export default function SubscribeList() {
             />
           </div>
           {subscribeList?.length !== 0 ? (
-            <ul className="flex flex-col justify-start overflow-y-auto px-3 xl:h-[calc(100%-64px)] xl:max-h-[264px]">
+            <ul className="flex flex-col justify-start overflow-y-auto overscroll-none px-3 xl:h-[calc(100%-64px)] xl:max-h-[264px]">
               {subscribeList?.map((newsletter) => (
                 <li key={newsletter.id} className="peer peer-[]:mt-1">
                   <Link
