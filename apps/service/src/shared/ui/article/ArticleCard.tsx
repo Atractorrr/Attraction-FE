@@ -11,8 +11,6 @@ import Link from 'next/link'
 import { getTimeFromNow } from '@/shared/lib'
 import type { ViewType } from '../../type'
 import ThumbnailImage from '../ThumbnailImage'
-import ReadingTimeBadge from './ReadingTimeBadge'
-import ReadProgress from './ReadPercentage'
 import { NewsletterAvatar } from '../newsletter'
 
 interface ArticleCardState {
@@ -70,7 +68,7 @@ function DescriptionGroup({ children }: PropsWithChildren) {
   )
 }
 
-function InfoGroup({ children }: PropsWithChildren) {
+function Content({ children }: PropsWithChildren) {
   const { type } = useContext(ArticleCardContext)
 
   return (
@@ -147,9 +145,7 @@ function ArticleCard({
 
 export default Object.assign(ArticleCard, {
   Thumbnail,
-  Progress: ReadProgress,
-  ReadingTimeBadge,
-  InfoGroup,
+  Content,
   DescriptionGroup,
   Description,
   NewsletterAvatar: ArticlesNewsletterAvatar,

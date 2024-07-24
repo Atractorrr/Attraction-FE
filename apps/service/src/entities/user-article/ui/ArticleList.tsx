@@ -1,5 +1,5 @@
 import type { ViewType } from '@/shared/type'
-import { ArticleCard } from '@/shared/ui'
+import { ArticleCard, ReadingTimeBadge, ReadPercentage } from '@/shared/ui'
 import { getTimeFromNow } from '@/shared/lib'
 import type { Article, ArticlePageType } from '../model'
 import ToBeDeletedTxt from './ToBeDeletedTxt'
@@ -33,10 +33,10 @@ export default function ArticleList({
             type={viewType}
             to={pageType === 'bookmark' ? 'bookmark' : 'inbox'}>
             <ArticleCard.Thumbnail url={article.thumbnailUrl}>
-              <ArticleCard.Progress readPercentage={article.readPercentage} />
-              <ArticleCard.ReadingTimeBadge readingTime={article.readingTime} />
+              <ReadPercentage readPercentage={article.readPercentage} />
+              <ReadingTimeBadge readingTime={article.readingTime} />
             </ArticleCard.Thumbnail>
-            <ArticleCard.InfoGroup>
+            <ArticleCard.Content>
               <ArticleCard.NewsletterAvatar
                 id={article.newsletter.id}
                 url={article.newsletter.thumbnailUrl}
@@ -51,7 +51,7 @@ export default function ArticleList({
                   <ToBeDeletedTxt />
                 )}
               </ArticleCard.DescriptionGroup>
-            </ArticleCard.InfoGroup>
+            </ArticleCard.Content>
           </ArticleCard>
         </li>
       ))}

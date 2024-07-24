@@ -1,7 +1,13 @@
 'use client'
 
 import { useAuth } from '@/entities/auth'
-import { ArticleCard, ArticleCardContainer, GuideTxt } from '@/shared/ui'
+import {
+  ReadPercentage,
+  ReadingTimeBadge,
+  ArticleCard,
+  ArticleCardContainer,
+  GuideTxt,
+} from '@/shared/ui'
 import { useRecentArticles } from '../model'
 
 export default function RecentArticles() {
@@ -19,10 +25,10 @@ export default function RecentArticles() {
             title={article.title}
             className="w-72">
             <ArticleCard.Thumbnail url={article.thumbnailUrl}>
-              <ArticleCard.Progress readPercentage={article.readPercentage} />
-              <ArticleCard.ReadingTimeBadge readingTime={article.readingTime} />
+              <ReadPercentage readPercentage={article.readPercentage} />
+              <ReadingTimeBadge readingTime={article.readingTime} />
             </ArticleCard.Thumbnail>
-            <ArticleCard.InfoGroup>
+            <ArticleCard.Content>
               <ArticleCard.NewsletterAvatar
                 id={article.newsletter.id}
                 url={article.newsletter.thumbnailUrl}
@@ -34,7 +40,7 @@ export default function RecentArticles() {
                   receivedAt={article.receivedAt}
                 />
               </ArticleCard.DescriptionGroup>
-            </ArticleCard.InfoGroup>
+            </ArticleCard.Content>
           </ArticleCard>
         )) ?? []}
       </ArticleCardContainer>
