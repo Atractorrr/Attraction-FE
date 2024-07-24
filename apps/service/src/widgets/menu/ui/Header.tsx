@@ -37,9 +37,9 @@ export default function Header({
                 label="뒤로가기"
                 onClick={router.back}
               />
-              <h3 className="w-[calc(100%-3.5rem)] truncate text-lg font-medium">
+              <h2 className="w-[calc(100%-3.5rem)] truncate text-lg font-medium">
                 {title || '어트랙션'}
-              </h3>
+              </h2>
             </div>
             {isLogin ? (
               <MobileHeaderMenuBtn />
@@ -65,9 +65,9 @@ export default function Header({
           isLogin && isMobileDisabled ? 'hidden md:block' : ''
         }`}>
         <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
-          <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">
+          <h2 className="whitespace-nowrap text-xl font-bold md:text-2xl">
             {title || '어트랙션'}
-          </h3>
+          </h2>
           <div className="flex items-center justify-end gap-2">
             <ThemeDropdownBtn />
             <AuthButton />
