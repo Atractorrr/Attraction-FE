@@ -1,11 +1,12 @@
 interface GuideTxtProps {
   title: string
   sub?: string
+  className?: string
 }
 
-export default function GuideTxt({ title, sub }: GuideTxtProps) {
+export default function GuideTxt({ title, sub, className }: GuideTxtProps) {
   return (
-    <p>
+    <p className={className}>
       <strong className="block break-keep text-center text-base font-medium md:text-lg">
         {title}
       </strong>

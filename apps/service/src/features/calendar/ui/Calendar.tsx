@@ -1,12 +1,12 @@
 'use client'
 
-import { useTheme } from '@/entities/theme'
-import { ErrorGuideTxt } from '@/shared/ui'
 import React from 'react'
 import ActivityCalendar from 'react-activity-calendar'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
+import { useTheme } from '@/entities/theme'
+import { GuideTxt } from '@/shared/ui'
 import { CALENDAR_LABELS, CALENDAR_THEME } from '../constant'
 import { CalendarElement } from '../model'
 
@@ -14,14 +14,18 @@ interface CalendarProps {
   calendarData: (CalendarElement & { level: number })[]
 }
 
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
-
 export default function Calendar({ calendarData }: CalendarProps) {
   const { realTheme } = useTheme()
+
   return (
-    <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
+    <ErrorBoundary
+      fallback={
+        <GuideTxt
+          title="캘린더를 불러오는데 실패했어요"
+          sub="동일한 현상이 지속될 경우 문의 부탁드려요"
+          className="pb-3"
+        />
+      }>
       <ActivityCalendar
         data={calendarData}
         labels={CALENDAR_LABELS}

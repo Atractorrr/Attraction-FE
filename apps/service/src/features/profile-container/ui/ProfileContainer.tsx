@@ -24,10 +24,6 @@ import { toast } from 'react-toastify'
 import { fetchUserProfile } from '../api'
 import ProfileSettingModal from './ProfileSettingModal'
 
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
-
 export default function ProfileContainer() {
   const { userEmail } = useAuth()
   const { data: userProfile } = useSuspenseQuery({
@@ -42,7 +38,7 @@ export default function ProfileContainer() {
   return (
     userProfile && (
       <Container>
-        <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
+        <ErrorBoundary fallback={<ErrorGuideTxt />}>
           <div className="relative flex w-full flex-col">
             <div className="group relative md:px-5 md:pt-5">
               <ProfileBackground imgSrc={userProfile.backgroundImg} />

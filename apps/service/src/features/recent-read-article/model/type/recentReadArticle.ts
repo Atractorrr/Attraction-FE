@@ -1,4 +1,4 @@
-interface RecentNewsletter {
+export interface RecentReadArticle {
   id: number
   title: string
   thumbnailUrl: string
@@ -12,10 +12,10 @@ interface RecentNewsletter {
   }
 }
 
-export interface RecentNewsletterResponse {
+export interface RecentReadArticlesResponse {
   status: string
   message: string
   data: {
-    mypageArticles: RecentNewsletter[]
+    mypageArticles: RecentReadArticle[]
   }
 }

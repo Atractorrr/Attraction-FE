@@ -7,9 +7,9 @@ interface TitleProps {
 
 export default function Title({ icon, text }: TitleProps) {
   return (
-    <section className="flex items-center gap-x-2">
+    <div className="flex items-center gap-x-2">
       {icon}
-      <h2 className="whitespace-nowrap text-lg font-bold">{text}</h2>
-    </section>
+      <h3 className="whitespace-nowrap text-lg font-bold">{text}</h3>
+    </div>
   )
 }

@@ -42,19 +42,20 @@ export default function DiscoverArticles({ keyword }: DiscoverArticlesProps) {
         {isLoading ? (
           <DiscoverArticlesLoading />
         ) : (
-          <p>
-            <strong>{`"${keyword}"`}</strong>에 대한 검색 결과에요
-          </p>
+          <h3 className="mb-6">
+            <strong className="text-lg font-medium">&#34;{keyword}&#34;</strong>
+            에 대한 검색 결과에요
+          </h3>
         )}
         {data &&
           (data.pages.length !== 0 ? (
-            <div>
+            <ul>
               {data.pages.map((article) => (
-                <div key={article.id} className="mt-6">
+                <li key={article.id} className="peer peer-[]:mt-5">
                   <DiscoverArticleItem {...article} />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
             <div className="flex flex-col justify-center pb-60 pt-52">
               <GuideTxt

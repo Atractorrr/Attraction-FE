@@ -17,7 +17,7 @@ export default function UserRecord() {
   return (
     <div className="mt-6 flex w-full flex-col items-stretch justify-start gap-6 xl:flex-row xl:justify-between">
       <div className="h-auto w-full xl:w-2/3">
-        <Container className="flex h-full justify-center p-5 pt-7">
+        <Container className="flex h-full items-center justify-center p-5 pt-7">
           {calendarDataWithLevel ? (
             <Calendar calendarData={calendarDataWithLevel} />
           ) : (

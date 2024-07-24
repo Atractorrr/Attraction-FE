@@ -1,15 +1,13 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query'
+'use client'
+
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { fetchArticles } from '../api'
-import type { RecentArticleResponse } from './type'
 import mainQueryKeys from './mainQueryKeys'
 
-export default function useRecentArticles(
-  email: string | undefined,
-): UseQueryResult<RecentArticleResponse, Error> {
-  return useQuery({
+export default function useRecentArticles(email?: string) {
+  return useSuspenseQuery({
     queryKey: mainQueryKeys.recentArticles(email),
     queryFn: !email ? () => Promise.resolve(null) : () => fetchArticles(email),
     refetchOnWindowFocus: false,
-    enabled: email !== undefined,
   })
 }

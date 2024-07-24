@@ -1,6 +1,3 @@
-export type { Pagination } from './pagination'
-
-export type {
-  NewsletterCategory,
-  NewsletterCategoryName,
-} from './newsletterCategory'
+export * from './pagination'
+export * from './newsletterCategory'
+export * from './viewType'

@@ -7,26 +7,17 @@ import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
 import { useAuth } from '@/entities/auth'
 import { useCheckDevice } from '@/shared/lib'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import RecentArticlesSkeleton from './RecentArticlesSkeleton'
 import RecentArticles from './RecentArticles'
-import { useRecentArticles } from '../model'
 
-interface RecentArticlesContainerProps {
-  email: string | undefined
-}
-
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
-
-function LoginView({ email }: RecentArticlesContainerProps) {
-  const { data, isLoading, isError } = useRecentArticles(email)
-
+function LoginView() {
   return (
-    <div className="flex w-full flex-col gap-y-4 p-5">
-      <div className="flex h-fit w-full items-center justify-between">
+    <Container>
+      <div className="flex h-fit w-full items-center justify-between p-5">
         <Title
-          icon={<ClockOutline className="size-5" />}
+          icon={<ClockOutline className="size-6" />}
           text="최근 받은 아티클"
         />
         <Link
@@ -35,12 +26,12 @@ function LoginView({ email }: RecentArticlesContainerProps) {
           보관함 바로가기
         </Link>
       </div>
-      {isLoading ? <RecentArticlesSkeleton /> : null}
-      {data ? (
-        <RecentArticles mainPageArticles={data.data.mainPageArticles} />
-      ) : null}
-      {isError ? <CustomErrorGuideTxt /> : null}
-    </div>
+      <ErrorBoundary fallback={<ErrorGuideTxt />}>
+        <Suspense fallback={<RecentArticlesSkeleton />}>
+          <RecentArticles />
+        </Suspense>
+      </ErrorBoundary>
+    </Container>
   )
 }
 
@@ -70,17 +61,8 @@ function NonLoginView() {
 }
 
 export default function RecentArticlesContainer() {
-  const { userEmail } = useAuth()
+  const { isLogin } = useAuth()
+  const Component = isLogin ? LoginView : NonLoginView
 
-  return (
-    <div>
-      {userEmail ? (
-        <Container>
-          <LoginView email={userEmail} />
-        </Container>
-      ) : (
-        <NonLoginView />
-      )}
-    </div>
-  )
+  return <Component />
 }
