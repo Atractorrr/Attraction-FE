@@ -1,35 +1,34 @@
-import Link from 'next/link'
-import { getTimeFromNow } from '@/shared/lib'
-import { ThumbnailImage } from '@/shared/ui'
+'use client'
+
+import { useCheckDevice } from '@/shared/lib'
+import { ArticleCard, ReadingTimeBadge } from '@/shared/ui'
 import { DiscoverArticle } from '../model'
 
 export default function DiscoverArticleItem({ ...props }: DiscoverArticle) {
+  const { isMobileView } = useCheckDevice()
+
   return (
-    <Link
-      href={`/newsletter/${props.newsletter.id}/article/${props.id}`}
-      className="flex w-full gap-x-5">
-      <div className="relative flex size-full h-[120px] w-[180px] shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-100 md:max-w-[180px] dark:border-gray-700 dark:bg-gray-700">
-        <ThumbnailImage
-          src={props.thumbnailUrl}
-          alt={`아티클 썸네일 이미지: ${props.title}`}
-          type="article"
-        />
-        <div className="absolute bottom-2 right-2 rounded-md bg-black/60 p-1 text-xs text-white">
-          {props.readingTime > 1 ? `약 ${props.readingTime}분` : '1분 미만'}
-        </div>
-      </div>
-      <div className="flex max-w-[890px] flex-col gap-y-2 overflow-hidden text-ellipsis">
-        <p className="w-full truncate font-medium">{props.title}</p>
-        <p className="line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-          {props.contentSummary}
-        </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          <span className="mr-1">{props.newsletter.name} ·</span>
-          <span className="whitespace-nowrap">
-            {getTimeFromNow(props.receivedAt)}
-          </span>
-        </p>
-      </div>
-    </Link>
+    <ArticleCard
+      key={props.id}
+      id={props.id}
+      newsletterId={props.newsletter.id}
+      title={props.title}
+      type={isMobileView ? 'gallery' : 'list'}
+      to="previous">
+      <ArticleCard.Thumbnail url={props.thumbnailUrl}>
+        <ReadingTimeBadge readingTime={props.readingTime} />
+      </ArticleCard.Thumbnail>
+      <ArticleCard.Content>
+        <ArticleCard.DescriptionGroup>
+          <ArticleCard.Description>
+            {props.contentSummary}
+          </ArticleCard.Description>
+          <ArticleCard.Status
+            name={props.newsletter.name}
+            receivedAt={props.receivedAt}
+          />
+        </ArticleCard.DescriptionGroup>
+      </ArticleCard.Content>
+    </ArticleCard>
   )
 }

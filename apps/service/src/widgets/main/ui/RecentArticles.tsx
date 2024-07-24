@@ -35,7 +35,7 @@ export default function RecentArticles() {
                 name={article.newsletter.name}
               />
               <ArticleCard.DescriptionGroup>
-                <ArticleCard.Description
+                <ArticleCard.Status
                   name={article.newsletter.name}
                   receivedAt={article.receivedAt}
                 />
