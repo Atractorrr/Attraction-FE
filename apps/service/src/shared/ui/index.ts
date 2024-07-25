@@ -1,6 +1,7 @@
 export * from './carousel'
 export * from './policy'
 export * from './article'
+export * from './newsletter'
 export { default as Title } from './Title'
 export { default as GoogleOAuthButton } from './GoogleOAuthButton'
 export { default as LoadingSpinner } from './LoadingSpinner'

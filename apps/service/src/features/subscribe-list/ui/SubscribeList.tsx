@@ -1,58 +1,58 @@
 'use client'
 
+import { ErrorBoundary } from 'react-error-boundary'
+import { skipToken, useQuery } from '@tanstack/react-query'
+import { DocumentListOutline } from '@attraction/icons'
 import { useAuth } from '@/entities/auth'
 import {
   Container,
   ErrorGuideTxt,
   GuideTxt,
-  ThumbnailImage,
   Title,
+  NewsletterAvatar,
+  NewsletterSelect,
+  NewsletterSelectSkeleton,
 } from '@/shared/ui'
-import { DocumentListOutline } from '@attraction/icons'
-import { skipToken, useQuery } from '@tanstack/react-query'
-import Link from 'next/link'
-import { ErrorBoundary } from 'react-error-boundary'
 import { fetchSubscribeList } from '../api'
-
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
 
 export default function SubscribeList() {
   const { userEmail } = useAuth()
-  const { data: subscribeList } = useQuery({
+  const { isLoading, data: subscribeList } = useQuery({
     queryKey: ['userSubscribe', userEmail],
     queryFn: userEmail ? () => fetchSubscribeList(userEmail) : skipToken,
   })
 
   return (
     <Container className="h-full xl:h-auto xl:min-h-full">
-      <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
-        <div className="h-full pb-6">
+      <ErrorBoundary fallback={<ErrorGuideTxt />}>
+        <div className="h-full pb-2">
           <div className="p-5 pb-4">
             <Title
               icon={<DocumentListOutline className="text-2xl" />}
               text="구독한 뉴스레터"
             />
           </div>
+          {isLoading && (
+            <div className="px-3">
+              {Array.from({ length: 5 }, (_, i) => (
+                <NewsletterSelectSkeleton key={i} size="lg" />
+              ))}
+            </div>
+          )}
           {subscribeList?.length !== 0 ? (
-            <ul className="flex flex-col justify-start overflow-y-auto overscroll-none px-3 xl:h-[calc(100%-64px)] xl:max-h-[264px]">
+            <ul className="flex flex-col justify-start overflow-y-auto overscroll-none px-3 xl:h-[calc(100%-4.5rem)] xl:max-h-[17.5rem]">
               {subscribeList?.map((newsletter) => (
                 <li key={newsletter.id} className="peer peer-[]:mt-1">
-                  <Link
-                    href={`/newsletter/${newsletter.id}`}
-                    className="flex items-center justify-start gap-3 overflow-hidden rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
-                    <div className="size-8 overflow-hidden rounded-full">
-                      <ThumbnailImage
-                        src={newsletter.thumbnailUrl}
-                        alt={`뉴스레터 썸네일 이미지: ${newsletter.title}`}
-                        type="profile"
-                      />
-                    </div>
-                    <span className="w-[calc(100%-4rem)] truncate font-medium">
+                  <NewsletterSelect id={newsletter.id} name={newsletter.title}>
+                    <NewsletterAvatar
+                      url={newsletter.thumbnailUrl}
+                      name={newsletter.title}
+                      size="lg"
+                    />
+                    <NewsletterSelect.Name>
                       {newsletter.title}
-                    </span>
-                  </Link>
+                    </NewsletterSelect.Name>
+                  </NewsletterSelect>
                 </li>
               ))}
             </ul>

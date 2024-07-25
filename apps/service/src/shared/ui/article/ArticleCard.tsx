@@ -71,7 +71,7 @@ function DescriptionGroup({ children }: PropsWithChildren) {
 
   return (
     <div
-      className={`w-full ${type === 'gallery' && hasAvatar ? 'max-w-[calc(100%-2.25rem)] pr-1' : ''}`}>
+      className={`w-full ${type === 'gallery' && hasAvatar ? 'ml-2 max-w-[calc(100%-2.25rem)] pr-1' : ''}`}>
       <Link
         href={href}
         title={`아티클 보기: ${title}`}

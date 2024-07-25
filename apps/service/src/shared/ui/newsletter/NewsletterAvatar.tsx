@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { createElement } from 'react'
 import ThumbnailImage from '../ThumbnailImage'
 
 const newsletterAvatarSize = {
@@ -20,18 +20,18 @@ export default function NewsletterAvatar({
   url,
   size = 'md',
 }: NewsletterAvatarProps) {
-  const Component = id !== undefined ? Link : 'div'
-
-  return (
-    <Component
-      href={`/newsletter/${id}`}
-      title={id !== undefined ? `뉴스레터 상세 보기: ${name}` : undefined}
-      className={`mr-2 block ${newsletterAvatarSize[size]} overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`}>
-      <ThumbnailImage
-        src={url}
-        alt={`뉴스레터 썸네일 이미지: ${url}`}
-        type="profile"
-      />
-    </Component>
+  return createElement(
+    id !== undefined ? Link : 'div',
+    {
+      className: `block ${newsletterAvatarSize[size]} overflow-hidden rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-700`,
+      ...(id !== undefined
+        ? { href: `/newsletter/${id}`, title: `뉴스레터 상세 보기: ${name}` }
+        : {}),
+    } as { href: string; title: string; className: string },
+    <ThumbnailImage
+      src={url}
+      alt={`뉴스레터 썸네일 이미지: ${url}`}
+      type="profile"
+    />,
   )
 }
