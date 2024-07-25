@@ -5,7 +5,7 @@ export interface RelatedNewslettersResponse {
 }
 
 export interface RelatedNewsletter {
-  id: string
+  id: number
   thumbnailUrl: string
   name: string
   description: string

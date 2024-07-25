@@ -39,7 +39,9 @@ export default function CategoryDropdown({
         )}
         {data &&
           (data.length <= 0 ? (
-            <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
+            <div className="p-3">
+              <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
+            </div>
           ) : (
             <DropdownMenuRadioGroup value={selectedCategory ?? 'all'}>
               <DropdownMenuRadioItem

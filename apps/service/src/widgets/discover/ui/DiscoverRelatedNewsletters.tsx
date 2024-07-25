@@ -1,7 +1,12 @@
 'use client'
 
-import { Container, ErrorGuideTxt, GuideTxt, Title } from '@/shared/ui'
-import DiscoverRelatedNewsletterItem from './DiscoverRelatedNewsletterItem'
+import {
+  Container,
+  ErrorGuideTxt,
+  GuideTxt,
+  NewsletterItem,
+  Title,
+} from '@/shared/ui'
 import useInfiniteRelatedNewsletters from '../model/useInfiniteRelatedNewsletters'
 import { RelatedNewsletterItemSkeleton } from './DiscoverResultSkeleton'
 
@@ -44,11 +49,20 @@ export default function DiscoverRelatedNewsletters({
         {data &&
           (data.pages.length !== 0 ? (
             <div className="overflow-y-scroll overscroll-none lg:max-h-[480px]">
-              {data.pages.map((newsletter) => (
-                <div key={newsletter.id} className="mt-4">
-                  <DiscoverRelatedNewsletterItem {...newsletter} />
-                </div>
-              ))}
+              <ul>
+                {data.pages.map((newsletter) => (
+                  <li key={newsletter.id} className="mt-4">
+                    <NewsletterItem id={newsletter.id} name={newsletter.name}>
+                      <NewsletterItem.Thumbnail url={newsletter.thumbnailUrl} />
+                      <NewsletterItem.Content>
+                        <NewsletterItem.Description>
+                          {newsletter.description}
+                        </NewsletterItem.Description>
+                      </NewsletterItem.Content>
+                    </NewsletterItem>
+                  </li>
+                ))}
+              </ul>
               {hasNextPage && (
                 <button
                   className="mt-7 w-full rounded-lg bg-gray-50 py-2 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"

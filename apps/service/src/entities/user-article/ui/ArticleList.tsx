@@ -1,3 +1,6 @@
+'use client'
+
+import { useParams } from 'next/navigation'
 import type { ViewType } from '@/shared/type'
 import { ArticleCard, ReadingTimeBadge, ReadPercentage } from '@/shared/ui'
 import { getTimeFromNow } from '@/shared/lib'
@@ -17,6 +20,9 @@ export default function ArticleList({
   viewType = 'gallery',
   isArticleView,
 }: ArticleListProps) {
+  const params = useParams<{ articleId?: string }>()
+  const currentArticleId = Number(params?.articleId ?? -1)
+
   return (
     <ul
       className={`grid grid-cols-1 gap-x-4 gap-y-6 ${
@@ -26,7 +32,9 @@ export default function ArticleList({
           : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
       }`}>
       {data.map((article) => (
-        <li key={article.id}>
+        <li
+          key={article.id}
+          className={currentArticleId === article.id ? 'hidden' : ''}>
           <ArticleCard
             id={article.id}
             title={article.title}

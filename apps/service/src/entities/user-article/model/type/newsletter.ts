@@ -10,3 +10,5 @@ export interface Newsletter {
   subscribeLink: string
   thumbnailUrl: string
 }
+
+export type NewsletterItem = Pick<Newsletter, 'id' | 'name' | 'thumbnailUrl'>

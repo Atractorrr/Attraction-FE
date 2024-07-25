@@ -13,6 +13,7 @@ import {
 import Footer from './Footer'
 import MainLogo from './MainLogo'
 import Menu from './Menu'
+import SubscribeNewsletter from './SubscribeNewsletter'
 
 export default function SideBar() {
   const { isMobileView } = useCheckDevice()
@@ -57,6 +58,7 @@ export default function SideBar() {
               </button>
             </div>
             <Menu handleMenuClick={() => setOpen(false)} />
+            <SubscribeNewsletter handleClick={() => setOpen(false)} />
           </div>
           <Footer handleMenuClick={() => setOpen(false)} />
         </div>

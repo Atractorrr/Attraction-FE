@@ -1,7 +1,7 @@
 import { Pagination } from '@/shared/type'
 
 export interface DiscoverRelatedNewsletter {
-  id: string
+  id: number
   thumbnailUrl: string
   name: string
   description: string
