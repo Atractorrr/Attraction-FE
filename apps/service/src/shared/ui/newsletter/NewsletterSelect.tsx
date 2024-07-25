@@ -16,11 +16,21 @@ function Name({ className, children }: PropsWithChildren<NewsletterNameProps>) {
   )
 }
 
-interface NewsletterSelectProps {
+interface NewsletterSelectPropsAsLink {
   id: number
   name: string
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
+
+interface NewsletterSelectPropsAsDiv {
+  id?: never
+  name?: never
+  onClick?: never
+}
+
+type NewsletterSelectProps =
+  | NewsletterSelectPropsAsLink
+  | NewsletterSelectPropsAsDiv
 
 function NewsletterSelect({
   id,
@@ -28,6 +38,14 @@ function NewsletterSelect({
   onClick,
   children,
 }: PropsWithChildren<NewsletterSelectProps>) {
+  if (id === undefined) {
+    return (
+      <div className="flex items-center justify-start gap-3 overflow-hidden p-2 transition-colors">
+        {children}
+      </div>
+    )
+  }
+
   return (
     <Link
       href={`/newsletter/${id}`}
