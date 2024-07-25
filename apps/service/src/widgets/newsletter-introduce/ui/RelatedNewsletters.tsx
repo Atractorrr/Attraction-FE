@@ -1,5 +1,4 @@
-import { Container, GuideTxt, Title } from '@/shared/ui'
-import RelatedNewsletterItem from './RelatedNewsletterItem'
+import { Container, GuideTxt, NewsletterItem, Title } from '@/shared/ui'
 import { fetchRelatedNewsletters } from '../api'
 
 interface RelatedNewsletterProps {
@@ -17,11 +16,20 @@ export default async function RelatedNewsletters({
         <Title text="연관 뉴스레터" />
         <div>
           {data.length ? (
-            <div className="flex flex-col gap-y-5">
+            <ul>
               {data.map((newsletter) => (
-                <RelatedNewsletterItem key={newsletter.id} {...newsletter} />
+                <li key={newsletter.id} className="peer peer-[]:mt-4">
+                  <NewsletterItem id={newsletter.id} name={newsletter.name}>
+                    <NewsletterItem.Thumbnail url={newsletter.thumbnailUrl} />
+                    <NewsletterItem.Content>
+                      <NewsletterItem.Description>
+                        {newsletter.description}
+                      </NewsletterItem.Description>
+                    </NewsletterItem.Content>
+                  </NewsletterItem>
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
             <div className="pb-40 pt-32">
               <GuideTxt

@@ -1,9 +1,8 @@
 'use client'
 
 import { Suspense } from 'react'
-import { GuideTxt } from '@/shared/ui'
+import { GuideTxt, NewsletterItem } from '@/shared/ui'
 import TrendNewsletterSkeleton from './TrendNewsletterSkeleton'
-import TrendNewsletterItem from './TrendNewsletterItem'
 import { MainCategory, useTrendNewsletters } from '../model'
 
 function TrendNewsletterContent({ category }: { category: MainCategory }) {
@@ -12,11 +11,22 @@ function TrendNewsletterContent({ category }: { category: MainCategory }) {
   return (
     <div>
       {data.mainPageNewsletters.length ? (
-        <div className="grid gap-4 xl:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-4 xl:grid-cols-2">
           {data.mainPageNewsletters.map((newsletter) => (
-            <TrendNewsletterItem key={newsletter.id} newsletter={newsletter} />
+            <li key={newsletter.id}>
+              <NewsletterItem id={newsletter.id} name={newsletter.name}>
+                <NewsletterItem.Thumbnail
+                  url={newsletter.newsletterThumbnailUrl}
+                />
+                <NewsletterItem.Content>
+                  <NewsletterItem.Description>
+                    {newsletter.description}
+                  </NewsletterItem.Description>
+                </NewsletterItem.Content>
+              </NewsletterItem>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <div className="pb-40 pt-32">
           <GuideTxt title="데이터가 없어요" sub="최대한 빠르게 추가할게요" />
