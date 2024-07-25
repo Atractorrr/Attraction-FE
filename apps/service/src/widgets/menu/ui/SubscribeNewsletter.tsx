@@ -63,11 +63,13 @@ function SubscribeNewsletterList({ handleClick }: SubscribeNewsletterProps) {
         <button
           type="button"
           onClick={() => setFold((prev) => !prev)}
-          className="flex items-center justify-center gap-2 whitespace-nowrap px-3 py-2 text-gray-500 dark:text-gray-400">
+          className="flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700">
           <ChevronDownOutline
             className={`text-base ${isFolded ? '' : 'rotate-180'}`}
           />
-          {isFolded ? `${data.length - 3}개 더보기` : '간략히 보기'}
+          <span className="pr-2">
+            {isFolded ? `${data.length - 3}개 더보기` : '간략히 보기'}
+          </span>
         </button>
       )}
     </>

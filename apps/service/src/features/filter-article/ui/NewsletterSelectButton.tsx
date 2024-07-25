@@ -47,16 +47,22 @@ function SubscribeNewsletters({
 
   if (data.length <= 0 && withDrawer) {
     return (
-      <GuideTxt
-        title="구독한 뉴스레터가 없어요"
-        sub="뉴스레터를 구독해 보세요"
-        className="px-5 py-16"
-      />
+      <li>
+        <GuideTxt
+          title="구독한 뉴스레터가 없어요"
+          sub="뉴스레터를 구독해 보세요"
+          className="px-5 py-16"
+        />
+      </li>
     )
   }
 
   if (data.length <= 0) {
-    return <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
+    return (
+      <li>
+        <WarnTxt content="구독한 뉴스레터가 없어요" type="info" />
+      </li>
+    )
   }
 
   return data.map((newsletter) => {
@@ -66,7 +72,7 @@ function SubscribeNewsletters({
         <button
           type="button"
           onClick={() => setNewsletter(isSelected ? undefined : newsletter)}
-          className="relative block w-full rounded-lg pr-8 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+          className={`relative block w-full ${withDrawer ? 'rounded-lg' : 'rounded'} pr-8 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700`}>
           <NewsletterSelect>
             <NewsletterAvatar
               url={newsletter.thumbnailUrl}
@@ -78,10 +84,9 @@ function SubscribeNewsletters({
             </NewsletterSelect.Name>
           </NewsletterSelect>
           {isSelected && (
-            <span
-              className={`absolute inset-y-0 right-3 my-auto ${withDrawer ? 'size-5' : 'size-4'}`}>
-              <CheckOutline className={withDrawer ? 'text-xl' : 'text-base'} />
-            </span>
+            <CheckOutline
+              className={`absolute inset-y-0 right-3 my-auto ${withDrawer ? 'size-5 text-xl' : 'size-4 text-base'}`}
+            />
           )}
         </button>
       </li>
