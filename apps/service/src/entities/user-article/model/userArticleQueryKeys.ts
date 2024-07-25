@@ -39,6 +39,11 @@ const userArticleQueryKeys = {
     'categories',
     params,
   ],
+  userNewsletters: (params: { userEmail: UserEmail }) => [
+    ...userArticleQueryKeys.all,
+    'newsletters',
+    params,
+  ],
 }
 
 export default userArticleQueryKeys

@@ -5,3 +5,4 @@ export { default as useInfiniteUserArticlesQuery } from './useInfiniteUserArticl
 export { default as useTrackingUserArticleScroll } from './useTrackingUserArticleScroll'
 export { default as useUserArticleQuery } from './useUserArticleQuery'
 export * from './useUserCategoriesQuery'
+export { default as useUserNewslettersQuery } from './useUserNewslettersQuery'
