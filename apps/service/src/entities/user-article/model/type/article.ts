@@ -1,6 +1,6 @@
-import { NewsletterCategory, Pagination } from '@/shared/type'
-import { Newsletter } from './newsletter'
-import { SortType } from './sortType'
+import type { NewsletterCategory, Pagination } from '@/shared/type'
+import type { Newsletter } from './newsletter'
+import type { SortType } from './sortType'
 
 export type UserEmail = string | undefined
 export interface Article {
@@ -37,4 +37,5 @@ export type UserArticleListOption = {
   isHideRead?: boolean
   category?: NewsletterCategory
   q?: string
+  newsletterId?: number
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   useArticleFilter,
   HideReadToggleBtn,
@@ -9,11 +9,12 @@ import {
   SortButton,
   ViewTypeButton,
   ResetButton,
+  NewsletterSelectButton,
 } from '@/features/filter-article'
 import {
   useInfiniteUserArticlesQuery,
   ArticleList,
-  ArticlePageType,
+  type ArticlePageType,
 } from '@/entities/user-article'
 import { useInfiniteScroll } from '@/shared/lib'
 import {
@@ -42,6 +43,10 @@ export default function UserInbox({ isArticleView, pageType }: InboxProps) {
     setSortType,
     searchValue,
     setSearchValue,
+    selectedNewsletter,
+    setNewsletter,
+    selected,
+    reset,
   } = useArticleFilter()
   const {
     data,
@@ -57,22 +62,11 @@ export default function UserInbox({ isArticleView, pageType }: InboxProps) {
     isHideRead:
       pageType === 'bookmark' ? undefined : isHideReadArticles || undefined,
     q: searchValue || undefined,
+    newsletterId: selectedNewsletter?.id,
   })
   const scrollRef = useInfiniteScroll(() => {
     if (hasNextPage) fetchNextPage()
   })
-
-  const isReset =
-    !!selectedCategory ||
-    isHideReadArticles ||
-    currentSortType !== 'receivedAt,desc'
-  const reset = useCallback(() => {
-    setCategory(undefined)
-    setSortType('receivedAt,desc')
-    if (isHideReadArticles) {
-      toggleHideReadArticles()
-    }
-  }, [setCategory, setSortType, isHideReadArticles, toggleHideReadArticles])
 
   useEffect(() => {
     if (isArticleView) {
@@ -109,7 +103,11 @@ export default function UserInbox({ isArticleView, pageType }: InboxProps) {
                     setViewType={setViewType}
                   />
                   <span className="mx-1 my-2.5 block h-5 w-px shrink-0 bg-gray-100 dark:bg-gray-700" />
-                  {isReset && <ResetButton reset={reset} />}
+                  {selected && <ResetButton reset={reset} />}
+                  <NewsletterSelectButton
+                    selectedNewsletter={selectedNewsletter}
+                    setNewsletter={setNewsletter}
+                  />
                   <CategoryButton
                     selectedCategory={selectedCategory}
                     setCategory={setCategory}
