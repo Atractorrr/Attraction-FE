@@ -15,17 +15,18 @@ import RecentArticles from './RecentArticles'
 function LoginView() {
   return (
     <Container>
-      <div className="flex h-fit w-full items-center justify-between p-5">
-        <Title
-          icon={<ClockOutline className="size-6" />}
-          text="최근 받은 아티클"
-        />
-        <Link
+      <Title.Container className="p-5">
+        <Title>
+          <ClockOutline className="size-6" />
+          최근 받은 아티클
+        </Title>
+        <Title.Shortcut
           href="/inbox"
-          className="text-sm text-gray-500 transition-colors hover:text-blue-400 dark:text-gray-400 dark:hover:text-blue-300">
+          title="보관함 바로가기"
+          className="hidden xs:block">
           보관함 바로가기
-        </Link>
-      </div>
+        </Title.Shortcut>
+      </Title.Container>
       <ErrorBoundary fallback={<ErrorGuideTxt />}>
         <Suspense fallback={<RecentArticlesSkeleton />}>
           <RecentArticles />

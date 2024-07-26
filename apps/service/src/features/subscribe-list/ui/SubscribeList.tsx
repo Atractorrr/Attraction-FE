@@ -26,12 +26,10 @@ export default function SubscribeList() {
     <Container className="h-full xl:h-auto xl:min-h-full">
       <ErrorBoundary fallback={<ErrorGuideTxt />}>
         <div className="h-full pb-2">
-          <div className="p-5 pb-4">
-            <Title
-              icon={<DocumentListOutline className="text-2xl" />}
-              text="구독한 뉴스레터"
-            />
-          </div>
+          <Title className="p-5 pb-4">
+            <DocumentListOutline className="text-2xl" />
+            구독한 뉴스레터
+          </Title>
           {isLoading && (
             <div className="px-3">
               {Array.from({ length: 5 }, (_, i) => (

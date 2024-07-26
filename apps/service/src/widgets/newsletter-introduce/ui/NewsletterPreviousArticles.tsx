@@ -13,29 +13,31 @@ export default async function NewsletterPreviousArticles({
   const { data } = await fetchNewsletterPreviousArticles(newsletterId)
 
   return (
-    <Container>
-      <div className="grid w-full grid-cols-1 gap-y-5 p-5">
-        <Title icon={<ClockOutline className="size-6" />} text="지난 아티클" />
-        <div>
-          {!data.length ? (
-            <div className="pb-40 pt-32">
-              <GuideTxt
-                title="지난 아티클이 없어요"
-                sub="새로운 아티클을 기대해주세요!"
-              />
-            </div>
-          ) : (
-            <div className="flex w-full flex-col gap-y-5">
-              {data.map((newsletter) => (
+    <Container className="p-5">
+      <Title className="mb-6">
+        <ClockOutline className="size-6" />
+        지난 아티클
+      </Title>
+      <div>
+        {!data.length ? (
+          <div className="pb-40 pt-32">
+            <GuideTxt
+              title="지난 아티클이 없어요"
+              sub="새로운 아티클을 기대해주세요!"
+            />
+          </div>
+        ) : (
+          <ul>
+            {data.map((newsletter) => (
+              <li key={newsletter.id} className="peer peer-[]:mt-5">
                 <NewsletterPreviousArticleItem
-                  key={newsletter.id}
                   newsletterId={newsletterId}
                   {...newsletter}
                 />
-              ))}
-            </div>
-          )}
-        </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </Container>
   )

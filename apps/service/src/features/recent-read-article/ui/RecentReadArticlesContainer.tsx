@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ClockOutline } from '@attraction/icons'
@@ -25,17 +24,18 @@ function RecentReadArticlesSkeleton() {
 export default function RecentReadArticlesContainer() {
   return (
     <Container className="h-full overflow-hidden">
-      <div className="flex items-center justify-between p-5">
-        <Title
-          icon={<ClockOutline className="text-2xl" />}
-          text="최근 읽은 아티클"
-        />
-        <Link
+      <Title.Container className="p-5">
+        <Title>
+          <ClockOutline className="text-2xl" />
+          최근 읽은 아티클
+        </Title>
+        <Title.Shortcut
           href="/inbox"
-          className="text-sm font-medium text-gray-500 hover:text-blue-400 dark:hover:text-blue-300">
+          title="보관함 바로가기"
+          className="hidden xs:block">
           보관함 바로가기
-        </Link>
-      </div>
+        </Title.Shortcut>
+      </Title.Container>
       <ErrorBoundary fallback={<ErrorGuideTxt />}>
         <Suspense fallback={<RecentReadArticlesSkeleton />}>
           <RecentReadArticles />

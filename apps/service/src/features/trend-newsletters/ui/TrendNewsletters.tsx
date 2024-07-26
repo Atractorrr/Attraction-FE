@@ -9,10 +9,6 @@ import { MainCategory, MainCategoryName } from '../model'
 import { allCategories } from '../constant'
 import TrendNewsletterList from './TrendNewsletterList'
 
-function CustomErrorGuideTxt() {
-  return <ErrorGuideTxt />
-}
-
 export default function TrendNewsletters() {
   const [category, setCategory] = useState<MainCategory>('RECOMMEND')
 
@@ -27,23 +23,19 @@ export default function TrendNewsletters() {
   }
 
   return (
-    <Container>
-      <div className="flex w-full flex-col gap-y-4 p-5">
-        <div className="w-full">
-          <Title
-            icon={<GraphOutline className="size-6" />}
-            text="트렌디한 뉴스레터"
+    <Container className="block p-5">
+      <Title className="mb-4 w-full">
+        <GraphOutline className="size-6" />
+        트렌디한 뉴스레터
+      </Title>
+      <div className="flex flex-col gap-y-8">
+        <ErrorBoundary fallback={<ErrorGuideTxt />}>
+          <NewsletterCategories
+            currentCategory={category}
+            onClick={handleCategoryChange}
           />
-        </div>
-        <div className="flex flex-col gap-y-8">
-          <ErrorBoundary FallbackComponent={CustomErrorGuideTxt}>
-            <NewsletterCategories
-              currentCategory={category}
-              onClick={handleCategoryChange}
-            />
-            <TrendNewsletterList category={category} />
-          </ErrorBoundary>
-        </div>
+          <TrendNewsletterList category={category} />
+        </ErrorBoundary>
       </div>
     </Container>
   )
