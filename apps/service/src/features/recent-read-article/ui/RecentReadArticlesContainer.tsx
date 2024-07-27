@@ -29,11 +29,9 @@ export default function RecentReadArticlesContainer() {
           <ClockOutline className="text-2xl" />
           최근 읽은 아티클
         </Title>
-        <Title.Shortcut
-          href="/inbox"
-          title="보관함 바로가기"
-          className="hidden xs:block">
-          보관함 바로가기
+        <Title.Shortcut href="/inbox" title="보관함 바로가기">
+          <span className="hidden xs:block">보관함 바로가기</span>
+          <span className="block xs:hidden">보관함</span>
         </Title.Shortcut>
       </Title.Container>
       <ErrorBoundary fallback={<ErrorGuideTxt />}>

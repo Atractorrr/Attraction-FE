@@ -1,14 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { ChevronRightOutline, ClockOutline } from '@attraction/icons'
-
 import { Container, ErrorGuideTxt, Title } from '@/shared/ui'
 import { useAuth } from '@/entities/auth'
 import { useCheckDevice } from '@/shared/lib'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
-import { Suspense } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
 import RecentArticlesSkeleton from './RecentArticlesSkeleton'
 import RecentArticles from './RecentArticles'
 
@@ -20,11 +19,9 @@ function LoginView() {
           <ClockOutline className="size-6" />
           최근 받은 아티클
         </Title>
-        <Title.Shortcut
-          href="/inbox"
-          title="보관함 바로가기"
-          className="hidden xs:block">
-          보관함 바로가기
+        <Title.Shortcut href="/inbox" title="보관함 바로가기">
+          <span className="hidden xs:block">보관함 바로가기</span>
+          <span className="block xs:hidden">보관함</span>
         </Title.Shortcut>
       </Title.Container>
       <ErrorBoundary fallback={<ErrorGuideTxt />}>
