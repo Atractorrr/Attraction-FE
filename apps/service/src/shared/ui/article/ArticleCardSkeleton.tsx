@@ -11,7 +11,7 @@ export default function ArticleCardSkeleton({
 }: ArticleCardSkeletonProps) {
   if (type === 'list') {
     return (
-      <div className={`flex ${className}`}>
+      <div className={`flex ${className ?? ''}`}>
         <div className="mr-3 block min-h-20 w-1/4 min-w-28 rounded-md bg-gray-100 pb-[15%] dark:bg-gray-700" />
         <div className="w-[calc(75%-0.75rem)] max-w-[calc(100%-7.75rem)]">
           <div className="mb-2 h-5 w-full rounded-md bg-gray-100 dark:bg-gray-700" />

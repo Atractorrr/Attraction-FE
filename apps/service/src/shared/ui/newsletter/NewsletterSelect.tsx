@@ -10,7 +10,7 @@ interface NewsletterNameProps {
 function Name({ className, children }: PropsWithChildren<NewsletterNameProps>) {
   return (
     <span
-      className={`w-[calc(100%-2.75rem)] truncate font-medium ${className}`}>
+      className={`block w-[calc(100%-2.75rem)] truncate font-medium ${className ?? ''}`}>
       {children}
     </span>
   )
