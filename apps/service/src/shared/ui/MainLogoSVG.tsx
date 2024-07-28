@@ -1,16 +1,14 @@
-interface MainLogoSVGProps {
-  className?: string
-}
+import type { SVGProps } from 'react'
 
-export function MainLogoSVG({ className }: MainLogoSVGProps) {
+export function MainLogoSVG(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="240"
       height="280"
-      className={className}
       fill="none"
-      viewBox="0 0 240 280">
+      viewBox="0 0 240 280"
+      {...props}>
       <path
         fill="currentColor"
         fillRule="evenodd"
@@ -21,15 +19,15 @@ export function MainLogoSVG({ className }: MainLogoSVGProps) {
   )
 }
 
-export default function MainTextLogoSVG({ className }: MainLogoSVGProps) {
+export default function MainTextLogoSVG(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="128"
       height="28"
       fill="none"
-      className={className}
-      viewBox="0 0 128 28">
+      viewBox="0 0 128 28"
+      {...props}>
       <path
         fill="currentColor"
         d="M118.238 20.647c0-.385.043-.867.128-1.445a64.8 64.8 0 01.61-2.762c.3-1.22.493-2.097.578-2.633.086-.535.129-.984.129-1.348 0-.535-.096-.942-.289-1.22-.193-.279-.482-.418-.867-.418-.514 0-.996.268-1.445.803-.428.514-.781 1.23-1.06 2.151l-2.183 10.308h-4.624l3.404-16.055h4.623l-.353 1.67c.535-.6 1.113-1.05 1.734-1.35.621-.299 1.295-.449 2.023-.449 1.135 0 2.012.31 2.633.931s.931 1.52.931 2.698c0 .492-.064 1.08-.192 1.766-.107.663-.332 1.69-.675 3.082-.278 1.092-.46 1.863-.545 2.312-.086.45-.129.824-.129 1.124 0 .45.107.792.321 1.028.214.214.535.32.964.32a1.94 1.94 0 001.38-.545c.386-.364.824-1.124 1.317-2.28h1.348c-.685 1.99-1.519 3.479-2.504 4.463-.963.985-2.119 1.478-3.468 1.478-1.199 0-2.13-.322-2.794-.964-.663-.663-.995-1.552-.995-2.665z"
