@@ -14,7 +14,7 @@ for sub_dir in "${SUB_DIRS[@]}"; do
     SVG_DIR="$BASE_DIR/$sub_dir/svg"
     REACT_DIR="$BASE_DIR/$sub_dir/react"
 
-    if [ -d "$SVG_DIR" ] && [ -d "$REACT_DIR" ]; then
+    if [ -d "$SVG_DIR" ]; then
         svg_count=$(count_files "$SVG_DIR")
         react_count=$(count_files "$REACT_DIR")
 
@@ -23,7 +23,7 @@ for sub_dir in "${SUB_DIRS[@]}"; do
             break
         fi
     else
-        echo "[🔮icons] Directory isn't found! current SVG_DIR=[$SVG_DIR] & REACT_DIR=[$REACT_DIR]"
+        echo "[🔮icons] SVG Directory isn't found!"
         exit 1
     fi
 done
