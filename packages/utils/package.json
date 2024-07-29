@@ -1,0 +1,21 @@
+{
+  "name": "@attraction/utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "./build.bash"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@attraction/config": "workspace:^",
+    "tsup": "^8.1.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.11",
+    "tailwind-merge": "^2.3.0"
+  }
+}
