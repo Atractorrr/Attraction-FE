@@ -2,6 +2,7 @@
 
 SRC_DIR="src"
 CHECKSUM_FILE="src_checksums.txt"
+DIST_DIR="dist"
 
 generate_checksums() {
     local dir_path="$1"
@@ -43,7 +44,10 @@ if [ "$src_changed" -eq 1 ]; then
 fi
 
 if [ "$build_needed" = true ]; then
-    echo "[⚙️utils] A file change in the directory was detected. The build has started."
+    echo "[📚design-system] A file change in the directory was detected. The build has started."
+    tsup
+elif  [ ! -d "$DIST_DIR" ] || [ ! "$(ls -A $DIST_DIR)" ]; then
+    echo "[📚design-system] The build file does not exist. The build has started."
     tsup
 else
     echo "[⚙️utils] No file changes were detected at the directory. The build has cancelled."
