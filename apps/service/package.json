@@ -16,6 +16,7 @@
   "dependencies": {
     "@attraction/design-system": "workspace:^",
     "@attraction/icons": "workspace:^",
+    "@attraction/utils": "workspace:^",
     "@aws-sdk/client-s3": "^3.592.0",
     "@ducanh2912/next-pwa": "^10.2.7",
     "@sentry/nextjs": "^8.11.0",

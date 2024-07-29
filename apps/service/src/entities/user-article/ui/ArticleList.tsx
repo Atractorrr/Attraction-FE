@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import type { ViewType } from '@/shared/type'
 import { ArticleCard, ReadingTimeBadge, ReadPercentage } from '@/shared/ui'
-import { getTimeFromNow } from '@/shared/lib'
+import { getTimeFromNow } from '@attraction/utils'
 import type { Article, ArticlePageType } from '../model'
 import ToBeDeletedTxt from './ToBeDeletedTxt'
 

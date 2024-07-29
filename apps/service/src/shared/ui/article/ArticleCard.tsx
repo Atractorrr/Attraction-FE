@@ -13,7 +13,7 @@ import {
   useState,
 } from 'react'
 import Link from 'next/link'
-import { getTimeFromNow } from '@/shared/lib'
+import { getTimeFromNow } from '@attraction/utils'
 import type { ViewType } from '../../type'
 import ThumbnailImage from '../ThumbnailImage'
 import { NewsletterAvatar } from '../newsletter'
