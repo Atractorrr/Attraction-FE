@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build": "tsup",
+    "build": "./build.bash",
     "build-storybook": "storybook build"
   },
   "main": "dist/index.js",

@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint-staged": "lint-staged",
-    "build": "pnpm renew && tsup",
+    "build": "./renew.bash && ./build.bash",
     "generate": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgo:solid && pnpm svgr:emoji && pnpm svgr:outline && pnpm svgr:solid && pnpm generate",
     "renew": "pnpm svgo:emoji && pnpm svgo:outline && pnpm svgo:solid && pnpm update:emoji && pnpm update:outline && pnpm update:solid && pnpm export",
     "export": "ts-node ./scripts/generateExports.ts && eslint --fix .",
