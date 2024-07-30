@@ -6,6 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "tsup": "^8.1.0"
+  },
+  "devDependencies": {
+    "@attraction/config": "workspace:^"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
