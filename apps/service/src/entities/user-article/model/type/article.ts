@@ -15,8 +15,12 @@ export interface Article {
   newsletter: Pick<Newsletter, 'id' | 'name' | 'category' | 'thumbnailUrl'>
 }
 
+export interface UserArticlesData extends Pagination {
+  content: Article[]
+}
+
 export type UserArticlesResponse = {
-  data: { content: Article[] } & Pagination
+  data: UserArticlesData
   message: string
   status: string
 }

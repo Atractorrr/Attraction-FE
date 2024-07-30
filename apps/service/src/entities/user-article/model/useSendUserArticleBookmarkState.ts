@@ -44,11 +44,7 @@ export default function useSendUserArticleBookmarkState({
           pageType: 'bookmark',
         }),
       })
-      if (isBookmark) {
-        toast.success('북마크가 삭제되었어요')
-      } else {
-        toast.success('북마크가 추가되었어요')
-      }
+      toast.success(`북마크가 ${isBookmark ? '삭제' : '추가'}되었어요`)
     },
     onError: () =>
       toast.error(`북마크 ${isBookmark ? '삭제' : '추가'}에 실패했어요`),

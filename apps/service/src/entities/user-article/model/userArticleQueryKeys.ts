@@ -9,16 +9,13 @@ const userArticleQueryKeys = {
   ],
   userArticleList: ({
     userEmail,
-    category,
     pageType,
-    page,
     ...options
-  }: UserArticleListOption) => [
+  }: Omit<UserArticleListOption, 'page'>) => [
     ...userArticleQueryKeys.all,
     'articles',
     { userEmail },
     { pageType },
-    category,
     options,
   ],
   trackingUserArticleScroll: (params: UserArticleParams) => [
