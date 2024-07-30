@@ -1,4 +1,3 @@
 packages:
   - 'apps/*'
-  - 'packages/*'
-  - 'packages/design-system/packages/*'
+  - '**/packages/*'
