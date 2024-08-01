@@ -1,3 +1,12 @@
 {
-  "extends": "@attraction/config/tsconfig.base.json"
+  "extends": "@attraction/config/tsconfig.base.json",
+  "main": "index.ts",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

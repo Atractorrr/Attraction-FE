@@ -9,17 +9,19 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup"
   },
   "dependencies": {
     "tsup": "^8.1.0"
   },
   "devDependencies": {
-    "@attraction/config": "workspace:^"
+    "@attraction/config": "workspace:^",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.0.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "keywords": [],
   "author": "",

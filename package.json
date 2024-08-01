@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "husky install && pnpm build:icons && pnpm build:ds && pnpm build:utils",
+    "postinstall": "husky install && pnpm build:icons && pnpm build:ds && pnpm build:utils && pnpm build:ds-hooks",
     "prepare": "husky install",
     "lint": "pnpm -r run lint",
     "type": "pnpm -r run type",
@@ -17,6 +17,8 @@
     "build:service": "pnpm -F @attraction/service build",
     "build:icons": "pnpm -F @attraction/icons build",
     "build:ds": "pnpm -F @attraction/design-system build",
+    "build:ds-core": "pnpm -F @attraction/ds-core build",
+    "build:ds-hooks": "pnpm -F @attraction/ds-hooks build",
     "build:utils": "pnpm -F @attraction/utils build",
     "dev:service": "pnpm -F @attraction/service dev",
     "dev:ds": "pnpm -F @attraction/design-system storybook",
