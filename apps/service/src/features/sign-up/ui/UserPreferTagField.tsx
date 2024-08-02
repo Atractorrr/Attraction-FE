@@ -1,22 +1,20 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { getCategorySVG } from '@/entities/profile'
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
-import { NewsletterCategory } from '@/shared/type'
-import { CheckOutline, ComputerEmoji } from '@attraction/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { WarnTxt } from '@/shared/ui'
+import { CheckOutline, ComputerEmoji } from '@attraction/icons'
 import { Badge } from '@attraction/design-system/dist'
+import { twcn } from '@attraction/utils'
+import { getCategorySVG } from '@/entities/profile'
+import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+import type { NewsletterCategory } from '@/shared/type'
+import { WarnTxt } from '@/shared/ui'
 import { useDisabledBtn } from '../lib'
 import { SignUpFormType } from '../model'
 
 interface UserPreferTagType {
-  categoryKey: keyof typeof NEWSLETTER_CATEGORY
+  categoryKey: NewsletterCategory
   disabledTag: boolean
-  preferTagList: (keyof typeof NEWSLETTER_CATEGORY)[]
-  setPreferTagList: React.Dispatch<
-    React.SetStateAction<(keyof typeof NEWSLETTER_CATEGORY)[]>
-  >
+  preferTagList: NewsletterCategory[]
+  setPreferTagList: React.Dispatch<React.SetStateAction<NewsletterCategory[]>>
 }
 
 function UserPreferTag({
@@ -30,7 +28,6 @@ function UserPreferTag({
     clearErrors,
     formState: { errors },
   } = useFormContext<SignUpFormType>()
-  // TODO: 이모티콘 깜박임 문제 해결하기 (필수!!!)
   const CategoryEmoji = useMemo(
     () => getCategorySVG(NEWSLETTER_CATEGORY[categoryKey]),
     [categoryKey],
@@ -52,31 +49,52 @@ function UserPreferTag({
   }
 
   return (
-    <div
-      className={`relative ${disabledTag && !isActive ? 'opacity-40' : 'opacity-100'}`}>
+    <li
+      className={twcn(
+        'relative',
+        disabledTag && !isActive ? 'opacity-40' : 'opacity-100',
+      )}>
       <label
         htmlFor={categoryKey}
-        className={`absolute right-3 top-3 flex size-5 items-center justify-center rounded-full p-1  ${isActive ? 'bg-gray-700 dark:bg-gray-100' : 'border-2 border-gray-100 dark:border-gray-600'} focus:border-none`}>
-        <CheckOutline
-          className={` size-full rounded-md font-bold text-white ${isActive ? 'visible' : 'invisible'} dark:text-gray-700`}
-        />
-      </label>
-      <button
-        type="button"
-        className={`flex w-full flex-col items-center self-center justify-self-center
-        rounded-lg border-2 py-8 dark:bg-gray-700 ${isActive ? 'border-gray-700 dark:border-gray-100' : 'border-gray-100 dark:border-gray-700'}`}
-        disabled={disabledTag && !isActive}
-        onClick={() => {
-          checkboxChangeHandler()
-        }}>
+        className={twcn(
+          'flex w-full flex-col items-center self-center justify-self-center rounded-lg border-2 py-8 dark:bg-gray-700',
+          (!disabledTag || isActive) && 'cursor-pointer',
+          isActive
+            ? 'border-gray-700 dark:border-gray-100'
+            : 'border-gray-100 dark:border-gray-700',
+        )}>
+        <span
+          className={twcn(
+            'absolute right-3 top-3 flex size-5 items-center justify-center rounded-full p-1 focus:border-none',
+            isActive
+              ? 'bg-gray-700 dark:bg-gray-100'
+              : 'border-2 border-gray-100 dark:border-gray-600',
+          )}>
+          <input
+            id={categoryKey}
+            type="checkbox"
+            className={twcn(
+              'absolute inset-0 appearance-none rounded-full',
+              (!disabledTag || isActive) && 'cursor-pointer',
+            )}
+            disabled={disabledTag && !isActive}
+            onChange={() => checkboxChangeHandler()}
+          />
+          <CheckOutline
+            className={twcn(
+              'size-full rounded-md font-bold text-white dark:text-gray-700',
+              isActive ? 'visible' : 'invisible',
+            )}
+          />
+        </span>
         {CategoryEmoji ? (
           <CategoryEmoji className="size-12" />
         ) : (
           <ComputerEmoji className="size-12" />
         )}
         <span className="mt-3">{NEWSLETTER_CATEGORY[categoryKey]}</span>
-      </button>
-    </div>
+      </label>
+    </li>
   )
 }
 
@@ -86,9 +104,9 @@ export default function UserPreferTagField() {
     formState: { errors },
     getValues,
   } = useFormContext<SignUpFormType>()
-  const [preferTagList, setPreferTagList] = useState<
-    (keyof typeof NEWSLETTER_CATEGORY)[]
-  >(getValues('interest'))
+  const [preferTagList, setPreferTagList] = useState<NewsletterCategory[]>(
+    getValues('interest'),
+  )
 
   const { disabledTag } = useDisabledBtn(preferTagList)
 
@@ -113,7 +131,7 @@ export default function UserPreferTagField() {
       </div>
       <div className="relative before:absolute before:inset-x-5 before:top-0 before:z-10 before:h-6 before:bg-gradient-to-b before:from-white before:to-transparent after:absolute after:inset-x-5 after:bottom-0 after:z-10 after:h-6 after:bg-gradient-to-t after:from-white after:to-transparent sm:px-5 dark:before:from-gray-800 dark:after:from-gray-800">
         <div className="max-h-[calc(100dvh-360px)] min-h-64 overflow-y-auto p-5 sm:max-h-[calc(100dvh-450px)]">
-          <div className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
+          <ul className="flex flex-col gap-5 xs:grid xs:grid-cols-2 xs:content-center xs:justify-center">
             {Object.keys(NEWSLETTER_CATEGORY).map((categoryKey) => (
               <UserPreferTag
                 key={categoryKey}
@@ -123,7 +141,7 @@ export default function UserPreferTagField() {
                 categoryKey={categoryKey as NewsletterCategory}
               />
             ))}
-          </div>
+          </ul>
         </div>
       </div>
       {errors.interest?.message && (
