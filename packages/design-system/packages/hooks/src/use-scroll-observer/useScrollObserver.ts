@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function useScrollObserver(
+export default function useScrollObserver<T extends HTMLElement>(
   callback: () => void,
   options?: IntersectionObserverInit,
 ) {
-  const targetRef = React.useRef<HTMLElement | null>(null)
+  const targetRef = React.useRef<T | null>(null)
   const observerRef = React.useRef<IntersectionObserver | null>(null)
   const defaultOptions = { root: null, rootMargin: '0px', threshold: 1.0 }
 
