@@ -5,7 +5,7 @@ import { userEvent } from '@testing-library/user-event'
 import React from 'react'
 import useOutsideClick from './useOutsideClick'
 
-const WRAPPER_EL = 'inside'
+const wrapperEl = 'wrapper'
 const INSIDE_BUTTON = 'inside'
 const OUTSIDE_BUTTON = 'outside'
 
@@ -13,7 +13,7 @@ function TestComponent({ callback }: { callback: () => void }) {
   const ref = useOutsideClick<HTMLDivElement>(callback)
   return (
     <div>
-      <div ref={ref} data-testid={WRAPPER_EL}>
+      <div ref={ref} data-testid={wrapperEl}>
         <button type="button">{INSIDE_BUTTON}</button>
       </div>
       <button type="button">{OUTSIDE_BUTTON}</button>
@@ -28,7 +28,7 @@ describe('@/use-outside-click', () => {
 
     render(<TestComponent callback={callback} />)
 
-    const wrapper = screen.getByTestId(WRAPPER_EL)
+    const wrapper = screen.getByTestId(wrapperEl)
 
     await user.click(wrapper)
     await user.click(wrapper)
