@@ -15,10 +15,13 @@
     "tsup": "^8.1.0"
   },
   "devDependencies": {
-    "@attraction/config": "workspace:^"
+    "@attraction/config": "workspace:^",
+    "esbuild-sass-plugin": "^3.3.1",
+    "sass": "^1.77.8"
   },
   "peerDependencies": {
     "@attraction/ds-hooks": "workspace:^",
+    "@attraction/utils": "workspace:^",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
