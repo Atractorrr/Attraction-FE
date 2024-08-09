@@ -22,6 +22,7 @@
     "build:utils": "pnpm -F @attraction/utils build",
     "dev:service": "pnpm -F @attraction/service dev",
     "dev:ds": "pnpm -F @attraction/design-system storybook",
+    "dev:ds-core": "pnpm -F @attraction/ds-core dev",
     "start:service": "pnpm -F @attraction/service start"
   },
   "devDependencies": {
