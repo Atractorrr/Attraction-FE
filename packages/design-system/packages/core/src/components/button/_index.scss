@@ -53,138 +53,196 @@
     margin-left: 0.25rem;
   }
 
+  &--red {
+    color: variable.$ds-red-400;
+
+    .dark & {
+      color: variable.$ds-red-300;
+    }
+    &:disabled {
+      color: variable.$ds-red-200;
+    }
+    .dark &:disabled {
+      color: variable.$ds-red-600;
+    }
+  }
+  &--yellow {
+    color: variable.$ds-yellow-400;
+
+    .dark & {
+      color: variable.$ds-yellow-300;
+    }
+    &:disabled {
+      color: variable.$ds-yellow-200;
+    }
+    .dark &:disabled {
+      color: variable.$ds-yellow-700;
+    }
+  }
+  &--green {
+    color: variable.$ds-green-400;
+
+    .dark & {
+      color: variable.$ds-green-300;
+    }
+    &:disabled {
+      color: variable.$ds-green-200;
+    }
+    .dark &:disabled {
+      color: variable.$ds-green-600;
+    }
+  }
+  &--blue {
+    color: variable.$ds-blue-400;
+
+    .dark & {
+      color: variable.$ds-blue-300;
+    }
+    &:disabled {
+      color: variable.$ds-blue-200;
+    }
+    .dark &:disabled {
+      color: variable.$ds-blue-600;
+    }
+  }
+
   &--light {
     border: none;
 
     &.ds-button--gray {
       background-color: variable.$ds-gray-050;
-    }
-    &.ds-button--gray:focus,
-    &.ds-button--gray:hover,
-    &.ds-button--gray:active {
-      background-color: variable.$ds-gray-100;
-    }
-    &.ds-button--gray:disabled {
-      background-color: variable.$ds-gray-050;
-    }
-    .dark &.ds-button--gray {
-      background-color: variable.$ds-gray-700;
-    }
-    .dark &.ds-button--gray:focus,
-    .dark &.ds-button--gray:hover,
-    .dark &.ds-button--gray:active {
-      background-color: variable.$ds-gray-600;
-    }
-    .dark &.ds-button--gray:disabled {
-      background-color: variable.$ds-gray-700;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-gray-100;
+      }
+      &:disabled {
+        background-color: variable.$ds-gray-050;
+      }
+      .dark & {
+        background-color: variable.$ds-gray-700;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-gray-600;
+      }
+      .dark &:disabled {
+        background-color: variable.$ds-gray-700;
+      }
     }
 
     &.ds-button--red {
       color: variable.$ds-red-400;
       background-color: variable.$ds-red-050;
-    }
-    &.ds-button--red:focus,
-    &.ds-button--red:hover,
-    &.ds-button--red:active {
-      background-color: variable.$ds-red-100;
-    }
-    &.ds-button--red:disabled {
-      color: variable.$ds-red-200;
-      background-color: variable.$ds-red-050;
-    }
-    .dark &.ds-button--red {
-      color: variable.$ds-red-300;
-      background-color: variable.$ds-red-800;
-    }
-    .dark &.ds-button--red:focus,
-    .dark &.ds-button--red:hover,
-    .dark &.ds-button--red:active {
-      background-color: variable.$ds-red-700;
-    }
-    .dark &.ds-button--red:disabled {
-      color: variable.$ds-red-600;
-      background-color: variable.$ds-red-800;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-red-100;
+      }
+      &:disabled {
+        color: variable.$ds-red-200;
+        background-color: variable.$ds-red-050;
+      }
+      .dark & {
+        color: variable.$ds-red-300;
+        background-color: variable.$ds-red-800;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-red-700;
+      }
+      .dark &:disabled {
+        color: variable.$ds-red-600;
+        background-color: variable.$ds-red-800;
+      }
     }
 
     &.ds-button--yellow {
       color: variable.$ds-yellow-400;
       background-color: variable.$ds-yellow-050;
-    }
-    &.ds-button--yellow:focus,
-    &.ds-button--yellow:hover,
-    &.ds-button--yellow:active {
-      background-color: variable.$ds-yellow-100;
-    }
-    &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-200;
-      background-color: variable.$ds-yellow-050;
-    }
-    .dark &.ds-button--yellow {
-      color: variable.$ds-yellow-300;
-      background-color: variable.$ds-yellow-800;
-    }
-    .dark &.ds-button--yellow:focus,
-    .dark &.ds-button--yellow:hover,
-    .dark &.ds-button--yellow:active {
-      background-color: variable.$ds-yellow-700;
-    }
-    .dark &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-700;
-      background-color: variable.$ds-yellow-800;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-yellow-100;
+      }
+      &:disabled {
+        color: variable.$ds-yellow-200;
+        background-color: variable.$ds-yellow-050;
+      }
+      .dark & {
+        color: variable.$ds-yellow-300;
+        background-color: variable.$ds-yellow-800;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-yellow-700;
+      }
+      .dark &:disabled {
+        color: variable.$ds-yellow-700;
+        background-color: variable.$ds-yellow-800;
+      }
     }
 
     &.ds-button--green {
       color: variable.$ds-green-400;
       background-color: variable.$ds-green-050;
-    }
-    &.ds-button--green:focus,
-    &.ds-button--green:hover,
-    &.ds-button--green:active {
-      background-color: variable.$ds-green-100;
-    }
-    &.ds-button--green:disabled {
-      color: variable.$ds-green-200;
-      background-color: variable.$ds-green-050;
-    }
-    .dark &.ds-button--green {
-      color: variable.$ds-green-300;
-      background-color: variable.$ds-green-800;
-    }
-    .dark &.ds-button--green:focus,
-    .dark &.ds-button--green:hover,
-    .dark &.ds-button--green:active {
-      background-color: variable.$ds-green-700;
-    }
-    .dark &.ds-button--green:disabled {
-      color: variable.$ds-green-700;
-      background-color: variable.$ds-green-800;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-green-100;
+      }
+      &:disabled {
+        color: variable.$ds-green-200;
+        background-color: variable.$ds-green-050;
+      }
+      .dark & {
+        color: variable.$ds-green-300;
+        background-color: variable.$ds-green-800;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-green-700;
+      }
+      .dark &:disabled {
+        color: variable.$ds-green-700;
+        background-color: variable.$ds-green-800;
+      }
     }
 
     &.ds-button--blue {
       color: variable.$ds-blue-400;
       background-color: variable.$ds-blue-050;
-    }
-    &.ds-button--blue:focus,
-    &.ds-button--blue:hover,
-    &.ds-button--blue:active {
-      background-color: variable.$ds-blue-100;
-    }
-    &.ds-button--blue:disabled {
-      color: variable.$ds-blue-200;
-      background-color: variable.$ds-blue-050;
-    }
-    .dark &.ds-button--blue {
-      color: variable.$ds-blue-300;
-      background-color: variable.$ds-blue-800;
-    }
-    .dark &.ds-button--blue:focus,
-    .dark &.ds-button--blue:hover,
-    .dark &.ds-button--blue:active {
-      background-color: variable.$ds-blue-700;
-    }
-    .dark &.ds-button--blue:disabled {
-      color: variable.$ds-blue-600;
-      background-color: variable.$ds-blue-800;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-blue-100;
+      }
+      &:disabled {
+        color: variable.$ds-blue-200;
+        background-color: variable.$ds-blue-050;
+      }
+      .dark & {
+        color: variable.$ds-blue-300;
+        background-color: variable.$ds-blue-800;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-blue-700;
+      }
+      .dark &:disabled {
+        color: variable.$ds-blue-600;
+        background-color: variable.$ds-blue-800;
+      }
     }
   }
 
@@ -194,116 +252,125 @@
     &.ds-button--gray {
       color: variable.$ds-gray-050;
       background-color: variable.$ds-gray-700;
-    }
-    &.ds-button--gray:focus,
-    &.ds-button--gray:hover,
-    &.ds-button--gray:active {
-      background-color: variable.$ds-gray-600;
-    }
-    &.ds-button--gray:disabled {
-      color: variable.$ds-gray-400;
-      background-color: variable.$ds-gray-050;
-    }
-    .dark &.ds-button--gray {
-      color: variable.$ds-gray-700;
-      background-color: variable.$ds-gray-050;
-    }
-    .dark &.ds-button--gray:focus,
-    .dark &.ds-button--gray:hover,
-    .dark &.ds-button--gray:active {
-      background-color: variable.$ds-gray-200;
-    }
-    .dark &.ds-button--gray:disabled {
-      color: variable.$ds-gray-500;
-      background-color: variable.$ds-gray-700;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-gray-600;
+      }
+      &:disabled {
+        color: variable.$ds-gray-400;
+        background-color: variable.$ds-gray-050;
+      }
+      .dark & {
+        color: variable.$ds-gray-700;
+        background-color: variable.$ds-gray-050;
+      }
+      .dark &:focus,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-gray-200;
+      }
+      .dark &:disabled {
+        color: variable.$ds-gray-500;
+        background-color: variable.$ds-gray-700;
+      }
     }
 
-    &.ds-button--red,
-    .dark &.ds-button--red {
-      color: variable.$ds-gray-000;
-      background-color: variable.$ds-red-400;
-    }
-    &.ds-button--red:focus,
-    &.ds-button--red:hover,
-    &.ds-button--red:active,
-    .dark &.ds-button--red:hover,
-    .dark &.ds-button--red:hover,
-    .dark &.ds-button--red:active {
-      background-color: variable.$ds-red-500;
-    }
-    &.ds-button--red:disabled {
-      color: variable.$ds-red-200;
-      background-color: variable.$ds-red-050;
-    }
-    .dark &.ds-button--red:disabled {
-      color: variable.$ds-red-600;
-      background-color: variable.$ds-red-800;
-    }
-
-    &.ds-button--yellow,
-    .dark &.ds-button--yellow {
-      color: variable.$ds-gray-000;
-      background-color: variable.$ds-yellow-400;
-    }
-    &.ds-button--yellow:focus,
-    &.ds-button--yellow:hover,
-    &.ds-button--yellow:active,
-    .dark &.ds-button--yellow:hover,
-    .dark &.ds-button--yellow:hover,
-    .dark &.ds-button--yellow:active {
-      background-color: variable.$ds-yellow-500;
-    }
-    &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-200;
-      background-color: variable.$ds-yellow-050;
-    }
-    .dark &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-700;
-      background-color: variable.$ds-yellow-800;
+    &.ds-button--red {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-red-400;
+      }
+      &:focus,
+      &:hover,
+      &:active,
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-red-500;
+      }
+      &:disabled {
+        color: variable.$ds-red-200;
+        background-color: variable.$ds-red-050;
+      }
+      .dark &:disabled {
+        color: variable.$ds-red-600;
+        background-color: variable.$ds-red-800;
+      }
     }
 
-    &.ds-button--green,
-    .dark &.ds-button--green {
-      color: variable.$ds-gray-000;
-      background-color: variable.$ds-green-400;
-    }
-    &.ds-button--green:focus,
-    &.ds-button--green:hover,
-    &.ds-button--green:active,
-    .dark &.ds-button--green:hover,
-    .dark &.ds-button--green:hover,
-    .dark &.ds-button--green:active {
-      background-color: variable.$ds-green-500;
-    }
-    &.ds-button--green:disabled {
-      color: variable.$ds-green-200;
-      background-color: variable.$ds-green-050;
-    }
-    .dark &.ds-button--green:disabled {
-      color: variable.$ds-green-700;
-      background-color: variable.$ds-green-800;
+    &.ds-button--yellow {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-yellow-400;
+      }
+      &:focus,
+      &:hover,
+      &:active,
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-yellow-500;
+      }
+      &:disabled {
+        color: variable.$ds-yellow-200;
+        background-color: variable.$ds-yellow-050;
+      }
+      .dark &:disabled {
+        color: variable.$ds-yellow-700;
+        background-color: variable.$ds-yellow-800;
+      }
     }
 
-    &.ds-button--blue,
-    .dark &.ds-button--blue {
-      color: variable.$ds-gray-000;
-      background-color: variable.$ds-blue-400;
+    &.ds-button--green {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-green-400;
+      }
+      &:focus,
+      &:hover,
+      &:active,
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-green-500;
+      }
+      &:disabled {
+        color: variable.$ds-green-200;
+        background-color: variable.$ds-green-050;
+      }
+      .dark &:disabled {
+        color: variable.$ds-green-700;
+        background-color: variable.$ds-green-800;
+      }
     }
-    &.ds-button--blue:focus,
-    &.ds-button--blue:hover,
-    &.ds-button--blue:active,
-    .dark &.ds-button--blue:hover,
-    .dark &.ds-button--blue:hover,
-    .dark &.ds-button--blue:active {
-      background-color: variable.$ds-blue-500;
-    }
-    &.ds-button--blue:disabled {
-      color: variable.$ds-blue-200;
-      background-color: variable.$ds-blue-050;
-    }
-    .dark &.ds-button--blue:disabled {
-      color: variable.$ds-blue-600;
-      background-color: variable.$ds-blue-800;
+
+    &.ds-button--blue {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-blue-400;
+      }
+      &:focus,
+      &:hover,
+      &:active,
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-blue-500;
+      }
+      &:disabled {
+        color: variable.$ds-blue-200;
+        background-color: variable.$ds-blue-050;
+      }
+      .dark &:disabled {
+        color: variable.$ds-blue-600;
+        background-color: variable.$ds-blue-800;
+      }
     }
   }
 
@@ -313,136 +380,141 @@
     &.ds-button--gray {
       color: variable.$ds-gray-700;
       background-color: transparent;
-    }
-    .dark &.ds-button--gray {
-      color: variable.$ds-gray-050;
-      background-color: transparent;
-    }
-    &.ds-button--gray:focus,
-    &.ds-button--gray:hover,
-    &.ds-button--gray:active {
-      background-color: variable.$ds-gray-100;
-    }
-    .dark &.ds-button--gray:hover,
-    .dark &.ds-button--gray:hover,
-    .dark &.ds-button--gray:active {
-      background-color: variable.$ds-gray-700;
-    }
-    &.ds-button--gray:disabled {
-      color: variable.$ds-gray-400;
-      background-color: transparent;
-    }
-    .dark &.ds-button--gray:disabled {
-      color: variable.$ds-gray-500;
-      background-color: transparent;
+
+      .dark & {
+        color: variable.$ds-gray-050;
+        background-color: transparent;
+      }
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-gray-100;
+      }
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-gray-700;
+      }
+      &:disabled {
+        color: variable.$ds-gray-400;
+        background-color: transparent;
+      }
+      .dark &:disabled {
+        color: variable.$ds-gray-500;
+        background-color: transparent;
+      }
     }
 
     &.ds-button--red {
       color: variable.$ds-red-400;
       background-color: transparent;
-    }
-    .dark &.ds-button--red {
-      color: variable.$ds-red-300;
-      background-color: transparent;
-    }
-    &.ds-button--red:focus,
-    &.ds-button--red:hover,
-    &.ds-button--red:active {
-      background-color: variable.$ds-red-050;
-    }
-    .dark &.ds-button--red:hover,
-    .dark &.ds-button--red:hover,
-    .dark &.ds-button--red:active {
-      background-color: variable.$ds-red-800;
-    }
-    &.ds-button--red:disabled {
-      color: variable.$ds-red-200;
-      background-color: transparent;
-    }
-    .dark &.ds-button--red:disabled {
-      color: variable.$ds-red-600;
-      background-color: transparent;
+
+      .dark & {
+        color: variable.$ds-red-300;
+        background-color: transparent;
+      }
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-red-050;
+      }
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-red-800;
+      }
+      &:disabled {
+        color: variable.$ds-red-200;
+        background-color: transparent;
+      }
+      .dark &:disabled {
+        color: variable.$ds-red-600;
+        background-color: transparent;
+      }
     }
 
     &.ds-button--yellow {
       color: variable.$ds-yellow-400;
       background-color: transparent;
-    }
-    .dark &.ds-button--yellow {
-      color: variable.$ds-yellow-300;
-      background-color: transparent;
-    }
-    &.ds-button--yellow:focus,
-    &.ds-button--yellow:hover,
-    &.ds-button--yellow:active {
-      background-color: variable.$ds-yellow-050;
-    }
-    .dark &.ds-button--yellow:hover,
-    .dark &.ds-button--yellow:hover,
-    .dark &.ds-button--yellow:active {
-      background-color: variable.$ds-yellow-800;
-    }
-    &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-200;
-      background-color: transparent;
-    }
-    .dark &.ds-button--yellow:disabled {
-      color: variable.$ds-yellow-700;
-      background-color: transparent;
+
+      .dark & {
+        color: variable.$ds-yellow-300;
+        background-color: transparent;
+      }
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-yellow-050;
+      }
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-yellow-800;
+      }
+      &:disabled {
+        color: variable.$ds-yellow-200;
+        background-color: transparent;
+      }
+      .dark &:disabled {
+        color: variable.$ds-yellow-700;
+        background-color: transparent;
+      }
     }
 
     &.ds-button--green {
       color: variable.$ds-green-400;
       background-color: transparent;
-    }
-    .dark &.ds-button--green {
-      color: variable.$ds-green-300;
-      background-color: transparent;
-    }
-    &.ds-button--green:focus,
-    &.ds-button--green:hover,
-    &.ds-button--green:active {
-      background-color: variable.$ds-green-050;
-    }
-    .dark &.ds-button--green:hover,
-    .dark &.ds-button--green:hover,
-    .dark &.ds-button--green:active {
-      background-color: variable.$ds-green-800;
-    }
-    &.ds-button--green:disabled {
-      color: variable.$ds-green-200;
-      background-color: transparent;
-    }
-    .dark &.ds-button--green:disabled {
-      color: variable.$ds-green-600;
-      background-color: transparent;
+
+      .dark & {
+        color: variable.$ds-green-300;
+        background-color: transparent;
+      }
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-green-050;
+      }
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-green-800;
+      }
+      &:disabled {
+        color: variable.$ds-green-200;
+        background-color: transparent;
+      }
+      .dark &:disabled {
+        color: variable.$ds-green-600;
+        background-color: transparent;
+      }
     }
 
     &.ds-button--blue {
       color: variable.$ds-blue-400;
       background-color: transparent;
-    }
-    .dark &.ds-button--blue {
-      color: variable.$ds-blue-300;
-      background-color: transparent;
-    }
-    &.ds-button--blue:focus,
-    &.ds-button--blue:hover,
-    &.ds-button--blue:active {
-      background-color: variable.$ds-blue-050;
-    }
-    .dark &.ds-button--blue:hover,
-    .dark &.ds-button--blue:hover,
-    .dark &.ds-button--blue:active {
-      background-color: variable.$ds-blue-800;
-    }
-    &.ds-button--blue:disabled {
-      color: variable.$ds-blue-200;
-      background-color: transparent;
-    }
-    .dark &.ds-button--blue:disabled {
-      color: variable.$ds-blue-600;
-      background-color: transparent;
+
+      .dark & {
+        color: variable.$ds-blue-300;
+        background-color: transparent;
+      }
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: variable.$ds-blue-050;
+      }
+      .dark &:hover,
+      .dark &:hover,
+      .dark &:active {
+        background-color: variable.$ds-blue-800;
+      }
+      &:disabled {
+        color: variable.$ds-blue-200;
+        background-color: transparent;
+      }
+      .dark &:disabled {
+        color: variable.$ds-blue-600;
+        background-color: transparent;
+      }
     }
   }
 
