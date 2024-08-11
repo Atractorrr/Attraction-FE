@@ -526,25 +526,49 @@
     background-color: variable.$ds-hovering-bg !important;
   }
 
+  &--square {
+    padding: 0px !important;
+  }
+
   &--size-xs {
     height: 2rem;
     font-size: variable.$ds-font-size-100;
+
+    &.ds-button--square {
+      width: 2rem;
+    }
   }
   &--size-sm {
     height: 2.25rem;
     font-size: variable.$ds-font-size-200;
+
+    &.ds-button--square {
+      width: 2.25rem;
+    }
   }
   &--size-md {
     height: 2.5rem;
     font-size: variable.$ds-font-size-300;
+
+    &.ds-button--square {
+      width: 2.5rem;
+    }
   }
   &--size-lg {
     height: 3rem;
     font-size: variable.$ds-font-size-400;
+
+    &.ds-button--square {
+      width: 3rem;
+    }
   }
   &--size-xl {
     height: 3.75rem;
     font-size: variable.$ds-font-size-500;
+
+    &.ds-button--square {
+      width: 3.75rem;
+    }
   }
 
   &--round-xs {

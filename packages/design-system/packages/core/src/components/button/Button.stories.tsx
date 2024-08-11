@@ -62,6 +62,14 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'false' },
       },
     },
+    square: {
+      description: '버튼을 정사각형 형태로 지정합니다.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
     children: {
       description: '버튼에 표시할 내용을 입력합니다.',
       control: 'text',

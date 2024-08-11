@@ -13,14 +13,24 @@ interface ButtonProps
   color?: keyof ButtonVariants['color']
   size?: keyof ButtonVariants['size']
   round?: keyof ButtonVariants['round']
+  square?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, className, variant, color, size, round, ...props }, ref) => (
+  ({ type, className, variant, color, size, round, square, ...props }, ref) => (
     <button
       // eslint-disable-next-line react/button-has-type
       type={type || 'button'}
-      className={cn(buttonVariants({ variant, color, size, round }), className)}
+      className={cn(
+        buttonVariants({
+          variant,
+          color,
+          size,
+          round,
+          square: square ? 'square' : null,
+        }),
+        className,
+      )}
       ref={ref}
       {...props}
     />

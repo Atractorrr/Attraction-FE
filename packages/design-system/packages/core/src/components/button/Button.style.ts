@@ -33,6 +33,10 @@ export const variants = {
     xl: getButtonModifier('round-xl'),
     full: getButtonModifier('round-full'),
   },
+  square: {
+    default: '',
+    square: getButtonModifier('square'),
+  },
 }
 
 export const buttonVariants = cva(buttonClassName, {
@@ -42,5 +46,6 @@ export const buttonVariants = cva(buttonClassName, {
     color: 'gray',
     size: 'md',
     round: 'sm',
+    square: 'default',
   },
 })
