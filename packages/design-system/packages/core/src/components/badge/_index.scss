@@ -1,0 +1,136 @@
+@use '../../token/variable';
+
+.ds-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 1.75rem;
+  box-sizing: border-box;
+  padding: 0.25rem 0.5rem;
+  font-size: variable.$ds-font-size-200;
+  font-weight: variable.$ds-font-weight-medium;
+  color: variable.$ds-gray-700;
+  line-height: variable.$ds-leading-tight;
+  white-space: nowrap;
+  outline: none;
+  background-color: variable.$ds-gray-050;
+
+  .dark & {
+    color: variable.$ds-gray-050;
+    background-color: variable.$ds-gray-700;
+  }
+
+  &--red {
+    color: variable.$ds-red-400;
+    background-color: variable.$ds-red-050;
+
+    .dark & {
+      color: variable.$ds-red-300;
+      background-color: variable.$ds-red-800;
+    }
+  }
+  &--yellow {
+    color: variable.$ds-yellow-400;
+    background-color: variable.$ds-yellow-050;
+
+    .dark & {
+      color: variable.$ds-yellow-300;
+      background-color: variable.$ds-yellow-800;
+    }
+  }
+  &--green {
+    color: variable.$ds-green-400;
+    background-color: variable.$ds-green-050;
+
+    .dark & {
+      color: variable.$ds-green-300;
+      background-color: variable.$ds-green-800;
+    }
+  }
+  &--blue {
+    color: variable.$ds-blue-400;
+    background-color: variable.$ds-blue-050;
+
+    .dark & {
+      color: variable.$ds-blue-300;
+      background-color: variable.$ds-blue-800;
+    }
+  }
+
+  &--filled {
+    color: variable.$ds-gray-050;
+    background-color: variable.$ds-gray-700;
+
+    .dark & {
+      color: variable.$ds-gray-700;
+      background-color: variable.$ds-gray-050;
+    }
+
+    &.ds-badge--red {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-red-400;
+      }
+    }
+
+    &.ds-badge--yellow {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-yellow-400;
+      }
+    }
+
+    &.ds-badge--green {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-green-400;
+      }
+    }
+
+    &.ds-badge--blue {
+      &,
+      .dark & {
+        color: variable.$ds-gray-000;
+        background-color: variable.$ds-blue-400;
+      }
+    }
+  }
+
+  &--hovering {
+    border: none;
+    font-weight: variable.$ds-font-weight-regular;
+    color: variable.$ds-gray-000 !important;
+    background-color: variable.$ds-hovering-bg !important;
+  }
+
+  &--size-sm {
+    height: 1.5rem;
+    font-size: variable.$ds-font-size-100;
+  }
+  &--size-md {
+    height: 1.75rem;
+    font-size: variable.$ds-font-size-200;
+  }
+  &--size-lg {
+    height: 2rem;
+    font-size: variable.$ds-font-size-300;
+  }
+
+  &--round-sm {
+    border-radius: 0.25rem;
+  }
+  &--round-md {
+    border-radius: 0.5rem;
+  }
+  &--round-lg {
+    border-radius: 0.75rem;
+  }
+  &--round-full {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+}
