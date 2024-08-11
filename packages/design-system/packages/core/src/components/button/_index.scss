@@ -6,9 +6,11 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  width: auto;
+  height: 2.5rem;
   box-sizing: border-box;
   padding: 0.5rem 0.75rem;
-  border: 1px solid variable.$ds-gray-100;
+  border: 0.0625rem solid variable.$ds-gray-100;
   font-size: variable.$ds-font-size-300;
   font-weight: variable.$ds-font-weight-medium;
   color: variable.$ds-gray-700;

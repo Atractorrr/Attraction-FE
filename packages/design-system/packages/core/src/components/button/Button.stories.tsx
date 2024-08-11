@@ -77,7 +77,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const style = {
+const style: React.CSSProperties = {
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
