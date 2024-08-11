@@ -54,6 +54,7 @@
   },
   "peerDependencies": {
     "@attraction/ds-hooks": "workspace:^",
+    "@attraction/icons": "workspace:^",
     "@attraction/utils": "workspace:^",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

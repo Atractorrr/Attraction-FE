@@ -294,6 +294,9 @@ importers:
       '@attraction/ds-hooks':
         specifier: workspace:^
         version: link:../hooks
+      '@attraction/icons':
+        specifier: workspace:^
+        version: link:../../../icons
       '@attraction/utils':
         specifier: workspace:^
         version: link:../../../utils
