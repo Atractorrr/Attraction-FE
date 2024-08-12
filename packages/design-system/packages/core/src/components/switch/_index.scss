@@ -1,0 +1,134 @@
+@use '../../token/variable';
+
+.ds-switch {
+  position: relative;
+  display: inline-flex;
+  width: 3.375rem;
+  height: 1.75rem;
+
+  & input {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 9999px;
+    background-color: variable.$ds-gray-200;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    @include variable.transition-colors();
+
+    .dark & {
+      background-color: variable.$ds-gray-700;
+    }
+
+    &:checked {
+      background-color: variable.$ds-gray-700;
+      .dark & {
+        background-color: variable.$ds-gray-050;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: variable.$ds-gray-200 !important;
+      .dark & {
+        background-color: variable.$ds-gray-700 !important;
+      }
+    }
+
+    & + span {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 50%;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin: auto;
+      border-radius: 9999px;
+      background-color: variable.$ds-gray-000;
+      transform: scale(0.9);
+      @include variable.transition-all();
+      pointer-events: none;
+      .dark & {
+        background-color: variable.$ds-gray-100;
+      }
+    }
+    &:checked + span {
+      left: 50%;
+      right: 0px;
+      transform: scale(1);
+      .dark & {
+        background-color: variable.$ds-gray-700;
+      }
+    }
+    &:disabled + span {
+      background-color: variable.$ds-gray-100 !important;
+      .dark & {
+        background-color: variable.$ds-gray-600 !important;
+      }
+    }
+  }
+
+  &--red input {
+    &:checked,
+    .dark &:checked {
+      background-color: variable.$ds-red-400;
+    }
+    & + span,
+    &:checked + span,
+    .dark &:checked + span {
+      background-color: variable.$ds-gray-000;
+    }
+    .dark & + span {
+      background-color: variable.$ds-gray-100;
+    }
+  }
+  &--yellow input {
+    &:checked,
+    .dark &:checked {
+      background-color: variable.$ds-yellow-400;
+    }
+    & + span,
+    &:checked + span,
+    .dark &:checked + span {
+      background-color: variable.$ds-gray-000;
+    }
+    .dark & + span {
+      background-color: variable.$ds-gray-100;
+    }
+  }
+  &--green input {
+    &:checked,
+    .dark &:checked {
+      background-color: variable.$ds-green-400;
+    }
+    & + span,
+    &:checked + span,
+    .dark &:checked + span {
+      background-color: variable.$ds-gray-000;
+    }
+    .dark & + span {
+      background-color: variable.$ds-gray-100;
+    }
+  }
+  &--blue input {
+    &:checked,
+    .dark &:checked {
+      background-color: variable.$ds-blue-400;
+    }
+    & + span,
+    &:checked + span,
+    .dark &:checked + span {
+      background-color: variable.$ds-gray-000;
+    }
+    .dark & + span {
+      background-color: variable.$ds-gray-100;
+    }
+  }
+}
