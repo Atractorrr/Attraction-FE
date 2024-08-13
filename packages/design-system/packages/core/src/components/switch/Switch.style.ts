@@ -11,9 +11,16 @@ export const variants = {
     green: getSwitchModifier('green'),
     blue: getSwitchModifier('blue'),
   },
+  size: {
+    xs: getSwitchModifier('size-xs'),
+    sm: getSwitchModifier('size-sm'),
+    md: '',
+    lg: getSwitchModifier('size-lg'),
+    xl: getSwitchModifier('size-xl'),
+  },
 }
 
 export const switchVariants = cva(switchClassName, {
   variants,
-  defaultVariants: { color: 'gray' },
+  defaultVariants: { color: 'gray', size: 'md' },
 })

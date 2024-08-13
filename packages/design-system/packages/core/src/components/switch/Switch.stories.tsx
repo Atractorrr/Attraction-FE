@@ -23,6 +23,17 @@ const meta: Meta<typeof Switch> = {
         defaultValue: { summary: 'gray' },
       },
     },
+    size: {
+      description: '토글 스위치의 사이즈 지정합니다.',
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      table: {
+        type: {
+          summary: ['xs', 'sm', 'md', 'lg', 'xl'].join(' | '),
+        },
+        defaultValue: { summary: 'md' },
+      },
+    },
     disabled: {
       description: '토글 스위치의 비활성화 상태를 지정합니다.',
       control: 'boolean',
