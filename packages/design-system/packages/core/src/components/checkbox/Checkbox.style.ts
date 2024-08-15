@@ -15,13 +15,9 @@ export const variants = {
     default: '',
     full: getCheckboxModifier('round-full'),
   },
-  disabled: {
-    default: '',
-    disabled: getCheckboxModifier('disabled'),
-  },
 }
 
 export const checkboxVariants = cva(checkboxClassName, {
   variants,
-  defaultVariants: { color: 'gray', round: 'default', disabled: 'default' },
+  defaultVariants: { color: 'gray', round: 'default' },
 })

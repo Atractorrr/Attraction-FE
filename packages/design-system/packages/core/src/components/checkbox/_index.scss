@@ -4,22 +4,20 @@ label.ds-checkbox {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-
-  &.ds-checkbox--disabled {
-    cursor: not-allowed;
-
-    & span.ds-checkbox + span {
-      color: variable.$ds-gray-400;
-
-      .dark & {
-        color: variable.$ds-gray-500;
-      }
+  width: auto;
+  min-height: 1.5rem;
+  height: auto;
+  & input {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: auto;
+    &,
+    & + svg {
+      right: calc(100% - 1.5rem);
     }
   }
 }
-span.ds-checkbox {
+.ds-checkbox {
   position: relative;
   display: block;
   width: 1.5rem;
@@ -36,6 +34,7 @@ span.ds-checkbox {
     padding: 0px;
     margin: 0px;
     border: 0.125rem solid variable.$ds-gray-100;
+    font-size: variable.$ds-font-size-300;
     border-radius: 0.25rem;
     background-color: variable.$ds-gray-000;
     cursor: pointer;
@@ -98,6 +97,27 @@ span.ds-checkbox {
     }
     .dark &:checked:disabled + svg {
       color: variable.$ds-gray-500;
+    }
+
+    & ~ span {
+      display: block;
+      padding-left: 2.25rem;
+      padding-right: 0.5rem;
+      font-size: inherit;
+      color: variable.$ds-gray-700;
+      line-height: variable.$ds-leading-normal;
+      word-break: keep-all;
+      cursor: pointer;
+      .dark & {
+        color: variable.$ds-gray-050;
+      }
+    }
+    &:disabled ~ span {
+      color: variable.$ds-gray-400;
+      cursor: not-allowed;
+      .dark & {
+        color: variable.$ds-gray-500;
+      }
     }
   }
 
@@ -200,17 +220,6 @@ span.ds-checkbox {
     .dark &:checked:disabled + svg {
       color: variable.$ds-blue-600;
     }
-  }
-
-  & + span {
-    padding-right: 0.5rem;
-    font-size: variable.$ds-font-size-300;
-    color: variable.$ds-gray-700;
-    line-height: variable.$ds-leading-normal;
-    word-break: keep-all;
-  }
-  .dark & + span {
-    color: variable.$ds-gray-050;
   }
 
   &--round-full input {

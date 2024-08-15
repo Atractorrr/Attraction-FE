@@ -30,15 +30,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <label
         htmlFor={id}
-        className={cn(
-          checkboxVariants({ disabled: props.disabled ? 'disabled' : null }),
-          className,
-        )}
+        className={cn(checkboxVariants({ color, round }), className)}
         style={style}>
-        <span className={cn(checkboxVariants({ color, round }))}>
-          <input id={id} type={type || 'checkbox'} ref={ref} {...props} />
-          <CheckOutline />
-        </span>
+        <input id={id} type={type || 'checkbox'} ref={ref} {...props} />
+        <CheckOutline />
         <span>{label}</span>
       </label>
     )
