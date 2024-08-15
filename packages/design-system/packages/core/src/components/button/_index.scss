@@ -524,6 +524,16 @@
     border: none;
     color: variable.$ds-gray-000 !important;
     background-color: variable.$ds-hovering-bg !important;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: variable.$ds-gray-600 !important;
+    }
+    &:disabled {
+      color: variable.$ds-gray-200 !important;
+      background-color: variable.$ds-hovering-bg !important;
+    }
   }
 
   &--square {
