@@ -303,6 +303,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
+      framer-motion:
+        specifier: ^11.3.28
+        version: 11.3.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.0.0
         version: 18.3.1
@@ -5550,6 +5553,20 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
+  framer-motion@11.3.28:
+    resolution: {integrity: sha512-dqhoawipEAjqdv32zbv72sOMJZjol7dROWn7t/FOq23WXJ40O4OUybgnO2ldnuS+3YquSn8xO/KKRavZ+TBVOQ==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
@@ -8072,9 +8089,6 @@ packages:
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
@@ -12835,7 +12849,7 @@ snapshots:
       '@storybook/instrumenter': 8.1.6
       '@storybook/preview-api': 8.1.6
       '@testing-library/dom': 9.3.4
-      '@testing-library/jest-dom': 6.4.5(vitest@2.0.5(@types/node@20.12.11)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.1))
+      '@testing-library/jest-dom': 6.4.5(vitest@2.0.5(@types/node@20.12.11)(sass@1.77.8)(terser@5.31.1))
       '@testing-library/user-event': 14.5.2(@testing-library/dom@9.3.4)
       '@vitest/expect': 1.3.1
       '@vitest/spy': 1.6.0
@@ -12852,7 +12866,7 @@ snapshots:
       '@storybook/csf': 0.1.11
       '@storybook/instrumenter': 8.2.8(storybook@8.2.8(@babel/preset-env@7.24.6(@babel/core@7.24.5)))
       '@testing-library/dom': 10.1.0
-      '@testing-library/jest-dom': 6.4.5(vitest@2.0.5(@types/node@20.12.11)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.1))
+      '@testing-library/jest-dom': 6.4.5(vitest@2.0.5(@types/node@20.12.11)(sass@1.77.8)(terser@5.31.1))
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.1.0)
       '@vitest/expect': 1.6.0
       '@vitest/spy': 1.6.0
@@ -13114,7 +13128,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.5(vitest@2.0.5(@types/node@20.12.11)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.1))':
+  '@testing-library/jest-dom@6.4.5(vitest@2.0.5(@types/node@20.12.11)(sass@1.77.8)(terser@5.31.1))':
     dependencies:
       '@adobe/css-tools': 4.4.0
       '@babel/runtime': 7.24.5
@@ -15375,6 +15389,13 @@ snapshots:
   forwarded@0.2.0: {}
 
   fraction.js@4.3.7: {}
+
+  framer-motion@11.3.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      tslib: 2.6.3
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   fresh@0.5.2: {}
 
@@ -17742,7 +17763,7 @@ snapshots:
   synckit@0.8.8:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   tailwind-merge@2.3.0:
     dependencies:
@@ -17971,8 +17992,6 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@1.14.1: {}
-
-  tslib@2.6.2: {}
 
   tslib@2.6.3: {}
 

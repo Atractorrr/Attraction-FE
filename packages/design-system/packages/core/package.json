@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
+    "framer-motion": "^11.3.28",
     "tsup": "^8.1.0"
   },
   "devDependencies": {
