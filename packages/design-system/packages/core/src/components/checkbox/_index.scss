@@ -84,10 +84,12 @@ label.ds-checkbox {
       font-size: variable.$ds-font-size-300;
       color: transparent;
       pointer-events: none;
-      @include variable.transition-colors();
+      transform: scale(0) translateY(60%);
+      @include variable.transition-all();
     }
     &:checked + svg {
       color: variable.$ds-gray-000;
+      transform: scale(1) translateY(0%);
     }
     .dark &:checked + svg {
       color: variable.$ds-gray-700;
