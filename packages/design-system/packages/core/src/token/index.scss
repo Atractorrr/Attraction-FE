@@ -1,0 +1,81 @@
+:root {
+  font-size: 16px;
+
+  --attraction-ds-gray-000: #ffffff;
+  --attraction-ds-gray-050: #f4f6f8;
+  --attraction-ds-gray-100: #dde0e3;
+  --attraction-ds-gray-200: #c2c7cc;
+  --attraction-ds-gray-300: #a6adb5;
+  --attraction-ds-gray-400: #8a949e;
+  --attraction-ds-gray-500: #6f7a86;
+  --attraction-ds-gray-600: #58616a;
+  --attraction-ds-gray-700: #3c4249;
+  --attraction-ds-gray-800: #202427;
+  --attraction-ds-gray-900: #131517;
+
+  --attraction-ds-red-050: #fbe9e9;
+  --attraction-ds-red-100: #f8d3d4;
+  --attraction-ds-red-200: #f2b0b1;
+  --attraction-ds-red-300: #eb8586;
+  --attraction-ds-red-400: #e14b4d;
+  --attraction-ds-red-500: #d22325;
+  --attraction-ds-red-600: #a61c1e;
+  --attraction-ds-red-700: #831617;
+  --attraction-ds-red-800: #561c1d;
+  --attraction-ds-red-900: #3b1617;
+
+  --attraction-ds-yellow-050: #fff5e0;
+  --attraction-ds-yellow-100: #ffe7b8;
+  --attraction-ds-yellow-200: #ffda8f;
+  --attraction-ds-yellow-300: #ffbf3d;
+  --attraction-ds-yellow-400: #ffab01;
+  --attraction-ds-yellow-500: #eb9d00;
+  --attraction-ds-yellow-600: #c28200;
+  --attraction-ds-yellow-700: #8f6000;
+  --attraction-ds-yellow-800: #543d0e;
+  --attraction-ds-yellow-900: #3d2c0b;
+
+  --attraction-ds-green-050: #e5faf1;
+  --attraction-ds-green-100: #b1f1d6;
+  --attraction-ds-green-200: #75e6b6;
+  --attraction-ds-green-300: #39db97;
+  --attraction-ds-green-400: #23be7d;
+  --attraction-ds-green-500: #1ea46c;
+  --attraction-ds-green-600: #198a5b;
+  --attraction-ds-green-700: #15704a;
+  --attraction-ds-green-800: #133d2b;
+  --attraction-ds-green-900: #0f2e21;
+
+  --attraction-ds-blue-050: #e5effa;
+  --attraction-ds-blue-100: #c3daf3;
+  --attraction-ds-blue-200: #99bfeb;
+  --attraction-ds-blue-300: #77aae4;
+  --attraction-ds-blue-400: #3b84d8;
+  --attraction-ds-blue-500: #256bbb;
+  --attraction-ds-blue-600: #1d5391;
+  --attraction-ds-blue-700: #163f6f;
+  --attraction-ds-blue-800: #233851;
+  --attraction-ds-blue-900: #192739;
+
+  --attraction-ds-dimmed-light: rgba(0, 0, 0, 0.3);
+  --attraction-ds-dimmed-dark: rgba(255, 255, 255, 0.2);
+  --attraction-ds-hovering-bg: rgba(0, 0, 0, 0.6);
+
+  --attraction-ds-font-size-100: 0.75rem; // 12px
+  --attraction-ds-font-size-200: 0.875rem; // 14px
+  --attraction-ds-font-size-300: 1rem; // 16px
+  --attraction-ds-font-size-400: 1.125rem; // 18px
+  --attraction-ds-font-size-500: 1.25rem; // 20px
+  --attraction-ds-font-size-600: 1.5rem; // 24px
+  --attraction-ds-font-size-700: 1.75rem; // 28px
+  --attraction-ds-font-size-800: 2rem; // 32px
+  --attraction-ds-font-size-900: 3rem; // 48px
+
+  --attraction-ds-font-weight-regular: 400;
+  --attraction-ds-font-weight-medium: 500;
+  --attraction-ds-font-weight-bold: 700;
+
+  --attraction-ds-leading-tight: 100%;
+  --attraction-ds-leading-normal: 120%;
+  --attraction-ds-leading-relaxed: 160%;
+}

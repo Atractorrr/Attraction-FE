@@ -1,0 +1,66 @@
+{
+  "name": "@attraction/ds-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && pnpm -F @attraction/ds-core build:style",
+    "build:style": "sass --embed-source-map src/components/index.scss:dist/component.css src/token/index.scss:dist/token.css",
+    "build:storybook": "storybook build",
+    "test": "vitest --reporter verbose",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "dev": "storybook dev -p 6006"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "framer-motion": "^11.3.28",
+    "tsup": "^8.1.0"
+  },
+  "devDependencies": {
+    "@attraction/config": "workspace:^",
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-a11y": "^8.2.8",
+    "@storybook/addon-essentials": "^8.2.8",
+    "@storybook/addon-interactions": "^8.2.8",
+    "@storybook/addon-links": "^8.2.8",
+    "@storybook/addon-onboarding": "^8.2.8",
+    "@storybook/addon-themes": "^8.2.8",
+    "@storybook/blocks": "^8.2.8",
+    "@storybook/react": "^8.2.8",
+    "@storybook/react-vite": "^8.2.8",
+    "@storybook/test": "^8.2.8",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/ui": "^2.0.5",
+    "css-loader": "^7.1.2",
+    "eslint-plugin-storybook": "^0.8.0",
+    "jsdom": "^24.1.1",
+    "prop-types": "^15.8.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.0",
+    "storybook": "^8.2.8",
+    "storybook-addon-sass-postcss": "^0.3.0",
+    "style-loader": "^4.0.0",
+    "vitest": "^2.0.5"
+  },
+  "peerDependencies": {
+    "@attraction/ds-hooks": "workspace:^",
+    "@attraction/icons": "workspace:^",
+    "@attraction/utils": "workspace:^",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

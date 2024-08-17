@@ -1,0 +1,510 @@
+@use '../../token/variable';
+
+.ds-chip {
+  position: relative;
+  width: auto;
+  height: 2.5rem;
+
+  & > input {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: variable.$ds-font-size-300;
+    border-radius: 9999px;
+    background-color: variable.$ds-gray-050;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    @include variable.transition-colors();
+
+    .dark & {
+      background-color: variable.$ds-gray-700;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: variable.$ds-gray-100;
+    }
+    .dark &:focus,
+    .dark &:hover,
+    .dark &:active {
+      background-color: variable.$ds-gray-600;
+    }
+    &:checked {
+      background-color: variable.$ds-gray-700;
+      .dark & {
+        background-color: variable.$ds-gray-050;
+      }
+      & + span {
+        color: variable.$ds-gray-050;
+        .dark & {
+          color: variable.$ds-gray-700;
+        }
+      }
+    }
+    &:disabled {
+      background-color: variable.$ds-gray-050;
+      cursor: not-allowed;
+      .dark & {
+        background-color: variable.$ds-gray-700;
+      }
+      & + span {
+        color: variable.$ds-gray-400;
+        .dark & {
+          color: variable.$ds-gray-500;
+        }
+      }
+    }
+  }
+  & > span {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0.5rem 1rem;
+    font-size: variable.$ds-font-size-300;
+    font-weight: variable.$ds-font-weight-regular;
+    color: variable.$ds-gray-700;
+    pointer-events: none;
+    @include variable.transition-colors();
+
+    .dark & {
+      color: variable.$ds-gray-050;
+    }
+
+    & svg {
+      font-size: variable.$ds-font-size-300;
+      color: inherit;
+    }
+    & span {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      line-height: variable.$ds-leading-tight;
+      white-space: nowrap;
+    }
+  }
+
+  &--red > input {
+    &:checked {
+      &,
+      .dark & {
+        background-color: variable.$ds-red-400;
+      }
+      & + span {
+        color: variable.$ds-gray-000;
+        .dark & {
+          color: variable.$ds-gray-000;
+        }
+      }
+    }
+    &:checked:disabled {
+      background-color: variable.$ds-red-050;
+      .dark & {
+        background-color: variable.$ds-red-800;
+      }
+      & + span {
+        color: variable.$ds-red-200;
+        .dark & {
+          color: variable.$ds-red-600;
+        }
+      }
+    }
+  }
+  &--yellow > input {
+    &:checked {
+      &,
+      .dark & {
+        background-color: variable.$ds-yellow-400;
+      }
+      & + span {
+        color: variable.$ds-gray-000;
+        .dark & {
+          color: variable.$ds-gray-000;
+        }
+      }
+    }
+    &:checked:disabled {
+      background-color: variable.$ds-yellow-050;
+      .dark & {
+        background-color: variable.$ds-yellow-800;
+      }
+      & + span {
+        color: variable.$ds-yellow-200;
+        .dark & {
+          color: variable.$ds-yellow-700;
+        }
+      }
+    }
+  }
+  &--green > input {
+    &:checked {
+      &,
+      .dark & {
+        background-color: variable.$ds-green-400;
+      }
+      & + span {
+        color: variable.$ds-gray-000;
+        .dark & {
+          color: variable.$ds-gray-000;
+        }
+      }
+    }
+    &:checked:disabled {
+      background-color: variable.$ds-green-050;
+      .dark & {
+        background-color: variable.$ds-green-800;
+      }
+      & + span {
+        color: variable.$ds-green-200;
+        .dark & {
+          color: variable.$ds-green-600;
+        }
+      }
+    }
+  }
+  &--blue > input {
+    &:checked {
+      &,
+      .dark & {
+        background-color: variable.$ds-blue-400;
+      }
+      & + span {
+        color: variable.$ds-gray-000;
+        .dark & {
+          color: variable.$ds-gray-000;
+        }
+      }
+    }
+    &:checked:disabled {
+      background-color: variable.$ds-blue-050;
+      .dark & {
+        background-color: variable.$ds-blue-800;
+      }
+      & + span {
+        color: variable.$ds-blue-200;
+        .dark & {
+          color: variable.$ds-blue-600;
+        }
+      }
+    }
+  }
+
+  &--with-icon {
+    & > input + span {
+      padding: 0.5rem calc(variable.$ds-font-size-300 / 2 + 1rem + 0.5rem);
+      & svg {
+        display: none;
+      }
+    }
+    & > input:checked + span {
+      padding: 0.5rem 1rem;
+      & > svg {
+        display: block;
+        margin-right: 0.5rem;
+      }
+      & > span {
+        padding-right: 0.5rem;
+      }
+    }
+  }
+
+  &--size-xs {
+    height: 2rem;
+    & > span {
+      padding: 0.25rem 0.625rem;
+      font-size: variable.$ds-font-size-100;
+      & svg {
+        font-size: variable.$ds-font-size-200;
+      }
+    }
+    &.ds-chip--with-icon {
+      & > input + span {
+        padding: 0.25rem
+          calc(variable.$ds-font-size-200 / 2 + 0.625rem + 0.25rem);
+      }
+      & > input:checked + span {
+        padding: 0.25rem 0.625rem;
+        & svg {
+          margin-right: 0.25rem;
+        }
+        & > span {
+          padding-right: 0.25rem;
+        }
+      }
+    }
+  }
+  &--size-sm {
+    height: 2.25rem;
+    & > span {
+      padding: 0.25rem 0.75rem;
+      font-size: variable.$ds-font-size-200;
+      & svg {
+        font-size: variable.$ds-font-size-200;
+      }
+    }
+    &.ds-chip--with-icon {
+      & > input + span {
+        padding: 0.25rem
+          calc(variable.$ds-font-size-200 / 2 + 0.75rem + 0.25rem);
+      }
+      & > input:checked + span {
+        padding: 0.25rem 0.75rem;
+        & svg {
+          margin-right: 0.25rem;
+        }
+        & > span {
+          padding-right: 0.25rem;
+        }
+      }
+    }
+  }
+  &--size-lg {
+    height: 3rem;
+    & > span {
+      padding: 0.75rem 1.25rem;
+      font-size: variable.$ds-font-size-400;
+      & svg {
+        font-size: variable.$ds-font-size-300;
+      }
+    }
+    &.ds-chip--with-icon {
+      & > input + span {
+        padding: 0.25rem
+          calc(variable.$ds-font-size-300 / 2 + 1.25rem + 0.625rem);
+      }
+      & > input:checked + span {
+        padding: 0.75rem 1.25rem;
+        & svg {
+          margin-right: 0.5rem;
+        }
+        & > span {
+          padding-right: 0.75rem;
+        }
+      }
+    }
+  }
+
+  &--round-xs > input {
+    border-radius: 0.25rem;
+  }
+  &--round-sm > input {
+    border-radius: 0.5rem;
+  }
+  &--round-md > input {
+    border-radius: 0.75rem;
+  }
+  &--round-lg > input {
+    border-radius: 1rem;
+  }
+  &--round-xl > input {
+    border-radius: 1.25rem;
+  }
+
+  &--round-full {
+    &.ds-chip--size-md {
+      & > input + span {
+        & svg {
+          box-sizing: content-box;
+          padding: 0.25rem;
+          color: variable.$ds-gray-700;
+          border-radius: 9999px;
+          background-color: variable.$ds-gray-050;
+          .dark & {
+            color: variable.$ds-gray-050;
+            background-color: variable.$ds-gray-700;
+          }
+        }
+      }
+      &.ds-chip--with-icon {
+        & > input + span {
+          padding: 0.25rem calc(variable.$ds-font-size-300 / 2 + 1.625rem);
+        }
+        & > input:checked + span {
+          padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+          & svg {
+            margin-right: 0.75rem;
+          }
+          & > span {
+            padding-right: 0.25rem;
+          }
+        }
+        & > input:disabled + span {
+          & svg,
+          .dark & svg {
+            color: inherit;
+            background-color: transparent;
+          }
+        }
+
+        &.ds-chip--red {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-red-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--yellow {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-yellow-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--green {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-green-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--blue {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-blue-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+    &.ds-chip--size-lg {
+      & > input + span {
+        & svg {
+          box-sizing: content-box;
+          padding: 0.25rem;
+          color: variable.$ds-gray-700;
+          border-radius: 9999px;
+          background-color: variable.$ds-gray-050;
+          .dark & {
+            color: variable.$ds-gray-050;
+            background-color: variable.$ds-gray-700;
+          }
+        }
+      }
+      &.ds-chip--with-icon {
+        & > input + span {
+          padding: 0.25rem calc(variable.$ds-font-size-300 / 2 + 1.75rem);
+        }
+        & > input:checked + span {
+          padding: 0.75rem 1.25rem 0.75rem 0.75rem;
+          & svg {
+            margin-right: 0.75rem;
+          }
+          & > span {
+            padding-right: 0.25rem;
+          }
+        }
+        &.ds-chip--red {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-red-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--yellow {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-yellow-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--green {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-green-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        &.ds-chip--blue {
+          & > input + span {
+            & svg,
+            .dark & svg {
+              color: variable.$ds-blue-400;
+              background-color: variable.$ds-gray-000;
+            }
+          }
+          & > input:disabled + span {
+            & svg,
+            .dark & svg {
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+}
