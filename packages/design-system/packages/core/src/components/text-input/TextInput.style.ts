@@ -9,11 +9,30 @@ export const variants = {
     danger: getTextInputModifier('danger'),
     warn: getTextInputModifier('warn'),
     success: getTextInputModifier('success'),
-    info: getTextInputModifier('info'),
+  },
+  size: {
+    md: '',
+    lg: getTextInputModifier('size-lg'),
+  },
+  round: {
+    xs: getTextInputModifier('round-xs'),
+    sm: '',
+    md: getTextInputModifier('round-md'),
+    lg: getTextInputModifier('round-lg'),
+    full: getTextInputModifier('round-full'),
+  },
+  background: {
+    none: '',
+    with: getTextInputModifier('background'),
   },
 }
 
 export const textInputVariants = cva(textInputClassName, {
   variants,
-  defaultVariants: { state: 'default' },
+  defaultVariants: {
+    state: 'default',
+    size: 'md',
+    round: 'sm',
+    background: 'none',
+  },
 })
