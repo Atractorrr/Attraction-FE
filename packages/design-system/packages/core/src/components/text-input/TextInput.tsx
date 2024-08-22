@@ -17,7 +17,6 @@ interface TextProps
   round?: keyof TextInputVariant['round']
   withBackground?: boolean
   label?: React.ReactNode | string
-  required?: boolean
   description?: React.ReactNode | string
 }
 
@@ -28,7 +27,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
       id,
       type,
       label,
-      required,
       state,
       size,
       round,
@@ -53,7 +51,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
       {label && (
         <label htmlFor={id}>
           {label}
-          {required && <span>*</span>}
+          {props.required && <span>*</span>}
         </label>
       )}
       <input ref={ref} id={id} type={type || 'text'} {...props} />
