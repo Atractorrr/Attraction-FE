@@ -63,6 +63,22 @@ const meta: Meta<typeof SearchInput> = {
         defaultValue: { summary: 'undefined' },
       },
     },
+    onClear: {
+      description: 'clear button을 클릭했을 때 실행시키는 이벤트를 지정합니다.',
+      control: 'check',
+      table: {
+        type: { summary: 'function' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    onEnter: {
+      description: '엔터키를 입력했을 때 실행시키는 이벤트를 지정합니다.',
+      control: 'check',
+      table: {
+        type: { summary: 'function' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
   },
 }
 
