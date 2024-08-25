@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import SearchInput from './SearchInput'
