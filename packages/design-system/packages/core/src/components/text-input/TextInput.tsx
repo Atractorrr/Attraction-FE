@@ -1,5 +1,6 @@
 import React from 'react'
 import { cn } from '@attraction/utils'
+import { Label } from '../label'
 import { textInputVariants, variants } from './TextInput.style'
 
 type TextInputVariant = typeof variants
@@ -24,15 +25,13 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
   (
     {
       className,
-      id,
-      type,
+      style,
       label,
+      description,
       state,
       size,
       round,
       withBackground,
-      style,
-      description,
       ...props
     },
     ref,
@@ -49,12 +48,11 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
       )}
       style={style}>
       {label && (
-        <label htmlFor={id}>
+        <Label htmlFor={props.id} required={props.required}>
           {label}
-          {props.required && <span>*</span>}
-        </label>
+        </Label>
       )}
-      <input ref={ref} id={id} type={type || 'text'} {...props} />
+      <input ref={ref} type="text" {...props} />
       {description && <p>{description}</p>}
     </div>
   ),

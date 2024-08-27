@@ -1,0 +1,38 @@
+@use '../../token/variable';
+
+.ds-label {
+  position: relative;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0px;
+  margin-bottom: 0.25rem;
+  padding: 0px 0.25rem;
+  font-size: variable.$ds-font-size-200;
+  font-weight: variable.$ds-font-weight-medium;
+  color: variable.$ds-gray-500;
+  line-height: variable.$ds-leading-normal;
+  white-space: nowrap;
+  .dark & {
+    color: variable.$ds-gray-400;
+  }
+  & > .ds-asterisk {
+    position: absolute;
+    top: 0.125rem;
+    bottom: 0rem;
+    right: -0.25rem;
+    font-size: variable.$ds-font-size-300;
+    font-weight: variable.$ds-font-weight-medium;
+    color: variable.$ds-red-400;
+    line-height: variable.$ds-leading-tight;
+    white-space: inherit;
+    .dark & {
+      color: variable.$ds-red-300;
+    }
+  }
+
+  *[class$='--size-lg'] & {
+    margin-bottom: 0.5rem;
+  }
+}
