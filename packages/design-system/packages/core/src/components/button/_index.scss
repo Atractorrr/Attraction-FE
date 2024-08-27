@@ -7,7 +7,8 @@
   align-items: center;
   gap: 0.5rem;
   width: auto;
-  height: 2.5rem;
+  min-height: 2.5rem;
+  height: auto;
   box-sizing: border-box;
   padding: 0.5rem 0.75rem;
   border: 0.0625rem solid variable.$ds-gray-100;
@@ -541,43 +542,48 @@
   }
 
   &--size-xs {
-    height: 2rem;
+    min-height: 2rem;
     font-size: variable.$ds-font-size-100;
 
     &.ds-button--square {
       width: 2rem;
+      height: 2rem;
     }
   }
   &--size-sm {
-    height: 2.25rem;
+    min-height: 2.25rem;
     font-size: variable.$ds-font-size-200;
 
     &.ds-button--square {
       width: 2.25rem;
+      height: 2.25rem;
     }
   }
   &--size-md {
-    height: 2.5rem;
+    min-height: 2.5rem;
     font-size: variable.$ds-font-size-300;
 
     &.ds-button--square {
       width: 2.5rem;
+      height: 2.5rem;
     }
   }
   &--size-lg {
-    height: 3rem;
+    min-height: 3rem;
     font-size: variable.$ds-font-size-400;
 
     &.ds-button--square {
       width: 3rem;
+      height: 3rem;
     }
   }
   &--size-xl {
-    height: 3.75rem;
+    min-height: 3.75rem;
     font-size: variable.$ds-font-size-500;
 
     &.ds-button--square {
       width: 3.75rem;
+      height: 3.75rem;
     }
   }
 

@@ -21,13 +21,14 @@ function getElementRect<T extends HTMLElement>(element?: T | null) {
 
 export default function useElementRect<T extends HTMLElement>(
   ref: React.MutableRefObject<T | null>,
+  dependency?: React.DependencyList,
 ) {
   const [rect, setRect] = React.useState(getElementRect(ref.current))
   const handleResize = React.useCallback(() => {
     setRect(getElementRect(ref.current))
   }, [ref.current])
 
-  React.useEffect(() => handleResize(), [])
+  React.useLayoutEffect(() => handleResize(), dependency ?? [])
 
   useWindowEvent('resize', handleResize)
   useWindowEvent('scroll', handleResize)

@@ -1,0 +1,17 @@
+@use '../../token/variable';
+
+.ds-dimmed {
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background-color: variable.$ds-dimmed-light;
+  .dark & {
+    background-color: variable.$ds-dimmed-dark;
+  }
+}

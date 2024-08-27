@@ -1,0 +1,257 @@
+@use '../../token/variable';
+
+.ds-select {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+
+  &__input {
+    position: relative;
+    & > input {
+      display: block;
+      width: 100%;
+      height: 2.5rem;
+      box-sizing: border-box;
+      padding: 0.5rem 0.75rem;
+      padding-right: 2.5rem;
+      border: 1px solid variable.$ds-gray-100;
+      font-size: variable.$ds-font-size-300;
+      font-weight: variable.$ds-font-weight-regular;
+      color: variable.$ds-gray-700;
+      border-radius: 0.5rem;
+      outline: none;
+      cursor: pointer;
+      background-color: variable.$ds-gray-000;
+      @include variable.transition-colors();
+
+      .dark & {
+        color: variable.$ds-gray-050;
+        border-color: variable.$ds-gray-700;
+        background-color: variable.$ds-gray-800;
+      }
+
+      &::placeholder {
+        color: variable.$ds-gray-500;
+        .dark & {
+          color: variable.$ds-gray-400;
+        }
+      }
+      &:disabled {
+        color: variable.$ds-gray-400 !important;
+        background-color: variable.$ds-gray-050 !important;
+        cursor: not-allowed;
+        .dark & {
+          color: variable.$ds-gray-500 !important;
+          background-color: variable.$ds-gray-700 !important;
+        }
+      }
+
+      &:focus,
+      .dark &:focus {
+        border-color: variable.$ds-blue-400;
+      }
+    }
+    & > svg {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      margin: auto;
+      font-size: variable.$ds-font-size-300;
+      color: variable.$ds-gray-500;
+      pointer-events: none;
+      .dark & {
+        color: variable.$ds-gray-400;
+      }
+    }
+    & > input:disabled ~ svg {
+      color: variable.$ds-gray-400;
+      .dark & {
+        color: variable.$ds-gray-500;
+      }
+    }
+  }
+
+  &--background {
+    & .ds-select__input > input {
+      background-color: variable.$ds-gray-050;
+      .dark & {
+        background-color: variable.$ds-gray-700;
+      }
+      &:focus {
+        background-color: variable.$ds-gray-000;
+        .dark & {
+          background-color: variable.$ds-gray-800;
+        }
+      }
+    }
+  }
+
+  & > p {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin: 0.75rem 0px 0px;
+    padding: 0px 0.25rem;
+    font-size: variable.$ds-font-size-300;
+    font-weight: variable.$ds-font-weight-regular;
+    color: variable.$ds-gray-500;
+    line-height: variable.$ds-leading-normal;
+    word-break: keep-all;
+    .dark & {
+      color: variable.$ds-gray-400;
+    }
+  }
+
+  &__option {
+    position: fixed;
+    z-index: 99999;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    & > ul {
+      position: absolute;
+      z-index: 10;
+      top: var(--ds-select-top);
+      left: var(--ds-select-left);
+      width: var(--ds-select-width);
+      box-sizing: border-box;
+      padding: 0.25rem;
+      margin: 0px;
+      border: 1px solid variable.$ds-gray-100;
+      border-radius: 0.5rem;
+      list-style: none;
+      background-color: variable.$ds-gray-000;
+      .dark & {
+        border-color: variable.$ds-gray-700;
+        background-color: variable.$ds-gray-800;
+      }
+      & > li {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0px;
+        margin: 0px;
+      }
+      & button {
+        justify-content: space-between;
+        width: 100%;
+        border: none;
+        & > span {
+          display: block;
+          max-width: calc(100% - variable.$ds-font-size-300 - 0.5rem);
+          font-size: inherit;
+          font-weight: inherit;
+          color: inherit;
+          text-align: left;
+          line-height: inherit;
+          word-break: keep-all;
+        }
+        & svg {
+          width: variable.$ds-font-size-300;
+          height: variable.$ds-font-size-300;
+          font-size: variable.$ds-font-size-300;
+          color: inherit;
+        }
+      }
+    }
+    &--mobile > ul {
+      top: 50%;
+      bottom: auto;
+      left: 50%;
+      right: auto;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--danger {
+    & .ds-select__input > input {
+      &,
+      &:focus {
+        border-color: variable.$ds-red-400;
+      }
+      .dark &,
+      .dark &:focus {
+        border-color: variable.$ds-red-300;
+      }
+    }
+    & > p {
+      color: variable.$ds-red-400;
+      .dark & {
+        color: variable.$ds-red-300;
+      }
+    }
+  }
+  &--warn {
+    & .ds-select__input > input {
+      &:focus {
+        border-color: variable.$ds-yellow-400;
+      }
+      .dark &:focus {
+        border-color: variable.$ds-yellow-300;
+      }
+    }
+    & > p {
+      color: variable.$ds-yellow-400;
+      .dark & {
+        color: variable.$ds-yellow-300;
+      }
+    }
+  }
+  &--success {
+    & .ds-select__input > input {
+      &:focus {
+        border-color: variable.$ds-green-400;
+      }
+      .dark &:focus {
+        border-color: variable.$ds-green-300;
+      }
+    }
+    & > p {
+      color: variable.$ds-green-400;
+      .dark & {
+        color: variable.$ds-green-300;
+      }
+    }
+  }
+
+  &--round-xs {
+    & .ds-select__input > input,
+    & .ds-select__option > ul {
+      border-radius: 0.25rem;
+    }
+  }
+  &--round-md {
+    & .ds-select__input > input {
+      border-radius: 0.75rem;
+    }
+    & .ds-select__option > ul {
+      border-radius: 0.75rem;
+      padding: 0.5rem;
+    }
+  }
+
+  &--size-lg {
+    & .ds-select__input {
+      & > input {
+        height: 3rem;
+        padding-right: 3rem;
+        font-size: variable.$ds-font-size-400;
+      }
+      & > svg {
+        width: 3rem;
+        font-size: variable.$ds-font-size-400;
+      }
+    }
+    & > p {
+      margin: 1rem 0px 0px;
+    }
+  }
+}
