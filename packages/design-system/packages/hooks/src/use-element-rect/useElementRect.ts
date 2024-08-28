@@ -1,7 +1,7 @@
 import React from 'react'
 import { useWindowEvent } from '../use-window-event'
 
-const defaultRect = {
+const defaultRect: Omit<DOMRect, 'toJSON'> = {
   width: 0,
   height: 0,
   x: 0,
@@ -21,14 +21,14 @@ function getElementRect<T extends HTMLElement>(element?: T | null) {
 
 export default function useElementRect<T extends HTMLElement>(
   ref: React.MutableRefObject<T | null>,
-  dependency?: React.DependencyList,
+  deps?: React.DependencyList,
 ) {
   const [rect, setRect] = React.useState(getElementRect(ref.current))
   const handleResize = React.useCallback(() => {
     setRect(getElementRect(ref.current))
   }, [ref.current])
 
-  React.useLayoutEffect(() => handleResize(), dependency ?? [])
+  React.useLayoutEffect(() => handleResize(), deps ?? [])
 
   useWindowEvent('resize', handleResize)
   useWindowEvent('scroll', handleResize)
