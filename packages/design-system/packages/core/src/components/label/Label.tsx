@@ -10,12 +10,17 @@ interface LabelProps
 }
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ required, className, children, ...props }, ref) => (
-    <label ref={ref} className={cn('ds-label', className)} {...props}>
-      {children}
-      {required && <span className="ds-asterisk">*</span>}
-    </label>
-  ),
+  ({ required, className, children, ...props }, ref) => {
+    if (!children) {
+      return null
+    }
+    return (
+      <label ref={ref} className={cn('ds-label', className)} {...props}>
+        {children}
+        {required && <span className="ds-asterisk">*</span>}
+      </label>
+    )
+  },
 )
 
 export default Label

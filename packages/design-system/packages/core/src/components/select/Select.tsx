@@ -12,6 +12,7 @@ import { forwardRefWithGeneric } from '../../core'
 import { Button } from '../button'
 import { Label } from '../label'
 import { Dimmed } from '../dimmed'
+import { InputDescription } from '../input-description'
 import { SelectContext, useSelect } from './Select.context'
 import type {
   OptionProps,
@@ -215,13 +216,11 @@ function SelectContainer<T extends string>(
         className,
       )}
       style={style}>
-      {label && (
-        <Label htmlFor={props.id} required={props.required}>
-          {label}
-        </Label>
-      )}
+      <Label htmlFor={props.id} required={props.required}>
+        {label}
+      </Label>
       <ForwardedSelect ref={inputRef} {...props} />
-      {description && <p>{description}</p>}
+      <InputDescription>{description}</InputDescription>
     </div>
   )
 }

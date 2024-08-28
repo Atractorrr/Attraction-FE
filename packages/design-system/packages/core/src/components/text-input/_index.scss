@@ -75,23 +75,6 @@
     border-radius: 9999px;
   }
 
-  & > p {
-    display: block;
-    width: 100%;
-    height: auto;
-    box-sizing: border-box;
-    margin: 0.75rem 0px 0px;
-    padding: 0px 0.25rem;
-    font-size: variable.$ds-font-size-300;
-    font-weight: variable.$ds-font-weight-regular;
-    color: variable.$ds-gray-500;
-    line-height: variable.$ds-leading-normal;
-    word-break: keep-all;
-    .dark & {
-      color: variable.$ds-gray-400;
-    }
-  }
-
   &--danger {
     & > input {
       &,
@@ -101,12 +84,6 @@
       .dark &,
       .dark &:focus {
         border-color: variable.$ds-red-300;
-      }
-    }
-    & > p {
-      color: variable.$ds-red-400;
-      .dark & {
-        color: variable.$ds-red-300;
       }
     }
   }
@@ -119,12 +96,6 @@
         border-color: variable.$ds-yellow-300;
       }
     }
-    & > p {
-      color: variable.$ds-yellow-400;
-      .dark & {
-        color: variable.$ds-yellow-300;
-      }
-    }
   }
   &--success {
     & > input {
@@ -135,21 +106,12 @@
         border-color: variable.$ds-green-300;
       }
     }
-    & > p {
-      color: variable.$ds-green-400;
-      .dark & {
-        color: variable.$ds-green-300;
-      }
-    }
   }
 
   &--size-lg {
     & > input {
       height: 3rem;
       font-size: variable.$ds-font-size-400;
-    }
-    & > p {
-      margin: 1rem 0px 0px;
     }
   }
 }
