@@ -131,10 +131,10 @@ function Select<T extends string>(
           if (e.key === 'Tab') e.preventDefault()
           if (e.key === 'Escape') closeAndFocusToSelectInput()
           if (e.key === 'ArrowUp' && idx > 0) {
-            btnEls?.[idx - 1]?.focus()
+            btnEls[idx - 1]?.focus()
           }
-          if (e.key === 'ArrowDown' && idx < btnEls.length) {
-            btnEls?.[idx + 1]?.focus()
+          if (e.key === 'ArrowDown' && idx < btnEls.length - 1) {
+            btnEls[idx + 1]?.focus()
           }
         })
       })
