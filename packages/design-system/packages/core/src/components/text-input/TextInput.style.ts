@@ -9,6 +9,7 @@ export const variants = {
     danger: getTextInputModifier('danger'),
     warn: getTextInputModifier('warn'),
     success: getTextInputModifier('success'),
+    info: getTextInputModifier('info'),
   },
   size: {
     md: '',

@@ -39,4 +39,10 @@
       color: variable.$ds-green-300;
     }
   }
+  *[class$='--info'] & {
+    color: variable.$ds-blue-400;
+    .dark & {
+      color: variable.$ds-blue-300;
+    }
+  }
 }

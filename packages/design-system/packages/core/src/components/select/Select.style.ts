@@ -13,6 +13,7 @@ export const variants = {
     danger: getSelectModifier('danger'),
     warn: getSelectModifier('warn'),
     success: getSelectModifier('success'),
+    info: getSelectModifier('info'),
   },
   size: {
     md: '',

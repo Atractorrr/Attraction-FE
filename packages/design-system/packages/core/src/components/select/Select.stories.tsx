@@ -14,10 +14,10 @@ const meta: Meta<typeof Select> = {
     state: {
       description: '셀렉트 박스의 상태를 지정합니다.',
       control: 'select',
-      options: ['default', 'danger', 'warn', 'success'],
+      options: ['default', 'danger', 'warn', 'success', 'info'],
       table: {
         type: {
-          summary: ['default', 'danger', 'warn', 'success'].join(' | '),
+          summary: ['default', 'danger', 'warn', 'success', 'info'].join(' | '),
         },
         defaultValue: { summary: 'default' },
       },
