@@ -18,8 +18,8 @@ interface TextProps
   size?: keyof TextInputVariant['size']
   round?: keyof TextInputVariant['round']
   withBackground?: boolean
-  label?: React.ReactNode | string
-  description?: React.ReactNode | string
+  label?: React.ReactNode
+  description?: React.ReactNode
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextProps>(

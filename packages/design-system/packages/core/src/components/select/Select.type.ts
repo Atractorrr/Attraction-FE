@@ -27,8 +27,8 @@ export interface SelectContainerProps<T extends string>
   round?: keyof SelectVariants['round']
   withBackground?: boolean
   mobile?: boolean
-  label?: React.ReactNode | string
-  description?: React.ReactNode | string
+  label?: React.ReactNode
+  description?: React.ReactNode
 }
 
 export interface SelectProps<T extends string>

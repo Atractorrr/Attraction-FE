@@ -10,7 +10,7 @@ interface CheckboxProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label?: React.ReactNode | string
+  label?: React.ReactNode
   color?: keyof CheckboxVariants['color']
   round?: keyof CheckboxVariants['round']
 }

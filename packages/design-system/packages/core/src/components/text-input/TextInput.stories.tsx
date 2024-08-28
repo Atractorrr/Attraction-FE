@@ -68,7 +68,7 @@ const meta: Meta<typeof TextInput> = {
       description: '인풋의 label을 지정합니다.',
       control: 'text',
       table: {
-        type: { summary: 'ReactNode | string' },
+        type: { summary: 'ReactNode' },
         defaultValue: { summary: 'undefined' },
       },
     },
@@ -84,7 +84,7 @@ const meta: Meta<typeof TextInput> = {
       description: '인풋의 설명(하단 텍스트)을 지정합니다.',
       control: 'text',
       table: {
-        type: { summary: 'ReactNode | string' },
+        type: { summary: 'ReactNode' },
         defaultValue: { summary: 'undefined' },
       },
     },
