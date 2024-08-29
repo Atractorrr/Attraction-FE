@@ -144,6 +144,32 @@ export const SelectDefault: Story = {
   },
 }
 
+export const SelectWithLabel: Story = {
+  render: (props) => {
+    const [selected, setSelected] = React.useState('')
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        {/* eslint-disable-next-line no-console */}
+        <div style={{ width: '50%' }}>
+          <Select {...props} defaultValue="React" onChange={setSelected}>
+            <Select.Option value="React">리액트</Select.Option>
+            <Select.Option value="Vue">뷰</Select.Option>
+            <Select.Option value="Angular">앵귤러</Select.Option>
+            <Select.Option value="Svelte">스벨트</Select.Option>
+          </Select>
+          <p>선택됨: {selected}</p>
+        </div>
+      </div>
+    )
+  },
+}
+
 export const SelectWithScroll: Story = {
   render: (props) => {
     const libStore = React.useState<Library>('React')

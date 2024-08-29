@@ -5,7 +5,7 @@ type SelectVariants = typeof variants
 
 export interface DefaultSelectState {
   value: string
-  setValue?: (value: string) => void
+  setValue?: (value: string, label?: string) => void
   size?: keyof SelectVariants['size']
   round?: keyof SelectVariants['round']
 }
@@ -20,8 +20,9 @@ export interface SelectContainerProps<T extends string>
       'size' | 'value' | 'onChange' | 'defaultValue'
     > {
   store?: [T, React.Dispatch<React.SetStateAction<T>>]
-  defaultValue?: string
-  onChange?: (value: T) => void
+  value?: T | string
+  defaultValue?: T | string
+  onChange?: (value: T | string) => void
   state?: keyof SelectVariants['state']
   size?: keyof SelectVariants['size']
   round?: keyof SelectVariants['round']
@@ -43,15 +44,10 @@ export interface SelectProps<T extends string>
       | 'withBackground'
     > {}
 
-interface OptionState {
-  isSelected: boolean
-  select: () => void
-}
-
 export interface OptionProps<T extends string> {
   value: T
   title?: string
   disabled?: boolean
-  children?: React.ReactNode | ((state: OptionState) => React.ReactNode)
+  children?: string
   onSelect?: (value: T) => void
 }
