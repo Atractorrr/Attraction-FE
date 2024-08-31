@@ -18,6 +18,7 @@ import { SelectContext, useSelect } from './Select.context'
 import type {
   OptionProps,
   SelectContainerProps,
+  SelectOption,
   SelectProps,
 } from './Select.type'
 import {
@@ -30,7 +31,7 @@ import { computeOptionPosition, handleOptionA11y } from './Select.util'
 
 function Option<T extends string>({
   value,
-  children,
+  children: label,
   title,
   disabled,
   onSelect,
@@ -38,7 +39,7 @@ function Option<T extends string>({
   const { value: selectedValue, setValue, size, round } = useSelect()
   const isSelected = selectedValue === value
   const select = React.useCallback(() => {
-    setValue?.(value, children)
+    setValue?.(value)
     onSelect?.(value)
   }, [])
 
@@ -47,15 +48,17 @@ function Option<T extends string>({
       <Button
         size={size === 'lg' ? 'md' : 'sm'}
         round={round === 'md' ? 'sm' : 'xs'}
-        title={title || `선택: ${children || value}`}
+        title={title || `선택: ${label || value}`}
         disabled={disabled}
         onClick={select}>
-        <span>{children || value}</span>
+        <span>{label || value}</span>
         {isSelected && <CheckOutline />}
       </Button>
     </li>
   )
 }
+
+const OptionComponentType = (<Option value="" />).type
 
 function Select<T extends string>(
   {
@@ -63,7 +66,7 @@ function Select<T extends string>(
     size,
     round,
     mobile: isMobile = false,
-    defaultValue,
+    defaultValue = '',
     onChange,
     children,
     onKeyDown,
@@ -72,8 +75,7 @@ function Select<T extends string>(
   }: SelectProps<T>,
   inputRef?: React.ForwardedRef<HTMLInputElement>,
 ) {
-  const [label, setLabel] = React.useState('')
-  const valueStore = React.useState(defaultValue ?? '')
+  const valueStore = React.useState(defaultValue)
   const [value, setValueState] = store ?? valueStore
   React.useEffect(() => onChange?.(value as T), [value])
 
@@ -93,14 +95,33 @@ function Select<T extends string>(
     inputEl?.focus()
     close()
   }, [])
-  const setValue = React.useCallback((v: string, l?: string) => {
-    if (l) setLabel(l)
-    setValueState(v as T)
+
+  const options = React.useMemo(() => {
+    return React.Children.toArray(children).reduce((option, child) => {
+      if (React.isValidElement(child) && child.type === OptionComponentType) {
+        const { value: v, children: label } = child.props
+        return Object.assign(option, { [v]: label ?? null })
+      }
+      return option
+    }, {} as SelectOption)
+  }, [children])
+
+  const [label, setLabel] = React.useState(options[defaultValue] ?? '')
+
+  const setValue = React.useCallback((v: string) => {
+    setValueState((prev: string) => {
+      if (prev === v) {
+        setLabel(options[defaultValue] ?? '')
+        return defaultValue as T
+      }
+      setLabel(options[v] ?? '')
+      return v as T
+    })
     closeAndFocusToSelectInput()
   }, [])
 
-  const inputBox = useElementRect<HTMLDivElement>(containerRef)
-  const optionBox = useElementRect<HTMLUListElement>(optionRef, [isOpen])
+  const inputBox = useElementRect(containerRef)
+  const optionBox = useElementRect(optionRef, [isOpen])
 
   React.useLayoutEffect(() => {
     if (isOpen) {

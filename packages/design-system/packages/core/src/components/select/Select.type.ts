@@ -5,7 +5,7 @@ type SelectVariants = typeof variants
 
 export interface DefaultSelectState {
   value: string
-  setValue?: (value: string, label?: string) => void
+  setValue?: (value: string) => void
   size?: keyof SelectVariants['size']
   round?: keyof SelectVariants['round']
 }
@@ -32,17 +32,13 @@ export interface SelectContainerProps<T extends string>
   description?: React.ReactNode
 }
 
-export interface SelectProps<T extends string>
-  extends React.PropsWithChildren,
-    Omit<
-      SelectContainerProps<T>,
-      | 'className'
-      | 'style'
-      | 'label'
-      | 'description'
-      | 'state'
-      | 'withBackground'
-    > {}
+export type SelectProps<T extends string> = React.PropsWithChildren &
+  Omit<
+    SelectContainerProps<T>,
+    'className' | 'style' | 'label' | 'description' | 'state' | 'withBackground'
+  >
+
+export type SelectOption = Record<string, string | null>
 
 export interface OptionProps<T extends string> {
   value: T
