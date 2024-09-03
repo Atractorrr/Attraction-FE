@@ -19,7 +19,6 @@ export interface SelectContainerProps<T extends string>
       >,
       'size' | 'value' | 'onChange' | 'defaultValue'
     > {
-  store?: [T, React.Dispatch<React.SetStateAction<T>>]
   value?: T | string
   defaultValue?: T | string
   onChange?: (value: T | string) => void

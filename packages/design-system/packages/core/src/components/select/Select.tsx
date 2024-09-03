@@ -62,10 +62,10 @@ const OptionComponentType = (<Option value="" />).type
 
 function Select<T extends string>(
   {
-    store,
     size,
     round,
     mobile: isMobile = false,
+    value: valueProps,
     defaultValue = '',
     onChange,
     children,
@@ -75,9 +75,9 @@ function Select<T extends string>(
   }: SelectProps<T>,
   inputRef?: React.ForwardedRef<HTMLInputElement>,
 ) {
-  const valueStore = React.useState(defaultValue)
-  const [value, setValueState] = store ?? valueStore
-  React.useEffect(() => onChange?.(value as T), [value])
+  const [valueState, setValueState] = React.useState(valueProps ?? defaultValue)
+  const value = valueProps ?? valueState
+  React.useEffect(() => onChange?.(valueState as T), [valueState])
 
   const [isOpen, { setTrue: open, setFalse: close, toggle }] = useBooleanState()
   useScrollLock(isOpen)

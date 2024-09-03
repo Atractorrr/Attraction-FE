@@ -80,6 +80,21 @@ const meta: Meta<typeof Select> = {
         defaultValue: { summary: 'undefined' },
       },
     },
+    value: {
+      description: '셀렉트 박스의 value를 지정합니다.',
+      table: {
+        type: { summary: '(T extends string) | string' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    onChange: {
+      description:
+        '셀렉트 박스의 value가 바뀔 때마다 실행되는 함수를 지정합니다.',
+      table: {
+        type: { summary: '(value: (T extends string) | string) => void' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
     placeholder: {
       description: '셀렉트 박스의 placeholder를 지정합니다.',
       control: 'text',
@@ -109,11 +124,11 @@ const style: React.CSSProperties = {
   width: '50%',
 }
 
-type Library = 'React' | 'Vue' | 'Angular' | 'Svelte'
+type Library = 'React' | 'Vue' | 'Angular' | 'Svelte' | undefined
 
 export const SelectDefault: Story = {
   render: (props) => {
-    const libStore = React.useState<Library>('React')
+    const [lib, setLib] = React.useState<Library>('React')
     return (
       <div
         style={{
@@ -122,7 +137,10 @@ export const SelectDefault: Story = {
           alignItems: 'center',
         }}>
         <div style={style}>
-          <Select {...props} store={libStore}>
+          <Select
+            {...props}
+            value={lib ?? ''}
+            onChange={(value) => setLib(value as Library)}>
             <Select.Option value="React" />
             <Select.Option value="Vue" />
             <Select.Option value="Angular" />
@@ -155,15 +173,14 @@ export const SelectWithLabel: Story = {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        {/* eslint-disable-next-line no-console */}
         <div style={{ width: '50%' }}>
-          <Select {...props} defaultValue="React" onChange={setSelected}>
+          <Select {...props} onChange={setSelected}>
             <Select.Option value="React">리액트</Select.Option>
             <Select.Option value="Vue">뷰</Select.Option>
             <Select.Option value="Angular">앵귤러</Select.Option>
             <Select.Option value="Svelte">스벨트</Select.Option>
           </Select>
-          <p>선택됨: {selected}</p>
+          <p>선택됨: {selected || '없음'}</p>
         </div>
       </div>
     )
@@ -172,7 +189,6 @@ export const SelectWithLabel: Story = {
 
 export const SelectWithScroll: Story = {
   render: (props) => {
-    const libStore = React.useState<Library>('React')
     return (
       <div
         style={{
@@ -180,7 +196,7 @@ export const SelectWithScroll: Story = {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Select {...props} store={libStore} style={{ width: '50%' }}>
+        <Select {...props} style={{ width: '50%' }}>
           <Select.Option value="React" />
           <Select.Option value="Vue" />
           <Select.Option value="Angular" />
