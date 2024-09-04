@@ -1,15 +1,12 @@
-import { cn } from '@attraction/utils'
 import React from 'react'
+import { cn } from '@attraction/utils'
+import { motion } from 'framer-motion'
 
-interface DimmedProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {}
+interface DimmedProps extends React.ComponentProps<typeof motion.div> {}
 
 const Dimmed = React.forwardRef<HTMLDivElement, DimmedProps>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('ds-dimmed', className)} {...props} />
+    <motion.div ref={ref} className={cn('ds-dimmed', className)} {...props} />
   ),
 )
 

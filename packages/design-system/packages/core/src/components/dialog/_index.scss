@@ -1,0 +1,135 @@
+@use '../../token/variable';
+
+.ds-dialog {
+  position: fixed;
+  z-index: 99999;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100vw - 2.5rem);
+    max-width: 30rem;
+    max-height: calc(100dvh - 2.5rem);
+    box-sizing: border-box;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background-color: variable.$ds-gray-000;
+    transform: translate(-50%, -50%);
+    .dark & {
+      background-color: variable.$ds-gray-800;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-size: variable.$ds-font-size-400;
+    font-weight: variable.$ds-font-weight-bold;
+    color: variable.$ds-gray-700;
+    line-height: variable.$ds-leading-normal;
+    .dark & {
+      color: variable.$ds-gray-050;
+    }
+  }
+
+  &__content {
+    display: block;
+    width: 100%;
+    min-height: 3rem;
+    box-sizing: border-box;
+    padding: 0.25rem 0rem;
+    font-size: variable.$ds-font-size-300;
+    font-weight: variable.$ds-font-weight-regular;
+    color: variable.$ds-gray-700;
+    line-height: variable.$ds-leading-normal;
+    .dark & {
+      color: variable.$ds-gray-050;
+    }
+    & p {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      line-height: inherit;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid variable.$ds-gray-100;
+    .dark & {
+      border-color: variable.$ds-gray-700;
+    }
+
+    & button {
+      min-width: 5rem;
+    }
+
+    &--space {
+      justify-content: space-between;
+      gap: 1.25rem;
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  &--size-xs {
+    & .ds-dialog__container {
+      max-width: 18rem;
+    }
+    & .ds-dialog__footer {
+      flex-direction: column;
+      gap: 0.5rem;
+      & button {
+        width: 100%;
+        &:last-of-type {
+          margin-top: 0.75rem;
+        }
+        &:first-of-type + button:last-of-type {
+          margin-top: 0rem;
+        }
+      }
+    }
+  }
+  &--size-sm {
+    & .ds-dialog__container {
+      max-width: 24rem;
+    }
+  }
+  &--size-lg {
+    & .ds-dialog__container {
+      max-width: 45rem;
+    }
+  }
+  &--size-xl {
+    & .ds-dialog__container {
+      max-width: 60rem;
+    }
+  }
+}
