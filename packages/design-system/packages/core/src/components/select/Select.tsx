@@ -9,6 +9,7 @@ import {
 } from '@attraction/ds-hooks'
 import { ArrowFillDownOutline, CheckOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
+import { AnimatePresence, motion } from 'framer-motion'
 import { forwardRefWithGeneric } from '../../core'
 import { Button } from '../button'
 import { Label } from '../label'
@@ -162,17 +163,33 @@ function Select<T extends string>(
         <ArrowFillDownOutline />
       </div>
       {createPortal(
-        isOpen && (
-          <div
-            className={cn(
-              selectOptionClassName,
-              isMobile && selectOptionClassNameWithMobileModifier,
-            )}
-            style={computeOptionPosition(inputBox, optionBox.height)}>
-            <ul ref={optionRef}>{children}</ul>
-            {isMobile && <Dimmed />}
-          </div>
-        ),
+        <AnimatePresence>
+          {isOpen && (
+            <div
+              className={cn(
+                selectOptionClassName,
+                isMobile && selectOptionClassNameWithMobileModifier,
+              )}
+              style={computeOptionPosition(inputBox, optionBox.height)}>
+              <motion.ul
+                ref={optionRef}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ ease: 'easeInOut', duration: 0.1 }}>
+                {children}
+              </motion.ul>
+              {isMobile && (
+                <Dimmed
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ ease: 'easeInOut', duration: 0.1 }}
+                />
+              )}
+            </div>
+          )}
+        </AnimatePresence>,
         document.body,
       )}
     </SelectContext.Provider>
