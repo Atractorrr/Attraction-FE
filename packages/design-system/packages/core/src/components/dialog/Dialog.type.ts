@@ -1,5 +1,6 @@
 import React from 'react'
 import { variants } from './Dialog.style'
+import type { HeadingTag } from '../../core'
 
 type DialogVariants = typeof variants
 
@@ -28,14 +29,18 @@ export interface DialogTitleProps
     React.HTMLAttributes<HTMLHeadingElement>,
     HTMLHeadingElement
   > {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  as?: HeadingTag
 }
+
+export type DialogPosition = keyof DialogVariants['position']
 
 export interface DialogProps extends React.PropsWithChildren {
   open?: boolean
   onClose?: () => void
   withoutDimmed?: boolean
+  cancelWithOutsideClick?: boolean
   size?: keyof DialogVariants['size']
+  position?: DialogPosition
   className?: string
   style?: React.CSSProperties
 }

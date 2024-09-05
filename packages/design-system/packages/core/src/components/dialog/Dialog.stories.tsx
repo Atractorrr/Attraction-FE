@@ -39,10 +39,27 @@ const meta: Meta<typeof Dialog> = {
     },
     withoutDimmed: {
       description:
-        'true로 지정 시 검은색 배경 없이 렌더링됩니다. Dialog 중첩 시에 사용됩니다',
+        'true로 지정 시 검은색 배경 없이 렌더링됩니다. Dialog 중첩 시에 사용됩니다.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'undefined' },
+      },
+    },
+    cancelWithOutsideClick: {
+      description:
+        'false로 지정 시 검은색 배경을 클릭해도 Dialog가 닫히지 않습니다.',
+      table: {
+        type: { summary: 'boolean | undefined' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    position: {
+      description: 'Dialog가 렌더링되는 위치를 지정합니다.',
+      control: 'select',
+      options: ['top', 'center'],
+      table: {
+        type: { summary: ['top', 'center'].join(' | ') },
+        defaultValue: { summary: 'center' },
       },
     },
   },

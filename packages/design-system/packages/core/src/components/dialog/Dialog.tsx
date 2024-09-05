@@ -2,7 +2,7 @@ import React from 'react'
 import { XOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
 import { useOutsideClick, useScrollLock } from '@attraction/ds-hooks'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type Target } from 'framer-motion'
 import { $variable } from '../../token'
 import { Button } from '../button'
 import { HiddenText } from '../hidden-text'
@@ -21,6 +21,7 @@ import {
 import type {
   DialogCloseButtonProps,
   DialogDecoratorProps,
+  DialogPosition,
   DialogProps,
   DialogTitleProps,
 } from './Dialog.type'
@@ -99,18 +100,46 @@ function Footer({ className, children, ...props }: DialogDecoratorProps) {
   )
 }
 
+const dialogPositionVariant: Record<
+  DialogPosition,
+  Record<'default' | 'animate', Target>
+> = {
+  top: {
+    default: {
+      transform: 'translate(-50%, -24%) scale(0.9)',
+      opacity: 0.3,
+    },
+    animate: {
+      transform: 'translate(-50%, 0%) scale(1)',
+      opacity: 1,
+    },
+  },
+  center: {
+    default: {
+      transform: 'translate(-50%, -42%) scale(0.9)',
+      opacity: 0.3,
+    },
+    animate: {
+      transform: 'translate(-50%, -54%) scale(1)',
+      opacity: 1,
+    },
+  },
+}
+
 function Dialog({
   open: isOpen,
   onClose,
   size,
   withoutDimmed,
+  cancelWithOutsideClick = true,
+  position = 'center',
   className,
   children,
   style,
 }: DialogProps) {
   const close = React.useCallback(() => onClose?.(), [onClose])
   const containerRef = useOutsideClick<HTMLDivElement>(() => {
-    if (isOpen) onClose?.()
+    if (isOpen && cancelWithOutsideClick) onClose?.()
   })
 
   useScrollLock(isOpen ?? false)
@@ -125,21 +154,12 @@ function Dialog({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className={cn(dialogVariants({ size }), className)}>
+        <div className={cn(dialogVariants({ size, position }), className)}>
           <motion.div
             ref={containerRef}
-            initial={{
-              transform: 'translate(-50%, -42%) scale(0.9)',
-              opacity: 0.3,
-            }}
-            animate={{
-              transform: 'translate(-50%, -54%) scale(1)',
-              opacity: 1,
-            }}
-            exit={{
-              transform: 'translate(-50%, -42%) scale(0.9)',
-              opacity: 0.2,
-            }}
+            initial={dialogPositionVariant[position].default}
+            animate={dialogPositionVariant[position].animate}
+            exit={dialogPositionVariant[position].default}
             transition={{ ease: 'easeInOut', duration: 0.16 }}
             className={dialogContainerClassName}
             style={style}>

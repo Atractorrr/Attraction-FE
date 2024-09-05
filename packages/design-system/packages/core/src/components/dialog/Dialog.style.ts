@@ -18,9 +18,13 @@ export const variants = {
     lg: getDialogModifier('size-lg'),
     xl: getDialogModifier('size-xl'),
   },
+  position: {
+    top: getDialogModifier('position-top'),
+    center: '',
+  },
 }
 
 export const dialogVariants = cva(dialogClassName, {
   variants,
-  defaultVariants: { size: 'md' },
+  defaultVariants: { size: 'md', position: 'center' },
 })

@@ -24,6 +24,11 @@
       background-color: variable.$ds-gray-800;
     }
   }
+  &--position-top {
+    & .ds-dialog__container {
+      top: 3rem;
+    }
+  }
 
   &__header {
     display: flex;
@@ -62,10 +67,14 @@
       color: variable.$ds-gray-050;
     }
     & p {
+      display: block;
+      box-sizing: border-box;
+      padding: 0px;
+      margin: 0px;
       font-size: inherit;
       font-weight: inherit;
       color: inherit;
-      line-height: inherit;
+      line-height: variable.$ds-leading-relaxed;
     }
   }
 
