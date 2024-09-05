@@ -1,19 +1,21 @@
 import React from 'react'
-import { forwardRefWithGeneric } from '../../core'
+import type { HeadingTag } from '../../core'
 
-type HiddenTextProps<T extends React.ElementType> = {
-  as?: T
-} & React.ComponentPropsWithoutRef<T>
+type TextTag = 'span' | 'label' | 'caption' | HeadingTag
 
-function HiddenText<T extends React.ElementType = 'span'>(
-  { as, style = {}, ...props }: HiddenTextProps<T>,
-  ref?: React.ComponentPropsWithRef<T>['ref'],
-) {
+type HiddenTextProps<T extends TextTag> = React.PropsWithoutRef<
+  JSX.IntrinsicElements[T]
+> & { as?: T }
+
+export default function HiddenTextForA11y<T extends TextTag>({
+  as,
+  ...props
+}: HiddenTextProps<T>) {
   const Component = as || 'span'
 
   return (
     <Component
-      ref={ref}
+      {...(props as Omit<HiddenTextProps<'span'>, 'as'>)}
       style={{
         position: 'absolute',
         width: '1px',
@@ -26,11 +28,7 @@ function HiddenText<T extends React.ElementType = 'span'>(
         clip: 'rect(1px 1px 1px 1px)',
         outline: 'none',
         overflow: 'hidden',
-        ...style,
       }}
-      {...props}
     />
   )
 }
-
-export default forwardRefWithGeneric(HiddenText)
