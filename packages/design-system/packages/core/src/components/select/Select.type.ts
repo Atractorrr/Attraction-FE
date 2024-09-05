@@ -10,7 +10,7 @@ export interface DefaultSelectState {
   round?: keyof SelectVariants['round']
 }
 
-export interface SelectContainerProps<T extends string>
+export interface SelectContainerProps
   extends React.PropsWithChildren,
     Omit<
       React.DetailedHTMLProps<
@@ -19,9 +19,9 @@ export interface SelectContainerProps<T extends string>
       >,
       'size' | 'value' | 'onChange' | 'defaultValue'
     > {
-  value?: T | string
-  defaultValue?: T | string
-  onChange?: (value: T | string) => void
+  value?: string
+  defaultValue?: string
+  onChange?: (value: string) => void
   state?: keyof SelectVariants['state']
   size?: keyof SelectVariants['size']
   round?: keyof SelectVariants['round']
@@ -31,18 +31,18 @@ export interface SelectContainerProps<T extends string>
   description?: React.ReactNode
 }
 
-export type SelectProps<T extends string> = React.PropsWithChildren &
+export type SelectProps = React.PropsWithChildren &
   Omit<
-    SelectContainerProps<T>,
+    SelectContainerProps,
     'className' | 'style' | 'label' | 'description' | 'state' | 'withBackground'
   >
 
 export type SelectOption = Record<string, string | null>
 
-export interface OptionProps<T extends string> {
-  value: T
+export interface OptionProps {
+  value: string
   title?: string
   disabled?: boolean
   children?: string
-  onSelect?: (value: T) => void
+  onSelect?: (value: string) => void
 }

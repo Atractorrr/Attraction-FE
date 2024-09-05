@@ -10,7 +10,6 @@ import {
 import { ArrowFillDownOutline, CheckOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
 import { AnimatePresence, motion } from 'framer-motion'
-import { forwardRefWithGeneric } from '../../core'
 import { Button } from '../button'
 import { Label } from '../label'
 import { Dimmed } from '../dimmed'
@@ -30,13 +29,13 @@ import {
 } from './Select.style'
 import { computeOptionPosition, handleOptionA11y } from './Select.util'
 
-function Option<T extends string>({
+function Option({
   value,
   children: label,
   title,
   disabled,
   onSelect,
-}: OptionProps<T>) {
+}: OptionProps) {
   const { value: selectedValue, setValue, size, round } = useSelect()
   const isSelected = selectedValue === value
   const select = React.useCallback(() => {
@@ -61,7 +60,7 @@ function Option<T extends string>({
 
 const OptionComponentType = (<Option value="" />).type
 
-function Select<T extends string>(
+function Select(
   {
     size,
     round,
@@ -73,12 +72,12 @@ function Select<T extends string>(
     onKeyDown,
     onClick,
     ...props
-  }: SelectProps<T>,
+  }: SelectProps,
   inputRef?: React.ForwardedRef<HTMLInputElement>,
 ) {
   const [valueState, setValueState] = React.useState(valueProps ?? defaultValue)
   const value = valueProps ?? valueState
-  React.useEffect(() => onChange?.(valueState as T), [valueState])
+  React.useEffect(() => onChange?.(valueState), [valueState])
 
   const [isOpen, { setTrue: open, setFalse: close, toggle }] = useBooleanState()
   useScrollLock(isOpen)
@@ -113,10 +112,10 @@ function Select<T extends string>(
     setValueState((prev: string) => {
       if (prev === v) {
         setLabel(options[defaultValue] ?? '')
-        return defaultValue as T
+        return defaultValue
       }
       setLabel(options[v] ?? '')
-      return v as T
+      return v
     })
     closeAndFocusToSelectInput()
   }, [])
@@ -196,9 +195,9 @@ function Select<T extends string>(
   )
 }
 
-const ForwardedSelect = forwardRefWithGeneric(Select)
+const ForwardedSelect = React.forwardRef(Select)
 
-function SelectContainer<T extends string>(
+function SelectContainer(
   {
     className,
     style,
@@ -207,7 +206,7 @@ function SelectContainer<T extends string>(
     state,
     withBackground,
     ...props
-  }: SelectContainerProps<T>,
+  }: SelectContainerProps,
   inputRef?: React.ForwardedRef<HTMLInputElement>,
 ) {
   return (
@@ -234,4 +233,4 @@ function SelectContainer<T extends string>(
 Option.displayName = 'Select.Option'
 SelectContainer.displayName = 'Select'
 
-export default Object.assign(forwardRefWithGeneric(SelectContainer), { Option })
+export default Object.assign(React.forwardRef(SelectContainer), { Option })

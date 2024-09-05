@@ -83,7 +83,7 @@ const meta: Meta<typeof Select> = {
     value: {
       description: '셀렉트 박스의 value를 지정합니다.',
       table: {
-        type: { summary: '(T extends string) | string' },
+        type: { summary: 'string' },
         defaultValue: { summary: 'undefined' },
       },
     },
@@ -91,7 +91,7 @@ const meta: Meta<typeof Select> = {
       description:
         '셀렉트 박스의 value가 바뀔 때마다 실행되는 함수를 지정합니다.',
       table: {
-        type: { summary: '(value: (T extends string) | string) => void' },
+        type: { summary: '(value: string) => void' },
         defaultValue: { summary: 'undefined' },
       },
     },
@@ -124,7 +124,7 @@ const style: React.CSSProperties = {
   width: '50%',
 }
 
-type Library = 'React' | 'Vue' | 'Angular' | 'Svelte' | undefined
+type Library = 'React' | 'Vue' | 'Angular' | 'Svelte' | ''
 
 export const SelectDefault: Story = {
   render: (props) => {
@@ -139,7 +139,7 @@ export const SelectDefault: Story = {
         <div style={style}>
           <Select
             {...props}
-            value={lib ?? ''}
+            value={lib}
             onChange={(value) => setLib(value as Library)}>
             <Select.Option value="React" />
             <Select.Option value="Vue" />
