@@ -20,9 +20,9 @@ interface ConfirmDialogProps {
   onClose?: () => void
   withoutDimmed?: boolean
   type?: keyof typeof confirmType
-  onCancel?: () => void
+  onCancel?: (status: false) => void
   cancelButtonTitle?: string
-  onConfirm?: () => void
+  onConfirm?: (status: true) => void
   confirmButtonTitle?: string
 }
 
@@ -56,7 +56,7 @@ export default function ConfirmDialog({
         <Button
           variant="light"
           onClick={() => {
-            onCancel?.()
+            onCancel?.(false)
             props?.onClose?.()
           }}>
           {cancelButtonTitle || '취소'}
@@ -65,7 +65,7 @@ export default function ConfirmDialog({
           variant="filled"
           color={confirmType[type || 'default']}
           onClick={() => {
-            onConfirm?.()
+            onConfirm?.(true)
             props?.onClose?.()
           }}>
           {confirmButtonTitle || '확인'}
