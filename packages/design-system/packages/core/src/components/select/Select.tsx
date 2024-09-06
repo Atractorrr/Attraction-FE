@@ -6,6 +6,7 @@ import {
   useTimeout,
   useElementRect,
   useBooleanState,
+  useIsomorphicLayoutEffect,
 } from '@attraction/ds-hooks'
 import { ArrowFillDownOutline, CheckOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
@@ -123,7 +124,7 @@ function Select(
   const inputBox = useElementRect(containerRef)
   const optionBox = useElementRect(optionRef, [isOpen])
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isOpen) {
       const optionEl = optionRef.current
       handleOptionA11y(optionEl, closeAndFocusToSelectInput)

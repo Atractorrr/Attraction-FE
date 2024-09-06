@@ -1,5 +1,6 @@
 import React from 'react'
 import { useWindowEvent } from '../use-window-event'
+import { useIsomorphicLayoutEffect } from '../use-isomorphic-layout-effect'
 
 type ElementRect = Readonly<Omit<DOMRect, 'x' | 'y' | 'toJSON'>>
 
@@ -27,7 +28,7 @@ export default function useElementRect<T extends HTMLElement>(
     setRect(getElementRect(ref.current))
   }, [ref.current])
 
-  React.useLayoutEffect(() => handleResize(), deps ?? [])
+  useIsomorphicLayoutEffect(() => handleResize(), deps ?? [])
 
   useWindowEvent('resize', handleResize)
   useWindowEvent('scroll', handleResize)

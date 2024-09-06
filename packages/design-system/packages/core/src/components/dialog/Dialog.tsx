@@ -1,7 +1,11 @@
 import React from 'react'
 import { XOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
-import { useOutsideClick, useScrollLock } from '@attraction/ds-hooks'
+import {
+  useOutsideClick,
+  useScrollLock,
+  useIsomorphicLayoutEffect,
+} from '@attraction/ds-hooks'
 import { motion, AnimatePresence, type Target } from 'framer-motion'
 import { $variable } from '../../token'
 import { Button } from '../button'
@@ -144,7 +148,7 @@ function Dialog({
 
   useScrollLock(isOpen ?? false)
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isOpen) {
       const containerEl = containerRef.current
       handleDialogA11y(containerEl)
