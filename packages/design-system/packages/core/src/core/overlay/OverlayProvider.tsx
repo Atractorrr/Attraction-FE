@@ -1,5 +1,4 @@
 import React from 'react'
-import { createPortal } from 'react-dom'
 import type { OverlayState } from './Overlay.type'
 
 export const OverlayContext = React.createContext<OverlayState | null>(null)
@@ -30,12 +29,9 @@ export default function OverlayProvider({ children }: React.PropsWithChildren) {
   return (
     <OverlayContext.Provider value={context}>
       {children}
-      {createPortal(
-        [...overlayMap.entries()].map(([id, element]) => (
-          <React.Fragment key={id}>{element}</React.Fragment>
-        )),
-        document.body,
-      )}
+      {[...overlayMap.entries()].map(([id, element]) => (
+        <React.Fragment key={id}>{element}</React.Fragment>
+      ))}
     </OverlayContext.Provider>
   )
 }

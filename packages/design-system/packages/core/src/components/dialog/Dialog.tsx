@@ -1,4 +1,5 @@
 import React from 'react'
+import { createPortal } from 'react-dom'
 import { XOutline } from '@attraction/icons'
 import { cn } from '@attraction/utils'
 import {
@@ -106,10 +107,10 @@ function Footer({ className, children, ...props }: DialogDecoratorProps) {
 
 const dialogPositionVariant: Record<
   DialogPosition,
-  Record<'default' | 'animate', Target>
+  Record<'initial' | 'animate', Target>
 > = {
   top: {
-    default: {
+    initial: {
       transform: 'translate(-50%, -24%) scale(0.9)',
       opacity: 0.3,
     },
@@ -119,7 +120,7 @@ const dialogPositionVariant: Record<
     },
   },
   center: {
-    default: {
+    initial: {
       transform: 'translate(-50%, -42%) scale(0.9)',
       opacity: 0.3,
     },
@@ -155,15 +156,15 @@ function Dialog({
     }
   }, [isOpen])
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className={cn(dialogVariants({ size, position }), className)}>
           <motion.div
             ref={containerRef}
-            initial={dialogPositionVariant[position].default}
+            initial={dialogPositionVariant[position].initial}
             animate={dialogPositionVariant[position].animate}
-            exit={dialogPositionVariant[position].default}
+            exit={dialogPositionVariant[position].initial}
             transition={{ ease: 'easeInOut', duration: 0.16 }}
             className={dialogContainerClassName}
             style={style}>
@@ -181,7 +182,8 @@ function Dialog({
           )}
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   )
 }
 
