@@ -2,8 +2,10 @@ import React from 'react'
 import { Dialog } from '../dialog'
 import { Button } from '../button'
 
+type ConfirmDialogType = 'danger' | 'warn' | 'info' | 'success' | 'default'
+
 const confirmType: Record<
-  string,
+  ConfirmDialogType,
   React.ComponentProps<typeof Button>['color']
 > = {
   danger: 'red',
@@ -19,7 +21,7 @@ interface ConfirmDialogProps {
   open?: boolean
   onClose?: () => void
   withoutDimmed?: boolean
-  type?: keyof typeof confirmType
+  type?: ConfirmDialogType
   onCancel?: (status: false) => void
   cancelButtonTitle?: string
   onConfirm?: (status: true) => void

@@ -10,10 +10,9 @@ export type ConfirmConfig = Pick<
 export default function useConfirm(defaultConfig?: ConfirmConfig) {
   const overlay = useOverlay()
 
-  return (content: string, config?: ConfirmConfig) => {
-    return new Promise<boolean>((resolve) => {
+  return (content: string, config?: ConfirmConfig) =>
+    new Promise<boolean>((resolve) => {
       overlay.open(({ isOpen, close }) => {
-        const option = config ?? defaultConfig ?? {}
         return (
           <ConfirmDialog
             content={content}
@@ -21,10 +20,16 @@ export default function useConfirm(defaultConfig?: ConfirmConfig) {
             onClose={close}
             onCancel={resolve}
             onConfirm={resolve}
-            {...option}
+            title={config?.title || defaultConfig?.title}
+            type={config?.type || defaultConfig?.type}
+            cancelButtonTitle={
+              config?.cancelButtonTitle || defaultConfig?.cancelButtonTitle
+            }
+            confirmButtonTitle={
+              config?.confirmButtonTitle || defaultConfig?.confirmButtonTitle
+            }
           />
         )
       })
     })
-  }
 }
