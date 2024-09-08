@@ -57,12 +57,14 @@
     display: block;
     width: 100%;
     min-height: 3rem;
+    max-height: calc(100dvh - 17.5rem);
     box-sizing: border-box;
     padding: 0.25rem 0rem;
     font-size: variable.$ds-font-size-300;
     font-weight: variable.$ds-font-weight-regular;
     color: variable.$ds-gray-700;
     line-height: variable.$ds-leading-normal;
+    overflow-y: auto;
     .dark & {
       color: variable.$ds-gray-050;
     }
