@@ -7,6 +7,8 @@ module.exports = {
   },
   rules: {
     '@next/next/no-sync-scripts': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
     'react/require-default-props': 'off',
     'jsx-a11y/label-has-associated-control': [
       2,
