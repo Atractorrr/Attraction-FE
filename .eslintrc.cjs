@@ -5,7 +5,6 @@ module.exports = {
     'airbnb-typescript',
     'plugin:tailwindcss/recommended',
     'plugin:prettier/recommended',
-    'plugin:import/recommended',
   ],
   parser: '@typescript-eslint/parser',
   rules: {
