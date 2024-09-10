@@ -6,13 +6,8 @@ import '@/app/style/font.css'
 import '@/app/style/index.css'
 import '@attraction/design-system/dist/index.css'
 
-import initMSW from '@/__mocks__'
 import { useSession } from '@/entities/auth'
 import Provider from './provider'
-
-if (process.env.NODE_ENV !== 'production') {
-  initMSW()
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_FE_URL!),

@@ -39,13 +39,7 @@
     "@attraction/config": "workspace:^",
     "@svgr/webpack": "^8.1.0",
     "eslint-config-next": "^14.2.3",
-    "msw": "^2.3.0",
     "postcss": "^8",
     "webpack": "^5.92.0"
-  },
-  "msw": {
-    "workerDirectory": [
-      "public"
-    ]
   }
 }
