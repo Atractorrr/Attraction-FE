@@ -5,7 +5,7 @@ import { get } from '../tools'
 const mainHandlers: HttpHandler[] = [
   get('/v1/user/:email/articles/received', ({ request }) => {
     const url = new URL(request.url)
-    const size = Number(url.searchParams.get('size') ?? 5)
+    const size = Number(url.searchParams.get('size') || 5)
     const res = {
       mainArticles: recentArticles.slice(0, size),
     }
@@ -13,7 +13,7 @@ const mainHandlers: HttpHandler[] = [
   }),
   get('/v1/newsletters/recommend', ({ request }) => {
     const url = new URL(request.url)
-    const size = Number(url.searchParams.get('size' ?? 10))
+    const size = Number(url.searchParams.get('size') || 10)
     const category = url.searchParams.get('category')
     const res = {
       mainPageNewsletters: category

@@ -1,14 +1,12 @@
 module.exports = {
-  extends: ['../../.eslintrc.cjs', 'next/core-web-vitals'],
+  extends: ['../../.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
   rules: {
-    '@next/next/no-sync-scripts': 'off',
-    'import/no-unresolved': 'off',
-    'import/extensions': 'off',
+    // '@next/next/no-sync-scripts': 'off',
     'react/require-default-props': 'off',
     'jsx-a11y/label-has-associated-control': [
       2,
