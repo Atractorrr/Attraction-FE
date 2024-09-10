@@ -1,0 +1,48 @@
+@use '../../token/variable';
+
+.ds-input-description {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  margin: 0px;
+  margin-top: 0.75rem;
+  padding: 0px 0.25rem;
+  font-size: variable.$ds-font-size-300;
+  font-weight: variable.$ds-font-weight-regular;
+  color: variable.$ds-gray-500;
+  line-height: variable.$ds-leading-normal;
+  word-break: keep-all;
+  .dark & {
+    color: variable.$ds-gray-400;
+  }
+
+  *[class$='--size-lg'] & {
+    margin-top: 1rem;
+  }
+
+  *[class$='--danger'] & {
+    color: variable.$ds-red-400;
+    .dark & {
+      color: variable.$ds-red-300;
+    }
+  }
+  *[class$='--warn'] & {
+    color: variable.$ds-yellow-400;
+    .dark & {
+      color: variable.$ds-yellow-300;
+    }
+  }
+  *[class$='--success'] & {
+    color: variable.$ds-green-400;
+    .dark & {
+      color: variable.$ds-green-300;
+    }
+  }
+  *[class$='--info'] & {
+    color: variable.$ds-blue-400;
+    .dark & {
+      color: variable.$ds-blue-300;
+    }
+  }
+}

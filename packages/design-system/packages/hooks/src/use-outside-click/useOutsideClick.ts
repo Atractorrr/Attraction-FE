@@ -2,7 +2,7 @@ import React from 'react'
 import { useDocumentEvent } from '../use-document-event'
 
 export default function useOutsideClick<T extends HTMLElement>(
-  callback: () => void,
+  callback: (event: MouseEvent) => void,
 ) {
   const targetAreaRef = React.useRef<T | null>(null)
   useDocumentEvent('click', (e) => {
@@ -10,7 +10,7 @@ export default function useOutsideClick<T extends HTMLElement>(
     if (targetAreaRef.current.contains(e.target as Node | null)) {
       return
     }
-    callback()
+    callback(e)
   })
 
   return targetAreaRef

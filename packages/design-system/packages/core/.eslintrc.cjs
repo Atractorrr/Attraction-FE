@@ -5,6 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   rules: {
+    'tailwindcss/no-custom-classname': 'off',
     'import/no-unresolved': [2, { caseSensitive: false }],
     'react/require-default-props': 'off',
     'react/prop-types': 'off',

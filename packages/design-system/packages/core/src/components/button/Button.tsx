@@ -17,10 +17,9 @@ interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, className, variant, color, size, round, square, ...props }, ref) => (
+  ({ className, variant, color, size, round, square, ...props }, ref) => (
     <button
-      // eslint-disable-next-line react/button-has-type
-      type={type || 'button'}
+      type="button"
       className={cn(
         buttonVariants({
           variant,
