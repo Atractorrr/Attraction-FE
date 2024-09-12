@@ -25,9 +25,9 @@ const meta: Meta<typeof TextInput> = {
     size: {
       description: '인풋의 크기를 지정합니다.',
       control: 'select',
-      options: ['md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       table: {
-        type: { summary: ['md', 'lg'].join(' | ') },
+        type: { summary: ['xs', 'sm', 'md', 'lg'].join(' | ') },
         defaultValue: { summary: 'md' },
       },
     },

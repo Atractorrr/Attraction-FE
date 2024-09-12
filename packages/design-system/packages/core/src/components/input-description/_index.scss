@@ -17,6 +17,11 @@
     color: variable.$ds-gray-400;
   }
 
+  *[class$='--size-xs'] &,
+  *[class$='--size-sm'] & {
+    margin-top: 0.5rem;
+    font-size: variable.$ds-font-size-200;
+  }
   *[class$='--size-lg'] & {
     margin-top: 1rem;
   }

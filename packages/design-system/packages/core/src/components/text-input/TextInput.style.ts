@@ -12,6 +12,8 @@ export const variants = {
     info: getTextInputModifier('info'),
   },
   size: {
+    xs: getTextInputModifier('size-xs'),
+    sm: getTextInputModifier('size-sm'),
     md: '',
     lg: getTextInputModifier('size-lg'),
   },
