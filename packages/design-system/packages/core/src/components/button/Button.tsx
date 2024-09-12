@@ -14,10 +14,23 @@ interface ButtonProps
   size?: keyof ButtonVariants['size']
   round?: keyof ButtonVariants['round']
   square?: boolean
+  withoutClickInteraction?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, color, size, round, square, ...props }, ref) => (
+  (
+    {
+      className,
+      variant,
+      color,
+      size,
+      round,
+      square,
+      withoutClickInteraction,
+      ...props
+    },
+    ref,
+  ) => (
     <button
       type="button"
       className={cn(
@@ -27,6 +40,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           size,
           round,
           square: square ? 'square' : null,
+          clickInteraction: withoutClickInteraction ? 'without' : null,
         }),
         className,
       )}
