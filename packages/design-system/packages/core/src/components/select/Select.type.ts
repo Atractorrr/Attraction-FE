@@ -25,7 +25,9 @@ export interface SelectContainerProps
   state?: keyof SelectVariants['state']
   size?: keyof SelectVariants['size']
   round?: keyof SelectVariants['round']
+  border?: keyof SelectVariants['border']
   withBackground?: boolean
+  deselect?: boolean
   mobile?: boolean
   label?: React.ReactNode
   description?: React.ReactNode
@@ -34,7 +36,13 @@ export interface SelectContainerProps
 export type SelectProps = React.PropsWithChildren &
   Omit<
     SelectContainerProps,
-    'className' | 'style' | 'label' | 'description' | 'state' | 'withBackground'
+    | 'className'
+    | 'style'
+    | 'label'
+    | 'description'
+    | 'state'
+    | 'withBackground'
+    | 'border'
   >
 
 export type SelectOption = Record<string, string | null>
