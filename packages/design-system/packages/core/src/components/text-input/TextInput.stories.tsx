@@ -40,6 +40,15 @@ const meta: Meta<typeof TextInput> = {
         defaultValue: { summary: 'sm' },
       },
     },
+    border: {
+      description: '인풋의 테두리 지정 여부를 지정합니다.',
+      control: 'select',
+      options: ['default', 'none'],
+      table: {
+        type: { summary: ['default', 'none'].join(' | ') },
+        defaultValue: { summary: 'default' },
+      },
+    },
     disabled: {
       description: '인풋의 비활성화 상태를 지정합니다.',
       control: 'boolean',

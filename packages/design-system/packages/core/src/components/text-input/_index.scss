@@ -129,4 +129,8 @@
       font-size: variable.$ds-font-size-400;
     }
   }
+
+  &--border-none > input {
+    border: none;
+  }
 }

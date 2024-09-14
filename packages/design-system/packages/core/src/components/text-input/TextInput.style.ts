@@ -28,6 +28,10 @@ export const variants = {
     none: '',
     with: getTextInputModifier('background'),
   },
+  border: {
+    default: '',
+    none: getTextInputModifier('border-none'),
+  },
 }
 
 export const textInputVariants = cva(textInputClassName, {
@@ -37,5 +41,6 @@ export const textInputVariants = cva(textInputClassName, {
     size: 'md',
     round: 'sm',
     background: 'none',
+    border: 'default',
   },
 })
