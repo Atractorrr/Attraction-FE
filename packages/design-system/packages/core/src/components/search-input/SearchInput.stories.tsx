@@ -2,8 +2,9 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import SearchInput from './SearchInput'
 import { $variable } from '../../token'
+import { Select } from '../select'
+import SearchInput from './SearchInput'
 
 const meta: Meta<typeof SearchInput> = {
   title: 'Inputs/SearchInput',
@@ -16,9 +17,9 @@ const meta: Meta<typeof SearchInput> = {
     size: {
       description: '인풋의 크기를 지정합니다.',
       control: 'select',
-      options: ['md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       table: {
-        type: { summary: ['md', 'lg'].join(' | ') },
+        type: { summary: ['xs', 'sm', 'md', 'lg'].join(' | ') },
         defaultValue: { summary: 'md' },
       },
     },
@@ -39,6 +40,15 @@ const meta: Meta<typeof SearchInput> = {
         defaultValue: { summary: 'undefined' },
       },
     },
+    clearOnSubmit: {
+      description:
+        'true로 지정 시 onSubmit 함수가 실행될 때 onClear 함수가 같이 실행됩니다.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     withBackground: {
       description: '인풋 배경색의 기본 상태를 지정합니다.',
       control: 'boolean',
@@ -48,11 +58,20 @@ const meta: Meta<typeof SearchInput> = {
       },
     },
     withClearButton: {
-      description: '검색어를 지우는 버튼을 렌더링합니다.',
+      description: 'clear button을 렌더링합니다.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'undefined' },
+      },
+    },
+    submitButtonPosition: {
+      description: 'submit button의 위치를 지정합니다.',
+      control: 'select',
+      options: ['left', 'right'],
+      table: {
+        type: { summary: ['left', 'right'].join(' | ') },
+        defaultValue: { summary: 'left' },
       },
     },
     placeholder: {
@@ -66,14 +85,24 @@ const meta: Meta<typeof SearchInput> = {
     onClear: {
       description: 'clear button을 클릭했을 때 실행시키는 이벤트를 지정합니다.',
       table: {
+        type: { summary: 'React.MouseEventHandler<HTMLButtonElement>' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    onSubmit: {
+      description:
+        '검색 버튼 클릭 또는 엔터키를 입력했을 때 실행시키는 이벤트를 지정합니다.',
+      table: {
         type: { summary: 'function' },
         defaultValue: { summary: 'undefined' },
       },
     },
-    onEnter: {
-      description: '엔터키를 입력했을 때 실행시키는 이벤트를 지정합니다.',
+    clearIcon: {
+      description: 'clear button의 아이콘을 지정합니다.',
       table: {
-        type: { summary: 'function' },
+        type: {
+          summary: '(props: React.SVGProps<SVGSVGElement>) => JSX.Element',
+        },
         defaultValue: { summary: 'undefined' },
       },
     },
@@ -109,7 +138,41 @@ export const SearchInputDefault: Story = {
     </div>
   ),
   args: {
-    onEnter: () => alert('on enter !!!'),
+    onSubmit: () => alert('on submit !!!'),
     onClear: () => alert('on clear !!!'),
+  },
+}
+
+export const SearchInputWithSelect: Story = {
+  render: (props) => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <div style={style}>
+        <SearchInput.WithSelect>
+          <Select
+            size="xs"
+            border="none"
+            round="xs"
+            defaultValue="title"
+            style={{ width: '6.25rem' }}>
+            <Select.Option value="title">제목</Select.Option>
+            <Select.Option value="content">내용</Select.Option>
+          </Select>
+          <SearchInput.Divider />
+          <SearchInput {...props} />
+        </SearchInput.WithSelect>
+      </div>
+    </div>
+  ),
+  args: {
+    onSubmit: () => alert('on submit !!!'),
+    onClear: () => alert('on clear !!!'),
+    size: 'sm',
+    submitButtonPosition: 'right',
+    withClearButton: true,
   },
 }

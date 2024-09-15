@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-const selectClassName = 'ds-select'
+export const selectClassName = 'ds-select'
 const getSelectModifier = (name: string) => `${selectClassName}--${name}`
 
 export const selectInputClassName = `${selectClassName}__input`
