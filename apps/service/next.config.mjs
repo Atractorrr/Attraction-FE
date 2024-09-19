@@ -1,5 +1,5 @@
-import { withSentryConfig } from '@sentry/nextjs'
 import withPWAInit from '@ducanh2912/next-pwa'
+import { withSentryConfig } from '@sentry/nextjs'
 
 const withPWA = withPWAInit({
   cacheOnFrontEndNav: true,
@@ -98,10 +98,6 @@ const withPWA = withPWAInit({
 const nextConfig = {
   async rewrites() {
     return [
-      {
-        source: '/mocks/api/:path*',
-        destination: `${process.env.MOCK_URL}/api/:path*`,
-      },
       {
         source: '/server/api/:path*',
         destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/:path*`,
