@@ -1,4 +1,4 @@
-import { NoticeHeader } from '@/features/notice'
+import { NoticeContent, NoticeFooter, NoticeHeader } from '@/features/notice'
 import { Header } from '@/widgets/menu'
 
 export default function Page() {
@@ -7,6 +7,8 @@ export default function Page() {
       <Header title="공지사항" />
       <div className="rounded-2xl border border-gray-100 bg-white p-6">
         <NoticeHeader />
+        <NoticeContent />
+        <NoticeFooter />
       </div>
     </>
   )
