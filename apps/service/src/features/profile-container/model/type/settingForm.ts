@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import type { NewsletterCategory } from '@/shared/type'
 
 export interface SettingForm {

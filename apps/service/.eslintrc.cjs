@@ -14,6 +14,7 @@ module.exports = {
         some: ['nesting', 'id'],
       },
     ],
+    '@typescript-eslint/naming-convention': 'off',
   },
   settings: {
     'import/resolver': {
