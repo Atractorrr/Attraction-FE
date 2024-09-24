@@ -25,9 +25,9 @@ const meta: Meta<typeof Select> = {
     size: {
       description: '셀렉트 박스의 크기를 지정합니다.',
       control: 'select',
-      options: ['md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       table: {
-        type: { summary: ['md', 'lg'].join(' | ') },
+        type: { summary: ['xs', 'sm', 'md', 'lg'].join(' | ') },
         defaultValue: { summary: 'md' },
       },
     },
@@ -38,6 +38,24 @@ const meta: Meta<typeof Select> = {
       table: {
         type: { summary: ['xs', 'sm', 'md'].join(' | ') },
         defaultValue: { summary: 'sm' },
+      },
+    },
+    border: {
+      description: '셀렉트 박스의 테두리 지정 여부를 지정합니다.',
+      control: 'select',
+      options: ['default', 'none'],
+      table: {
+        type: { summary: ['default', 'none'].join(' | ') },
+        defaultValue: { summary: 'sm' },
+      },
+    },
+    deselect: {
+      description:
+        'true로 지정 시 같은 옵션을 다시 선택하면 선택이 취소됩니다.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     disabled: {

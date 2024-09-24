@@ -9,8 +9,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   rules: {
     'prettier/prettier': 'error',
-    'import/extensions': 'off',
-    'import/no-unresolved': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-console': 'error',

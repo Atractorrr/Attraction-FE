@@ -1,20 +1,22 @@
 import { useElementRect } from '@attraction/ds-hooks'
+import { rem } from '../../core'
+import { OPTION_CONTAINER_PADDING, SELECT_OPTION_GAP } from './Select.constant'
 
 export function computeOptionPosition(
   rect: ReturnType<typeof useElementRect>,
   optionHeight: number,
 ) {
   const { top, bottom, left, width } = rect
-  const line = window.innerHeight - optionHeight - 20
+  const line = window.innerHeight - optionHeight - OPTION_CONTAINER_PADDING
   const isTopPosition = line < bottom
   const currentTop = isTopPosition
-    ? `calc(${top - optionHeight}px - 0.25rem)`
-    : `calc(${bottom}px + 0.25rem)`
+    ? rem(top - optionHeight - SELECT_OPTION_GAP)
+    : rem(bottom + SELECT_OPTION_GAP)
 
   return {
     '--ds-select-top': currentTop,
-    '--ds-select-left': `${left}px`,
-    '--ds-select-width': `${width}px`,
+    '--ds-select-left': rem(left),
+    '--ds-select-width': rem(width),
   } as React.CSSProperties
 }
 

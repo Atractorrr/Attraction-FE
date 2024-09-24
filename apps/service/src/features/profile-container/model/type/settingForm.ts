@@ -1,19 +1,19 @@
-import { NEWSLETTER_CATEGORY } from '@/shared/constant'
+/* eslint-disable */
 
-type CheckFormDataWithNull = {
-  [K in keyof Omit<SettingForm, 'isNicknameChecked'>]: SettingForm[K] | null
-}
+import type { NewsletterCategory } from '@/shared/type'
 
-type CheckFormDataWithoutNullType = {
-  [K in keyof Omit<SettingForm, 'isNicknameChecked'>]?: SettingForm[K]
-}
-
-interface SettingForm {
+export interface SettingForm {
   nickname: string
-  interest: (keyof typeof NEWSLETTER_CATEGORY)[]
+  interest: NewsletterCategory[]
   isNicknameChecked: boolean
   userExpiration: number
   occupation: string
 }
 
-export type { CheckFormDataWithoutNullType, CheckFormDataWithNull, SettingForm }
+export type CheckFormDataWithNull = {
+  [K in Exclude<keyof SettingForm, 'isNicknameChecked'>]: SettingForm[K] | null
+}
+
+export type CheckFormDataWithoutNullType = Partial<
+  Omit<SettingForm, 'isNicknameChecked'>
+>

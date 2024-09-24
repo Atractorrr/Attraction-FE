@@ -62,6 +62,10 @@
     margin-left: 0.25rem;
   }
 
+  &--without-click-interaction:active {
+    transform: translateY(0);
+  }
+
   &--red {
     color: variable.$ds-red-400;
 

@@ -51,7 +51,8 @@ function Option({
         round={round === 'md' ? 'sm' : 'xs'}
         title={title || `선택: ${label || value}`}
         disabled={disabled}
-        onClick={select}>
+        onClick={select}
+        withoutClickInteraction>
         <span>{label || value}</span>
         {isSelected && <CheckOutline />}
       </Button>
@@ -66,6 +67,7 @@ function Select(
     size,
     round,
     mobile: isMobile = false,
+    deselect: isDeselect = false,
     value: valueProps,
     defaultValue = '',
     onChange,
@@ -109,20 +111,23 @@ function Select(
 
   const [label, setLabel] = React.useState(options[defaultValue] ?? '')
 
-  const setValue = React.useCallback((v: string) => {
-    setValueState((prev: string) => {
-      if (prev === v) {
-        setLabel(options[defaultValue] ?? '')
-        return defaultValue
-      }
-      setLabel(options[v] ?? '')
-      return v
-    })
-    closeAndFocusToSelectInput()
-  }, [])
+  const setValue = React.useCallback(
+    (v: string) => {
+      setValueState((prev: string) => {
+        if (isDeselect && prev === v) {
+          setLabel(options[defaultValue] ?? '')
+          return defaultValue
+        }
+        setLabel(options[v] ?? '')
+        return v
+      })
+      closeAndFocusToSelectInput()
+    },
+    [isDeselect],
+  )
 
-  const inputBox = useElementRect(containerRef)
-  const optionBox = useElementRect(optionRef, [isOpen])
+  const inputBox = useElementRect(containerRef, [size])
+  const optionBox = useElementRect(optionRef, [isOpen, size])
 
   useIsomorphicLayoutEffect(() => {
     if (isOpen) {
@@ -205,6 +210,7 @@ function SelectContainer(
     label,
     description,
     state,
+    border,
     withBackground,
     ...props
   }: SelectContainerProps,
@@ -218,6 +224,7 @@ function SelectContainer(
           size: props.size,
           round: props.round,
           background: withBackground ? 'with' : null,
+          border,
         }),
         className,
       )}

@@ -1,16 +1,7 @@
-export type FocusableElement =
-  | HTMLAnchorElement
-  | HTMLButtonElement
-  | HTMLInputElement
-  | HTMLTextAreaElement
-  | HTMLSelectElement
-  | HTMLDetailsElement
-
-export const selector =
-  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
+import { getFocusableElementAll } from '../../core'
 
 export function handleDialogA11y<T extends HTMLElement>(element: T | null) {
-  const focusableEls = element?.querySelectorAll<FocusableElement>(selector)
+  const focusableEls = getFocusableElementAll(element)
   if (focusableEls && focusableEls.length > 0) {
     const firstFocusableEl = focusableEls[0]
     const lastFocusableEl = focusableEls[focusableEls.length - 1]

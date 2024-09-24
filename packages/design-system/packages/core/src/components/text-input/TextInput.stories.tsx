@@ -25,9 +25,9 @@ const meta: Meta<typeof TextInput> = {
     size: {
       description: '인풋의 크기를 지정합니다.',
       control: 'select',
-      options: ['md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       table: {
-        type: { summary: ['md', 'lg'].join(' | ') },
+        type: { summary: ['xs', 'sm', 'md', 'lg'].join(' | ') },
         defaultValue: { summary: 'md' },
       },
     },
@@ -38,6 +38,15 @@ const meta: Meta<typeof TextInput> = {
       table: {
         type: { summary: ['xs', 'sm', 'md', 'lg', 'full'].join(' | ') },
         defaultValue: { summary: 'sm' },
+      },
+    },
+    border: {
+      description: '인풋의 테두리 지정 여부를 지정합니다.',
+      control: 'select',
+      options: ['default', 'none'],
+      table: {
+        type: { summary: ['default', 'none'].join(' | ') },
+        defaultValue: { summary: 'default' },
       },
     },
     disabled: {

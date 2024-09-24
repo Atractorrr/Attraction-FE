@@ -12,6 +12,8 @@ export const variants = {
     info: getTextInputModifier('info'),
   },
   size: {
+    xs: getTextInputModifier('size-xs'),
+    sm: getTextInputModifier('size-sm'),
     md: '',
     lg: getTextInputModifier('size-lg'),
   },
@@ -26,6 +28,10 @@ export const variants = {
     none: '',
     with: getTextInputModifier('background'),
   },
+  border: {
+    default: '',
+    none: getTextInputModifier('border-none'),
+  },
 }
 
 export const textInputVariants = cva(textInputClassName, {
@@ -35,5 +41,6 @@ export const textInputVariants = cva(textInputClassName, {
     size: 'md',
     round: 'sm',
     background: 'none',
+    border: 'default',
   },
 })

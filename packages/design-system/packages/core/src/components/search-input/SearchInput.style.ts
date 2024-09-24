@@ -5,8 +5,16 @@ const getSearchInputModifier = (name: string) => {
   return `${searchInputClassName}--${name}`
 }
 
+export const searchInputWithSelectClassName = `${searchInputClassName}__with-select`
+export const searchInputWithSelectClassNameFocusModifier = `${searchInputClassName}__with-select--focused`
+export const searchInputSubmitButtonClassName = `${searchInputClassName}__submit-button`
+export const searchInputClearButtonClassName = `${searchInputClassName}__clear-button`
+export const searchInputDividerClassName = `${searchInputClassName}__divider`
+
 export const variants = {
   size: {
+    xs: getSearchInputModifier('size-xs'),
+    sm: getSearchInputModifier('size-sm'),
     md: '',
     lg: getSearchInputModifier('size-lg'),
   },
@@ -21,9 +29,18 @@ export const variants = {
     none: '',
     with: getSearchInputModifier('background'),
   },
+  submitButtonPosition: {
+    left: '',
+    right: getSearchInputModifier('submit-button-right'),
+  },
 }
 
 export const searchInputVariants = cva(searchInputClassName, {
   variants,
-  defaultVariants: { size: 'md', round: 'sm', background: 'none' },
+  defaultVariants: {
+    size: 'md',
+    round: 'sm',
+    background: 'none',
+    submitButtonPosition: 'left',
+  },
 })

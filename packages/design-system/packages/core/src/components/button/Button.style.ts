@@ -37,6 +37,10 @@ export const variants = {
     default: '',
     square: getButtonModifier('square'),
   },
+  clickInteraction: {
+    default: '',
+    without: getButtonModifier('without-click-interaction'),
+  },
 }
 
 export const buttonVariants = cva(buttonClassName, {

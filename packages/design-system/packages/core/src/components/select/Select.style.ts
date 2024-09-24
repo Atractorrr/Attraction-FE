@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-const selectClassName = 'ds-select'
+export const selectClassName = 'ds-select'
 const getSelectModifier = (name: string) => `${selectClassName}--${name}`
 
 export const selectInputClassName = `${selectClassName}__input`
@@ -16,6 +16,8 @@ export const variants = {
     info: getSelectModifier('info'),
   },
   size: {
+    xs: getSelectModifier('size-xs'),
+    sm: getSelectModifier('size-sm'),
     md: '',
     lg: getSelectModifier('size-lg'),
   },
@@ -28,6 +30,10 @@ export const variants = {
     none: '',
     with: getSelectModifier('background'),
   },
+  border: {
+    default: '',
+    none: getSelectModifier('border-none'),
+  },
 }
 
 export const selectVariants = cva(selectClassName, {
@@ -37,5 +43,6 @@ export const selectVariants = cva(selectClassName, {
     size: 'md',
     round: 'sm',
     background: 'none',
+    border: 'default',
   },
 })

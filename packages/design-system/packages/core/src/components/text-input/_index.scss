@@ -109,10 +109,28 @@
     }
   }
 
+  &--size-xs {
+    & > input {
+      height: 2rem;
+      padding: 0.25rem 0.75rem;
+      font-size: variable.$ds-font-size-200;
+    }
+  }
+  &--size-sm {
+    & > input {
+      height: 2.25rem;
+      padding: 0.25rem 0.75rem;
+      font-size: variable.$ds-font-size-200;
+    }
+  }
   &--size-lg {
     & > input {
       height: 3rem;
       font-size: variable.$ds-font-size-400;
     }
+  }
+
+  &--border-none > input {
+    border: none;
   }
 }

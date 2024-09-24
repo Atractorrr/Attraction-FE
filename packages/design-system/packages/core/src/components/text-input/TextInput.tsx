@@ -17,6 +17,7 @@ interface TextProps
   state?: keyof TextInputVariant['state']
   size?: keyof TextInputVariant['size']
   round?: keyof TextInputVariant['round']
+  border?: keyof TextInputVariant['border']
   withBackground?: boolean
   label?: React.ReactNode
   description?: React.ReactNode
@@ -33,6 +34,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
       size,
       round,
       withBackground,
+      border,
       ...props
     },
     ref,
@@ -44,6 +46,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextProps>(
           size,
           round,
           background: withBackground ? 'with' : null,
+          border,
         }),
         className,
       )}
