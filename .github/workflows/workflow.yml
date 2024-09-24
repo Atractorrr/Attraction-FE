@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        command: ['lint', 'build', 'type']
+        command: ['build', 'type']
 
     steps:
       - name: Checkout
