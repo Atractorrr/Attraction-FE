@@ -3,7 +3,8 @@
   "main": "index.ts",
   "compilerOptions": {
     "target": "ES6",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
