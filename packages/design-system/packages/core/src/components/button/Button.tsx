@@ -1,21 +1,12 @@
 import React from 'react'
 import { cn } from '@attraction/utils'
-import { buttonVariants, variants } from './Button.style'
+import {
+  buttonClassName,
+  buttonVariable,
+  type ButtonVariants,
+} from './Button.style'
 
-type ButtonVariants = typeof variants
-
-interface ButtonProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
-  variant?: keyof ButtonVariants['variant']
-  color?: keyof ButtonVariants['color']
-  size?: keyof ButtonVariants['size']
-  round?: keyof ButtonVariants['round']
-  square?: boolean
-  withoutClickInteraction?: boolean
-}
+type ButtonProps = ButtonVariants & JSX.IntrinsicElements['button']
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -27,24 +18,28 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       round,
       square,
       withoutClickInteraction,
+      withoutBorder,
+      style,
       ...props
     },
     ref,
   ) => (
     <button
       type="button"
-      className={cn(
-        buttonVariants({
+      className={cn(buttonClassName, className)}
+      ref={ref}
+      style={{
+        ...buttonVariable({
           variant,
           color,
           size,
           round,
-          square: square ? 'square' : null,
-          clickInteraction: withoutClickInteraction ? 'without' : null,
+          square,
+          withoutClickInteraction,
+          withoutBorder,
         }),
-        className,
-      )}
-      ref={ref}
+        ...style,
+      }}
       {...props}
     />
   ),

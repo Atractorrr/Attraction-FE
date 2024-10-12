@@ -1,0 +1,66 @@
+@use '../../token/variable';
+
+.ds-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: var(--width);
+  min-height: var(--height);
+  height: auto;
+  box-sizing: border-box;
+  padding: var(--padding);
+  border: var(--light-default-border);
+  font-size: var(--font-size);
+  font-weight: variable.$ds-font-weight-medium;
+  color: var(--light-default-color);
+  line-height: variable.$ds-leading-tight;
+  word-break: keep-all;
+  cursor: pointer;
+  outline: none;
+  border-radius: var(--round);
+  background-color: var(--light-default-background);
+  user-select: none;
+  @include variable.transition-colors();
+
+  :global(.dark) & {
+    color: var(--dark-default-color);
+    border-color: var(--dark-default-border);
+    background-color: var(--dark-default-background);
+  }
+  &:focus,
+  &:hover,
+  &:active {
+    color: var(--light-active-color);
+    border-color: var(--light-active-border);
+    background-color: var(--light-active-background);
+  }
+  &:active {
+    transform: var(--click-interaction);
+  }
+  :global(.dark) &:focus,
+  :global(.dark) &:hover,
+  :global(.dark) &:active {
+    color: var(--dark-active-color);
+    border-color: var(--dark-active-border);
+    background-color: var(--dark-active-background);
+  }
+  &:disabled,
+  &[aria-disabled='true'] {
+    color: var(--light-disabled-color);
+    border-color: var(--light-disabled-border);
+    background-color: var(--light-disabled-background);
+    cursor: not-allowed;
+  }
+  &:disabled:active,
+  &[aria-disabled='true']:active {
+    transform: none;
+  }
+  :global(.dark) &:disabled,
+  :global(.dark) &[aria-disabled='true'] {
+    color: var(--dark-disabled-color);
+    border-color: var(--dark-disabled-border);
+    background-color: var(--dark-disabled-background);
+  }
+}
