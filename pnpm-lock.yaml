@@ -80,6 +80,12 @@ importers:
       '@attraction/design-system':
         specifier: workspace:^
         version: link:../../packages/design-system
+      '@attraction/ds-core':
+        specifier: workspace:^
+        version: link:../../packages/design-system/packages/core
+      '@attraction/ds-hooks':
+        specifier: workspace:^
+        version: link:../../packages/design-system/packages/hooks
       '@attraction/icons':
         specifier: workspace:^
         version: link:../../packages/icons
@@ -154,7 +160,11 @@ importers:
         specifier: ^5.92.0
         version: 5.92.1(@swc/core@1.5.7)
 
-  packages/config: {}
+  packages/config:
+    dependencies:
+      '@attraction/ds-core':
+        specifier: workspace:^
+        version: link:../design-system/packages/core
 
   packages/design-system:
     dependencies:
