@@ -21,6 +21,7 @@ import { useAuth } from '../model'
 function ServerIcon({ className }: { className?: string }) {
   return (
     <svg
+      // TODO: 아이콘 추가 시 제거
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       width="1em"
@@ -39,6 +40,7 @@ function ServerIcon({ className }: { className?: string }) {
 function NewTabIcon({ className }: { className?: string }) {
   return (
     <svg
+      // TODO: 아이콘 추가 시 제거
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       width="1em"

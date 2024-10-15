@@ -18,6 +18,8 @@ interface GetPrevArticleResponse {
       name: string
       category: string
       thumbnailUrl: string
+      homepageUrl: string
+      prevArticleListUrl: string | null
     }
   }
 }
