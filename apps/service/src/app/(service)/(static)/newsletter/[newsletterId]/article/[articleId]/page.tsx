@@ -50,6 +50,9 @@ export default async function PrevArticleDetailPage({
         title={data.title}
         contentUrl={data.contentUrl}
         newsletterId={data.newsletter.id}
+        newsletterUrl={
+          data.newsletter.prevArticleListUrl ?? data.newsletter.homepageUrl
+        }
         newsletterThumbnailUrl={data.newsletter.thumbnailUrl}
         newsletterName={data.newsletter.name}
         receivedAt={data.receivedAt}
