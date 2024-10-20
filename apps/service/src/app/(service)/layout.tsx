@@ -3,8 +3,11 @@ import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 
 import '@/app/style/font.css'
+import '@attraction/ds-core/dist/token.css'
+import '@attraction/ds-core/dist/component.css' // TODO: 스타일 캡슐화 적용 시 제거
+import '@attraction/ds-core/dist/index.css'
+import '@attraction/design-system/dist/index.css' // TODO: 디자인 시스템 개편 시 제거
 import '@/app/style/index.css'
-import '@attraction/design-system/dist/index.css'
 
 import { useSession } from '@/entities/auth'
 import Provider from './provider'
@@ -63,6 +66,11 @@ export default async function ServiceRootLayout({
             strategy="beforeInteractive"
           />
           <Script src="/script/amplitude.js" strategy="afterInteractive" />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-1WN6EE9VE8%22%3E"
+            strategy="beforeInteractive"
+          />
+          <Script src="/script/gtag.js" strategy="afterInteractive" />
         </>
       )}
     </body>

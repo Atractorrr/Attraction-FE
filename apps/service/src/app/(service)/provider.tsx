@@ -1,14 +1,15 @@
-/* eslint-disable react/jsx-key */
+'use client'
 
+/* eslint-disable react/jsx-key */
+import { PropsWithChildren, ReactElement, cloneElement } from 'react'
+import { OverlayProvider } from '@attraction/ds-core'
 import { AuthProvider, DefaultAuthState } from '@/entities/auth'
 import { ChannelTalkProvider } from '@/entities/channel-talk'
 import { ModalProvider } from '@/entities/modal'
 import { PWAProvider } from '@/entities/pwa'
 import { ThemeProvider } from '@/entities/theme'
 import { ToastUIProvider } from '@/entities/toast-ui'
-
 import { DeviceProvider, QueryProvider } from '@/shared/lib'
-import { PropsWithChildren, ReactElement, cloneElement } from 'react'
 
 interface MultiProviderProps {
   providers: ReactElement[]
@@ -41,6 +42,7 @@ export default function Provider({
         <ThemeProvider />,
         <DeviceProvider />,
         <ModalProvider />,
+        <OverlayProvider />,
         <ToastUIProvider />,
       ]}>
       {children}

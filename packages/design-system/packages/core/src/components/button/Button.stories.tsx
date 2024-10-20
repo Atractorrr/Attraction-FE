@@ -69,6 +69,14 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'undefined' },
       },
     },
+    withoutBorder: {
+      description: 'true 설정 시 버튼이 테두리 없이 렌더링됩니다.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
     withoutClickInteraction: {
       description: '버튼 클릭 시 발생하는 클릭 인터랙션을 제거합니다.',
       control: 'boolean',
