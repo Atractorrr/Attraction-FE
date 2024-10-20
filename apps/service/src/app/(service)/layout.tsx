@@ -66,6 +66,11 @@ export default async function ServiceRootLayout({
             strategy="beforeInteractive"
           />
           <Script src="/script/amplitude.js" strategy="afterInteractive" />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-1WN6EE9VE8%22%3E"
+            strategy="beforeInteractive"
+          />
+          <Script src="/script/gtag.js" strategy="afterInteractive" />
         </>
       )}
     </body>
