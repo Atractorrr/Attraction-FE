@@ -8,6 +8,7 @@ import { AuthButton, ShouldReissueTokenGuide, useAuth } from '@/entities/auth'
 import { ThemeDropdownBtn } from '@/entities/theme'
 import { useCheckDevice } from '@/shared/lib'
 import { GOOGLE_OAUTH_URL } from '@/shared/constant'
+import { cn } from '@attraction/utils'
 import MobileHeaderBtn from './MobileHeaderBtn'
 import MobileHeaderMenuBtn from './MobileHeaderMenuBtn'
 
@@ -61,14 +62,15 @@ export default function Header({
     <>
       {shouldReissueToken && <ShouldReissueTokenGuide />}
       <header
-        className={`pb-6 pt-12 md:mb-6 md:py-0 ${
-          isLogin && isMobileDisabled ? 'hidden md:block' : ''
-        }`}>
-        <div className="flex flex-wrap items-center justify-between gap-5 pl-6 pr-5 md:pl-2 md:pr-0">
+        className={cn(
+          'pb-6 pt-12 md:mb-6 md:py-0',
+          isLogin && isMobileDisabled && 'hidden md:block',
+        )}>
+        <div className="flex flex-col-reverse flex-wrap justify-between gap-5 pl-6 pr-5 xs:flex-row xs:items-center md:pl-2 md:pr-0">
           <h2 className="whitespace-nowrap text-xl font-bold md:text-2xl">
             {title || '어트랙션'}
           </h2>
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex w-full items-center justify-end gap-2 xs:w-auto">
             <ThemeDropdownBtn />
             <AuthButton />
           </div>
