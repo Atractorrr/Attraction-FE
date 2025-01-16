@@ -1,7 +1,7 @@
 'use client'
 
 export function checkViewport() {
-  return window.matchMedia('(max-width: 768px)').matches
+  return window.matchMedia('(max-width: 767px)').matches
 }
 
 export function isIOS() {
