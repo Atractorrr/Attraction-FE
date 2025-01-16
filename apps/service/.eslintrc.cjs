@@ -15,6 +15,8 @@ module.exports = {
       },
     ],
     '@typescript-eslint/naming-convention': 'off',
+    '@@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/no-throw-literal': 'off',
   },
   settings: {
     'import/resolver': {
